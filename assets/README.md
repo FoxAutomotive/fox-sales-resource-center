@@ -1,12 +1,16 @@
 # Brand artwork
 
-The original Fox Automotive logo and Axel artwork are required to finish the requested branding. Images embedded in the original chat were not available as downloadable local files. Do not treat the typographic header or text panel as the supplied official artwork.
+The official images uploaded to `main` are included without pixel changes:
 
-1. Add the supplied, approved files locally, preferably optimized PNG/WebP with real transparency for Axel. A checkerboard visible in an image may be baked into the pixels; check the original file before use.
-2. Use `assets/fox-logo.png` and `assets/axel.png` (or other local supported image formats).
-3. Set `branding.logo` and `branding.axel` in `data/catalog.json` to `./assets/fox-logo.png` and `./assets/axel.png` respectively.
-4. Run validation, open the homepage on desktop and mobile, and confirm legibility. The logo uses `object-fit: contain`; Axel is a supporting homepage image.
+| Local file     | Original uploaded filename                     |
+| -------------- | ---------------------------------------------- |
+| `fox-logo.png` | `fox-automotive-logo%2820261103-181909%29.png` |
+| `axel.png`     | `axle%20sales%20guy%286%29.png`                |
 
-Until configured, the site makes no missing-artwork requests and displays deliberate text fallbacks. It never substitutes externally hosted artwork or an invented mascot. `favicon.svg` is a simple site initial, not the official Fox logo.
+`branding.logo` and `branding.axel` in `data/catalog.json` reference these files. The logo appears in the header; Axel appears on the homepage on desktop and mobile. Paths are relative so they work under the GitHub Pages repository subpath.
+
+The header's CSS frame removes only the logo image's outer white margins from the displayed area; the original PNG is preserved and the full mark remains visible. Axel is displayed as supplied, including its light checkerboard background. Neither source file has been redrawn, cropped, or otherwise edited.
+
+To replace artwork, add the approved file locally, update its catalog path if necessary, and verify desktop and mobile layouts. When paths are null or an image fails to load, the existing text fallbacks remain available. `favicon.svg` is a simple site initial, not the official Fox logo.
 
 Manufacturer marks are small locally drawn SVG representations used with text labels. Replace with approved manufacturer assets if brand standards require it; the `marks` map in `app.js` controls these shapes.

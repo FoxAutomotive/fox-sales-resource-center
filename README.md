@@ -8,7 +8,7 @@ The website architecture is implemented: manufacturer/year navigation, global se
 
 **Content research is not complete.** The initial 2026 RAV4, Tiguan, and Equinox guides are explicitly awaiting verification. No trim names, specifications, equipment availability, packages, or upgrade claims have been invented. Comparisons remain unavailable until at least two source-verified configurations exist. The general technology glossary contains editorial overviews labeled as awaiting source review, not model availability claims. The remaining 2026 lineup and all 2027 model records require research; the year views explain this rather than inheriting prior-year data.
 
-The supplied logo and Axel images were visible in the chat but were not delivered as workspace files. The site uses a typographic Fox header and a restrained text panel until the original files are supplied. See [artwork instructions](assets/README.md). Manufacturer navigation uses lightweight local SVG representations and accessible brand names.
+The official Fox Automotive logo appears in the header and Axel appears on the homepage on desktop and mobile. The original uploaded images are stored locally as `assets/fox-logo.png` and `assets/axel.png`; their paths are configured in `data/catalog.json`. See [artwork instructions](assets/README.md). Manufacturer navigation uses lightweight local SVG representations and accessible brand names.
 
 ## Develop locally
 
