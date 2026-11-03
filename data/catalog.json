@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "market": "US",
+  "branding": {
+    "logo": null,
+    "axel": null
+  },
+  "years": [2026, 2027],
+  "brands": [
+    {
+      "id": "chevrolet",
+      "name": "Chevrolet",
+      "color": "#b18b3d",
+      "sourceUrl": "https://www.chevrolet.com/"
+    },
+    {
+      "id": "toyota",
+      "name": "Toyota",
+      "color": "#c7202b",
+      "sourceUrl": "https://www.toyota.com/"
+    },
+    {
+      "id": "volkswagen",
+      "name": "Volkswagen",
+      "color": "#1d4667",
+      "sourceUrl": "https://www.vw.com/"
+    }
+  ],
+  "fields": [
+    {
+      "id": "engine",
+      "label": "Engine & powertrain",
+      "group": "Performance"
+    },
+    {
+      "id": "horsepower",
+      "label": "Horsepower",
+      "group": "Performance"
+    },
+    {
+      "id": "torque",
+      "label": "Torque",
+      "group": "Performance"
+    },
+    {
+      "id": "transmission",
+      "label": "Transmission",
+      "group": "Performance"
+    },
+    {
+      "id": "drivetrain",
+      "label": "Drivetrain",
+      "group": "Performance"
+    },
+    {
+      "id": "economy",
+      "label": "EPA fuel economy / EV range",
+      "group": "Performance"
+    },
+    {
+      "id": "towing",
+      "label": "Towing capacity",
+      "group": "Performance"
+    },
+    {
+      "id": "wheels",
+      "label": "Wheels",
+      "group": "Exterior"
+    },
+    {
+      "id": "appearance",
+      "label": "Exterior appearance",
+      "group": "Exterior"
+    },
+    {
+      "id": "roof",
+      "label": "Sunroof / panoramic roof",
+      "group": "Exterior"
+    },
+    {
+      "id": "seating",
+      "label": "Seating configuration",
+      "group": "Comfort"
+    },
+    {
+      "id": "upholstery",
+      "label": "Upholstery",
+      "group": "Comfort"
+    },
+    {
+      "id": "heatedSeats",
+      "label": "Heated seats",
+      "group": "Comfort"
+    },
+    {
+      "id": "ventilatedSeats",
+      "label": "Ventilated seats",
+      "group": "Comfort"
+    },
+    {
+      "id": "heatedWheel",
+      "label": "Heated steering wheel",
+      "group": "Comfort"
+    },
+    {
+      "id": "infotainment",
+      "label": "Infotainment display",
+      "group": "Technology"
+    },
+    {
+      "id": "instruments",
+      "label": "Instrument display",
+      "group": "Technology"
+    },
+    {
+      "id": "audio",
+      "label": "Audio system",
+      "group": "Technology"
+    },
+    {
+      "id": "phone",
+      "label": "Smartphone connectivity",
+      "group": "Technology"
+    },
+    {
+      "id": "assistance",
+      "label": "Driver assistance",
+      "group": "Safety"
+    },
+    {
+      "id": "safety",
+      "label": "Safety equipment",
+      "group": "Safety"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "2026-toyota-rav4",
+      "brand": "toyota",
+      "model": "RAV4",
+      "year": 2026,
+      "category": "SUV",
+      "summary": "A dedicated model-year guide for the Toyota RAV4. Trim and equipment research is in progress.",
+      "status": "awaiting-verification",
+      "verifiedAt": null,
+      "sources": [
+        {
+          "id": "toyota-rav4",
+          "title": "Toyota RAV4 \u00b7 official model page",
+          "url": "https://www.toyota.com/rav4/",
+          "kind": "research-target",
+          "checkedAt": null
+        }
+      ],
+      "trims": [],
+      "packages": [],
+      "upgrades": [],
+      "notes": [
+        "The official source has not been reviewed. Trim names, powertrains, and equipment will be added after model-year verification."
+      ]
+    },
+    {
+      "id": "2026-volkswagen-tiguan",
+      "brand": "volkswagen",
+      "model": "Tiguan",
+      "year": 2026,
+      "category": "SUV",
+      "summary": "A dedicated model-year guide for the Volkswagen Tiguan. Trim and equipment research is in progress.",
+      "status": "awaiting-verification",
+      "verifiedAt": null,
+      "sources": [
+        {
+          "id": "vw-tiguan",
+          "title": "Volkswagen Tiguan \u00b7 official model page",
+          "url": "https://www.vw.com/en/models/tiguan.html",
+          "kind": "research-target",
+          "checkedAt": null
+        }
+      ],
+      "trims": [],
+      "packages": [],
+      "upgrades": [],
+      "notes": [
+        "The official source has not been reviewed. No equipment or trim information has been inferred from another model year."
+      ]
+    },
+    {
+      "id": "2026-chevrolet-equinox",
+      "brand": "chevrolet",
+      "model": "Equinox",
+      "year": 2026,
+      "category": "SUV",
+      "summary": "A dedicated model-year guide for the Chevrolet Equinox. Trim and equipment research is in progress.",
+      "status": "awaiting-verification",
+      "verifiedAt": null,
+      "sources": [
+        {
+          "id": "chevy-equinox",
+          "title": "Chevrolet Equinox \u00b7 official model page",
+          "url": "https://www.chevrolet.com/suvs/equinox",
+          "kind": "research-target",
+          "checkedAt": null
+        }
+      ],
+      "trims": [],
+      "packages": [],
+      "upgrades": [],
+      "notes": [
+        "The official source has not been reviewed. This guide does not cover Equinox EV; that vehicle requires a separate verified record."
+      ]
+    }
+  ],
+  "coverageNotes": {
+    "2026": "Research begins with RAV4, Tiguan, and Equinox. The remaining U.S. lineup will be added progressively after official source review.",
+    "2027": "2027 coverage is awaiting official model-by-model verification. Availability, trims, and equipment have not been carried forward from 2026."
+  }
+}
