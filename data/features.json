@@ -1,0 +1,62 @@
+[
+  {
+    "id": "toyota-safety-sense",
+    "name": "Toyota Safety Sense",
+    "brand": "toyota",
+    "category": "Driver assistance",
+    "summary": "A family of Toyota active safety and driver-assistance systems.",
+    "how": "Depending on the version and vehicle, cameras and other sensors support functions such as collision alerts and lane assistance. Check the specific system version and owner’s manual.",
+    "value": "Helps explain the role of driver assistance in everyday driving without promising that every Toyota has the same functions.",
+    "limitations": "The driver remains responsible for safe operation. Weather, road markings, visibility, and other conditions can limit performance. Contents vary by model and year.",
+    "sourceUrl": "https://www.toyota.com/safety-sense/",
+    "verifiedAt": null
+  },
+  {
+    "id": "iq-drive",
+    "name": "IQ.DRIVE",
+    "brand": "volkswagen",
+    "category": "Driver assistance",
+    "summary": "Volkswagen’s name for a suite of driver-assistance technologies.",
+    "how": "Systems can assist with selected driving tasks using vehicle sensors. The exact functions and operating requirements must be checked for the vehicle and model year.",
+    "value": "Provides a starting point for discussing support on the road, then demonstrating the actual vehicle’s controls.",
+    "limitations": "Driver assistance does not replace an attentive driver. System availability and limitations vary; consult the owner’s manual.",
+    "sourceUrl": "https://www.vw.com/en/iq-drive.html",
+    "verifiedAt": null
+  },
+  {
+    "id": "super-cruise",
+    "name": "Super Cruise",
+    "brand": "chevrolet",
+    "category": "Driver assistance",
+    "summary": "GM’s hands-free driver-assistance technology for compatible roads and equipped vehicles.",
+    "how": "Combines mapped-road information, sensors, and driver-attention monitoring. Confirm the vehicle’s hardware, service requirements, and road compatibility before describing operation.",
+    "value": "Can reduce the effort of driving on supported roads while keeping the driver engaged.",
+    "limitations": "It is not autonomous driving. An attentive driver is required. Road coverage, conditions, subscriptions, and vehicle eligibility apply.",
+    "sourceUrl": "https://www.chevrolet.com/super-cruise",
+    "verifiedAt": null
+  },
+  {
+    "id": "hybrid-synergy-drive",
+    "name": "Hybrid Synergy Drive",
+    "brand": "toyota",
+    "category": "Powertrain",
+    "summary": "Toyota terminology for an integrated gasoline-electric hybrid system.",
+    "how": "An engine and electric motor system work together, with energy recovered during braking. Architecture and charging capability depend on the specific model; do not assume a hybrid is a plug-in.",
+    "value": "Helps customers understand how gasoline and electric propulsion can work together in everyday use.",
+    "limitations": "Efficiency varies with vehicle, weather, speed, and driving conditions. The name alone does not establish battery capacity, output, or electric range.",
+    "sourceUrl": "https://www.toyota.com/electrified-vehicles/",
+    "verifiedAt": null
+  },
+  {
+    "id": "4motion",
+    "name": "4MOTION",
+    "brand": "volkswagen",
+    "category": "Drivetrain",
+    "summary": "Volkswagen’s all-wheel-drive system branding.",
+    "how": "The system manages drive torque to help traction. Its mechanical layout and operation depend on the vehicle and powertrain.",
+    "value": "A practical way to introduce traction support and then explain the actual vehicle’s drive modes and tire requirements.",
+    "limitations": "All-wheel drive does not remove the need for appropriate tires or safe driving, and it does not guarantee shorter braking distances. Availability varies by configuration.",
+    "sourceUrl": "https://www.vw.com/",
+    "verifiedAt": null
+  }
+]

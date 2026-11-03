@@ -1,0 +1,21 @@
+{
+  "name": "fox-sales-resource-center",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static automotive product reference for Fox Automotive",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test --test-isolation=none tests/data.test.mjs",
+    "test:browser": "playwright test",
+    "build": "node scripts/build.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.56.1",
+    "prettier": "3.6.2"
+  }
+}
