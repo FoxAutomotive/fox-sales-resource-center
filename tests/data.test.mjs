@@ -177,7 +177,13 @@ test("RAV4 HEV brochure covers six grades and nine configurations without PHEV c
       .status,
     "standard",
   );
-  assert.ok(v.trims.every((t) => t.equipment.torque.status === "unverified"));
+  assert.ok(
+    v.trims.every(
+      (t) =>
+        t.equipment.torque.status === "standard" &&
+        t.equipment.torque.value.includes("torque basis not specified"),
+    ),
+  );
 });
 test("package names are evidenced without invented contents", () => {
   const v = catalog.vehicles.find((v) => v.id === "2026-toyota-rav4");
@@ -567,5 +573,119 @@ test("unverified or cyclic upgrade rankings fall back transparently to catalog o
   assert.equal(
     comparisonBaseline(c, eligibleOptions(c)).method,
     "catalog-order",
+  );
+});
+
+test("RAV4 audit accounts for every formerly unknown cell and every remaining unknown", async () => {
+  const a = JSON.parse(
+    await readFile(
+      new URL("../docs/audits/2026-rav4-hybrid-audit.json", import.meta.url),
+      "utf8",
+    ),
+  );
+  const v = catalog.vehicles.find((v) => v.id === a.vehicleId);
+  assert.equal(a.entries.length, 93);
+  assert.equal(
+    new Set(a.entries.map((e) => `${e.trimId}:${e.fieldId}`)).size,
+    93,
+  );
+  for (const e of a.entries) {
+    assert.equal(
+      v.trims.find((t) => t.id === e.trimId).equipment[e.fieldId].status,
+      e.after,
+    );
+    assert.ok(e.reason && e.brochurePages);
+  }
+  for (const check of a.positiveMarkChecks) {
+    const cell = v.trims.find((t) => t.id === check.trimId).equipment[
+      check.fieldId
+    ];
+    assert.equal(
+      cell.status,
+      check.brochureMark === "S" ? "standard" : "optional",
+      `${check.trimId} ${check.fieldId}`,
+    );
+    assert.ok(cell.sourceIds.includes(a.brochureSourceId));
+  }
+  const remaining = v.trims.flatMap((t) =>
+    Object.entries(t.equipment)
+      .filter(([, c]) => c.status === "unverified")
+      .map(([id]) => `${t.id}:${id}`),
+  );
+  assert.equal(remaining.length, 57);
+  assert.deepEqual(
+    new Set(remaining),
+    new Set(
+      a.entries
+        .filter((e) => e.after === "unverified")
+        .map((e) => `${e.trimId}:${e.fieldId}`),
+    ),
+  );
+  assert.equal(a.entries.filter((e) => e.after === "standard").length, 9);
+  assert.equal(a.entries.filter((e) => e.after === "unavailable").length, 27);
+});
+test("audited torque quotes the brochure without inventing an engine or system basis", () => {
+  for (const t of catalog.vehicles[0].trims) {
+    const c = t.equipment.torque;
+    assert.equal(c.status, "standard");
+    assert.match(c.value, /170 lb-ft \(231 N·m\)/);
+    assert.match(c.value, /basis not specified/);
+    assert.deepEqual(c.sourcePages, { "toyota-2026-rav4-brochure": "25" });
+  }
+});
+test("HEV applicability and genuine specification gaps remain distinct", () => {
+  const v = catalog.vehicles[0];
+  for (const t of v.trims) {
+    for (const id of ["electricRange", "charging", "dcCharging"]) {
+      assert.equal(t.equipment[id].status, "unavailable");
+      assert.match(t.equipment[id].value, /Not applicable/);
+      assert.ok(
+        t.equipment[id].sourceIds.includes("toyota-2026-rav4-brochure"),
+      );
+    }
+    if (t.id !== "woodland-hev-awd")
+      assert.equal(t.equipment.economy.status, "unverified");
+    if (t.configuration.includes("FWD"))
+      assert.equal(t.equipment.towing.status, "unverified");
+  }
+  assert.equal(
+    v.trims.find((t) => t.id === "le-hev-fwd").equipment.roof.status,
+    "unverified",
+  );
+  assert.equal(
+    v.trims.find((t) => t.id === "se-hev-awd").equipment.heatedWheel.status,
+    "optional",
+  );
+  assert.equal(
+    v.trims.find((t) => t.id === "limited-hev-awd").equipment.ventilatedSeats
+      .status,
+    "standard",
+  );
+  assert.equal(
+    v.sources.find((s) => s.id === "rav4-epa-lookup").kind,
+    "research-target",
+  );
+  assert.equal(
+    v.sources.find((s) => s.id === "rav4-epa-lookup").checkedAt,
+    null,
+  );
+});
+test("audit source provenance stays honest and rejects unofficial EPA lookalikes", () => {
+  const v = catalog.vehicles.find((v) => v.id === "2026-toyota-rav4");
+  const source = v.sources.find((s) => s.id === "rav4-epa-lookup");
+  assert.equal(source.kind, "research-target");
+  assert.equal(source.checkedAt, null);
+  assert.ok(
+    v.trims.every((t) =>
+      Object.values(t.equipment).every(
+        (c) => !c.sourceIds?.includes(source.id),
+      ),
+    ),
+  );
+  const rejected = structuredClone(catalog);
+  rejected.vehicles[0].sources.find((s) => s.id === source.id).url =
+    "https://fueleconomy.gov.evil.example/";
+  assert.ok(
+    validate(rejected, features).some((e) => e.includes("official HTTPS")),
   );
 });

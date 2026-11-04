@@ -185,7 +185,7 @@
       "model": "RAV4",
       "year": 2026,
       "category": "SUV",
-      "summary": "Six 2026 RAV4 hybrid grades, nine FWD/AWD configurations. Standard and available equipment and package names are checked against Toyota’s supplied brochure. Package contents and conflicting specifications remain Unverified.",
+      "summary": "Audited 2026 RAV4 Hybrid guide: six grades and nine FWD/AWD configurations. Brochure Standard/Available marks are preserved; published maximum torque and HEV-only applicability are clarified. Unresolved ratings and unexplained equipment blanks retain specific audit reasons.",
       "status": "verified",
       "verifiedAt": "2026-11-03",
       "sources": [
@@ -200,7 +200,7 @@
           "fileName": "rav4_ebrochure.pdf",
           "sha256": "b3bf909f6220343c8548ee9b004935317679a8c5e1444537083821e3896075a1",
           "pageCount": 30,
-          "scope": "HEV tables only. Manufacturer link is the official model page, not a claim that this PDF was downloaded from that URL.",
+          "scope": "HEV tables only. Manufacturer link is the official model page, not a claim that this PDF was downloaded from that URL. Data-quality audit rechecked every previously Unverified HEV cell; maximum torque is quoted with unspecified basis. Plug-in-specific fields are classified not applicable to HEV, not inferred from blank matrix entries.",
           "shortLabel": "B1"
         },
         {
@@ -232,6 +232,13 @@
           "url": "https://pressroom.toyota.com/vehicle/2026-toyota-rav4/",
           "kind": "research-target",
           "checkedAt": null
+        },
+        {
+          "id": "rav4-epa-lookup",
+          "title": "EPA/FuelEconomy.gov 2026 Toyota RAV4 Hybrid lookup — proxy CONNECT 403; records not retrieved",
+          "url": "https://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=2026&make=Toyota&model=RAV4%20Hybrid",
+          "kind": "research-target",
+          "checkedAt": null
         }
       ],
       "trims": [
@@ -258,7 +265,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -378,13 +391,31 @@
               ]
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "wirelessCharging": {
               "status": "unverified"
@@ -429,7 +460,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -553,13 +590,31 @@
               ]
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "wirelessCharging": {
               "status": "unverified"
@@ -604,7 +659,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -749,13 +810,31 @@
               }
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "headUpDisplay": {
               "status": "unverified"
@@ -809,7 +888,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -958,13 +1043,31 @@
               }
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "headUpDisplay": {
               "status": "unverified"
@@ -1018,7 +1121,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -1155,13 +1264,31 @@
               ]
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "wirelessCharging": {
               "status": "unverified"
@@ -1212,7 +1339,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -1353,13 +1486,31 @@
               ]
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "wirelessCharging": {
               "status": "unverified"
@@ -1410,7 +1561,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -1562,13 +1719,31 @@
               }
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "wirelessCharging": {
               "status": "standard",
@@ -1627,7 +1802,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -1670,12 +1851,12 @@
             },
             "roof": {
               "status": "standard",
-              "value": "Power tilt/slide moonroof; panoramic upgrade separately available",
+              "value": "Power tilt/slide moonroof with one-touch open/close",
               "sourceIds": ["toyota-2026-rav4-brochure"],
               "sourcePages": {
                 "toyota-2026-rav4-brochure": "21"
               },
-              "conditions": "Standard moonroof shown as S; panoramic option shown as A. Package contents not itemized."
+              "conditions": "This is the standard moonroof. A panoramic moonroof is separately marked A (Available) and listed in the optional-equipment section; it is not included by the Standard label here."
             },
             "seating": {
               "status": "standard",
@@ -1782,13 +1963,31 @@
               }
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "headUpDisplay": {
               "status": "unverified"
@@ -1849,7 +2048,13 @@
               }
             },
             "torque": {
-              "status": "unverified"
+              "status": "standard",
+              "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+              "conditions": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "25"
+              }
             },
             "transmission": {
               "status": "standard",
@@ -2011,13 +2216,31 @@
               "conditions": "Named as an option on Hybrid Limited; ordering combinations and prerequisites are not specified."
             },
             "electricRange": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "charging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "dcCharging": {
-              "status": "unverified"
+              "status": "unavailable",
+              "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+              "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+              }
             },
             "cargoOutlet": {
               "status": "unverified"
@@ -2241,8 +2464,9 @@
       "notes": [
         "The supplied Toyota 2026 RAV4 brochure verifies HEV equipment/optional marks and package names (pp. 17–25); the Toyota 2026 release verifies the HEV/PHEV configuration matrix and the explicitly named PHEV grade equipment. Verification is claim-specific, not a claim that every cell is known.",
         "Brochure provenance: user supplied rav4_ebrochure.pdf (30 pages), SHA-256 b3bf909f6220343c8548ee9b004935317679a8c5e1444537083821e3896075a1. Its manufacturer link points to Toyota’s official model page; URL retrieval is not represented as a successful brochure download. The original PDF is retained with task attachments, not republished as website payload.",
+        "Data-quality audit: all 93 previously Unverified HEV equipment cells were individually checked. Nine torque cells now report the brochure’s explicit 170 lb-ft maximum with its unspecified basis. Twenty-seven plug-in-specific range/charging cells are classified Unavailable / not applicable to conventional HEV. Fifty-seven cells remain Unverified for the documented reasons in the audit; unexplained matrix blanks are not automatically negative availability claims.",
+        "Torque provenance: the brochure’s maximum is reported verbatim, not as a confirmed combined-system or engine-only figure. No engine/motor torque is added. Fuel economy and FWD towing still require accessible, configuration-specific official records; failed Toyota/EPA reads are not evidence that no published rating exists.",
         "Fuel economy: the release conflicts internally. HEV FWD is described as up to 41, 43 and 44 combined mpg; XSE/Limited HEV are listed with 41 or 42 combined mpg and one inconsistent city/highway set. Woodland PHEV is given as 37 or 38 combined mpg; GR SPORT as 36 or 37. Unresolved MPG cells remain Unverified rather than selecting a convenient number. Woodland HEV and SE/XSE PHEV figures shown are manufacturer estimates, not verified EPA results.",
-        "Torque remains Unverified on all HEVs: brochure p. 25 lists 170 lb-ft without a clear engine/system basis, while the release gives 163 lb-ft for the HEV engine and 172 lb-ft in the XSE grade line. No combined-system torque is inferred. PHEV 172 lb-ft is explicitly labeled engine-only in the release.",
         "The brochure names eight HEV package offerings and their grade eligibility, but does not itemize package contents. Package names are verified; contents, combinations and pricing remain Unverified. Its equipment tables mark S=Standard and A=Available; unexplained blank cells are treated as Unverified, not proof of Unavailable. PHEV packages are not verified by this HEV brochure.",
         "The supplied brochure’s six-grade equipment tables cover HEV only; they do not verify PHEV/GR SPORT availability or packages. It does not resolve conflicting MPG in the release, provide a verified EPA fuel-economy table, clarify torque basis, or confirm total seating capacity, PHEV transmission type, or FWD/GR SPORT towing limits.",
         "Confirm actual equipment and installed packages against the window sticker. Observe vehicle-specific towing/loading limits and charging requirements. Driver assistance is not autonomous driving; subscriptions, road and weather conditions apply."

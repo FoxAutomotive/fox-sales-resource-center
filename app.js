@@ -3,6 +3,8 @@ import {
   comparisonRows,
   eligibleOptions,
   resolveCell,
+  evidenceReady,
+  equipmentKey,
   trimComparisonSections,
   packageComparisonRows,
   verifiedUpgradePairs,
@@ -70,22 +72,18 @@ const sourceLinks = (v) =>
     .join("");
 
 function nav(active) {
-  const links = [
+  const primary = [
     ["/", "Home"],
-    ["/brand/chevrolet", "Chevrolet"],
-    ["/brand/toyota", "Toyota"],
-    ["/brand/volkswagen", "Volkswagen"],
-    ["/compare", "Compare Vehicles"],
+    ["/search", "Model Guides"],
+    ["/compare", "Compare Trims"],
+    ["/compare-vehicles", "Compare Vehicles"],
+    ["/equipment-search", "Equipment Search"],
     ["/specials", "Manager’s Specials"],
   ];
+  const link = ([path, label]) =>
+    `<a href="#${path}" ${active === path ? 'aria-current="page"' : ""}>${escape(label)}${["/compare-vehicles", "/equipment-search"].includes(path) ? '<span class="soon-label">STAGE 2</span>' : path === "/specials" ? '<span class="soon-label">SOON</span>' : ""}</a>`;
   $("#navigation").innerHTML =
-    links
-      .map(
-        ([path, label], i) =>
-          `<a href="#${path}" ${active === path ? 'aria-current="page"' : ""}>${i === 0 ? icon("grid") : i === 4 ? icon("compare") : ""}${label}${i === 5 ? '<span class="soon-label">SOON</span>' : ""}</a>`,
-      )
-      .join("") +
-    '<a class="nav-help" href="#/features">Equipment glossary ↗</a>';
+    `<div class="primary-links">${primary.map(link).join("")}</div><div class="manufacturer-links"><span class="eyebrow">BROWSE BY BRAND</span>${catalog.brands.map((b) => link([`/brand/${b.id}`, b.name])).join("")}<a class="glossary-link" href="#/features">Equipment glossary ↗</a></div>`;
 }
 function breadcrumbs(parts) {
   return `<div class="breadcrumbs"><a href="#/">Home</a>${parts.map((p) => `${icon("chevron")}${p.href ? `<a href="${p.href}">${escape(p.label)}</a>` : `<span>${escape(p.label)}</span>`}`).join("")}</div>`;
@@ -161,7 +159,7 @@ function updateSearch(navigate) {
   }
 }
 function searchPage(params) {
-  nav("");
+  nav("/search");
   const options = {
     query: params.get("q") || "",
     brand: params.get("brand") || "",
@@ -303,6 +301,108 @@ function optionalEquipmentHTML(v) {
   if (!v.optionalEquipment?.length) return "";
   return `<h3>Verified individual options</h3><p class="muted">These availability statements do not establish a named package’s full contents or installation on a particular vehicle.</p>${v.optionalEquipment.map((o) => `<details><summary>${escape(o.name)} <span class="equipment-status optional">Optional</span></summary><p>${escape(o.description)}</p><p>Listed grade(s): ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></details>`).join("")}`;
 }
+function trimGroups(options) {
+  const groups = new Map();
+  for (const option of options) {
+    if (!groups.has(option.trim.name)) groups.set(option.trim.name, []);
+    groups.get(option.trim.name).push(option);
+  }
+  return [...groups.values()];
+}
+function verifiedTrimImage(vehicle, trim) {
+  const image = trim.image;
+  if (!image?.src || !image.alt || !evidenceReady(vehicle, image.sourceIds))
+    return null;
+  try {
+    const url = new URL(image.src, import.meta.url);
+    return ["http:", "https:"].includes(url.protocol)
+      ? { ...image, url: url.href }
+      : null;
+  } catch {
+    return null;
+  }
+}
+function trimCardHTML(vehicle, group, index, selectedId = group[0].id) {
+  const option = group.find((o) => o.id === selectedId) || group[0],
+    trim = option.trim;
+  const image = verifiedTrimImage(vehicle, trim);
+  const priority = [
+    "wheels",
+    "upholstery",
+    "heatedSeats",
+    "ventilatedSeats",
+    "roof",
+    "audio",
+    "heatedWheel",
+    "liftgate",
+    "infotainment",
+    "assistance",
+    "instruments",
+    "phone",
+  ];
+  const peers = eligibleOptions(catalog).filter(
+    (o) => o.vehicle.id === vehicle.id && o.trim.name !== trim.name,
+  );
+  const known = priority.filter(
+    (id) => resolveCell(vehicle, trim, id).status === "standard",
+  );
+  const distinct = known.filter((id) =>
+    peers.some((o) => {
+      const cell = resolveCell(o.vehicle, o.trim, id);
+      return (
+        cell.status !== "unverified" &&
+        equipmentKey(cell) !== equipmentKey(resolveCell(vehicle, trim, id))
+      );
+    }),
+  );
+  const highlights = [...new Set([...distinct, ...known])].slice(0, 5);
+  return `<article class="trim-training-card" data-grade-index="${index}"><div class="trim-card-visual">${image ? `<img src="${escape(image.url)}" alt="${escape(image.alt)}" loading="lazy">` : `<span class="trim-image-placeholder">${icon("car")}<span>Verified trim image not available</span></span>`}<span class="trim-year-label">${vehicle.year} · ${escape(brandName(vehicle.brand))}</span></div><div class="trim-card-content"><span class="eyebrow">${escape(vehicle.model)}</span><h3>${escape(trim.name)}</h3>${group.length > 1 ? `<label class="field-label" for="card-config-${index}">Configuration</label><select class="card-configuration" id="card-config-${index}">${group.map((o) => `<option value="${escape(o.id)}" ${o.id === option.id ? "selected" : ""}>${escape(o.trim.configuration || o.trim.name)}</option>`).join("")}</select>` : `<p class="single-configuration">${escape(trim.configuration || "Verified configuration")}</p>`}<dl class="trim-core-specs">${[
+    ["engine", "Engine"],
+    ["horsepower", "Horsepower"],
+    ["drivetrain", "Drivetrain"],
+    ["economy", "MPG"],
+  ]
+    .map(([id, label]) => {
+      const cell = resolveCell(vehicle, trim, id);
+      return `<div><dt>${label}</dt><dd>${cell.status === "unverified" ? '<span class="equipment-status unverified">Unverified</span>' : escape(cell.value)}${cell.sourceIds?.length ? `<small>${escape(citationText(cell.sourceIds, cell.sourcePages))}</small>` : ""}</dd></div>`;
+    })
+    .join(
+      "",
+    )}</dl><h4>Equipment highlights</h4><ul class="trim-highlights">${highlights.length ? highlights.map((id) => `<li>${escape(resolveCell(vehicle, trim, id).value)}</li>`).join("") : "<li>Standard equipment details await verification.</li>"}</ul><div class="trim-card-actions"><button class="button primary" data-trim-action="equipment" data-option="${escape(option.id)}">View Equipment</button><button class="button secondary" data-trim-action="compare" data-option="${escape(option.id)}">Compare Trims</button></div></div></article>`;
+}
+function trimExplorerHTML(vehicle, options) {
+  if (!options.length) return "";
+  const groups = trimGroups(options);
+  return `<section id="trim-lineup" class="section-block trim-lineup"><div class="section-heading"><div><span class="eyebrow">LEARN THE LINEUP</span><h2>Find your trim. Know the difference.</h2><p class="muted">${groups.length} verified trim${groups.length === 1 ? "" : "s"} · ${options.length} configuration${options.length === 1 ? "" : "s"}. Choose a drivetrain to see its own specifications.</p></div></div><div class="trim-card-grid">${groups.map((group, i) => trimCardHTML(vehicle, group, i)).join("")}</div><p class="comparison-note">Highlights are selected from documented standard equipment; they are not claims that other trims lack those features. Unverified values stay labeled.</p></section><section id="equipment-detail" class="section-block training-equipment"><div class="section-heading"><div><span class="eyebrow">PRODUCT TRAINING · SALES REFERENCE</span><h2 tabindex="-1" id="equipment-detail-title">Equipment, organized.</h2><p class="muted">Start with the category you need. Expand for availability, conditions and sources.</p></div></div><label class="field-label" for="equipment-config">Equipment for</label><select id="equipment-config" class="standalone-input">${options.map((o) => `<option value="${escape(o.id)}">${escape(o.trim.name)} · ${escape(o.trim.configuration || "Verified configuration")}</option>`).join("")}</select><div id="categorized-equipment"></div></section>`;
+}
+function categorizedEquipmentHTML(vehicle, trim) {
+  const convenience = new Set(["liftgate", "wirelessCharging", "cargoOutlet"]);
+  const categories = [
+    "Performance",
+    "Comfort",
+    "Technology",
+    "Safety",
+    "Convenience",
+    "Exterior",
+  ];
+  const sections = categories
+    .map((category) => {
+      const fields = catalog.fields.filter(
+        (f) => (convenience.has(f.id) ? "Convenience" : f.group) === category,
+      );
+      if (!fields.length) return "";
+      const cells = fields.map((f) => resolveCell(vehicle, trim, f.id));
+      return `<details class="equipment-category" ${category === "Performance" ? "open" : ""}><summary><span>${category}</span><small>${cells.filter((c) => c.status === "standard").length} standard · ${cells.filter((c) => c.status === "optional").length} optional · ${cells.filter((c) => c.status === "unavailable").length} unavailable · ${cells.filter((c) => c.status === "unverified").length} unverified</small></summary><dl class="categorized-fields">${fields.map((f, i) => `<div><dt>${escape(f.label)}</dt><dd>${cellHTML(cells[i])}</dd></div>`).join("")}</dl></details>`;
+    })
+    .join("");
+  const packages = vehicle.packages.filter(
+    (p) => p.trimIds.includes(trim.id) && evidenceReady(vehicle, p.sourceIds),
+  );
+  const options = (vehicle.optionalEquipment || []).filter(
+    (o) => o.trimIds.includes(trim.id) && evidenceReady(vehicle, o.sourceIds),
+  );
+  return `<p class="equipment-context"><strong>${escape(trim.name)}</strong> · ${escape(trim.configuration || "")} · Actual equipment must be confirmed on the window sticker.</p>${sections}<details class="equipment-category"><summary><span>Packages &amp; listed options</span><small>${packages.length} package listings · ${options.length} individual options</small></summary><div class="categorized-packages">${packages.length ? packages.map((p) => `<article><h3>${escape(p.name)}</h3><span class="equipment-status optional">Optional listing</span>${p.contentsStatus === "unverified" ? '<p class="editorial-note">Package name verified · Contents Unverified</p>' : ""}<p>${escape(p.description)}</p><p>${escape(p.conditions)}</p><small>Source: ${escape(citationText(p.sourceIds, p.sourcePages))}</small></article>`).join("") : "<p>No source-verified package listing for this configuration. This does not mean packages are unavailable.</p>"}${options.map((o) => `<article><h3>${escape(o.name)}</h3><span class="equipment-status optional">Optional</span><p>${escape(o.description)}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></article>`).join("")}</div></details>`;
+}
 function modelPage(id) {
   const v = catalog.vehicles.find((v) => v.id === id);
   if (!v) return notFound();
@@ -310,7 +410,7 @@ function modelPage(id) {
   const options = eligibleOptions(catalog).filter((o) => o.vehicle.id === id);
   let modelSelected = defaultModelSelection(options);
   $("#main").innerHTML =
-    `<div class="content page-content model-page">${breadcrumbs([{ label: brandName(v.brand), href: `#/brand/${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>${escape(v.summary)}</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button>${options.length ? `<a class="button secondary" href="#/compare">${icon("compare")} Compare trims</a>` : ""}</div></div><div class="notice">${icon("shield")} Verify actual equipment against the vehicle’s window sticker. Availability may depend on drivetrain, packages, production date, and region.</div>${v.relatedGuides?.length ? `<p class="related-guide">${v.relatedGuides.map((g) => `<a class="text-link" href="#/model/${escape(g.id)}">${escape(g.label)} ${icon("arrow")}</a>`).join(" ")}</p>` : ""}<nav class="section-nav" aria-label="Model sections"><a href="#trim-section" data-scroll="trim-section">Trims &amp; equipment</a><a href="#upgrade-section" data-scroll="upgrade-section">Reasons to upgrade</a><a href="#package-section" data-scroll="package-section">Factory packages</a><a href="#source-section" data-scroll="source-section">Sources &amp; verification</a></nav><section id="trim-section" class="section-block"><div class="section-heading"><div><span class="eyebrow">THE DETAILS THAT MATTER</span><h2>Trim &amp; equipment reference</h2></div></div><div class="legend">${["standard", "optional", "unavailable", "unverified"].map((s) => `<span class="equipment-status ${s}">${s[0].toUpperCase() + s.slice(1)}</span>`).join("")}</div>${
+    `<div class="content page-content model-page">${breadcrumbs([{ label: brandName(v.brand), href: `#/brand/${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>${escape(v.summary)}</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button>${options.length ? `<a class="button secondary" href="#trim-section" data-scroll="trim-section">${icon("compare")} Compare trims</a>` : ""}</div></div><div class="notice">${icon("shield")} Verify actual equipment against the vehicle’s window sticker. Availability may depend on drivetrain, packages, production date, and region.</div>${v.relatedGuides?.length ? `<p class="related-guide">${v.relatedGuides.map((g) => `<a class="text-link" href="#/model/${escape(g.id)}">${escape(g.label)} ${icon("arrow")}</a>`).join(" ")}</p>` : ""}<nav class="section-nav" aria-label="Model sections">${options.length ? '<a href="#trim-lineup" data-scroll="trim-lineup">Trim lineup</a><a href="#equipment-detail" data-scroll="equipment-detail">View Equipment</a>' : ""}<a href="#trim-section" data-scroll="trim-section">Compare Trims</a><a href="#upgrade-section" data-scroll="upgrade-section">Reasons to upgrade</a><a href="#package-section" data-scroll="package-section">Factory packages</a><a href="#source-section" data-scroll="source-section">Sources &amp; verification</a></nav>${trimExplorerHTML(v, options)}<section id="trim-section" class="section-block"><div class="section-heading"><div><span class="eyebrow">THE DETAILS THAT MATTER</span><h2>Trim &amp; equipment reference</h2></div></div><div class="legend">${["standard", "optional", "unavailable", "unverified"].map((s) => `<span class="equipment-status ${s}">${s[0].toUpperCase() + s.slice(1)}</span>`).join("")}</div>${
       options.length
         ? `${modelTrimPicker(options, modelSelected)}<div class="table-controls">${comparisonViewControls("model")}<div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((g) => `<option>${g}</option>`).join("")}</select></div></div><div id="model-equipment">${comparisonView(
             options.filter((o) => modelSelected.includes(o.id)),
@@ -337,6 +437,57 @@ function modelPage(id) {
         !$("#model-view-all").checked,
         $("#model-group").value,
       );
+    };
+    const renderEquipment = () => {
+      const selected = options.find(
+        (o) => o.id === $("#equipment-config").value,
+      );
+      $("#categorized-equipment").innerHTML = categorizedEquipmentHTML(
+        v,
+        selected.trim,
+      );
+    };
+    $("#equipment-config").onchange = renderEquipment;
+    renderEquipment();
+    const groups = trimGroups(options);
+    $(".trim-card-grid").onchange = (event) => {
+      if (!event.target.matches(".card-configuration")) return;
+      const index = Number(
+          event.target.closest(".trim-training-card").dataset.gradeIndex,
+        ),
+        id = event.target.value;
+      event.target.closest(".trim-training-card").outerHTML = trimCardHTML(
+        v,
+        groups[index],
+        index,
+        id,
+      );
+      document
+        .querySelector(`[data-grade-index="${index}"] select`)
+        .focus({ preventScroll: true });
+    };
+    $(".trim-card-grid").onclick = (event) => {
+      const button = event.target.closest("[data-trim-action]");
+      if (!button) return;
+      if (button.dataset.trimAction === "equipment") {
+        $("#equipment-config").value = button.dataset.option;
+        renderEquipment();
+        $("#equipment-detail").scrollIntoView();
+        $("#equipment-detail-title").focus({ preventScroll: true });
+      } else {
+        if (!modelSelected.includes(button.dataset.option)) {
+          modelSelected = [...modelSelected.slice(0, 3), button.dataset.option];
+          document
+            .querySelectorAll('input[name="model-trim"]')
+            .forEach(
+              (input) => (input.checked = modelSelected.includes(input.value)),
+            );
+          update();
+        }
+        $("#trim-section").scrollIntoView();
+        $("#trim-section").tabIndex = -1;
+        $("#trim-section").focus({ preventScroll: true });
+      }
     };
     document
       .querySelectorAll('input[name="model-view"]')
@@ -389,7 +540,7 @@ function compactPrintSheet(v, options) {
       const economy = resolveCell(v, o.trim, "economy");
       const range = resolveCell(v, o.trim, "electricRange");
       const charging = resolveCell(v, o.trim, "charging");
-      return `<p><strong>${escape(o.trim.name)} ${escape(o.trim.configuration)}:</strong> ${escape(hp.value || "Output unverified")}; ${economy.status === "unverified" ? "MPG Unverified" : escape(economy.value)}${range.status !== "unverified" ? `; ${escape(range.value)}` : ""}${charging.status !== "unverified" ? `; ${escape(charging.value)}` : ""}.</p>`;
+      return `<p><strong>${escape(o.trim.name)} ${escape(o.trim.configuration)}:</strong> ${escape(hp.value || "Output unverified")}; ${economy.status === "unverified" ? "MPG Unverified" : escape(economy.value)}${["standard", "optional"].includes(range.status) ? `; ${escape(range.value)}` : ""}${["standard", "optional"].includes(charging.status) ? `; ${escape(charging.value)}` : ""}.</p>`;
     })
     .join("");
   const towing = new Map();
@@ -488,6 +639,13 @@ function renderComparison(options) {
     !$("#compare-view-all").checked,
   );
 }
+function stageTwoPage(kind) {
+  const isSearch = kind === "equipment-search";
+  const title = isSearch ? "Equipment Search" : "Compare Vehicles";
+  nav(isSearch ? "/equipment-search" : "/compare-vehicles");
+  $("main").innerHTML =
+    `<div class="content page-content">${breadcrumbs([{ label: title }])}<section class="stage-two-panel"><span class="badge pending">STAGE 2 · COMING NEXT</span><span class="tool-icon">${icon(isSearch ? "search" : "compare")}</span><h1>${title}</h1><p>${isSearch ? "A dedicated workspace for finding vehicles by verified equipment and feature combinations." : "A dedicated workspace for researching competing models and their verified specifications."}</p><p class="muted">This workspace is planned for Stage 2. For now, use the model guides, categorized equipment and existing trim comparison tools.</p><div class="stage-two-actions"><a class="button primary" href="#/search">Browse Model Guides ${icon("arrow")}</a><a class="button secondary" href="#/compare">Compare Trims</a><a class="text-link" href="#/features">Equipment glossary ${icon("arrow")}</a></div></section></div>`;
+}
 function specialsPage() {
   nav("/specials");
   $("#main").innerHTML =
@@ -520,6 +678,8 @@ function route() {
   else if (path.startsWith("/brand/")) brandPage(path.split("/")[2], params);
   else if (path.startsWith("/model/")) modelPage(path.split("/")[2]);
   else if (path === "/compare") comparePage();
+  else if (path === "/compare-vehicles") stageTwoPage("compare-vehicles");
+  else if (path === "/equipment-search") stageTwoPage("equipment-search");
   else if (path === "/features") glossaryPage(params);
   else if (path === "/specials") specialsPage();
   else if (path === "/about") aboutPage();

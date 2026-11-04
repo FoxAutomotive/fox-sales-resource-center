@@ -1,0 +1,1547 @@
+{
+  "schemaVersion": 1,
+  "vehicleId": "2026-toyota-rav4",
+  "reviewedAt": "2026-11-03",
+  "brochureSourceId": "toyota-2026-rav4-brochure",
+  "brochureSha256": "b3bf909f6220343c8548ee9b004935317679a8c5e1444537083821e3896075a1",
+  "scope": "Every equipment cell that was Unverified at the start of this audit; all nine HEV configurations. Existing S/A cells and package names were also rechecked. No PHEV record is changed.",
+  "summary": {
+    "reviewedUnknownCells": 93,
+    "resolvedStandard": 9,
+    "resolvedNotApplicable": 27,
+    "remainingUnverified": 57,
+    "totalEquipmentCells": 270
+  },
+  "matrixInterpretation": "S=Standard; A=Available. Blank is not defined as a negative symbol in this supplied brochure. A package name or another trim’s equipment does not fill a blank. Not-applicable entries are based on the documented HEV powertrain class, not missing S/A marks.",
+  "technicalAccess": [
+    {
+      "source": "Toyota HEV product-information PDF linked by the official media kit",
+      "url": "https://toyota-cms-media.s3.amazonaws.com/wp-content/uploads/2025/05/2026_Toyota_RAV4-Hybrid_Product-Information_05282026.pdf",
+      "result": "Proxy CONNECT 403; not read"
+    },
+    {
+      "source": "EPA/FuelEconomy.gov vehicle lookup",
+      "url": "https://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=2026&make=Toyota&model=RAV4%20Hybrid",
+      "result": "Proxy CONNECT 403; not read"
+    }
+  ],
+  "entries": [
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "economy",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6–7, 17–18, 25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "towing",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6, 26",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "roof",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "20–21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "This trim’s moonroof entries are blank in the HEV S/A matrix. The legend defines S and A but does not define blank as an explicit not-offered symbol. No negative availability claim is established by another reviewed source."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "heatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The LE seat row confirms fabric/manual seats, but neither that text nor the unexplained blank explicitly states front-seat heating is not offered. Do not infer absence from another trim’s heated-seat row."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "ventilatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "heatedWheel",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "21–22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "LE has a standard urethane steering-wheel row, while the heated-wheel row is blank for LE. The brochure does not explicitly define that blank as not offered; another trim’s heated/leather wheel cannot establish LE availability."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "wirelessCharging",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "headUpDisplay",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "18, 21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "cargoOutlet",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "advancedAssistance",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "parkingAutomation",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "liftgate",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "20",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "LE’s power-liftgate entries are blank. The SE available and higher-grade standard entries do not verify LE availability or an explicit exclusion."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "economy",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6–7, 17–18, 25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "roof",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "20–21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "This trim’s moonroof entries are blank in the HEV S/A matrix. The legend defines S and A but does not define blank as an explicit not-offered symbol. No negative availability claim is established by another reviewed source."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "heatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The LE seat row confirms fabric/manual seats, but neither that text nor the unexplained blank explicitly states front-seat heating is not offered. Do not infer absence from another trim’s heated-seat row."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "ventilatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "heatedWheel",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "21–22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "LE has a standard urethane steering-wheel row, while the heated-wheel row is blank for LE. The brochure does not explicitly define that blank as not offered; another trim’s heated/leather wheel cannot establish LE availability."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "wirelessCharging",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "headUpDisplay",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "18, 21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "cargoOutlet",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "advancedAssistance",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "parkingAutomation",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "trimName": "LE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "liftgate",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "20",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "LE’s power-liftgate entries are blank. The SE available and higher-grade standard entries do not verify LE availability or an explicit exclusion."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "economy",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6–7, 17–18, 25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "towing",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6, 26",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "ventilatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "headUpDisplay",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "18, 21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "cargoOutlet",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "parkingAutomation",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "economy",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6–7, 17–18, 25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "ventilatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "headUpDisplay",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "18, 21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "cargoOutlet",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "trimName": "XLE Premium Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "parkingAutomation",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "economy",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6–7, 17–18, 25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "towing",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6, 26",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "ventilatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "wirelessCharging",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "headUpDisplay",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "18, 21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "cargoOutlet",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "advancedAssistance",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · FWD",
+      "fieldId": "parkingAutomation",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "economy",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6–7, 17–18, 25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "ventilatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "wirelessCharging",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "headUpDisplay",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "18, 21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "cargoOutlet",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "advancedAssistance",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "trimName": "SE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "parkingAutomation",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "trimName": "Woodland Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "trimName": "Woodland Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "ventilatedSeats",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "22",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "trimName": "Woodland Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "trimName": "Woodland Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "trimName": "Woodland Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "trimName": "Woodland Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "headUpDisplay",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "18, 21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "trimName": "Woodland Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "parkingAutomation",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "24",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "trimName": "XSE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "trimName": "XSE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "economy",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6–7, 17–18, 25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "trimName": "XSE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "trimName": "XSE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "trimName": "XSE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "trimName": "XSE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "headUpDisplay",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "18, 21",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "trimName": "XSE Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "cargoOutlet",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "trimName": "Limited Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "torque",
+      "before": "unverified",
+      "after": "standard",
+      "resolution": "resolved",
+      "brochurePages": "25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "An explicit maximum-torque row is marked S for this grade. Report the brochure value exactly with its unspecified basis instead of discarding the published datum or inventing an engine/system interpretation."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "trimName": "Limited Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "economy",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "6–7, 17–18, 25",
+      "sourceIdsReviewed": [
+        "toyota-2026-rav4-brochure",
+        "toyota-2026-rav4-release"
+      ],
+      "reason": "The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "trimName": "Limited Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "electricRange",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 29",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "trimName": "Limited Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "charging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "trimName": "Limited Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "dcCharging",
+      "before": "unverified",
+      "after": "unavailable",
+      "resolution": "resolved",
+      "brochurePages": "15, 25",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Resolved as not applicable to the explicitly identified conventional HEV. This field is plug-in-specific; the brochure distinguishes the externally charged PHEV architecture. No PHEV equipment, battery, range or charging time is copied to HEV."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "trimName": "Limited Hybrid",
+      "configuration": "HEV · AWD",
+      "fieldId": "cargoOutlet",
+      "before": "unverified",
+      "after": "unverified",
+      "resolution": "unresolved",
+      "brochurePages": "23",
+      "sourceIdsReviewed": ["toyota-2026-rav4-brochure"],
+      "reason": "Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    }
+  ],
+  "otherFindings": [
+    {
+      "fieldId": "roof",
+      "trimId": "xse-hev-awd",
+      "result": "Separated Standard tilt/slide moonroof wording from the already listed Optional panoramic version; no optional feature is described as standard."
+    },
+    {
+      "topic": "packages",
+      "result": "All eight HEV package-name records retain their brochure grade listings; contents/combined-order rules are not enumerated and remain unverified."
+    },
+    {
+      "topic": "fuel economy",
+      "result": "Woodland’s existing manufacturer-estimated 41/35/38 value is preserved with its non-EPA qualifier. The eight other HEV economy cells remain unresolved."
+    },
+    {
+      "topic": "towing",
+      "result": "Existing release-supported AWD ratings are preserved; the three FWD ratings remain unresolved. The brochure’s general headline or 900-lb illustrated load is not assigned as a trim-specific limit."
+    }
+  ],
+  "unchangedOtherVehiclesSha256": "f9edbe7cce37a0c0938bdc575a1961e8af395a98c6f774197ceab36f8844a5e2",
+  "unchangedPackagesSha256": "da62e2c7466733babf8270f2f35aca9b0d7e432aaee8d8ccce211046fbd41ba2",
+  "positiveMarkChecks": [
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "heatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "heatedWheel",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "roof",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "liftgate",
+      "brochureMark": "S",
+      "brochurePages": "20"
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "wirelessCharging",
+      "brochureMark": "S",
+      "brochurePages": "23"
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "advancedAssistance",
+      "brochureMark": "A",
+      "brochurePages": "24"
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "heatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "heatedWheel",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "roof",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "liftgate",
+      "brochureMark": "S",
+      "brochurePages": "20"
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "wirelessCharging",
+      "brochureMark": "S",
+      "brochurePages": "23"
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "advancedAssistance",
+      "brochureMark": "A",
+      "brochurePages": "24"
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "heatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "heatedWheel",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "roof",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "liftgate",
+      "brochureMark": "A",
+      "brochurePages": "20"
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "heatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "heatedWheel",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "roof",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "liftgate",
+      "brochureMark": "A",
+      "brochurePages": "20"
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "heatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "heatedWheel",
+      "brochureMark": "S",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "roof",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "liftgate",
+      "brochureMark": "S",
+      "brochurePages": "20"
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "wirelessCharging",
+      "brochureMark": "S",
+      "brochurePages": "23"
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "advancedAssistance",
+      "brochureMark": "S",
+      "brochurePages": "24"
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "cargoOutlet",
+      "brochureMark": "S",
+      "brochurePages": "23"
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "heatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "ventilatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "heatedWheel",
+      "brochureMark": "A",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "roof",
+      "brochureMark": "S",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "liftgate",
+      "brochureMark": "S",
+      "brochurePages": "20"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "wirelessCharging",
+      "brochureMark": "S",
+      "brochurePages": "23"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "advancedAssistance",
+      "brochureMark": "S",
+      "brochurePages": "24"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "parkingAutomation",
+      "brochureMark": "A",
+      "brochurePages": "24"
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "heatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "ventilatedSeats",
+      "brochureMark": "S",
+      "brochurePages": "22"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "heatedWheel",
+      "brochureMark": "S",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "roof",
+      "brochureMark": "S",
+      "brochurePages": "21"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "liftgate",
+      "brochureMark": "S",
+      "brochurePages": "20"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "wirelessCharging",
+      "brochureMark": "S",
+      "brochurePages": "23"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "advancedAssistance",
+      "brochureMark": "S",
+      "brochurePages": "24"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "parkingAutomation",
+      "brochureMark": "S",
+      "brochurePages": "24"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "headUpDisplay",
+      "brochureMark": "A",
+      "brochurePages": "18, 21"
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "infotainment",
+      "brochureMark": "S",
+      "brochurePages": "23–24"
+    }
+  ]
+}

@@ -320,6 +320,8 @@ test("key routes meet automated WCAG A/AA accessibility checks", async ({
     "/features",
     "/compare",
     "/specials",
+    "/compare-vehicles",
+    "/equipment-search",
     "/about",
   ]) {
     await page.goto(`./#${route}`);
@@ -659,4 +661,160 @@ test("RAV4 baseline keeps its engine, output, drivetrain, safety and infotainmen
       () => document.documentElement.scrollWidth <= innerWidth + 1,
     ),
   ).toBe(true);
+});
+
+test("audited RAV4 technical facts and HEV not-applicable states render without hiding genuine unknowns", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2026-toyota-rav4");
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
+  const table = page.locator('[data-comparison-table="equipment"]');
+  await expect(table).toContainText("170 lb-ft (231 N·m)");
+  await expect(table).toContainText("torque basis not specified");
+  await expect(table).toContainText("Not applicable — conventional HEV");
+  await expect(table).toContainText("Unavailable");
+  await expect(table).toContainText("Unverified");
+  await expect(page.locator("#source-section")).toContainText(
+    "all 93 previously Unverified",
+  );
+});
+
+test("Stage 1 trim cards keep configuration-specific facts and open categorized equipment", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2026-toyota-rav4");
+  const cards = page.locator(".trim-training-card");
+  await expect(cards).toHaveCount(6);
+  await expect(page.locator("#trim-lineup")).toContainText("9 configurations");
+  const le = cards.filter({
+    has: page.getByRole("heading", { name: "LE Hybrid", exact: true }),
+  });
+  await expect(le.locator(".trim-core-specs")).toContainText("226");
+  await le.locator("select").selectOption({ label: "HEV · AWD" });
+  await expect(le.locator(".trim-core-specs")).toContainText("236");
+  await expect(le.locator(".trim-core-specs")).toContainText("AWD");
+  for (const card of await cards.all()) {
+    const count = await card.locator(".trim-highlights li").count();
+    expect(count).toBeGreaterThanOrEqual(3);
+    expect(count).toBeLessThanOrEqual(5);
+  }
+  await le.getByRole("button", { name: "View Equipment", exact: true }).click();
+  await expect(page.locator("#equipment-config option:checked")).toHaveText(
+    "LE Hybrid · HEV · AWD",
+  );
+  await expect(page.locator("#equipment-detail-title")).toBeFocused();
+  await expect(page.locator(".categorized-fields dt")).toHaveCount(
+    catalog.fields.length,
+  );
+  const comfort = page
+    .locator(".equipment-category")
+    .filter({ has: page.locator("summary > span", { hasText: /^Comfort$/ }) });
+  await comfort.locator("summary").click();
+  await expect(comfort.locator(".categorized-fields")).toBeVisible();
+  await expect(page.locator("#categorized-equipment")).toContainText("Source:");
+  await page
+    .locator("#equipment-config")
+    .selectOption({ label: "XLE Premium Hybrid · HEV · FWD" });
+  const packages = page
+    .locator(".equipment-category")
+    .filter({ hasText: "Packages & listed options" });
+  await packages.locator("summary").click();
+  await expect(packages).toContainText("Contents Unverified");
+});
+
+test("trim card comparison action preserves the baseline and All Equipment views", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2026-toyota-rav4");
+  const limited = page.locator(".trim-training-card").filter({
+    has: page.getByRole("heading", { name: "Limited Hybrid", exact: true }),
+  });
+  await limited
+    .getByRole("button", { name: "Compare Trims", exact: true })
+    .click();
+  await expect(
+    page.locator('input[name="model-trim"][value$="limited-hev-awd"]'),
+  ).toBeChecked();
+  await expect(page.locator("#trim-section")).toBeFocused();
+  await expect(page.locator("#model-view-differences")).toBeChecked();
+  await expect(page.locator("#model-equipment")).toContainText(
+    "Base Equipment",
+  );
+  await expect(page.locator("#model-equipment")).toContainText("What Changes");
+  await page.locator("#model-view-all").check();
+  await expect(
+    page.locator(
+      '#model-equipment [data-comparison-table="equipment"] tbody tr',
+    ),
+  ).toHaveCount(catalog.fields.length);
+});
+
+test("Stage 2 navigation provides honest landing pages and retains working guide links", async ({
+  page,
+}) => {
+  await page.goto("./");
+  const nav = page.getByRole("navigation", { name: "Primary navigation" });
+  for (const title of ["Compare Vehicles", "Equipment Search"]) {
+    await nav.getByRole("link", { name: new RegExp(`^${title}`) }).click();
+    await expect(
+      page.getByRole("heading", { name: title, exact: true }),
+    ).toBeVisible();
+    await expect(page.locator("main")).toContainText("STAGE 2");
+    await expect(page.locator("main input, main select")).toHaveCount(0);
+    await expect(page.locator('main a[href="#/search"]')).toBeVisible();
+  }
+  await nav.getByRole("link", { name: "Model Guides", exact: true }).click();
+  await expect(page.locator(".vehicle-card")).toHaveCount(
+    catalog.vehicles.length,
+  );
+});
+
+test("trim lineup and equipment remain usable on narrow mobile and desktop", async ({
+  page,
+}, testInfo) => {
+  for (const width of [320, 768, 1440]) {
+    await page.setViewportSize({ width, height: 950 });
+    await page.goto("./#/model/2026-toyota-rav4");
+    await expect(page.locator(".trim-training-card")).toHaveCount(6);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth + 1,
+      ),
+      `viewport ${width}`,
+    ).toBe(true);
+    await expect(page.locator(".trim-card-visual img")).toHaveCount(0);
+    await expect(page.locator(".trim-image-placeholder")).toHaveCount(6);
+    await page.locator("#trim-lineup").scrollIntoViewIfNeeded();
+    await page.screenshot({
+      path: testInfo.outputPath(`rav4-lineup-${width}.png`),
+      fullPage: false,
+    });
+  }
+});
+
+test("trim imagery requires source evidence and renders only the verified record", async ({
+  page,
+}) => {
+  const vehicle = fixtureVehicle();
+  vehicle.trims[0].image = {
+    src: "assets/favicon.svg",
+    alt: "Synthetic verified image fixture",
+    sourceIds: ["test-source"],
+  };
+  vehicle.trims[1].image = {
+    src: "assets/not-real.png",
+    alt: "Unverified image fixture",
+    sourceIds: ["missing-source"],
+  };
+  await page.route("**/data/catalog.json", (route) =>
+    route.fulfill({ json: { ...catalog, vehicles: [vehicle] } }),
+  );
+  await page.goto("./#/model/fixture-a");
+  await expect(page.locator(".trim-card-visual img")).toHaveCount(1);
+  const image = page.getByAltText("Synthetic verified image fixture");
+  await expect(image).toBeVisible();
+  expect(
+    await image.evaluate((img) => img.complete && img.naturalWidth > 0),
+  ).toBe(true);
+  await expect(page.locator(".trim-image-placeholder")).toHaveCount(1);
 });

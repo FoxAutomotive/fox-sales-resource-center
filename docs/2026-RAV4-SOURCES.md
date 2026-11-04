@@ -44,7 +44,7 @@ PHEV charging is configuration-specific: SE/GR SPORT have 7-kW/J1772 AC charging
 
 - T1 contains conflicting HEV fuel-economy summaries and inconsistent XSE/Limited numbers. B1 provides no MPG table to resolve them. Those cells remain Unverified. Woodland HEV’s consistent 41/35/38 manufacturer estimates are labeled as such, not EPA results.
 - T1 lists Woodland PHEV at either 37 or 38 combined mpg and GR SPORT at either 36 or 37; those cells remain Unverified. SE/XSE PHEV 43/36/40 manufacturer estimates are explicitly qualified.
-- B1 p. 25 gives “Max. Torque: 170 lb.-ft.” without a clear engine/system basis; T1 gives 163 lb-ft for the HEV engine and 172 in its HEV XSE line. All HEV torque cells remain Unverified. PHEV’s 172 lb-ft in T1 is explicitly engine-only; no total-system torque is inferred.
+- B1 p. 25 gives “Max. Torque: 170 lb.-ft.” without a clear engine/system basis; T1 gives 163 lb-ft for the HEV engine and 172 in its HEV XSE line. The audit now reports the explicit brochure-listed maximum of 170 lb-ft (231 N·m) as Standard, with the unspecified basis stated in the value. It is not labeled engine-only or combined-system torque, and the incompatible release figures are not substituted or summed. PHEV’s 172 lb-ft in T1 is explicitly engine-only; no total-system torque is inferred.
 - T1 supports LE AWD towing up to 1,750 lb and XLE Premium/SE/XSE/Limited/Woodland AWD up to 3,500 lb with conditions. B1’s general “up to 3500” headline is not used to assign a capacity to every configuration. FWD/GR SPORT limits remain Unverified.
 - Total seating capacity, missing PHEV screen/audio/roof availability and PHEV transmission type are not filled from prior years or the HEV table.
 - Named package contents, prices, complete combinations and exact drivetrain/region restrictions are not itemized by the provided brochure.
@@ -54,3 +54,7 @@ At review, the requested [model](https://www.toyota.com/rav4/) and [feature](htt
 ## Maintenance and print
 
 Source IDs B1 and T1 resolve to the catalog’s reviewed source objects. Equipment cells and package records include brochure page references. Optional-item evidence and compact-print references are validated. The print guide derives trim facts and package caveats from those same records; HEV and PHEV have separate sheets. Test coverage checks source separation, unknown package contents, optional-vs-standard distinctions, search/comparison behavior and one-page landscape Letter output.
+
+## Complete data-quality re-audit
+
+[Cell-level audit](audits/2026-rav4-hybrid-audit.md) and [machine-readable ledger](audits/2026-rav4-hybrid-audit.json) cover all 93 formerly Unverified HEV cells. Nine explicit brochure torque values and 27 plug-in-only applicability cells are resolved; 57 remain genuinely unestablished by the reviewed sources. Every remaining cell has a page-specific reason. The HEV/PHEV distinction comes from the brochure’s powertrain classification, not equipment transfer from another grade. Toyota technical-PDF and EPA CONNECT failures remain documented access blockers, not evidence that ratings do not exist.
