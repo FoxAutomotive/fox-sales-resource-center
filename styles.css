@@ -2721,3 +2721,361 @@ input[type="checkbox"] {
   color: #a41a25;
   font-weight: 700;
 }
+/* Stage 1: product training and fast reference, using the existing Fox palette. */
+#navigation {
+  display: block;
+  min-width: 0;
+}
+#navigation .primary-links,
+#navigation .manufacturer-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+#navigation .primary-links {
+  overflow-x: auto;
+  border-bottom: 1px solid #eceff1;
+  justify-content: space-between;
+}
+#navigation .primary-links a {
+  flex-shrink: 0;
+  min-height: 50px;
+}
+#navigation .manufacturer-links {
+  gap: 26px;
+}
+#navigation .manufacturer-links a {
+  min-height: 37px;
+  font-size: 12px;
+}
+#navigation .manufacturer-links .eyebrow {
+  font-size: 9px;
+  white-space: nowrap;
+}
+#navigation .glossary-link {
+  margin-left: auto;
+  color: #596572;
+}
+.trim-lineup .section-heading p {
+  font-size: 13px;
+  margin: 10px 0 0;
+}
+.trim-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+.trim-training-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.trim-card-visual {
+  position: relative;
+  height: 158px;
+  background: #f0f3f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--line);
+}
+.trim-card-visual > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 16px;
+}
+.trim-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #616f7d;
+  font-size: 11px;
+}
+.trim-image-placeholder .icon {
+  width: 44px;
+  height: 44px;
+  stroke-width: 1;
+}
+.trim-year-label {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  color: #596572;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+.trim-card-content {
+  padding: 23px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.trim-card-content > h3 {
+  font-size: 23px;
+  margin: 6px 0 17px;
+}
+.card-configuration {
+  border: 1px solid #cbd2d9;
+  border-radius: 5px;
+  width: 100%;
+  padding: 9px 10px;
+  background: white;
+  color: var(--ink);
+  font-size: 13px;
+}
+.single-configuration {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 9px 10px;
+  background: #f8f9fa;
+  font-size: 13px;
+  margin: 0;
+}
+.trim-core-specs {
+  margin: 18px 0;
+}
+.trim-core-specs > div {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 10px;
+  border-bottom: 1px solid #edf0f2;
+  padding: 9px 0;
+}
+.trim-core-specs dt {
+  font-size: 11px;
+  font-weight: 650;
+  color: #596572;
+}
+.trim-core-specs dd {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.trim-core-specs dd small {
+  display: block;
+  color: #626f7b;
+  font-size: 10px;
+  margin-top: 4px;
+}
+.trim-card-content > h4 {
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+.trim-highlights {
+  padding-left: 17px;
+  margin: 0 0 23px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.trim-highlights li {
+  margin-bottom: 7px;
+}
+.trim-card-actions {
+  display: flex;
+  gap: 9px;
+  margin-top: auto;
+}
+.trim-card-actions .button {
+  flex: 1;
+  padding: 10px 7px;
+  font-size: 11px;
+}
+.training-equipment {
+  border-top: 1px solid var(--line);
+  padding-top: 30px;
+}
+.equipment-context {
+  font-size: 13px;
+  padding: 14px 18px;
+  background: #edf1f4;
+  border-radius: 5px;
+  color: #475766;
+}
+.equipment-category {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  margin: 12px 0;
+}
+.equipment-category > summary {
+  cursor: pointer;
+  padding: 17px 21px;
+  font-size: 16px;
+  font-weight: 650;
+}
+.equipment-category > summary small {
+  display: inline-block;
+  font-size: 11px;
+  color: #596572;
+  font-weight: 400;
+  margin-left: 14px;
+}
+.equipment-category[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+.categorized-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 30px;
+  margin: 0;
+  padding: 5px 22px 15px;
+}
+.categorized-fields > div {
+  border-bottom: 1px solid #e7ebef;
+  padding: 18px 0;
+  min-width: 0;
+}
+.categorized-fields dt {
+  font-size: 13px;
+  font-weight: 650;
+  margin-bottom: 8px;
+}
+.categorized-fields dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.categorized-fields .cell-value {
+  display: block;
+  margin-top: 7px;
+}
+.categorized-fields dd > small {
+  display: block;
+  color: #596572;
+  font-size: 11px;
+  margin-top: 7px;
+}
+.categorized-packages {
+  padding: 5px 22px 20px;
+}
+.categorized-packages article {
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+}
+.categorized-packages h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.categorized-packages p {
+  font-size: 13px;
+  color: #596572;
+}
+.categorized-packages small {
+  font-size: 11px;
+  color: #596572;
+}
+.stage-two-panel {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 12px;
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 50px;
+}
+.stage-two-panel > .tool-icon {
+  display: flex;
+  margin: 25px 0;
+  width: 54px;
+  height: 54px;
+}
+.stage-two-panel > h1 {
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+.stage-two-panel > p {
+  max-width: 640px;
+  color: #596572;
+}
+.stage-two-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+@media (max-width: 1050px) {
+  .trim-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #navigation .primary-links {
+    gap: 17px;
+  }
+  #navigation .primary-links a {
+    font-size: 12px;
+  }
+}
+@media (max-width: 760px) {
+  #navigation {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    padding: 0;
+  }
+  #navigation .primary-links,
+  #navigation .manufacturer-links {
+    overflow-x: auto;
+    padding: 0 18px;
+    justify-content: start;
+    gap: 23px;
+  }
+  #navigation a {
+    flex-shrink: 0;
+  }
+  #navigation .manufacturer-links .eyebrow {
+    display: none;
+  }
+  #navigation .glossary-link {
+    margin-left: 0;
+  }
+  .trim-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .trim-card-content {
+    padding: 22px;
+  }
+  .trim-card-visual {
+    height: 140px;
+  }
+  .trim-core-specs dd,
+  .trim-highlights {
+    font-size: 13px;
+  }
+  .trim-card-actions .button {
+    font-size: 12px;
+    min-height: 44px;
+  }
+  .categorized-fields {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 18px 15px;
+  }
+  .equipment-category > summary {
+    padding: 17px;
+  }
+  .equipment-category > summary small {
+    display: block;
+    margin: 5px 0 0 17px;
+  }
+  .stage-two-panel {
+    margin: 20px auto;
+    padding: 27px 22px;
+  }
+  .stage-two-panel > h1 {
+    font-size: 30px;
+  }
+  .stage-two-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
