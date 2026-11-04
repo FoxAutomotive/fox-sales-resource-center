@@ -66,3 +66,7 @@ The heated steering wheel with paddle shifters is Standard on SEL with an explic
 The existing model page, four text-only trim cards, drivetrain selectors, categorized equipment, Trim Differences/Base Equipment, All Equipment, cross-model comparison, search and compact print reference are reused. No photo assets or placeholders are added. Optional model-local `additionalFields` extend the existing catalog and shared resolver; RAV4's field set and both RAV4 vehicle records stay unchanged. Comparisons include the union of selected models' fields; a field genuinely unresearched on a different model remains Unverified.
 
 The compact print sheet is a summary with full source links; complete equipment and page citations remain in the online guide. The pull request contains validation/data/browser tests and build results. Deployment remains the existing manual workflow and is not invoked.
+
+## CW41 order-guide supplement
+
+The later bulk-import review of the supplied October 9, 2025 order guide adds source VW-O26 while preserving every existing verified cell and prior source reference. Its p. 22 Head-Up Display row resolves availability on all trims; its individual MIB4/radio/Bluetooth/USB rows resolve the earlier SEL media-detail gap. The earlier “genuine gaps” table describes the original two-PDF review, before this supplement. Technical values and ratings remain unchanged. See the [bulk-import report](imports/vw-my26-cw41-REPORT.md) for the source's three wheel-code discrepancies, source dates and ordering exceptions.

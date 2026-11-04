@@ -67,7 +67,12 @@ export function comparisonRows(
     catalog,
     options.map((o) => o.vehicle),
   )
-    .filter((f) => !group || f.group === group)
+    .filter(
+      (f) =>
+        (!group || f.group === group) &&
+        (f.comparisonScope !== "model" ||
+          new Set(options.map((o) => o.vehicle.id)).size <= 1),
+    )
     .map((field) => ({
       ...field,
       cells: options.map((o) => resolveCell(o.vehicle, o.trim, field.id)),
@@ -163,7 +168,13 @@ export function packageComparisonRows(options, { differenceOnly = true } = {}) {
   for (const { vehicle } of options) {
     for (const [kind, items] of [
       ["Package", vehicle.packages || []],
-      ["Listed option", vehicle.optionalEquipment || []],
+      [
+        "Listed option",
+        [
+          ...(vehicle.optionalEquipment || []),
+          ...(vehicle.listedOptions || []),
+        ],
+      ],
     ]) {
       for (const item of items) {
         if (!evidenceReady(vehicle, item.sourceIds)) continue;
@@ -280,6 +291,7 @@ export function searchVehicles(
       .replace(/[–—-]/g, " ")
       .replace(/\s+/g, " ")
       .trim();
+  const normTrim = (name) => normalize(name).replace(/®/g, "").split(/\s+/);
   const normalizedQuery = normalize(query);
   const tokens = normalizedQuery.trim().split(/\s+/).filter(Boolean);
   const tokenMatches = (haystack, token) => {
@@ -303,6 +315,13 @@ export function searchVehicles(
       ),
     );
     const configs = eligibleOptions({ vehicles: [v] }).flatMap(({ trim }) => {
+      const trimTokens = normTrim(trim.name);
+      if (
+        tokens.some(
+          (t) => /^(s|se|sel|le|xle|xse)$/.test(t) && !trimTokens.includes(t),
+        )
+      )
+        return [];
       // A recognized feature phrase must be evidenced in its own category;
       // unrelated words elsewhere in a configuration cannot manufacture a match.
       if (
@@ -328,9 +347,15 @@ export function searchVehicles(
             evidenceReady(v, p.sourceIds),
         )
         .map((p) => p.name);
-      const optionNames = (v.optionalEquipment || [])
+      const optionNames = [
+        ...(v.optionalEquipment || []),
+        ...(v.listedOptions || []),
+      ]
         .filter(
-          (o) => o.trimIds.includes(trim.id) && evidenceReady(v, o.sourceIds),
+          (o) =>
+            o.trimIds.includes(trim.id) &&
+            ["standard", "optional"].includes(o.status || "optional") &&
+            evidenceReady(v, o.sourceIds),
         )
         .map((o) => o.name);
       return [

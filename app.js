@@ -300,8 +300,12 @@ function citationText(ids = [], pages = {}) {
     .join(", ");
 }
 function optionalEquipmentHTML(v) {
-  if (!v.optionalEquipment?.length) return "";
-  return `<h3>Verified individual options</h3><p class="muted">These availability statements do not establish a named package’s full contents or installation on a particular vehicle.</p>${v.optionalEquipment.map((o) => `<details><summary>${escape(o.name)} <span class="equipment-status optional">Optional</span></summary><p>${escape(o.description)}</p><p>Listed grade(s): ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></details>`).join("")}`;
+  const items = [
+    ...(v.optionalEquipment || []),
+    ...(v.listedOptions || []),
+  ].filter((o) => o.status === "optional");
+  if (!items.length) return "";
+  return `<h3>Verified individual options</h3><p class="muted">These availability statements do not establish a named package’s full contents or installation on a particular vehicle.</p>${items.map((o) => `<details><summary>${escape(o.name)} <span class="equipment-status optional">Optional</span></summary><p>${escape(o.description)}</p><p>Listed grade(s): ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></details>`).join("")}`;
 }
 function trimGroups(options) {
   const groups = new Map();
@@ -377,7 +381,7 @@ function trimCardHTML(vehicle, group, index, selectedId = group[0].id) {
       ...known,
     ]),
   ].slice(0, 5);
-  return `<article class="trim-training-card" data-grade-index="${index}">${image ? `<div class="trim-card-visual"><img src="${escape(image.url)}" alt="${escape(image.alt)}" loading="lazy" decoding="async">${image.credit ? `<small class="trim-photo-credit">${escape(image.credit)}</small>` : ""}</div>` : ""}<div class="trim-card-content"><span class="eyebrow trim-card-context">${vehicle.year} · ${escape(brandName(vehicle.brand))} · ${escape(vehicle.model)}</span><h3>${escape(trim.name)}</h3>${evidenceReady(vehicle, trim.equipment.msrp?.sourceIds) ? `<p class="trim-msrp">${escape(trim.equipment.msrp.value)}<small>${escape(citationText(trim.equipment.msrp.sourceIds, trim.equipment.msrp.sourcePages))} · Reviewed ${escape(vehicle.verifiedAt)} · ${escape(trim.equipment.msrp.cardNote || "")}</small></p>` : ""}${group.length > 1 ? `<label class="field-label" for="card-config-${index}">Configuration</label><select class="card-configuration" id="card-config-${index}">${group.map((o) => `<option value="${escape(o.id)}" ${o.id === option.id ? "selected" : ""}>${escape(o.trim.configuration || o.trim.name)}</option>`).join("")}</select>` : `<span class="field-label">Configuration</span><p class="single-configuration">${escape(trim.configuration || "Verified configuration")}</p>`}<dl class="trim-core-specs">${[
+  return `<article class="trim-training-card" data-grade-index="${index}">${image ? `<div class="trim-card-visual"><img src="${escape(image.url)}" alt="${escape(image.alt)}" loading="lazy" decoding="async">${image.credit ? `<small class="trim-photo-credit">${escape(image.credit)}</small>` : ""}</div>` : ""}<div class="trim-card-content"><span class="eyebrow trim-card-context">${vehicle.year} · ${escape(brandName(vehicle.brand))} · ${escape(vehicle.model)}</span><h3>${escape(trim.name)}</h3>${evidenceReady(vehicle, trim.equipment.msrp?.sourceIds) ? `<p class="trim-msrp">${escape(trim.equipment.msrp.value)}<small>${escape(citationText(trim.equipment.msrp.sourceIds, trim.equipment.msrp.sourcePages))} · Reviewed ${escape(vehicle.verifiedAt)} · ${escape(trim.equipment.msrp.cardNote || "")}</small></p>` : trim.equipment.msrp ? `<p class="trim-msrp">MSRP: ${cellHTML(resolveCell(vehicle, trim, "msrp"))}</p>` : ""}${group.length > 1 ? `<label class="field-label" for="card-config-${index}">Configuration</label><select class="card-configuration" id="card-config-${index}">${group.map((o) => `<option value="${escape(o.id)}" ${o.id === option.id ? "selected" : ""}>${escape(o.trim.configuration || o.trim.name)}</option>`).join("")}</select>` : `<span class="field-label">Configuration</span><p class="single-configuration">${escape(trim.configuration || "Verified configuration")}</p>`}<dl class="trim-core-specs">${[
     ["engine", "Engine"],
     ["horsepower", "Horsepower"],
     ["drivetrain", "Drivetrain"],
@@ -419,10 +423,13 @@ function categorizedEquipmentHTML(vehicle, trim) {
   const packages = vehicle.packages.filter(
     (p) => p.trimIds.includes(trim.id) && evidenceReady(vehicle, p.sourceIds),
   );
-  const options = (vehicle.optionalEquipment || []).filter(
+  const options = [
+    ...(vehicle.optionalEquipment || []),
+    ...(vehicle.listedOptions || []),
+  ].filter(
     (o) => o.trimIds.includes(trim.id) && evidenceReady(vehicle, o.sourceIds),
   );
-  return `<p class="equipment-context"><strong>${escape(trim.name)}</strong> · ${escape(trim.configuration || "")} · Actual equipment must be confirmed on the window sticker.</p>${sections}<details class="equipment-category"><summary><span>Packages &amp; listed options</span><small>${packages.length} package listings · ${options.length} individual options</small></summary><div class="categorized-packages">${packages.length ? packages.map((p) => `<article><h3>${escape(p.name)}</h3>${cellHTML({ status: p.status || "optional" })}${p.contentsStatus === "unverified" ? '<p class="editorial-note">Package name verified · Contents Unverified</p>' : ""}<p>${escape(p.description)}</p><p>${escape(p.conditions)}</p><small>Source: ${escape(citationText(p.sourceIds, p.sourcePages))}</small></article>`).join("") : "<p>No source-verified package listing for this configuration. This does not mean packages are unavailable.</p>"}${options.map((o) => `<article><h3>${escape(o.name)}</h3><span class="equipment-status optional">Optional</span><p>${escape(o.description)}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></article>`).join("")}</div></details>`;
+  return `<p class="equipment-context"><strong>${escape(trim.name)}</strong> · ${escape(trim.configuration || "")} · Actual equipment must be confirmed on the window sticker.</p>${sections}<details class="equipment-category"><summary><span>Packages &amp; listed options</span><small>${packages.length} package listings · ${options.length} individual options</small></summary><div class="categorized-packages">${packages.length ? packages.map((p) => `<article><h3>${escape(p.name)}</h3>${cellHTML({ status: p.status || "optional" })}${p.contentsStatus === "unverified" ? '<p class="editorial-note">Package name verified · Contents Unverified</p>' : ""}<p>${escape(p.description)}</p><p>${escape(p.conditions)}</p><small>Source: ${escape(citationText(p.sourceIds, p.sourcePages))}</small></article>`).join("") : "<p>No source-verified package listing for this configuration. This does not mean packages are unavailable.</p>"}${options.map((o) => `<article><h3>${escape(o.name)}</h3>${cellHTML({ status: o.status || "optional" })}<p>${escape(o.description)}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></article>`).join("")}</div></details>`;
 }
 function modelPage(id) {
   const v = catalog.vehicles.find((v) => v.id === id);
@@ -575,6 +582,11 @@ function compactPrintSheet(v, options) {
   const sources = v.sources.filter((s) => s.kind === "verified");
   const isHEV = refs.scope === "HEV";
   const isGasoline = refs.scope === "gasoline";
+  const isElectric = refs.scope === "electric";
+  const printOptions = (v.optionalEquipment || []).filter(
+    (o) =>
+      !refs.optionalEquipmentIds || refs.optionalEquipmentIds.includes(o.id),
+  );
   const performance = refs.powertrainTrimIds
     .map((id) => byId.get(id))
     .filter(Boolean)
@@ -605,7 +617,7 @@ function compactPrintSheet(v, options) {
         : "";
     })
     .filter(Boolean);
-  return `<header><strong>FOX AUTOMOTIVE · QUICK REFERENCE</strong><span>${v.year} ${escape(brandName(v.brand))} ${escape(v.model)}${isHEV ? " Hybrid" : ""}</span></header><p class="print-status">Reviewed ${date(v.verifiedAt)} · ${isHEV ? `HEV only — ${new Set(options.map((o) => o.trim.name)).size} grades / ${options.length} configurations. PHEV has a separate guide.` : isGasoline ? `${new Set(options.map((o) => o.trim.name)).size} gasoline trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : "PHEV only — release-supported facts; detailed specification review pending."} · S = Standard; O = Optional; U = Unverified; N/A = Not Applicable.</p><div class="compact-print-grid"><div><h2>Important standard trim differences</h2><table class="print-grade-table"><thead><tr><th>Grade / configuration</th><th>Source-backed equipment</th></tr></thead><tbody>${refs.groups.map((g) => `<tr><th>${escape(g.label)}</th><td>${renderFields(g)}</td></tr>`).join("")}</tbody></table><h2>What customers gain</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}:</strong> ${escape(u.gains[0].text)}</p>`).join("")}<h2>Common equipment</h2><p>${common.map(escape).join("; ")}.</p></div><div><h2>Powertrain / capability</h2>${performance}<p>${[...towing].map(([value, names]) => `<strong>Towing ${escape(value)}:</strong> ${names.map(escape).join(", ")}.`).join(" ")} Proper equipment and loading required.</p><h2>Named factory packages</h2>${
+  return `<header><strong>FOX AUTOMOTIVE · QUICK REFERENCE</strong><span>${v.year} ${escape(brandName(v.brand))} ${escape(v.model)}${isHEV ? " Hybrid" : ""}</span></header><p class="print-status">Reviewed ${date(v.verifiedAt)} · ${isHEV ? `HEV only — ${new Set(options.map((o) => o.trim.name)).size} grades / ${options.length} configurations. PHEV has a separate guide.` : isGasoline ? `${new Set(options.map((o) => o.trim.name)).size} gasoline trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : isElectric ? `${new Set(options.map((o) => o.trim.name)).size} battery-electric trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : "PHEV only — release-supported facts; detailed specification review pending."} · S = Standard; O = Optional; U = Unverified; N/A = Not Applicable.</p><div class="compact-print-grid"><div><h2>Important standard trim differences</h2><table class="print-grade-table"><thead><tr><th>Grade / configuration</th><th>Source-backed equipment</th></tr></thead><tbody>${refs.groups.map((g) => `<tr><th>${escape(g.label)}</th><td>${renderFields(g)}</td></tr>`).join("")}</tbody></table><h2>What customers gain</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}:</strong> ${escape(u.gains[0].text)}</p>`).join("")}<h2>Common equipment</h2><p>${common.map(escape).join("; ")}.</p></div><div><h2>Powertrain / capability</h2>${performance}<p>${[...towing].map(([value, names]) => `<strong>Towing ${escape(value)}:</strong> ${names.map(escape).join(", ")}.`).join(" ")} Proper equipment and loading required.</p><h2>Named factory packages</h2>${
     v.packages.length
       ? v.packages
           .filter((p) => !["unavailable", "not-applicable"].includes(p.status))
@@ -615,7 +627,7 @@ function compactPrintSheet(v, options) {
           )
           .join("")
       : "<p>Names, contents and eligibility Unverified.</p>"
-  }<p><strong>Do not infer package contents from names.</strong> Region, drivetrain combinations, pricing and installed equipment require confirmation.</p><h2>Confirmed individual options</h2>${v.optionalEquipment?.map((o) => `<p><strong>O ${escape(o.name)}:</strong> ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}.</p>`).join("") || (isGasoline ? "<p>Factory options are listed in the package section above.</p>" : "<p>Unverified.</p>")}<h2>Verification limits</h2>${refs.caveats.map((c) => `<p>${escape(c.text)}</p>`).join("")}</div></div><footer><strong>Confirm the actual window sticker, package contents and owner’s manual. Driver-assistance and subscription limitations apply.</strong><p>${sources.map((s) => `${escape(s.shortLabel || s.id)}: ${escape(s.title)} — ${escape(s.url)} (reviewed ${date(s.checkedAt)})`).join("<br>")}</p></footer>`;
+  }<p><strong>Do not infer package contents from names.</strong> Region, drivetrain combinations, pricing and installed equipment require confirmation.</p><h2>Confirmed individual options</h2>${printOptions.map((o) => `<p><strong>O ${escape(o.name)}:</strong> ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}.</p>`).join("") || (isGasoline || isElectric ? "<p>See the online guide for all itemized options and restrictions.</p>" : "<p>Unverified.</p>")}<h2>Verification limits</h2>${refs.caveats.map((c) => `<p>${escape(c.text)}</p>`).join("")}</div></div><footer><strong>Confirm the actual window sticker, package contents and owner’s manual. Driver-assistance and subscription limitations apply.</strong><p>${sources.map((s) => `${escape(s.shortLabel || s.id)}: ${escape(s.title)} — ${escape(s.url)} (reviewed ${date(s.checkedAt)})`).join("<br>")}</p></footer>`;
 }
 function printSheet(v, options) {
   if (v.quickReference) return compactPrintSheet(v, options);

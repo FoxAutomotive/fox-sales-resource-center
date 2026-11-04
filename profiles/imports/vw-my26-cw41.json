@@ -1,0 +1,312 @@
+{
+  "adapter": "vw-order-guide-grid-v1",
+  "manufacturer": "Volkswagen",
+  "brand": "volkswagen",
+  "year": 2026,
+  "sourceId": "vw-my26-order-cw41-2025",
+  "title": "VW MY26 Price and Order Guide for CW41-2025 — supplied manufacturer order guide",
+  "fileName": "VW MY26 Price and Order Guide for CW41-2025.pdf",
+  "documentDate": "2025-10-09",
+  "checkedAt": "2026-11-04",
+  "sourceUrl": "https://media.vw.com/",
+  "sha256": "d571a72b0727e102159b3da28f74a6e0bc7aedc92b183c508f390473753c49bc",
+  "pageCount": 49,
+  "models": [
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "firstPage": 2,
+      "lastPage": 8,
+      "pricingPage": 2,
+      "matrixPages": [6, 7, 8],
+      "trims": [
+        "SE",
+        "SE w/ Technology",
+        "Atlas Peak Edition",
+        "SEL",
+        "SEL Premium R-Line®"
+      ],
+      "columns": [
+        {
+          "trim": "SE"
+        },
+        {
+          "trim": "SE w/ Technology"
+        },
+        {
+          "trim": "Atlas Peak Edition"
+        },
+        {
+          "trim": "SEL"
+        },
+        {
+          "trim": "SEL Premium R-Line®"
+        }
+      ],
+      "optionColumns": [
+        ["SE"],
+        ["SE w/ Technology"],
+        ["Atlas Peak Edition"],
+        ["SEL"],
+        ["SEL Premium R-Line®"]
+      ],
+      "expectedConfigurations": 7
+    },
+    {
+      "id": "atlas-cross-sport",
+      "name": "Atlas Cross Sport",
+      "firstPage": 9,
+      "lastPage": 15,
+      "pricingPage": 9,
+      "matrixPages": [13, 14, 15],
+      "trims": [
+        "SE",
+        "SE w/ Technology",
+        "SEL",
+        "SEL R-Line® Black",
+        "SEL Premium R-Line®"
+      ],
+      "columns": [
+        {
+          "trim": "SE"
+        },
+        {
+          "trim": "SE w/ Technology"
+        },
+        {
+          "trim": "SEL"
+        },
+        {
+          "trim": "SEL R-Line® Black"
+        },
+        {
+          "trim": "SEL Premium R-Line®"
+        }
+      ],
+      "optionColumns": [
+        ["SE"],
+        ["SE w/ Technology"],
+        ["SEL"],
+        ["SEL R-Line® Black"],
+        ["SEL Premium R-Line®"]
+      ],
+      "expectedConfigurations": 7
+    },
+    {
+      "id": "tiguan",
+      "name": "Tiguan",
+      "firstPage": 16,
+      "lastPage": 22,
+      "pricingPage": 16,
+      "matrixPages": [20, 21, 22],
+      "trims": ["S", "SE", "SE R-Line® Black", "SEL R-Line® Turbo"],
+      "columns": [
+        {
+          "trim": "S"
+        },
+        {
+          "trim": "SE"
+        },
+        {
+          "trim": "SE R-Line® Black"
+        },
+        {
+          "trim": "SEL R-Line® Turbo"
+        }
+      ],
+      "optionColumns": [
+        ["S"],
+        ["SE"],
+        ["SE R-Line® Black"],
+        ["SEL R-Line® Turbo"]
+      ],
+      "expectedConfigurations": 7
+    },
+    {
+      "id": "taos",
+      "name": "Taos",
+      "firstPage": 23,
+      "lastPage": 27,
+      "pricingPage": 23,
+      "matrixPages": [26, 27],
+      "trims": ["S", "SE", "SE Black", "SEL"],
+      "columns": [
+        {
+          "trim": "S",
+          "configuration": "FWD"
+        },
+        {
+          "trim": "S",
+          "configuration": "4MOTION AWD"
+        },
+        {
+          "trim": "SE",
+          "configuration": "FWD"
+        },
+        {
+          "trim": "SE",
+          "configuration": "4MOTION AWD"
+        },
+        {
+          "trim": "SE Black",
+          "configuration": "FWD"
+        },
+        {
+          "trim": "SE Black",
+          "configuration": "4MOTION AWD"
+        },
+        {
+          "trim": "SEL",
+          "configuration": "4MOTION AWD"
+        }
+      ],
+      "optionColumns": [["S"], ["SE"], ["SE Black"], ["SEL"]],
+      "expectedConfigurations": 7
+    },
+    {
+      "id": "id4",
+      "name": "ID.4",
+      "firstPage": 28,
+      "lastPage": 32,
+      "pricingPage": 28,
+      "matrixPages": [31, 32],
+      "trims": [
+        "ID.4 Pro",
+        "ID.4 AWD Pro",
+        "ID.4 Pro S",
+        "ID.4 AWD Pro S",
+        "ID.4 AWD Pro S Plus"
+      ],
+      "columns": [
+        {
+          "trim": "ID.4 Pro"
+        },
+        {
+          "trim": "ID.4 AWD Pro"
+        },
+        {
+          "trim": "ID.4 Pro S"
+        },
+        {
+          "trim": "ID.4 AWD Pro S"
+        },
+        {
+          "trim": "ID.4 AWD Pro S Plus"
+        }
+      ],
+      "optionColumns": [
+        ["ID.4 Pro", "ID.4 AWD Pro"],
+        ["ID.4 Pro S", "ID.4 AWD Pro S"],
+        ["ID.4 AWD Pro S Plus"]
+      ],
+      "expectedConfigurations": 5
+    },
+    {
+      "id": "golf-gti",
+      "name": "Golf GTI",
+      "firstPage": 33,
+      "lastPage": 36,
+      "pricingPage": 33,
+      "matrixPages": [35, 36],
+      "trims": ["S", "SE", "Autobahn"],
+      "columns": [
+        {
+          "trim": "S"
+        },
+        {
+          "trim": "SE"
+        },
+        {
+          "trim": "Autobahn"
+        }
+      ],
+      "optionColumns": [["S"], ["SE"], ["Autobahn"]],
+      "expectedConfigurations": 3
+    },
+    {
+      "id": "golf-r",
+      "name": "Golf R",
+      "firstPage": 37,
+      "lastPage": 40,
+      "pricingPage": 37,
+      "matrixPages": [39, 40],
+      "trims": ["Golf R"],
+      "columns": [
+        {
+          "trim": "Golf R"
+        }
+      ],
+      "optionColumns": [["Golf R"]],
+      "expectedConfigurations": 1
+    },
+    {
+      "id": "jetta",
+      "name": "Jetta 1.5T",
+      "firstPage": 41,
+      "lastPage": 45,
+      "pricingPage": 41,
+      "matrixPages": [44, 45],
+      "trims": ["S", "Sport", "SE", "SEL"],
+      "columns": [
+        {
+          "trim": "S"
+        },
+        {
+          "trim": "Sport"
+        },
+        {
+          "trim": "SE"
+        },
+        {
+          "trim": "SEL"
+        }
+      ],
+      "optionColumns": [["S"], ["Sport"], ["SE"], ["SEL"]],
+      "expectedConfigurations": 4
+    },
+    {
+      "id": "jetta-gli",
+      "name": "Jetta GLI",
+      "firstPage": 46,
+      "lastPage": 49,
+      "pricingPage": 46,
+      "matrixPages": [48, 49],
+      "trims": ["Autobahn"],
+      "columns": [
+        {
+          "trim": "Autobahn",
+          "transmission": "manual"
+        },
+        {
+          "trim": "Autobahn",
+          "transmission": "DSG"
+        }
+      ],
+      "optionColumns": [["Autobahn"]],
+      "expectedConfigurations": 2
+    }
+  ],
+  "expectedMatrixRows": {
+    "6": 39,
+    "7": 39,
+    "8": 51,
+    "13": 37,
+    "14": 35,
+    "15": 51,
+    "20": 39,
+    "21": 35,
+    "22": 56,
+    "26": 59,
+    "27": 47,
+    "31": 59,
+    "32": 51,
+    "35": 61,
+    "36": 45,
+    "39": 59,
+    "40": 43,
+    "44": 51,
+    "45": 43,
+    "48": 51,
+    "49": 41
+  }
+}

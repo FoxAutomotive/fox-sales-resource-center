@@ -820,10 +820,8 @@ test("Tiguan matrix resolves optional and unavailable equipment without assumed 
     assert.deepEqual(
       unknown,
       [
-        "headUpDisplay",
         "cargoOutlet",
         ...(t.name === "SE R-Line Black" ? ["curbWeight"] : []),
-        ...(t.name === "SEL R-Line Turbo" ? ["mediaConnectivity"] : []),
       ].sort(),
     );
   }
@@ -942,6 +940,9 @@ test("feature alias searches match evidenced categories across brands without ma
         "2026-toyota-rav4",
         "2026-toyota-rav4-plug-in-hybrid",
         "2026-volkswagen-tiguan",
+        "2026-volkswagen-atlas",
+        "2026-volkswagen-atlas-cross-sport",
+        "2026-volkswagen-id4",
       ].sort(),
     );
   for (const query of [
@@ -950,7 +951,7 @@ test("feature alias searches match evidenced categories across brands without ma
   ])
     assert.ok(
       searchVehicles(catalog, features, { query, brand: "volkswagen" }).vehicles
-        .length === 1,
+        .length === 9,
     );
   assert.equal(
     searchVehicles(catalog, features, { query: "Tiguan moonroof" }).vehicles
