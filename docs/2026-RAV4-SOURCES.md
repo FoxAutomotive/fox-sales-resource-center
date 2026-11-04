@@ -58,3 +58,7 @@ Source IDs B1 and T1 resolve to the catalog’s reviewed source objects. Equipme
 ## Complete data-quality re-audit
 
 [Cell-level audit](audits/2026-rav4-hybrid-audit.md) and [machine-readable ledger](audits/2026-rav4-hybrid-audit.json) cover all 93 formerly Unverified HEV cells. Nine explicit brochure torque values and 27 plug-in-only applicability cells are resolved; 57 remain genuinely unestablished by the reviewed sources. Every remaining cell has a page-specific reason. The HEV/PHEV distinction comes from the brochure’s powertrain classification, not equipment transfer from another grade. Toyota technical-PDF and EPA CONNECT failures remain documented access blockers, not evidence that ratings do not exist.
+
+## November 4 feature-matching follow-up
+
+The [current matching audit](audits/2026-equipment-matching-audit.md) aligns retained manufacturer-cited equipment across brands, exposes previous page-specific unknown reasons, and migrates the 27 HEV plug-in fields to explicit Not Applicable. Its ledger includes every current HEV equipment cell. Existing positive seat/wheel S/A marks are preserved; no unexplained blank is converted to Not Offered. Direct reinspection of the original PDF remains pending reattachment because the attachment is not available in the current workspace and Toyota's brochure endpoint returns HTTP 403. The historical 57-unknown count above refers to the original shared fields, before adding normalized camera/panoramic rows.
