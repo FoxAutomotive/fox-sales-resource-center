@@ -27,7 +27,7 @@ Each cloud task already has an isolated checkout. Work in the existing repositor
 ```sh
 npm run validate       # Verify catalog schema and source-evidence requirements
 npm test               # 35 data/search/comparison validation tests
-npm run test:browser   # 29 Chromium functional/layout/print/accessibility tests
+npm run test:browser   # 31 Chromium functional/layout/print/accessibility tests
 npm run build          # Validate and copy only production files into dist/
 ```
 
@@ -57,7 +57,9 @@ Verified model guides group configuration records into trim cards. Each card sho
 
 Performance, Comfort, Technology, Safety, Convenience, Exterior, and Packages expand independently. All existing fields, availability labels, conditions, glossary links, source references, and package caveats remain available. Pending guides remain evidence-gated. The RAV4’s six HEV grades demonstrate the layout, separately from PHEV.
 
-No verified trim images are currently recorded, so the cards use explicitly labeled placeholders. The renderer accepts a future per-trim `image` record only with `src`, descriptive `alt`, and verified model-year `sourceIds`; this is a presentation hook, not evidence that imagery has been researched. No prices or inventory counts are displayed. Fox branding, Axel, and full-model print references remain intact.
+Trim cards are complete without vehicle photography: model-year/brand context, trim title, configuration, core specifications, equipment highlights, and actions fill the card without reserved image space or placeholders. Photography is deferred until manufacturer-approved files are provided. No vehicle photos are downloaded or published in this change.
+
+The optional future `trim.image` hook remains available. Add a local file under `assets/vehicles/<manufacturer>/<year>/<model>/` and metadata with `src`, descriptive `alt`, matching `modelYear` and `trimName`, verified `sourceIds`, and any required `credit`. No card code changes are needed. Records belong to the existing manufacturer/model-year/model/trim in `data/catalog.json`; no equipment claims change. Verify permissions for the intended use and any derivatives before adding files. The renderer accepts local assets only; missing, unverified, mismatched, or failed images reserve no space. Fox branding, Axel, comparison behavior, and print references remain intact.
 
 ## Compare trims
 

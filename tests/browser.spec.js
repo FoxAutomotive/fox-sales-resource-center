@@ -783,7 +783,8 @@ test("trim lineup and equipment remain usable on narrow mobile and desktop", asy
       `viewport ${width}`,
     ).toBe(true);
     await expect(page.locator(".trim-card-visual img")).toHaveCount(0);
-    await expect(page.locator(".trim-image-placeholder")).toHaveCount(6);
+    await expect(page.locator(".trim-image-placeholder")).toHaveCount(0);
+    await expect(page.locator(".trim-card-visual")).toHaveCount(0);
     await page.locator("#trim-lineup").scrollIntoViewIfNeeded();
     await page.screenshot({
       path: testInfo.outputPath(`rav4-lineup-${width}.png`),
@@ -799,11 +800,15 @@ test("trim imagery requires source evidence and renders only the verified record
   vehicle.trims[0].image = {
     src: "assets/favicon.svg",
     alt: "Synthetic verified image fixture",
+    modelYear: vehicle.year,
+    trimName: vehicle.trims[0].name,
     sourceIds: ["test-source"],
   };
   vehicle.trims[1].image = {
     src: "assets/not-real.png",
     alt: "Unverified image fixture",
+    modelYear: vehicle.year,
+    trimName: vehicle.trims[1].name,
     sourceIds: ["missing-source"],
   };
   await page.route("**/data/catalog.json", (route) =>
@@ -816,5 +821,66 @@ test("trim imagery requires source evidence and renders only the verified record
   expect(
     await image.evaluate((img) => img.complete && img.naturalWidth > 0),
   ).toBe(true);
-  await expect(page.locator(".trim-image-placeholder")).toHaveCount(1);
+  await expect(page.locator(".trim-image-placeholder")).toHaveCount(0);
+  await expect(page.locator(".trim-card-visual")).toHaveCount(1);
+});
+
+test("optional trim images reject a different grade/year or external hotlink and failed files collapse", async ({
+  page,
+}) => {
+  let imageCase = "missing";
+  await page.route("**/data/catalog.json", (route) => {
+    const vehicle = fixtureVehicle();
+    vehicle.trims[0].image = {
+      src:
+        imageCase === "external"
+          ? "https://www.toyota.com/not-a-local-image.jpg"
+          : "assets/not-real-photo.webp",
+      alt: "Synthetic missing photograph",
+      modelYear: imageCase === "year" ? 2025 : vehicle.year,
+      trimName: imageCase === "grade" ? "Another trim" : vehicle.trims[0].name,
+      sourceIds: ["test-source"],
+      credit: "Synthetic image credit",
+    };
+    return route.fulfill({ json: { ...catalog, vehicles: [vehicle] } });
+  });
+  for (const kind of ["missing", "year", "grade", "external"]) {
+    imageCase = kind;
+    await page.goto(`./?image-case=${kind}#/model/fixture-a`);
+    await expect(page.locator(".trim-image-placeholder")).toHaveCount(0);
+    await expect(page.locator(".trim-card-visual")).toHaveCount(0);
+    await expect(page.locator(".trim-card-visual img")).toHaveCount(0);
+    await expect(page.locator(".trim-photo-credit")).toHaveCount(0);
+    await expect(page.locator(".trim-card-actions").first()).toBeVisible();
+  }
+});
+
+test("text-first trim cards have complete context and no reserved image space", async ({
+  page,
+}) => {
+  for (const route of ["2026-toyota-rav4", "2026-toyota-rav4-plug-in-hybrid"]) {
+    await page.goto(`./#/model/${route}`);
+    const cards = page.locator(".trim-training-card");
+    await expect(cards.first()).toBeVisible();
+    await expect(
+      page.locator(
+        ".trim-card-visual, .trim-image-placeholder, .trim-year-label",
+      ),
+    ).toHaveCount(0);
+    for (const card of await cards.all()) {
+      await expect(card.locator(".trim-card-context")).toContainText(
+        "2026 · Toyota · RAV4",
+      );
+      await expect(card.getByRole("heading", { level: 3 })).toBeVisible();
+      await expect(card.locator(".trim-core-specs > div")).toHaveCount(4);
+      await expect(card.locator(".trim-card-actions button")).toHaveCount(2);
+      const spacing = await card.evaluate(
+        (node) =>
+          node.querySelector(".trim-card-context").getBoundingClientRect().top -
+          node.getBoundingClientRect().top,
+      );
+      expect(spacing).toBeGreaterThan(0);
+      expect(spacing).toBeLessThan(35);
+    }
+  }
 });
