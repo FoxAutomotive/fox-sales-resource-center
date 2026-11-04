@@ -56,13 +56,13 @@ const date = (d) =>
     : "Not yet verified";
 const statusBadge = (vehicle) =>
   vehicle.status === "verified"
-    ? '<span class="badge verified">Source verified</span>'
+    ? `<span class="badge verified">${escape(vehicle.verificationLabel || "Source verified")}</span>`
     : '<span class="badge pending">Awaiting verification</span>';
 const sourceLinks = (v) =>
   v.sources
     .map(
       (s) =>
-        `<li><a href="${escape(s.url)}" target="_blank" rel="noopener noreferrer">${escape(s.title)} ${icon("external")}</a><span>${s.kind === "verified" ? `Reviewed ${date(s.checkedAt)}` : "Research target · not reviewed"}</span></li>`,
+        `<li><a href="${escape(s.url)}" target="_blank" rel="noopener noreferrer">${escape(s.title)} ${icon("external")}</a><span>${s.kind === "verified" ? ` ${s.delivery === "user-upload" ? "Supplied PDF reviewed" : "Reviewed"} ${date(s.checkedAt)}${s.delivery === "user-upload" ? " · Link opens manufacturer reference, not the attachment" : ""}` : "Research target · not reviewed"}</span></li>`,
     )
     .join("");
 
@@ -192,7 +192,7 @@ function brandPage(id, params) {
     `<div class="content page-content">${breadcrumbs([{ label: b.name }])}<div class="brand-page-heading">${mark(id)}<div><span class="eyebrow">MANUFACTURER LIBRARY</span><h1>${b.name}</h1><p>Model guides, trim differences, and equipment details.</p></div></div><div class="year-tabs" aria-label="Model year">${catalog.years.map((y) => `<a href="#/brand/${id}?year=${y}" ${String(y) === year ? 'aria-current="page"' : ""}>${y} models</a>`).join("")}</div><div class="section-heading"><h2>${escape(year)} model guides</h2><span class="muted">${vehicles.length} ${vehicles.length === 1 ? "guide" : "guides"} in the library</span></div>${vehicles.length ? `<div class="vehicle-grid">${vehicles.map(vehicleCard).join("")}</div>` : `<div class="empty-state">${icon("book")}<h2>Model-year research in progress</h2><p>${escape(catalog.coverageNotes[year] || "No verified guides are available for this model year.")}</p><a href="${b.sourceUrl}" target="_blank" rel="noopener noreferrer" class="text-link">Official ${b.name} website ${icon("external")}</a></div>`}<div class="notice">${icon("shield")} ${escape(catalog.coverageNotes[year] || "")} Do not infer availability from a previous model year.</div><section class="section-block"><div class="section-heading"><h2>${b.name} technology</h2><a class="text-link" href="#/features">Full glossary ${icon("arrow")}</a></div>${featureCards(features.filter((f) => f.brand === id))}</section></div>`;
 }
 function featureCards(items) {
-  return `<div class="feature-grid">${items.map((f) => `<details class="feature-card" id="${f.id}"><summary><span><span class="eyebrow">${escape(brandName(f.brand))} · ${escape(f.category)}</span><strong>${escape(f.name)}</strong></span><span class="expand-icon" aria-hidden="true">+</span></summary><div class="feature-body"><p>${escape(f.summary)}</p><h4>How it works</h4><p>${escape(f.how)}</p><h4>Why a customer might value it</h4><p>${escape(f.value)}</p><h4>Know the limits</h4><p>${escape(f.limitations)}</p><div class="editorial-note">${f.verifiedAt ? `Reviewed ${date(f.verifiedAt)}` : "Editorial overview · source review pending"}. This explanation does not establish availability on any model or trim.</div><a class="text-link" href="${escape(f.sourceUrl)}" target="_blank" rel="noopener noreferrer">Manufacturer reference ${icon("external")}</a></div></details>`).join("")}</div>`;
+  return `<div class="feature-grid">${items.map((f) => `<details class="feature-card" id="${f.id}"><summary><span><span class="eyebrow">${escape(brandName(f.brand))} · ${escape(f.category)}</span><strong>${escape(f.name)}</strong></span><span class="expand-icon" aria-hidden="true">+</span></summary><div class="feature-body"><p>${escape(f.summary)}</p><h4>How it works</h4><p>${escape(f.how)}</p><h4>Why a customer might value it</h4><p>${escape(f.value)}</p><h4>Know the limits</h4><p>${escape(f.limitations)}</p><div class="editorial-note">${f.verifiedAt ? `Reviewed ${date(f.verifiedAt)}` : "Editorial overview · source review pending"}. This explanation does not establish availability on any model or trim.${f.sourceNote ? ` <span>${escape(f.sourceNote)}</span>` : ""}</div><a class="text-link" href="${escape(f.sourceUrl)}" target="_blank" rel="noopener noreferrer">Manufacturer reference ${icon("external")}</a></div></details>`).join("")}</div>`;
 }
 function glossaryPage(params) {
   nav("");
@@ -233,7 +233,7 @@ function cellHTML(cell) {
           )
           .join("")}</span>`
       : ""
-  }${cell.sourceIds?.length ? `<small class="source-reference">Source: ${cell.sourceIds.map(escape).join(", ")}</small>` : ""}`;
+  }${cell.sourceIds?.length ? `<small class="source-reference">Source: ${escape(citationText(cell.sourceIds, cell.sourcePages))}</small>` : ""}`;
 }
 function equipmentTable(vehicles, differenceOnly = false, group = "") {
   const rows = comparisonRows(catalog, vehicles, { differenceOnly, group });
@@ -241,13 +241,27 @@ function equipmentTable(vehicles, differenceOnly = false, group = "") {
     return '<div class="empty-state compact"><h3>No verified differences in this view</h3><p>Shared and unverified fields are hidden. Show all equipment to see the full reference.</p></div>';
   return `<div class="table-scroll" tabindex="0" role="region" aria-label="Equipment comparison, scroll horizontally"><table class="equipment-table"><thead><tr><th scope="col">Equipment</th>${vehicles.map(({ vehicle: v, trim: t }) => `<th scope="col"><span>${v.year} ${escape(v.model)}</span>${escape(t.name)}${t.configuration ? `<small>${escape(t.configuration)}</small>` : ""}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr><th scope="row"><small>${escape(row.group)}</small>${escape(row.label)}${row.featureId && features.some((f) => f.id === row.featureId) ? `<a href="#/features?q=${encodeURIComponent(features.find((f) => f.id === row.featureId).name)}" class="feature-explain" aria-label="Explain ${escape(row.label)}">ⓘ</a>` : ""}</th>${row.cells.map((c) => `<td>${cellHTML(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
+function citationText(ids = [], pages = {}) {
+  return ids
+    .map((id) => {
+      const source = catalog.vehicles
+        .flatMap((v) => v.sources)
+        .find((s) => s.id === id);
+      return `${source?.shortLabel || id}${pages[id] ? ` pp. ${pages[id]}` : ""}`;
+    })
+    .join(", ");
+}
+function optionalEquipmentHTML(v) {
+  if (!v.optionalEquipment?.length) return "";
+  return `<h3>Verified individual options</h3><p class="muted">These availability statements do not establish a named package’s full contents or installation on a particular vehicle.</p>${v.optionalEquipment.map((o) => `<details><summary>${escape(o.name)} <span class="equipment-status optional">Optional</span></summary><p>${escape(o.description)}</p><p>Listed grade(s): ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></details>`).join("")}`;
+}
 function modelPage(id) {
   const v = catalog.vehicles.find((v) => v.id === id);
   if (!v) return notFound();
   nav(`/brand/${v.brand}`);
   const options = eligibleOptions(catalog).filter((o) => o.vehicle.id === id);
   $("#main").innerHTML =
-    `<div class="content page-content model-page">${breadcrumbs([{ label: brandName(v.brand), href: `#/brand/${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>${escape(v.summary)}</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button>${options.length ? `<a class="button secondary" href="#/compare">${icon("compare")} Compare trims</a>` : ""}</div></div><div class="notice">${icon("shield")} Verify actual equipment against the vehicle’s window sticker. Availability may depend on drivetrain, packages, production date, and region.</div><nav class="section-nav" aria-label="Model sections"><a href="#trim-section" data-scroll="trim-section">Trims &amp; equipment</a><a href="#upgrade-section" data-scroll="upgrade-section">Reasons to upgrade</a><a href="#package-section" data-scroll="package-section">Factory packages</a><a href="#source-section" data-scroll="source-section">Sources &amp; verification</a></nav><section id="trim-section" class="section-block"><div class="section-heading"><div><span class="eyebrow">THE DETAILS THAT MATTER</span><h2>Trim &amp; equipment reference</h2></div></div><div class="legend">${["standard", "optional", "unavailable", "unverified"].map((s) => `<span class="equipment-status ${s}">${s[0].toUpperCase() + s.slice(1)}</span>`).join("")}</div>${options.length ? `<div class="table-controls"><label><input type="checkbox" id="model-differences" checked> Show verified differences only</label><div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((g) => `<option>${g}</option>`).join("")}</select></div></div><div id="model-equipment">${equipmentTable(options, true)}</div>` : `<div class="empty-state"><span class="empty-emblem">${icon("book")}</span><h3>Accuracy comes before a filled-in table.</h3><p>Trim structure and equipment are awaiting official ${v.year} ${escape(v.model)} documentation. No specifications have been carried over from another year.</p><a class="text-link" href="${escape(v.sources[0]?.url || catalog.brands.find((b) => b.id === v.brand).sourceUrl)}" target="_blank" rel="noopener noreferrer">Check the manufacturer’s model page ${icon("external")}</a></div>`}</section><div class="model-detail-grid"><section id="upgrade-section" class="detail-panel"><span class="panel-icon">${icon("arrow")}</span><h2>Reasons to upgrade</h2>${v.upgrades.length ? v.upgrades.map((u) => `<h3>${escape(u.from)} → ${escape(u.to)}</h3><ul>${u.gains.map((g) => `<li>${escape(g.text)} <small>Source: ${g.sourceIds.map(escape).join(", ")}</small></li>`).join("")}</ul>`).join("") : "<p>Verified trim-to-trim gains will appear here after equipment research. There are no confirmed upgrade recommendations yet.</p>"}</section><section id="package-section" class="detail-panel"><span class="panel-icon">${icon("grid")}</span><h2>Factory packages</h2>${v.packages.length ? v.packages.map((p) => `<details><summary>${escape(p.name)}</summary><p>${escape(p.description)}</p><p>Eligible configurations: ${p.trimIds.map((id) => escape(v.trims.find((t) => t.id === id)?.name || id)).join(", ")}</p><p>${escape(p.conditions)}</p><small>Source: ${p.sourceIds.map(escape).join(", ")}</small></details>`).join("") : "<p>Package contents, eligible trims, and configuration dependencies are awaiting verification. An empty list does not mean no packages are offered.</p>"}</section></div><section class="section-block no-print"><h2>Equipment, explained</h2><p class="muted">General brand terminology. Inclusion here does not establish ${escape(v.model)} availability.</p>${featureCards(features.filter((f) => f.brand === v.brand))}</section><section id="source-section" class="source-panel"><div><span class="eyebrow">THE SOURCE OF TRUTH</span><h2>Sources &amp; verification</h2><p>Model year: <strong>${v.year}</strong> · Market: <strong>United States</strong> · Reviewed: <strong>${date(v.verifiedAt)}</strong></p></div><ul class="source-list">${sourceLinks(v)}</ul>${v.notes.map((n) => `<p class="muted">${escape(n)}</p>`).join("")}</section><section class="print-reference" aria-label="Printable quick reference">${printSheet(v, options)}</section></div>`;
+    `<div class="content page-content model-page">${breadcrumbs([{ label: brandName(v.brand), href: `#/brand/${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>${escape(v.summary)}</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button>${options.length ? `<a class="button secondary" href="#/compare">${icon("compare")} Compare trims</a>` : ""}</div></div><div class="notice">${icon("shield")} Verify actual equipment against the vehicle’s window sticker. Availability may depend on drivetrain, packages, production date, and region.</div>${v.relatedGuides?.length ? `<p class="related-guide">${v.relatedGuides.map((g) => `<a class="text-link" href="#/model/${escape(g.id)}">${escape(g.label)} ${icon("arrow")}</a>`).join(" ")}</p>` : ""}<nav class="section-nav" aria-label="Model sections"><a href="#trim-section" data-scroll="trim-section">Trims &amp; equipment</a><a href="#upgrade-section" data-scroll="upgrade-section">Reasons to upgrade</a><a href="#package-section" data-scroll="package-section">Factory packages</a><a href="#source-section" data-scroll="source-section">Sources &amp; verification</a></nav><section id="trim-section" class="section-block"><div class="section-heading"><div><span class="eyebrow">THE DETAILS THAT MATTER</span><h2>Trim &amp; equipment reference</h2></div></div><div class="legend">${["standard", "optional", "unavailable", "unverified"].map((s) => `<span class="equipment-status ${s}">${s[0].toUpperCase() + s.slice(1)}</span>`).join("")}</div>${options.length ? `<div class="table-controls"><label><input type="checkbox" id="model-differences" checked> Show verified differences only</label><div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((g) => `<option>${g}</option>`).join("")}</select></div></div><div id="model-equipment">${equipmentTable(options, true)}</div>` : `<div class="empty-state"><span class="empty-emblem">${icon("book")}</span><h3>Accuracy comes before a filled-in table.</h3><p>Trim structure and equipment are awaiting official ${v.year} ${escape(v.model)} documentation. No specifications have been carried over from another year.</p><a class="text-link" href="${escape(v.sources[0]?.url || catalog.brands.find((b) => b.id === v.brand).sourceUrl)}" target="_blank" rel="noopener noreferrer">Check the manufacturer’s model page ${icon("external")}</a></div>`}</section><div class="model-detail-grid"><section id="upgrade-section" class="detail-panel"><span class="panel-icon">${icon("arrow")}</span><h2>Reasons to upgrade</h2>${v.upgrades.length ? v.upgrades.map((u) => `<h3>${escape(u.from)} → ${escape(u.to)}</h3><ul>${u.gains.map((g) => `<li>${escape(g.text)} <small>Source: ${escape(citationText(g.sourceIds, g.sourcePages))}</small></li>`).join("")}</ul>`).join("") : "<p>Verified trim-to-trim gains will appear here after equipment research. There are no confirmed upgrade recommendations yet.</p>"}</section><section id="package-section" class="detail-panel"><span class="panel-icon">${icon("grid")}</span><h2>Factory packages</h2>${v.packages.length ? v.packages.map((p) => `<details><summary>${escape(p.name)}</summary>${p.contentsStatus === "unverified" ? `<p class="editorial-note">Package name verified · Contents Unverified</p>` : ""}<p>${escape(p.description)}</p><p>${p.eligibilityScope === "grade" ? "Listed grades" : "Eligible configurations"}: ${[...new Set(p.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(p.conditions)}</p><small>Source: ${escape(citationText(p.sourceIds, p.sourcePages))}</small></details>`).join("") : "<p>Package contents, eligible trims, and configuration dependencies are awaiting verification. An empty list does not mean no packages are offered.</p>"}${optionalEquipmentHTML(v)}</section></div><section class="section-block no-print"><h2>Equipment, explained</h2><p class="muted">General brand terminology. Inclusion here does not establish ${escape(v.model)} availability.</p>${featureCards(features.filter((f) => f.brand === v.brand))}</section><section id="source-section" class="source-panel"><div><span class="eyebrow">THE SOURCE OF TRUTH</span><h2>Sources &amp; verification</h2><p>Model year: <strong>${v.year}</strong> · Market: <strong>United States</strong> · Reviewed: <strong>${date(v.verifiedAt)}</strong></p></div><ul class="source-list">${sourceLinks(v)}</ul>${v.notes.map((n) => `<p class="muted">${escape(n)}</p>`).join("")}</section><section class="print-reference" aria-label="Printable quick reference">${printSheet(v, options)}</section></div>`;
   $("#print-reference").onclick = () => window.print();
   document.querySelectorAll("[data-scroll]").forEach(
     (a) =>
@@ -271,7 +285,64 @@ function modelPage(id) {
     $("#model-group").onchange = update;
   }
 }
+function compactPrintSheet(v, options) {
+  const refs = v.quickReference;
+  const byId = new Map(options.map((o) => [o.trim.id, o]));
+  const renderFields = (group) =>
+    group.fieldIds
+      .map((id) => {
+        const cells = group.trimIds
+          .map((tid) => byId.get(tid))
+          .filter(Boolean)
+          .map((o) => resolveCell(v, o.trim, id));
+        const unique = [
+          ...new Set(
+            cells.map((c) =>
+              c.status === "unverified"
+                ? "Unverified"
+                : `${{ standard: "S", optional: "O", unavailable: "N/A" }[c.status]}: ${c.value}`,
+            ),
+          ),
+        ];
+        return unique.map(escape).join(" / ");
+      })
+      .join("; ");
+  const sources = v.sources.filter((s) => s.kind === "verified");
+  const isHEV = refs.scope === "HEV";
+  const performance = refs.powertrainTrimIds
+    .map((id) => byId.get(id))
+    .filter(Boolean)
+    .map((o) => {
+      const hp = resolveCell(v, o.trim, "horsepower");
+      const economy = resolveCell(v, o.trim, "economy");
+      const range = resolveCell(v, o.trim, "electricRange");
+      const charging = resolveCell(v, o.trim, "charging");
+      return `<p><strong>${escape(o.trim.name)} ${escape(o.trim.configuration)}:</strong> ${escape(hp.value || "Output unverified")}; ${economy.status === "unverified" ? "MPG Unverified" : escape(economy.value)}${range.status !== "unverified" ? `; ${escape(range.value)}` : ""}${charging.status !== "unverified" ? `; ${escape(charging.value)}` : ""}.</p>`;
+    })
+    .join("");
+  const towing = new Map();
+  for (const o of options) {
+    const cell = resolveCell(v, o.trim, "towing");
+    const key = cell.status === "unverified" ? "Unverified" : cell.value;
+    towing.set(key, [
+      ...(towing.get(key) || []),
+      `${o.trim.name} ${o.trim.configuration}`,
+    ]);
+  }
+  const common = refs.commonFieldIds
+    .map((id) => {
+      const cells = options.map((o) => resolveCell(v, o.trim, id));
+      return cells.every(
+        (c) => c.status === "standard" && c.value === cells[0].value,
+      )
+        ? cells[0].value
+        : "";
+    })
+    .filter(Boolean);
+  return `<header><strong>FOX AUTOMOTIVE · QUICK REFERENCE</strong><span>${v.year} ${escape(brandName(v.brand))} ${escape(v.model)}${isHEV ? " Hybrid" : ""}</span></header><p class="print-status">Reviewed ${date(v.verifiedAt)} · ${isHEV ? `HEV only — ${new Set(options.map((o) => o.trim.name)).size} grades / ${options.length} configurations. PHEV has a separate guide.` : "PHEV only — release-supported facts; detailed specification review pending."} · S = Standard; O = Optional; U = Unverified.</p><div class="compact-print-grid"><div><h2>Important standard trim differences</h2><table class="print-grade-table"><thead><tr><th>Grade / configuration</th><th>Source-backed equipment</th></tr></thead><tbody>${refs.groups.map((g) => `<tr><th>${escape(g.label)}</th><td>${renderFields(g)}</td></tr>`).join("")}</tbody></table><h2>What customers gain</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}:</strong> ${escape(u.gains[0].text)}</p>`).join("")}<h2>Common equipment</h2><p>${common.map(escape).join("; ")}.</p></div><div><h2>Powertrain / capability</h2>${performance}<p>${[...towing].map(([value, names]) => `<strong>Towing ${escape(value)}:</strong> ${names.map(escape).join(", ")}.`).join(" ")} Proper equipment and loading required.</p><h2>Named factory packages</h2>${v.packages.length ? v.packages.map((p) => `<p><strong>${escape(p.name.replace(" (HEV only)", ""))}:</strong> ${[...new Set(p.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}. ${p.contentsStatus === "unverified" ? "Contents U." : escape(p.description)}</p>`).join("") : "<p>Names, contents and eligibility Unverified.</p>"}<p><strong>Do not infer package contents from names.</strong> Region, drivetrain combinations, pricing and installed equipment require confirmation.</p><h2>Confirmed individual options</h2>${v.optionalEquipment?.map((o) => `<p><strong>O ${escape(o.name)}:</strong> ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}.</p>`).join("") || "<p>Unverified.</p>"}<h2>Verification limits</h2>${refs.caveats.map((c) => `<p>${escape(c.text)}</p>`).join("")}</div></div><footer><strong>Confirm the actual window sticker, package contents and owner’s manual. Driver-assistance and subscription limitations apply.</strong><p>${sources.map((s) => `${escape(s.shortLabel || s.id)}: ${escape(s.title)} — ${escape(s.url)} (reviewed ${date(s.checkedAt)})`).join("<br>")}</p></footer>`;
+}
 function printSheet(v, options) {
+  if (v.quickReference) return compactPrintSheet(v, options);
   const rows = comparisonRows(catalog, options).filter((r) =>
     r.cells.some((c) => c.status !== "unverified"),
   );
@@ -354,7 +425,7 @@ function specialsPage() {
 function aboutPage() {
   nav("");
   $("#main").innerHTML =
-    `<div class="content page-content narrow">${breadcrumbs([{ label: "Sources & content standards" }])}<div class="page-heading"><span class="eyebrow">CONFIDENCE STARTS WITH ACCURACY</span><h1>A reference you can check.</h1><p>Our standards for building the Fox Automotive knowledge library.</p></div><section class="prose-panel"><h2>Official sources. Specific model years.</h2><p>Vehicle claims must be supported by U.S. manufacturer specifications, brochures, equipment documents, or official model-year releases. A source link alone is not verification: it must be reviewed and tied to the precise model year and configuration.</p><h2>Four equipment states</h2><dl class="status-definitions"><dt>Standard</dt><dd>Included with the specified trim and configuration.</dd><dt>Optional</dt><dd>Available separately or in a named package, subject to recorded conditions.</dd><dt>Unavailable</dt><dd>Official documentation confirms it is not offered on this configuration.</dd><dt>Unverified</dt><dd>No confirmed evidence. This never means “unavailable.”</dd></dl><h2>Current library coverage</h2><p>${escape(catalog.coverageNotes["2026"])}</p><p>${escape(catalog.coverageNotes["2027"])}</p><p>The initial records have no verified trim or equipment claims. Manufacturer links are research targets and have not been reviewed. General glossary entries are editorial overviews awaiting source review and do not establish vehicle availability.</p><h2>Confirm the actual vehicle</h2><p>Use the vehicle’s window sticker to confirm installed equipment. Packages, drivetrain, production changes, region, and service subscriptions can affect features. Driver-assistance systems do not replace an attentive driver.</p><h2>Maintaining the library</h2><p>Catalog records live in <code>data/catalog.json</code>; equipment explanations live in <code>data/features.json</code>. Maintainer documentation in the repository explains source records, evidence checks, configurations, upgrade guides, and publishing.</p><h2>Internal reference, public website</h2><p>This resource is intended for the Fox Automotive sales team. GitHub Pages is publicly accessible. Do not add customer information, private pricing, employee data, credentials, or confidential documents.</p></section></div>`;
+    `<div class="content page-content narrow">${breadcrumbs([{ label: "Sources & content standards" }])}<div class="page-heading"><span class="eyebrow">CONFIDENCE STARTS WITH ACCURACY</span><h1>A reference you can check.</h1><p>Our standards for building the Fox Automotive knowledge library.</p></div><section class="prose-panel"><h2>Official sources. Specific model years.</h2><p>Vehicle claims must be supported by U.S. manufacturer specifications, brochures, equipment documents, or official model-year releases. A source link alone is not verification: it must be reviewed and tied to the precise model year and configuration.</p><h2>Four equipment states</h2><dl class="status-definitions"><dt>Standard</dt><dd>Included with the specified trim and configuration.</dd><dt>Optional</dt><dd>Available separately or in a named package, subject to recorded conditions.</dd><dt>Unavailable</dt><dd>Official documentation confirms it is not offered on this configuration.</dd><dt>Unverified</dt><dd>No confirmed evidence. This never means “unavailable.”</dd></dl><h2>Current library coverage</h2><p>${escape(catalog.coverageNotes["2026"])}</p><p>${escape(catalog.coverageNotes["2027"])}</p><p>Each claim has its own verification state and source. Reviewed brochure facts are distinguished from unresolved package contents and specifications. The PHEV guide is separate from the HEV brochure tables. Glossary review states are shown per entry and do not independently establish equipment availability.</p><h2>Confirm the actual vehicle</h2><p>Use the vehicle’s window sticker to confirm installed equipment. Packages, drivetrain, production changes, region, and service subscriptions can affect features. Driver-assistance systems do not replace an attentive driver.</p><h2>Maintaining the library</h2><p>Catalog records live in <code>data/catalog.json</code>; equipment explanations live in <code>data/features.json</code>. Maintainer documentation in the repository explains source records, evidence checks, configurations, upgrade guides, and publishing.</p><h2>Internal reference, public website</h2><p>This resource is intended for the Fox Automotive sales team. GitHub Pages is publicly accessible. Do not add customer information, private pricing, employee data, credentials, or confidential documents.</p></section></div>`;
 }
 function notFound() {
   nav("");

@@ -64,15 +64,15 @@ test("global search, filters, empty states, and clear filters", async ({
   await page.goto("./");
   await page.getByRole("searchbox").fill("RAV4");
   await page.getByRole("button", { name: "Search library" }).click();
-  await expect(page.locator(".vehicle-card")).toHaveCount(1);
-  await expect(page.locator(".vehicle-card h3")).toContainText("RAV4");
+  await expect(page.locator(".vehicle-card")).toHaveCount(2);
+  await expect(page.locator(".vehicle-card h3").first()).toContainText("RAV4");
   await page.getByLabel("Model year", { exact: true }).selectOption("2027");
   await expect(
     page.getByRole("heading", { name: "No matching guides yet" }),
   ).toBeVisible();
   await expect(page.locator(".vehicle-card")).toHaveCount(0);
   await page.getByRole("button", { name: "Clear filters" }).click();
-  await expect(page.locator(".vehicle-card")).toHaveCount(3);
+  await expect(page.locator(".vehicle-card")).toHaveCount(4);
   await page.getByRole("searchbox").fill("Super Cruise");
   await expect(page.locator(".vehicle-card")).toHaveCount(0);
   await expect(page.locator(".feature-card")).toHaveCount(1);
@@ -89,7 +89,8 @@ test("manufacturer years remain distinct and model guides disclose missing evide
   ).toBeVisible();
   await expect(page.locator(".vehicle-card")).toHaveCount(0);
   await page.getByRole("link", { name: "2026 models" }).click();
-  await page.getByRole("link", { name: "RAV4", exact: false }).first().click();
+  await expect(page.locator(".vehicle-card")).toHaveCount(2);
+  await page.goto("./#/model/2026-volkswagen-tiguan");
   await expect(
     page.getByText("Accuracy comes before a filled-in table."),
   ).toBeVisible();
@@ -99,7 +100,7 @@ test("manufacturer years remain distinct and model guides disclose missing evide
   await page
     .getByRole("link", { name: "Factory packages", exact: true })
     .click();
-  await expect(page).toHaveURL(/model\/2026-toyota-rav4$/);
+  await expect(page).toHaveURL(/model\/2026-volkswagen-tiguan$/);
   await expect(
     page.getByRole("heading", { name: "Factory packages", exact: true }),
   ).toBeInViewport();
@@ -108,7 +109,7 @@ test("glossary expands and can be searched with the keyboard shortcut", async ({
   page,
 }) => {
   await page.goto("./#/features");
-  await expect(page.locator(".feature-card")).toHaveCount(5);
+  await expect(page.locator(".feature-card")).toHaveCount(13);
   await page.keyboard.press("/");
   await expect(page.getByRole("searchbox")).toBeFocused();
   await page.getByRole("searchbox").fill("4MOTION");
@@ -124,6 +125,14 @@ test("glossary expands and can be searched with the keyboard shortcut", async ({
   ).toBeVisible();
 });
 test("comparison refuses pending data", async ({ page }) => {
+  await page.route("**/data/catalog.json", (route) =>
+    route.fulfill({
+      json: {
+        ...catalog,
+        vehicles: catalog.vehicles.filter((v) => v.status !== "verified"),
+      },
+    }),
+  );
   await page.goto("./#/compare");
   await expect(
     page.getByRole("heading", {
@@ -166,11 +175,11 @@ test("verified model shows upgrades, package conditions, and all equipment contr
   await page.goto("./#/model/fixture-a");
   await expect(page.locator("#model-equipment tbody tr")).toHaveCount(2);
   await page.getByLabel("Show verified differences only").uncheck();
-  await expect(page.locator("#model-equipment tbody tr")).toHaveCount(21);
+  await expect(page.locator("#model-equipment tbody tr")).toHaveCount(30);
   await page
     .getByLabel("Category", { exact: true })
     .selectOption("Performance");
-  await expect(page.locator("#model-equipment tbody tr")).toHaveCount(7);
+  await expect(page.locator("#model-equipment tbody tr")).toHaveCount(10);
   await expect(
     page.locator("#upgrade-section").getByText("Synthetic audio upgrade"),
   ).toBeVisible();
@@ -182,7 +191,7 @@ test("verified model shows upgrades, package conditions, and all equipment contr
 test("pending guide print uses landscape Letter and creates exactly one PDF page", async ({
   page,
 }, testInfo) => {
-  await page.goto("./#/model/2026-toyota-rav4");
+  await page.goto("./#/model/2026-volkswagen-tiguan");
   await expect(
     page.getByRole("button", { name: "Print Quick Reference" }),
   ).toBeVisible();
@@ -238,6 +247,8 @@ test("mobile layouts do not overflow the viewport", async ({
     "/search",
     "/brand/volkswagen",
     "/model/2026-chevrolet-equinox",
+    "/model/2026-toyota-rav4",
+    "/model/2026-toyota-rav4-plug-in-hybrid",
     "/features",
     "/compare",
     "/specials",
@@ -336,4 +347,77 @@ test("a library loading failure gives a usable retry screen", async ({
     page.getByRole("heading", { name: "The library couldn’t load." }),
   ).toBeVisible();
   await expect(page.getByRole("button", { name: "Try again" })).toBeVisible();
+});
+
+test("RAV4 HEV brochure equipment, package caveats and separate PHEV link render", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2026-toyota-rav4");
+  await expect(page.locator("#model-equipment thead th")).toHaveCount(10);
+  await expect(page.locator("#model-equipment")).not.toContainText("Plug-in");
+  await page.getByLabel("Show verified differences only").uncheck();
+  await expect(page.locator("#model-equipment")).toContainText("B1 pp. 21");
+  await expect(page.locator("#model-equipment")).toContainText("Unverified");
+  await page
+    .locator("#package-section summary")
+    .filter({ hasText: "XLE Driver Assist Package" })
+    .click();
+  await expect(
+    page.locator("#package-section details[open] .editorial-note"),
+  ).toBeVisible();
+  await page
+    .getByRole("link", {
+      name: "Separate plug-in hybrid reference",
+      exact: false,
+    })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "RAV4 Plug-in Hybrid", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator("#model-equipment thead th")).toHaveCount(5);
+  await expect(page.locator("#model-equipment")).not.toContainText("B1");
+});
+test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
+  page,
+}) => {
+  await page.goto("./#/search?q=heated%20steering");
+  await expect(page.locator(".vehicle-card")).toHaveCount(2);
+  await page.goto("./#/compare");
+  await page
+    .locator("#compare-select")
+    .selectOption("2026-toyota-rav4:se-hev-awd");
+  await page.getByRole("button", { name: "Add to comparison" }).click();
+  await page
+    .locator("#compare-select")
+    .selectOption("2026-toyota-rav4:xse-hev-awd");
+  await page.getByRole("button", { name: "Add to comparison" }).click();
+  await expect(page.locator(".equipment-table")).toContainText("10.5-inch");
+  await expect(page.locator(".equipment-table")).toContainText("12.9-inch");
+});
+test("RAV4 hybrid quick reference fits landscape Letter and includes all grades and package caveats", async ({
+  page,
+}, testInfo) => {
+  await page.goto("./#/model/2026-toyota-rav4");
+  await expect(page.locator("#model-equipment table")).toBeVisible();
+  await page.emulateMedia({ media: "print" });
+  const sheet = page.locator(".print-reference");
+  await expect(sheet.locator(".print-grade-table tbody tr")).toHaveCount(6);
+  for (const name of [
+    "LE HEV",
+    "SE HEV",
+    "XLE Premium HEV",
+    "Woodland HEV",
+    "XSE HEV",
+    "Limited HEV",
+    "Weather Package",
+    "XLE Driver Assist Package",
+    "Contents U.",
+  ])
+    await expect(sheet).toContainText(name);
+  await expect(sheet).not.toContainText("GR SPORT");
+  const pdf = await page.pdf({
+    path: testInfo.outputPath("rav4-hybrid-reference.pdf"),
+    preferCSSPageSize: true,
+  });
+  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
 });

@@ -22,7 +22,13 @@ const fixtureCatalog = () => ({
 test("published catalog and glossary pass evidence validation", () =>
   assert.deepEqual(validate(catalog, features), []));
 test("pending guides never become comparison options", () =>
-  assert.equal(eligibleOptions(catalog).length, 0));
+  assert.equal(
+    eligibleOptions({
+      ...catalog,
+      vehicles: catalog.vehicles.filter((v) => v.status !== "verified"),
+    }).length,
+    0,
+  ));
 test("model, manufacturer and year filters compose", () => {
   assert.equal(
     searchVehicles(catalog, features, {
@@ -30,7 +36,7 @@ test("model, manufacturer and year filters compose", () => {
       brand: "toyota",
       year: "2026",
     }).vehicles.length,
-    1,
+    2,
   );
   assert.equal(
     searchVehicles(catalog, features, { query: "RAV4", year: "2027" }).vehicles
@@ -40,8 +46,14 @@ test("model, manufacturer and year filters compose", () => {
 });
 test("feature searches do not infer pending equipment or use generic glossary as model evidence", () => {
   assert.equal(
-    searchVehicles(catalog, features, { query: "heated seats" }).vehicles
-      .length,
+    searchVehicles(
+      {
+        ...catalog,
+        vehicles: catalog.vehicles.filter((v) => v.status !== "verified"),
+      },
+      features,
+      { query: "heated seats" },
+    ).vehicles.length,
     0,
   );
   assert.equal(
@@ -134,4 +146,116 @@ test("duplicate IDs, fabricated dates and insecure URLs fail validation", () => 
   const errors = validate(c, features);
   assert.ok(errors.some((e) => e.includes("duplicate")));
   assert.ok(errors.some((e) => e.includes("source required")));
+});
+
+test("RAV4 HEV brochure covers six grades and nine configurations without PHEV carryover", () => {
+  const v = catalog.vehicles.find((v) => v.id === "2026-toyota-rav4");
+  assert.equal(v.trims.length, 9);
+  assert.equal(new Set(v.trims.map((t) => t.name)).size, 6);
+  assert.equal(
+    v.trims.filter((t) => t.configuration.includes("FWD")).length,
+    3,
+  );
+  const xse = v.trims.find((t) => t.id === "xse-hev-awd");
+  assert.equal(
+    xse.equipment.infotainment.value,
+    "12.9-inch Toyota Audio Multimedia",
+  );
+  assert.equal(xse.equipment.audio.value, "6 speakers");
+  assert.equal(xse.equipment.parkingAutomation.status, "optional");
+  assert.equal(
+    v.trims.find((t) => t.id === "limited-hev-awd").equipment.parkingAutomation
+      .status,
+    "standard",
+  );
+  assert.ok(v.trims.every((t) => t.equipment.torque.status === "unverified"));
+});
+test("package names are evidenced without invented contents", () => {
+  const v = catalog.vehicles.find((v) => v.id === "2026-toyota-rav4");
+  assert.equal(v.packages.length, 8);
+  assert.ok(
+    v.packages.every(
+      (p) =>
+        p.contentsStatus === "unverified" &&
+        !p.contents?.length &&
+        p.sourceIds.includes("toyota-2026-rav4-brochure"),
+    ),
+  );
+  assert.ok(
+    v.packages.every((p) => p.trimIds.every((id) => !id.includes("phev"))),
+  );
+  const bad = structuredClone(catalog);
+  bad.vehicles[0].packages[0].contents = ["Invented bundle"];
+  assert.ok(
+    validate(bad, features).some((e) =>
+      e.includes("unverified package cannot"),
+    ),
+  );
+});
+test("PHEV stays separate with no HEV brochure equipment or package evidence", () => {
+  const v = catalog.vehicles.find(
+    (v) => v.id === "2026-toyota-rav4-plug-in-hybrid",
+  );
+  assert.equal(v.trims.length, 4);
+  assert.equal(v.packages.length, 0);
+  for (const t of v.trims)
+    for (const cell of Object.values(t.equipment))
+      assert.ok(!cell.sourceIds?.includes("toyota-2026-rav4-brochure"));
+  assert.equal(
+    v.trims.find((t) => t.id === "se-phev-awd").equipment.dcCharging.status,
+    "unavailable",
+  );
+  assert.equal(
+    v.trims.find((t) => t.id === "xse-phev-awd").equipment.dcCharging.status,
+    "standard",
+  );
+  assert.equal(
+    v.trims.find((t) => t.id === "woodland-phev-awd").equipment.infotainment
+      .status,
+    "unverified",
+  );
+});
+test("brochure provenance and print references remain valid", () => {
+  const v = catalog.vehicles[0];
+  const source = v.sources.find((s) => s.delivery === "user-upload");
+  assert.equal(source.pageCount, 30);
+  assert.match(source.sha256, /^[a-f0-9]{64}$/);
+  const bad = structuredClone(catalog);
+  bad.vehicles[0].quickReference.groups[0].trimIds.push("missing");
+  assert.ok(validate(bad, features).some((e) => e.includes("print groups")));
+  const badOption = structuredClone(catalog);
+  badOption.vehicles[0].optionalEquipment[0].sourceIds = [];
+  assert.ok(
+    validate(badOption, features).some((e) =>
+      e.includes("optional item missing"),
+    ),
+  );
+});
+
+test("package-name searches never infer unverified package contents", () => {
+  assert.equal(
+    searchVehicles(catalog, features, { query: "Weather Package" }).vehicles
+      .length,
+    1,
+  );
+  assert.equal(
+    searchVehicles(catalog, features, { query: "Weather ventilated" }).vehicles
+      .length,
+    0,
+  );
+  assert.equal(
+    searchVehicles(catalog, features, { query: "XSE 9-speaker" }).vehicles
+      .length,
+    0,
+  );
+  const v = catalog.vehicles[0];
+  assert.equal(
+    v.trims.find((t) => t.id === "se-hev-awd").equipment.liftgate.status,
+    "optional",
+  );
+  assert.equal(
+    v.trims.find((t) => t.id === "xle-premium-hev-awd").equipment.liftgate
+      .status,
+    "standard",
+  );
 });

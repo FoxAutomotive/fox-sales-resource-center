@@ -99,6 +99,13 @@ export function validate(catalog, features) {
           s.checkedAt === null,
           prefix + "unreviewed source cannot have review date",
         );
+      if (s.delivery === "user-upload")
+        assert(
+          s.fileName &&
+            /^[a-f0-9]{64}$/.test(s.sha256 || "") &&
+            s.pageCount > 0,
+          prefix + "supplied PDF needs filename, SHA-256 and page count",
+        );
     }
     for (const t of v.trims) {
       assert(
@@ -155,6 +162,53 @@ export function validate(catalog, features) {
         evidenceReady(v, p.sourceIds),
         prefix + "package missing evidence",
       );
+      if (p.contentsStatus === "unverified")
+        assert(
+          !p.contents?.length,
+          prefix + "unverified package cannot claim itemized contents",
+        );
+    }
+    unique(v.optionalEquipment || [], prefix + "optional equipment");
+    for (const o of v.optionalEquipment || []) {
+      assert(
+        o.status === "optional" && o.name && o.description && o.conditions,
+        prefix + "optional item needs explicit status and conditions",
+      );
+      assert(
+        o.trimIds?.length && o.trimIds.every((id) => trimIds.has(id)),
+        prefix + "optional item references unknown configurations",
+      );
+      assert(
+        evidenceReady(v, o.sourceIds),
+        prefix + "optional item missing evidence",
+      );
+    }
+    if (v.quickReference) {
+      const q = v.quickReference;
+      const covered = q.groups.flatMap((g) => g.trimIds);
+      assert(
+        covered.length === trimIds.size &&
+          new Set(covered).size === trimIds.size &&
+          covered.every((id) => trimIds.has(id)),
+        prefix + "print groups must cover each configuration exactly once",
+      );
+      for (const g of q.groups)
+        assert(
+          g.label &&
+            g.fieldIds.length &&
+            g.fieldIds.every((id) => fields.has(id)),
+          prefix + "print group references unknown equipment",
+        );
+      assert(
+        q.commonFieldIds.every((id) => fields.has(id)) &&
+          q.powertrainTrimIds.every((id) => trimIds.has(id)),
+        prefix + "print reference contains unknown field/configuration",
+      );
+      for (const note of q.caveats)
+        assert(
+          note.text && evidenceReady(v, note.sourceIds),
+          prefix + "print caveat missing evidence",
+        );
     }
     for (const u of v.upgrades) {
       assert(
