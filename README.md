@@ -27,7 +27,7 @@ Each cloud task already has an isolated checkout. Work in the existing repositor
 ```sh
 npm run validate       # Verify catalog schema and source-evidence requirements
 npm test               # 35 data/search/comparison validation tests
-npm run test:browser   # 24 Chromium functional/layout/print/accessibility tests
+npm run test:browser   # 29 Chromium functional/layout/print/accessibility tests
 npm run build          # Validate and copy only production files into dist/
 ```
 
@@ -49,9 +49,19 @@ Test-only synthetic equipment is isolated in `tests/fixtures.mjs` and intercepte
 | `tests/`                   | Data tests, browser flows, synthetic fixtures               |
 | `.github/workflows/`       | CI checks and an optional manual Pages deployment           |
 
+## Stage 1 product guides
+
+The primary navigation separates Model Guides, Compare Trims, Compare Vehicles, Equipment Search, and Manager’s Specials. Compare Vehicles and Equipment Search have clearly marked Stage 2 landing pages with links to working tools; the existing comparison engine and global search remain available.
+
+Verified model guides group configuration records into trim cards. Each card shows the selected configuration’s engine, output, drivetrain, economy, and up to five source-backed standard highlights. Highlights favor documented differences, but are not exclusive-equipment claims. Configuration selectors never inherit facts from another configuration. View Equipment opens the matching categorized details; Compare Trims adds that configuration to the existing two-to-four selection workflow.
+
+Performance, Comfort, Technology, Safety, Convenience, Exterior, and Packages expand independently. All existing fields, availability labels, conditions, glossary links, source references, and package caveats remain available. Pending guides remain evidence-gated. The RAV4’s six HEV grades demonstrate the layout, separately from PHEV.
+
+No verified trim images are currently recorded, so the cards use explicitly labeled placeholders. The renderer accepts a future per-trim `image` record only with `src`, descriptive `alt`, and verified model-year `sourceIds`; this is a presentation hook, not evidence that imagery has been researched. No prices or inventory counts are displayed. Fox branding, Axel, and full-model print references remain intact.
+
 ## Compare trims
 
-Model guides and Compare Vehicles open in **Trim Differences**. Choose two to four configurations; model guides include a **Choose trims to compare** picker. **Base Equipment** stays visible and identifies the baseline trim, showing its verified standard specifications that do not change. **What Changes** contains only differing equipment or availability, including the baseline value when a core specification changes. Each equipment field appears in just one section. **All Equipment** restores the complete comparison as a separate view.
+Model guides and the existing comparison workspace (`#/compare`) open in **Trim Differences**. Choose two to four configurations; model guides include a **Choose trims to compare** picker. **Base Equipment** stays visible and identifies the baseline trim, showing its verified standard specifications that do not change. **What Changes** contains only differing equipment or availability, including the baseline value when a core specification changes. Each equipment field appears in just one section. **All Equipment** restores the complete comparison as a separate view.
 
 The baseline updates automatically. Verified upgrade relationships identify the lowest selected grade where possible; catalog order breaks configuration ties. When there is no verified ordering, the fallback is stated. Different models or years use a clearly labeled catalog-order reference rather than an invented shared trim rank. No equipment is assumed to carry over. Different availability or verification statuses remain visible, including known-versus-Unverified comparisons. An unknown is not proof that a feature is absent. Differing package/option listings retain their contents and conditions; missing listings remain Unverified. **Why Upgrade?** displays existing source-authored upgrade text only for configuration-matched trim pairs. The full model guide and its print sheet remain independent of the selected comparison subset.
 
