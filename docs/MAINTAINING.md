@@ -2,7 +2,7 @@
 
 ## Research a model year before entering claims
 
-Use official U.S. manufacturer brochures, specification PDFs, equipment matrices, and model-year releases. Record the exact model year and the date you actually reviewed the material. Prefer stable year-specific document links over live model pages, which may change to the next year. Keep a note of document title, revision, relevant page/table, and any production or drivetrain caveat in the source title or the vehicle notes.
+Use official U.S. manufacturer brochures, specification PDFs, equipment matrices, and model-year releases. For fuel economy and emissions, official EPA/FuelEconomy.gov records are also supported; match the exact vehicle/powertrain/drivetrain and rating basis before citing a value. Record the exact model year and the date you actually reviewed the material. Prefer stable year-specific document links over live model pages, which may change to the next year. Keep a note of document title, revision, relevant page/table, and any production or drivetrain caveat in the source title or the vehicle notes.
 
 Unreviewed source links remain **research targets only**. The RAV4 guide now also records a reviewed, user-supplied brochure; see [its source audit](2026-RAV4-SOURCES.md). At implementation time the environment’s outbound policy denied access to manufacturer sites, so none of the three requested initial guides was represented as verified. See [research status](RESEARCH.md).
 

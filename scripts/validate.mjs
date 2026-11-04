@@ -32,9 +32,14 @@ export function validate(catalog, features) {
   const official = (value) => {
     try {
       const host = new URL(value).hostname;
-      return ["toyota.com", "chevrolet.com", "gm.com", "vw.com"].some(
-        (h) => host === h || host.endsWith(`.${h}`),
-      );
+      return [
+        "toyota.com",
+        "chevrolet.com",
+        "gm.com",
+        "vw.com",
+        "fueleconomy.gov",
+        "epa.gov",
+      ].some((h) => host === h || host.endsWith(`.${h}`));
     } catch {
       return false;
     }

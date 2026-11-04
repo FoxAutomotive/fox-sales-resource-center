@@ -660,3 +660,19 @@ test("RAV4 baseline keeps its engine, output, drivetrain, safety and infotainmen
     ),
   ).toBe(true);
 });
+
+test("audited RAV4 technical facts and HEV not-applicable states render without hiding genuine unknowns", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2026-toyota-rav4");
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
+  const table = page.locator('[data-comparison-table="equipment"]');
+  await expect(table).toContainText("170 lb-ft (231 N·m)");
+  await expect(table).toContainText("torque basis not specified");
+  await expect(table).toContainText("Not applicable — conventional HEV");
+  await expect(table).toContainText("Unavailable");
+  await expect(table).toContainText("Unverified");
+  await expect(page.locator("#source-section")).toContainText(
+    "all 93 previously Unverified",
+  );
+});

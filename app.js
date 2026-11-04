@@ -389,7 +389,7 @@ function compactPrintSheet(v, options) {
       const economy = resolveCell(v, o.trim, "economy");
       const range = resolveCell(v, o.trim, "electricRange");
       const charging = resolveCell(v, o.trim, "charging");
-      return `<p><strong>${escape(o.trim.name)} ${escape(o.trim.configuration)}:</strong> ${escape(hp.value || "Output unverified")}; ${economy.status === "unverified" ? "MPG Unverified" : escape(economy.value)}${range.status !== "unverified" ? `; ${escape(range.value)}` : ""}${charging.status !== "unverified" ? `; ${escape(charging.value)}` : ""}.</p>`;
+      return `<p><strong>${escape(o.trim.name)} ${escape(o.trim.configuration)}:</strong> ${escape(hp.value || "Output unverified")}; ${economy.status === "unverified" ? "MPG Unverified" : escape(economy.value)}${["standard", "optional"].includes(range.status) ? `; ${escape(range.value)}` : ""}${["standard", "optional"].includes(charging.status) ? `; ${escape(charging.value)}` : ""}.</p>`;
     })
     .join("");
   const towing = new Map();

@@ -6,7 +6,7 @@ A fast, responsive, static product reference for the Fox Chevrolet, Fox Toyota, 
 
 The website architecture is implemented: manufacturer/year navigation, global search and filters, equipment glossary, model guides, evidence-gated comparisons, upgrade/package sections, landscape Letter quick references, and a Coming Soon page for Manager’s Specials.
 
-**RAV4 HEV research is now brochure-backed.** The 2026 guide covers six hybrid grades and nine FWD/AWD configurations, with standard and available equipment checked against the supplied Toyota brochure. Eight package names are verified; their itemized contents, combinations and prices remain explicitly unverified because the brochure does not enumerate them. Conflicting torque/MPG claims remain unverified. A separate RAV4 Plug-in Hybrid reference contains only supported press-release details; the HEV equipment table is not applied to PHEVs. Tiguan, Equinox, the remaining 2026 lineup and all 2027 model-year research remain pending. See [RAV4 source review](docs/2026-RAV4-SOURCES.md).
+**RAV4 HEV research is now brochure-backed.** The 2026 guide covers six hybrid grades and nine FWD/AWD configurations, with standard and available equipment checked against the supplied Toyota brochure. Eight package names are verified; their itemized contents, combinations and prices remain explicitly unverified because the brochure does not enumerate them. The brochure’s explicit maximum torque is quoted with its unspecified basis; conflicting MPG ratings remain unverified. Plug-in-specific HEV fields are labeled not applicable. See the [complete cell-level audit](docs/audits/2026-rav4-hybrid-audit.md). A separate RAV4 Plug-in Hybrid reference contains only supported press-release details; the HEV equipment table is not applied to PHEVs. Tiguan, Equinox, the remaining 2026 lineup and all 2027 model-year research remain pending. See [RAV4 source review](docs/2026-RAV4-SOURCES.md).
 
 The official Fox Automotive logo appears in the header and Axel appears on the homepage on desktop and mobile. The original uploaded images are stored locally as `assets/fox-logo.png` and `assets/axel.png`; their paths are configured in `data/catalog.json`. See [artwork instructions](assets/README.md). Manufacturer navigation uses lightweight local SVG representations and accessible brand names.
 
@@ -26,8 +26,8 @@ Each cloud task already has an isolated checkout. Work in the existing repositor
 
 ```sh
 npm run validate       # Verify catalog schema and source-evidence requirements
-npm test               # 31 data/search/comparison validation tests
-npm run test:browser   # 23 Chromium functional/layout/print/accessibility tests
+npm test               # 35 data/search/comparison validation tests
+npm run test:browser   # 24 Chromium functional/layout/print/accessibility tests
 npm run build          # Validate and copy only production files into dist/
 ```
 
