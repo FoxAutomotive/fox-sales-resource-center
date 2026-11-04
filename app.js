@@ -309,13 +309,24 @@ function trimGroups(options) {
   }
   return [...groups.values()];
 }
+// Optional future photos collapse completely when absent, unverified, or failed.
 function verifiedTrimImage(vehicle, trim) {
   const image = trim.image;
-  if (!image?.src || !image.alt || !evidenceReady(vehicle, image.sourceIds))
+  if (
+    !image?.src ||
+    !image.alt ||
+    image.modelYear !== vehicle.year ||
+    image.trimName !== trim.name ||
+    !evidenceReady(vehicle, image.sourceIds)
+  )
     return null;
   try {
+    const base = new URL("assets/", import.meta.url);
     const url = new URL(image.src, import.meta.url);
-    return ["http:", "https:"].includes(url.protocol)
+    return url.origin === base.origin &&
+      url.pathname.startsWith(base.pathname) &&
+      !url.search &&
+      !url.hash
       ? { ...image, url: url.href }
       : null;
   } catch {
@@ -356,7 +367,7 @@ function trimCardHTML(vehicle, group, index, selectedId = group[0].id) {
     }),
   );
   const highlights = [...new Set([...distinct, ...known])].slice(0, 5);
-  return `<article class="trim-training-card" data-grade-index="${index}"><div class="trim-card-visual">${image ? `<img src="${escape(image.url)}" alt="${escape(image.alt)}" loading="lazy">` : `<span class="trim-image-placeholder">${icon("car")}<span>Verified trim image not available</span></span>`}<span class="trim-year-label">${vehicle.year} · ${escape(brandName(vehicle.brand))}</span></div><div class="trim-card-content"><span class="eyebrow">${escape(vehicle.model)}</span><h3>${escape(trim.name)}</h3>${group.length > 1 ? `<label class="field-label" for="card-config-${index}">Configuration</label><select class="card-configuration" id="card-config-${index}">${group.map((o) => `<option value="${escape(o.id)}" ${o.id === option.id ? "selected" : ""}>${escape(o.trim.configuration || o.trim.name)}</option>`).join("")}</select>` : `<p class="single-configuration">${escape(trim.configuration || "Verified configuration")}</p>`}<dl class="trim-core-specs">${[
+  return `<article class="trim-training-card" data-grade-index="${index}">${image ? `<div class="trim-card-visual"><img src="${escape(image.url)}" alt="${escape(image.alt)}" loading="lazy" decoding="async">${image.credit ? `<small class="trim-photo-credit">${escape(image.credit)}</small>` : ""}</div>` : ""}<div class="trim-card-content"><span class="eyebrow trim-card-context">${vehicle.year} · ${escape(brandName(vehicle.brand))} · ${escape(vehicle.model)}</span><h3>${escape(trim.name)}</h3>${group.length > 1 ? `<label class="field-label" for="card-config-${index}">Configuration</label><select class="card-configuration" id="card-config-${index}">${group.map((o) => `<option value="${escape(o.id)}" ${o.id === option.id ? "selected" : ""}>${escape(o.trim.configuration || o.trim.name)}</option>`).join("")}</select>` : `<span class="field-label">Configuration</span><p class="single-configuration">${escape(trim.configuration || "Verified configuration")}</p>`}<dl class="trim-core-specs">${[
     ["engine", "Engine"],
     ["horsepower", "Horsepower"],
     ["drivetrain", "Drivetrain"],
@@ -449,6 +460,15 @@ function modelPage(id) {
     };
     $("#equipment-config").onchange = renderEquipment;
     renderEquipment();
+    // Capture errors for both initial cards and configuration replacements.
+    $(".trim-card-grid").addEventListener(
+      "error",
+      (event) => {
+        if (event.target.matches(".trim-card-visual img"))
+          event.target.parentElement.remove();
+      },
+      true,
+    );
     const groups = trimGroups(options);
     $(".trim-card-grid").onchange = (event) => {
       if (!event.target.matches(".card-configuration")) return;

@@ -2790,27 +2790,6 @@ input[type="checkbox"] {
   object-fit: contain;
   padding: 16px;
 }
-.trim-image-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #616f7d;
-  font-size: 11px;
-}
-.trim-image-placeholder .icon {
-  width: 44px;
-  height: 44px;
-  stroke-width: 1;
-}
-.trim-year-label {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  color: #596572;
-  font-size: 10px;
-  letter-spacing: 0.5px;
-}
 .trim-card-content {
   padding: 23px;
   display: flex;
@@ -2818,8 +2797,9 @@ input[type="checkbox"] {
   flex-direction: column;
 }
 .trim-card-content > h3 {
-  font-size: 23px;
-  margin: 6px 0 17px;
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 7px 0 18px;
 }
 .card-configuration {
   border: 1px solid #cbd2d9;
@@ -3078,4 +3058,20 @@ input[type="checkbox"] {
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+.trim-card-context {
+  font-size: 10px;
+  line-height: 1.6;
+}
+.trim-photo-credit {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
+  left: 8px;
+  text-align: right;
+  color: #475766;
+  background: rgb(255 255 255 / 92%);
+  font-size: 10px;
+  line-height: 1.5;
 }
