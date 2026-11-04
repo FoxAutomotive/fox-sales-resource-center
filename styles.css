@@ -155,10 +155,22 @@ main:focus {
   line-height: 1.5;
   margin-top: 7px;
 }
+.fox-logo-frame {
+  position: relative;
+  display: block;
+  width: 160px;
+  aspect-ratio: 160 / 130;
+  overflow: hidden;
+  flex-shrink: 0;
+}
 .fox-logo {
-  width: 130px;
-  height: 65px;
-  object-fit: contain;
+  /* Frame the supplied artwork's outer white margins, preserving the full mark. */
+  position: absolute;
+  width: 130%;
+  height: auto;
+  max-width: none;
+  left: -15%;
+  top: -30%;
 }
 .brand-divider {
   height: 42px;
@@ -374,8 +386,12 @@ main:focus {
 }
 .axel-card.has-artwork {
   width: 380px;
-  padding-left: 15px;
-  gap: 10px;
+  flex-shrink: 0;
+  padding: 14px 18px;
+  gap: 18px;
+  background: white;
+  border: 1px solid #dce0e4;
+  border-radius: 10px;
 }
 .content {
   max-width: var(--max);
@@ -2108,9 +2124,8 @@ input[type="checkbox"] {
   .section-heading > .text-link .icon {
     width: 12px;
   }
-  .fox-logo {
-    width: 105px;
-    height: 52px;
+  .fox-logo-frame {
+    width: 110px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2420,10 +2435,9 @@ input[type="checkbox"] {
   .axel-card.has-artwork {
     display: flex;
     width: 100%;
-    border-left: 0;
-    border-top: 1px solid #dce0e4;
+    border: 1px solid #dce0e4;
     margin-top: 25px;
-    padding: 15px 0 0;
+    padding: 15px;
     justify-content: start;
     gap: 25px;
   }

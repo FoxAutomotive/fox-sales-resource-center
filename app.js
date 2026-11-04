@@ -401,7 +401,10 @@ async function init() {
       const logo = new Image();
       logo.alt = "Fox Automotive of Rochester Hills";
       logo.onload = () => {
-        $(".fox-wordmark").replaceWith(logo);
+        const frame = document.createElement("span");
+        frame.className = "fox-logo-frame";
+        frame.append(logo);
+        $(".fox-wordmark").replaceWith(frame);
         logo.className = "fox-logo";
       };
       logo.src = new URL(catalog.branding.logo, import.meta.url).href;

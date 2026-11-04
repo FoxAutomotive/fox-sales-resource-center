@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "market": "US",
   "branding": {
-    "logo": null,
-    "axel": null
+    "logo": "./assets/fox-logo.png",
+    "axel": "./assets/axel.png"
   },
   "years": [2026, 2027],
   "brands": [
