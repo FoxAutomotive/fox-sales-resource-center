@@ -72,7 +72,9 @@ test("global search, filters, empty states, and clear filters", async ({
   ).toBeVisible();
   await expect(page.locator(".vehicle-card")).toHaveCount(0);
   await page.getByRole("button", { name: "Clear filters" }).click();
-  await expect(page.locator(".vehicle-card")).toHaveCount(4);
+  await expect(page.locator(".vehicle-card")).toHaveCount(
+    catalog.vehicles.length,
+  );
   await page.getByRole("searchbox").fill("Super Cruise");
   await expect(page.locator(".vehicle-card")).toHaveCount(0);
   await expect(page.locator(".feature-card")).toHaveCount(1);
@@ -195,7 +197,7 @@ test("verified model shows upgrades, package conditions, and all equipment contr
     page.locator(
       '#model-equipment [data-comparison-table="equipment"] tbody tr',
     ),
-  ).toHaveCount(10);
+  ).toHaveCount(catalog.fields.filter((f) => f.group === "Performance").length);
   await expect(
     page.locator("#upgrade-section").getByText("Synthetic audio upgrade"),
   ).toBeVisible();
@@ -932,7 +934,8 @@ test("Tiguan reuses trim cards, switches drivetrain specs, and displays sourced 
   });
   await tech.locator("summary").click();
   await expect(tech).toContainText("15-inch display");
-  await expect(tech).toContainText("does not itemize them");
+  await expect(tech).toContainText("MIB4 Discover Media");
+  await expect(tech).not.toContainText("does not itemize them");
   await expect(page.locator("#categorized-equipment")).toContainText(
     "Not Applicable",
   );
@@ -1072,4 +1075,87 @@ test("camera and panoramic roof categories preserve documented system difference
   });
   await expect(roof.locator("td").nth(0)).toContainText("Available (Optional)");
   await expect(roof.locator("td").nth(1)).toContainText("Standard");
+});
+
+test("all imported Volkswagen guides reuse cards, sourced categories and compact print", async ({
+  page,
+}, testInfo) => {
+  const guides = catalog.vehicles.filter((v) => v.brand === "volkswagen");
+  expect(guides).toHaveLength(9);
+  for (const v of guides) {
+    await page.goto(`./#/model/${v.id}`);
+    await expect(page.locator(".trim-training-card")).toHaveCount(
+      new Set(v.trims.map((t) => t.name)).size,
+    );
+    await expect(
+      page.locator(".trim-card-visual, .trim-image-placeholder"),
+    ).toHaveCount(0);
+    await expect(page.locator("#equipment-config option")).toHaveCount(
+      v.trims.length,
+    );
+    await expect(page.locator("#categorized-equipment")).toContainText(
+      "VW-O26",
+    );
+    await page.setViewportSize({ width: 375, height: 812 });
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+      v.model,
+    ).toBe(true);
+    if (v.model === "ID.4")
+      await expect(page.locator(".trim-training-card").first()).toContainText(
+        "TBA",
+      );
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.emulateMedia({ media: "print" });
+    await expect(page.locator(".print-reference")).not.toContainText(
+      "PHEV only",
+    );
+    const pdf = await page.pdf({
+      path: testInfo.outputPath(`${v.id}.pdf`),
+      preferCSSPageSize: true,
+    });
+    expect(
+      pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length,
+      v.model,
+    ).toBe(1);
+    await page.emulateMedia({ media: "screen" });
+  }
+});
+
+test("bulk-imported Taos and GLI compare their actual configuration-specific equipment", async ({
+  page,
+}) => {
+  await page.goto("./#/compare");
+  for (const id of [
+    "2026-volkswagen-taos:cl22sz",
+    "2026-volkswagen-taos:cl22sr",
+    "2026-volkswagen-jetta-gli:bu59v2",
+    "2026-volkswagen-jetta-gli:bu59vz",
+  ]) {
+    await page.locator("#compare-select").selectOption(id);
+    await page.locator("#add-compare").click();
+  }
+  await page.locator("#compare-view-all").check();
+  const table = page.locator(
+    '#comparison-results [data-comparison-table="equipment"]',
+  );
+  const heated = table.locator("tr").filter({
+    has: page.getByRole("rowheader", {
+      name: "Comfort Heated front seats",
+      exact: true,
+    }),
+  });
+  await expect(heated).toHaveCount(1);
+  await expect(heated.locator("td").nth(0)).toContainText("Not Offered");
+  await expect(heated.locator("td").nth(1)).toContainText("Standard");
+  const remote = table.locator("tr").filter({
+    has: page.getByRole("rowheader", {
+      name: "Comfort Remote start",
+      exact: true,
+    }),
+  });
+  await expect(remote.locator("td").nth(2)).toContainText("Not Offered");
+  await expect(remote.locator("td").nth(3)).toContainText("Standard");
 });

@@ -7,11 +7,14 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "validate": "node scripts/validate.mjs",
-    "test": "node --test --test-isolation=none tests/data.test.mjs",
+    "test": "node --test --test-isolation=none tests/data.test.mjs tests/import.test.mjs",
     "test:browser": "playwright test",
     "build": "node scripts/build.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test:extractor": "python -m unittest discover -s tests/import -p \"test_*.py\"",
+    "import:pdf": "node scripts/import/import-pdf.mjs",
+    "import:apply": "node scripts/import/apply-import.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",

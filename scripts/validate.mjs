@@ -228,6 +228,26 @@ export function validate(catalog, features) {
         prefix + "optional item missing evidence",
       );
     }
+    unique(v.listedOptions || [], prefix + "listed options");
+    for (const o of v.listedOptions || []) {
+      assert(
+        ["standard", "optional", "unavailable", "not-applicable"].includes(
+          o.status,
+        ) &&
+          o.name &&
+          o.description &&
+          o.conditions,
+        prefix + "listed option needs explicit supported status and conditions",
+      );
+      assert(
+        o.trimIds?.length && o.trimIds.every((id) => trimIds.has(id)),
+        prefix + "listed option references unknown configuration",
+      );
+      assert(
+        evidenceReady(v, o.sourceIds),
+        prefix + "listed option missing evidence",
+      );
+    }
     if (v.quickReference) {
       const q = v.quickReference;
       const covered = q.groups.flatMap((g) => g.trimIds);
