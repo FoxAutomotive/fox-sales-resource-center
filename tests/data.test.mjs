@@ -580,7 +580,7 @@ test("unverified or cyclic upgrade rankings fall back transparently to catalog o
   );
 });
 
-test("RAV4 audit accounts for every formerly unknown cell and every remaining unknown", async () => {
+test("Historical RAV4 audit remains traceable after explicit applicability migration", async () => {
   const a = JSON.parse(
     await readFile(
       new URL("../docs/audits/2026-rav4-hybrid-audit.json", import.meta.url),
@@ -596,7 +596,10 @@ test("RAV4 audit accounts for every formerly unknown cell and every remaining un
   for (const e of a.entries) {
     assert.equal(
       v.trims.find((t) => t.id === e.trimId).equipment[e.fieldId].status,
-      e.after,
+      e.after === "unavailable" &&
+        ["electricRange", "charging", "dcCharging"].includes(e.fieldId)
+        ? "not-applicable"
+        : e.after,
     );
     assert.ok(e.reason && e.brochurePages);
   }
@@ -613,7 +616,11 @@ test("RAV4 audit accounts for every formerly unknown cell and every remaining un
   }
   const remaining = v.trims.flatMap((t) =>
     Object.entries(t.equipment)
-      .filter(([, c]) => c.status === "unverified")
+      .filter(
+        ([id, c]) =>
+          c.status === "unverified" &&
+          a.entries.some((e) => e.trimId === t.id && e.fieldId === id),
+      )
       .map(([id]) => `${t.id}:${id}`),
   );
   assert.equal(remaining.length, 57);
@@ -641,7 +648,7 @@ test("HEV applicability and genuine specification gaps remain distinct", () => {
   const v = catalog.vehicles[0];
   for (const t of v.trims) {
     for (const id of ["electricRange", "charging", "dcCharging"]) {
-      assert.equal(t.equipment[id].status, "unavailable");
+      assert.equal(t.equipment[id].status, "not-applicable");
       assert.match(t.equipment[id].value, /Not applicable/);
       assert.ok(
         t.equipment[id].sourceIds.includes("toyota-2026-rav4-brochure"),
@@ -869,4 +876,139 @@ test("Tiguan comparison retains shared powertrain and isolates model-specific di
       e.includes("equipment fields: duplicate"),
     ),
   );
+});
+
+test("normalized equipment rows retain manufacturer systems and availability independently", () => {
+  const rv = catalog.vehicles.find((v) => v.id === "2026-toyota-rav4");
+  const vw = catalog.vehicles.find((v) => v.id === "2026-volkswagen-tiguan");
+  const options = [rv, vw].map((vehicle, i) => ({
+    vehicle,
+    trim: vehicle.trims.find((t) => t.id === (i ? "se-fwd" : "le-hev-fwd")),
+  }));
+  const rows = comparisonRows(catalog, options, { differenceOnly: false });
+  const cells = (id) => rows.find((r) => r.id === id).cells;
+  assert.deepEqual(
+    cells("heatedSeats").map((c) => c.status),
+    ["unverified", "standard"],
+  );
+  assert.match(cells("heatedSeats")[0].conditions, /blank/);
+  assert.deepEqual(
+    cells("heatedWheel").map((c) => c.status),
+    ["unverified", "unavailable"],
+  );
+  assert.match(cells("adaptiveCruiseControl")[0].value, /Dynamic Radar/);
+  assert.match(cells("adaptiveCruiseControl")[1].value, /Stop & Go/);
+  assert.ok(
+    cells("adaptiveCruiseControl").every((c) => c.status === "standard"),
+  );
+  const xse = rv.trims.find((t) => t.id === "xse-hev-awd");
+  assert.equal(resolveCell(rv, xse, "roof").status, "standard");
+  assert.equal(resolveCell(rv, xse, "panoramicRoof").status, "optional");
+  assert.equal(resolveCell(rv, xse, "areaView").status, "standard");
+  assert.match(
+    resolveCell(rv, xse, "areaView").value,
+    /Panoramic View Monitor/,
+  );
+  assert.equal(resolveCell(rv, rv.trims[0], "areaView").status, "unverified");
+  assert.equal(resolveCell(vw, vw.trims.at(-1), "areaView").status, "standard");
+  for (const t of rv.trims) {
+    if (!t.id.startsWith("le-"))
+      assert.equal(t.equipment.heatedSeats.status, "standard");
+    const expected = t.name.startsWith("LE")
+      ? "unverified"
+      : ["Woodland Hybrid", "Limited Hybrid"].includes(t.name)
+        ? "standard"
+        : "optional";
+    assert.equal(t.equipment.heatedWheel.status, expected);
+  }
+});
+
+test("feature alias searches match evidenced categories across brands without manufacturing availability", () => {
+  assert.equal(
+    searchVehicles(catalog, features, { query: "Tigu" }).vehicles.length,
+    1,
+  );
+  for (const query of [
+    "360-degree camera",
+    "surround view camera",
+    "Panoramic View Monitor",
+    "Area View",
+  ])
+    assert.deepEqual(
+      searchVehicles(catalog, features, { query })
+        .vehicles.map((v) => v.id)
+        .sort(),
+      [
+        "2026-toyota-rav4",
+        "2026-toyota-rav4-plug-in-hybrid",
+        "2026-volkswagen-tiguan",
+      ].sort(),
+    );
+  for (const query of [
+    "Adaptive cruise control",
+    "Dynamic Radar Cruise Control",
+  ])
+    assert.ok(
+      searchVehicles(catalog, features, { query, brand: "volkswagen" }).vehicles
+        .length === 1,
+    );
+  assert.equal(
+    searchVehicles(catalog, features, { query: "Tiguan moonroof" }).vehicles
+      .length,
+    1,
+  );
+  assert.equal(
+    searchVehicles(catalog, features, { query: "LE Hybrid heated front seats" })
+      .vehicles.length,
+    0,
+  );
+  assert.equal(
+    searchVehicles(catalog, features, {
+      query: "Tiguan SE heated steering wheel",
+    }).vehicles.length,
+    0,
+  );
+  assert.equal(
+    searchVehicles(catalog, features, { query: "RAV4 XLE heated wheel" })
+      .vehicles.length,
+    1,
+  );
+  const only = structuredClone(catalog);
+  only.vehicles = only.vehicles.filter((v) => v.id === "2026-toyota-rav4");
+  only.vehicles[0].trims = only.vehicles[0].trims.filter(
+    (t) => t.id === "se-hev-fwd",
+  );
+  assert.equal(
+    searchVehicles(only, features, { query: "panoramic moonroof" }).vehicles
+      .length,
+    0,
+  );
+  assert.equal(
+    searchVehicles(only, features, { query: "sunroof" }).vehicles.length,
+    1,
+  );
+});
+
+test("current equipment audit covers every RAV4 cell and explains every unknown", async () => {
+  const audit = JSON.parse(
+    await readFile(
+      new URL(
+        "../docs/audits/2026-equipment-matching-audit.json",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
+  );
+  const v = catalog.vehicles.find((v) => v.id === audit.vehicleId);
+  assert.equal(
+    audit.entries.length,
+    v.trims.reduce((n, t) => n + Object.keys(t.equipment).length, 0),
+  );
+  for (const e of audit.entries) {
+    const cell = v.trims.find((t) => t.id === e.trimId).equipment[e.fieldId];
+    assert.equal(e.status, cell.status);
+    if (e.status === "unverified")
+      assert.ok(cell.conditions && !cell.value && !cell.sourceIds?.length);
+  }
+  assert.match(audit.originalPdfReinspection, /blocked/);
 });

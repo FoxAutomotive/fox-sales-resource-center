@@ -187,7 +187,7 @@ test("verified model shows upgrades, package conditions, and all equipment contr
     page.locator(
       '#model-equipment [data-comparison-table="equipment"] tbody tr',
     ),
-  ).toHaveCount(30);
+  ).toHaveCount(catalog.fields.length);
   await page
     .getByLabel("Category", { exact: true })
     .selectOption("Performance");
@@ -473,7 +473,7 @@ test("model trim picker supports three selections, visible baseline, packages an
   ).toBeChecked();
   const main = page.locator('[data-comparison-table="equipment"]');
   await expect(main).not.toContainText("Synthetic engine A");
-  await expect(main).toContainText("Unavailable");
+  await expect(main).toContainText("Not Offered");
   await expect(main).toContainText("Unverified");
   await expect(page.locator(".comparison-upgrades")).toContainText(
     "Synthetic audio upgrade",
@@ -530,7 +530,7 @@ test("same availability filter applies to cross-model comparisons and package co
   const main = page.locator('[data-comparison-table="equipment"]');
   await expect(main).toContainText("Synthetic engine A");
   await expect(main).toContainText("Optional");
-  await expect(main).toContainText("Unavailable");
+  await expect(main).toContainText("Not Offered");
   await expect(main).toContainText("Unverified");
   await expect(
     page.locator('[data-comparison-table="packages"]'),
@@ -673,7 +673,7 @@ test("audited RAV4 technical facts and HEV not-applicable states render without 
   await expect(table).toContainText("170 lb-ft (231 N·m)");
   await expect(table).toContainText("torque basis not specified");
   await expect(table).toContainText("Not applicable — conventional HEV");
-  await expect(table).toContainText("Unavailable");
+  await expect(table).toContainText("Not Applicable");
   await expect(table).toContainText("Unverified");
   await expect(page.locator("#source-section")).toContainText(
     "all 93 previously Unverified",
@@ -995,4 +995,81 @@ test("Tiguan mobile layout and cross-brand comparison preserve existing componen
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
+});
+
+test("cross-brand feature rows distinguish unknown, optional, standard and not offered", async ({
+  page,
+}) => {
+  await page.goto("./#/compare");
+  for (const id of [
+    "2026-toyota-rav4:le-hev-fwd",
+    "2026-volkswagen-tiguan:se-fwd",
+  ]) {
+    await page.locator("#compare-select").selectOption(id);
+    await page.locator("#add-compare").click();
+  }
+  await page.locator("#compare-view-all").check();
+  const table = page.locator(
+    '#comparison-results [data-comparison-table="equipment"]',
+  );
+  const heated = table.locator("tr").filter({
+    has: page.getByRole("rowheader", {
+      name: "Comfort Heated front seats",
+      exact: true,
+    }),
+  });
+  await expect(heated.locator("td").nth(0)).toContainText("Unverified");
+  await expect(heated.locator("td").nth(0)).toContainText("blank");
+  await expect(heated.locator("td").nth(1)).toContainText("Standard");
+  const wheel = table.locator("tr").filter({
+    has: page.getByRole("rowheader", {
+      name: "Comfort Heated steering wheel",
+      exact: true,
+    }),
+  });
+  await expect(wheel.locator("td").nth(0)).toContainText("Unverified");
+  await expect(wheel.locator("td").nth(1)).toContainText("Not Offered");
+  const cruise = table.locator("tr").filter({
+    has: page.getByRole("rowheader", {
+      name: "Safety Adaptive cruise control",
+      exact: true,
+    }),
+  });
+  await expect(cruise).toContainText("Dynamic Radar Cruise Control");
+  await expect(cruise).toContainText("ACC) with Stop & Go");
+  await expect(cruise.locator(".equipment-status.standard")).toHaveCount(2);
+});
+
+test("camera and panoramic roof categories preserve documented system differences", async ({
+  page,
+}) => {
+  await page.goto("./#/compare");
+  for (const id of [
+    "2026-toyota-rav4:xse-hev-awd",
+    "2026-volkswagen-tiguan:sel-r-line-turbo-4motion",
+  ]) {
+    await page.locator("#compare-select").selectOption(id);
+    await page.locator("#add-compare").click();
+  }
+  await page.locator("#compare-view-all").check();
+  const table = page.locator(
+    '#comparison-results [data-comparison-table="equipment"]',
+  );
+  const camera = table.locator("tr").filter({
+    has: page.getByRole("rowheader", {
+      name: "Safety Surround-view / 360-degree camera",
+      exact: true,
+    }),
+  });
+  await expect(camera).toContainText("Panoramic View Monitor");
+  await expect(camera).toContainText("Area View");
+  await expect(camera.locator(".equipment-status.standard")).toHaveCount(2);
+  const roof = table.locator("tr").filter({
+    has: page.getByRole("rowheader", {
+      name: "Exterior Panoramic sunroof / moonroof",
+      exact: true,
+    }),
+  });
+  await expect(roof.locator("td").nth(0)).toContainText("Available (Optional)");
+  await expect(roof.locator("td").nth(1)).toContainText("Standard");
 });

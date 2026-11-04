@@ -74,8 +74,9 @@
     },
     {
       "id": "roof",
-      "label": "Sunroof / panoramic roof",
-      "group": "Exterior"
+      "label": "Sunroof / moonroof (type shown)",
+      "group": "Exterior",
+      "searchTerms": ["sunroof", "moonroof"]
     },
     {
       "id": "seating",
@@ -89,8 +90,9 @@
     },
     {
       "id": "heatedSeats",
-      "label": "Heated seats",
-      "group": "Comfort"
+      "label": "Heated front seats",
+      "group": "Comfort",
+      "searchTerms": ["heated seats", "heated front seats"]
     },
     {
       "id": "ventilatedSeats",
@@ -100,7 +102,8 @@
     {
       "id": "heatedWheel",
       "label": "Heated steering wheel",
-      "group": "Comfort"
+      "group": "Comfort",
+      "searchTerms": ["heated wheel", "heated steering wheel"]
     },
     {
       "id": "infotainment",
@@ -169,13 +172,43 @@
     },
     {
       "id": "parkingAutomation",
-      "label": "Advanced Park",
+      "label": "Automated parking assistance",
       "group": "Safety"
     },
     {
       "id": "liftgate",
       "label": "Power liftgate",
       "group": "Exterior"
+    },
+    {
+      "id": "areaView",
+      "label": "Surround-view / 360-degree camera",
+      "group": "Safety",
+      "searchTerms": [
+        "360-degree camera",
+        "360 degree camera",
+        "surround-view camera",
+        "surround view camera",
+        "panoramic view monitor",
+        "area view"
+      ]
+    },
+    {
+      "id": "adaptiveCruiseControl",
+      "label": "Adaptive cruise control",
+      "group": "Safety",
+      "searchTerms": [
+        "adaptive cruise control",
+        "dynamic radar cruise control",
+        "DRCC",
+        "ACC"
+      ]
+    },
+    {
+      "id": "panoramicRoof",
+      "label": "Panoramic sunroof / moonroof",
+      "group": "Exterior",
+      "searchTerms": ["panoramic sunroof", "panoramic moonroof"]
     }
   ],
   "vehicles": [
@@ -290,10 +323,12 @@
               }
             },
             "economy": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
             },
             "towing": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6, 26): Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
             },
             "wheels": {
               "status": "standard",
@@ -309,7 +344,8 @@
               "sourceIds": ["toyota-2026-rav4-release"]
             },
             "roof": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 20–21): This trim’s moonroof entries are blank in the HEV S/A matrix. The legend defines S and A but does not define blank as an explicit not-offered symbol. No negative availability claim is established by another reviewed source."
             },
             "seating": {
               "status": "standard",
@@ -328,13 +364,16 @@
               }
             },
             "heatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The LE seat row confirms fabric/manual seats, but neither that text nor the unexplained blank explicitly states front-seat heating is not offered. Do not infer absence from another trim’s heated-seat row."
             },
             "ventilatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
             },
             "heatedWheel": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 21–22): LE has a standard urethane steering-wheel row, while the heated-wheel row is blank for LE. The brochure does not explicitly define that blank as not offered; another trim’s heated/leather wheel cannot establish LE availability."
             },
             "infotainment": {
               "status": "standard",
@@ -391,7 +430,7 @@
               ]
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -400,7 +439,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -409,7 +448,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -418,22 +457,45 @@
               }
             },
             "wirelessCharging": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
             },
             "headUpDisplay": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
             },
             "cargoOutlet": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
             },
             "advancedAssistance": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
             },
             "parkingAutomation": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
             },
             "liftgate": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 20): LE’s power-liftgate entries are blank. The SE available and higher-grade standard entries do not verify LE availability or an explicit exclusion."
+            },
+            "areaView": {
+              "status": "unverified",
+              "conditions": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         },
@@ -486,7 +548,8 @@
               "featureIds": ["toyota-electronic-awd"]
             },
             "economy": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
             },
             "towing": {
               "status": "standard",
@@ -508,7 +571,8 @@
               "sourceIds": ["toyota-2026-rav4-release"]
             },
             "roof": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 20–21): This trim’s moonroof entries are blank in the HEV S/A matrix. The legend defines S and A but does not define blank as an explicit not-offered symbol. No negative availability claim is established by another reviewed source."
             },
             "seating": {
               "status": "standard",
@@ -527,13 +591,16 @@
               }
             },
             "heatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The LE seat row confirms fabric/manual seats, but neither that text nor the unexplained blank explicitly states front-seat heating is not offered. Do not infer absence from another trim’s heated-seat row."
             },
             "ventilatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
             },
             "heatedWheel": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 21–22): LE has a standard urethane steering-wheel row, while the heated-wheel row is blank for LE. The brochure does not explicitly define that blank as not offered; another trim’s heated/leather wheel cannot establish LE availability."
             },
             "infotainment": {
               "status": "standard",
@@ -590,7 +657,7 @@
               ]
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -599,7 +666,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -608,7 +675,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -617,22 +684,45 @@
               }
             },
             "wirelessCharging": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
             },
             "headUpDisplay": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
             },
             "cargoOutlet": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
             },
             "advancedAssistance": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
             },
             "parkingAutomation": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
             },
             "liftgate": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 20): LE’s power-liftgate entries are blank. The SE available and higher-grade standard entries do not verify LE availability or an explicit exclusion."
+            },
+            "areaView": {
+              "status": "unverified",
+              "conditions": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         },
@@ -684,10 +774,12 @@
               }
             },
             "economy": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
             },
             "towing": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6, 26): Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
             },
             "wheels": {
               "status": "standard",
@@ -736,7 +828,8 @@
               }
             },
             "ventilatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
             },
             "heatedWheel": {
               "status": "optional",
@@ -810,7 +903,7 @@
               }
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -819,7 +912,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -828,7 +921,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -837,10 +930,12 @@
               }
             },
             "headUpDisplay": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
             },
             "cargoOutlet": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
             },
             "advancedAssistance": {
               "status": "optional",
@@ -853,7 +948,8 @@
               "featureIds": ["rav4-traffic-jam-assist"]
             },
             "parkingAutomation": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
             },
             "liftgate": {
               "status": "standard",
@@ -862,6 +958,28 @@
               "sourcePages": {
                 "toyota-2026-rav4-brochure": "20"
               }
+            },
+            "areaView": {
+              "status": "unverified",
+              "conditions": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "optional",
+              "value": "Panoramic tilt/slide moonroof",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "21"
+              },
+              "conditions": "Listed A (Available). Panoramic Moonroof Package is named; full contents and prerequisites are not itemized."
             }
           }
         },
@@ -914,7 +1032,8 @@
               "featureIds": ["toyota-electronic-awd"]
             },
             "economy": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
             },
             "towing": {
               "status": "standard",
@@ -969,7 +1088,8 @@
               }
             },
             "ventilatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
             },
             "heatedWheel": {
               "status": "optional",
@@ -1043,7 +1163,7 @@
               }
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1052,7 +1172,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1061,7 +1181,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1070,10 +1190,12 @@
               }
             },
             "headUpDisplay": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
             },
             "cargoOutlet": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
             },
             "advancedAssistance": {
               "status": "optional",
@@ -1086,7 +1208,8 @@
               "featureIds": ["rav4-traffic-jam-assist"]
             },
             "parkingAutomation": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
             },
             "liftgate": {
               "status": "standard",
@@ -1095,6 +1218,28 @@
               "sourcePages": {
                 "toyota-2026-rav4-brochure": "20"
               }
+            },
+            "areaView": {
+              "status": "unverified",
+              "conditions": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "optional",
+              "value": "Panoramic tilt/slide moonroof",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "21"
+              },
+              "conditions": "Listed A (Available). Panoramic Moonroof Package is named; full contents and prerequisites are not itemized."
             }
           }
         },
@@ -1146,10 +1291,12 @@
               }
             },
             "economy": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
             },
             "towing": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6, 26): Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
             },
             "wheels": {
               "status": "standard",
@@ -1198,7 +1345,8 @@
               }
             },
             "ventilatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
             },
             "heatedWheel": {
               "status": "optional",
@@ -1264,7 +1412,7 @@
               ]
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1273,7 +1421,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1282,7 +1430,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1291,19 +1439,24 @@
               }
             },
             "wirelessCharging": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
             },
             "headUpDisplay": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
             },
             "cargoOutlet": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
             },
             "advancedAssistance": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
             },
             "parkingAutomation": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
             },
             "liftgate": {
               "status": "optional",
@@ -1313,6 +1466,23 @@
                 "toyota-2026-rav4-brochure": "20"
               },
               "conditions": "Listed A (Available); complete Convenience Package contents and ordering dependencies are not itemized."
+            },
+            "areaView": {
+              "status": "unverified",
+              "conditions": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         },
@@ -1365,7 +1535,8 @@
               "featureIds": ["toyota-electronic-awd"]
             },
             "economy": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
             },
             "towing": {
               "status": "standard",
@@ -1420,7 +1591,8 @@
               }
             },
             "ventilatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
             },
             "heatedWheel": {
               "status": "optional",
@@ -1486,7 +1658,7 @@
               ]
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1495,7 +1667,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1504,7 +1676,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1513,19 +1685,24 @@
               }
             },
             "wirelessCharging": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
             },
             "headUpDisplay": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
             },
             "cargoOutlet": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
             },
             "advancedAssistance": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
             },
             "parkingAutomation": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
             },
             "liftgate": {
               "status": "optional",
@@ -1535,6 +1712,23 @@
                 "toyota-2026-rav4-brochure": "20"
               },
               "conditions": "Listed A (Available); complete Convenience Package contents and ordering dependencies are not itemized."
+            },
+            "areaView": {
+              "status": "unverified",
+              "conditions": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         },
@@ -1645,7 +1839,8 @@
               }
             },
             "ventilatedSeats": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
             },
             "heatedWheel": {
               "status": "standard",
@@ -1719,7 +1914,7 @@
               }
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1728,7 +1923,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1737,7 +1932,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1754,7 +1949,8 @@
               }
             },
             "headUpDisplay": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
             },
             "advancedAssistance": {
               "status": "standard",
@@ -1767,7 +1963,8 @@
               "featureIds": ["rav4-traffic-jam-assist"]
             },
             "parkingAutomation": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
             },
             "liftgate": {
               "status": "standard",
@@ -1776,6 +1973,28 @@
               "sourcePages": {
                 "toyota-2026-rav4-brochure": "20"
               }
+            },
+            "areaView": {
+              "status": "standard",
+              "value": "3D Panoramic View Monitor with Multi-Terrain Monitor",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24"
+              },
+              "featureIds": ["rav4-panoramic-view"]
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         },
@@ -1828,7 +2047,8 @@
               "featureIds": ["toyota-electronic-awd"]
             },
             "economy": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
             },
             "towing": {
               "status": "standard",
@@ -1963,7 +2183,7 @@
               }
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1972,7 +2192,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1981,7 +2201,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -1990,10 +2210,12 @@
               }
             },
             "headUpDisplay": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
             },
             "cargoOutlet": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
             },
             "advancedAssistance": {
               "status": "standard",
@@ -2021,6 +2243,33 @@
               "sourceIds": ["toyota-2026-rav4-brochure"],
               "sourcePages": {
                 "toyota-2026-rav4-brochure": "20"
+              }
+            },
+            "areaView": {
+              "status": "standard",
+              "value": "3D Panoramic View Monitor",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24"
+              },
+              "featureIds": ["rav4-panoramic-view"]
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "optional",
+              "value": "Panoramic moonroof upgrade",
+              "conditions": "A panoramic moonroof is available; the regular tilt/slide moonroof is standard. Full package contents not specified. Confirm exact option/package combination and actual window sticker. No PHEV availability is established by the HEV table.",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "21"
               }
             }
           }
@@ -2074,7 +2323,8 @@
               "featureIds": ["toyota-electronic-awd"]
             },
             "economy": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
             },
             "towing": {
               "status": "standard",
@@ -2216,7 +2466,7 @@
               "conditions": "Named as an option on Hybrid Limited; ordering combinations and prerequisites are not specified."
             },
             "electricRange": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -2225,7 +2475,7 @@
               }
             },
             "charging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -2234,7 +2484,7 @@
               }
             },
             "dcCharging": {
-              "status": "unavailable",
+              "status": "not-applicable",
               "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
               "conditions": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented.",
               "sourceIds": ["toyota-2026-rav4-brochure"],
@@ -2243,7 +2493,8 @@
               }
             },
             "cargoOutlet": {
-              "status": "unverified"
+              "status": "unverified",
+              "conditions": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
             },
             "advancedAssistance": {
               "status": "standard",
@@ -2271,6 +2522,32 @@
               "sourceIds": ["toyota-2026-rav4-brochure"],
               "sourcePages": {
                 "toyota-2026-rav4-brochure": "20"
+              }
+            },
+            "areaView": {
+              "status": "standard",
+              "value": "3D Panoramic View Monitor",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24"
+              },
+              "featureIds": ["rav4-panoramic-view"]
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "24–25"
+              },
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "standard",
+              "value": "Panoramic tilt/slide moonroof",
+              "sourceIds": ["toyota-2026-rav4-brochure"],
+              "sourcePages": {
+                "toyota-2026-rav4-brochure": "21"
               }
             }
           }
@@ -2469,7 +2746,8 @@
         "Fuel economy: the release conflicts internally. HEV FWD is described as up to 41, 43 and 44 combined mpg; XSE/Limited HEV are listed with 41 or 42 combined mpg and one inconsistent city/highway set. Woodland PHEV is given as 37 or 38 combined mpg; GR SPORT as 36 or 37. Unresolved MPG cells remain Unverified rather than selecting a convenient number. Woodland HEV and SE/XSE PHEV figures shown are manufacturer estimates, not verified EPA results.",
         "The brochure names eight HEV package offerings and their grade eligibility, but does not itemize package contents. Package names are verified; contents, combinations and pricing remain Unverified. Its equipment tables mark S=Standard and A=Available; unexplained blank cells are treated as Unverified, not proof of Unavailable. PHEV packages are not verified by this HEV brochure.",
         "The supplied brochure’s six-grade equipment tables cover HEV only; they do not verify PHEV/GR SPORT availability or packages. It does not resolve conflicting MPG in the release, provide a verified EPA fuel-economy table, clarify torque basis, or confirm total seating capacity, PHEV transmission type, or FWD/GR SPORT towing limits.",
-        "Confirm actual equipment and installed packages against the window sticker. Observe vehicle-specific towing/loading limits and charging requirements. Driver assistance is not autonomous driving; subscriptions, road and weather conditions apply."
+        "Confirm actual equipment and installed packages against the window sticker. Observe vehicle-specific towing/loading limits and charging requirements. Driver assistance is not autonomous driving; subscriptions, road and weather conditions apply.",
+        "2026-11-04 matching audit uses the retained brochure audit and cited equipment records; the original supplied PDF is not present in the current workspace and could not be downloaded (Toyota HTTP 403). Existing positive marks are preserved. Unexplained LE heating/roof blanks remain Unverified pending the original PDF or explicit manufacturer availability evidence. Plug-in-only fields are now classified Not Applicable."
       ],
       "optionalEquipment": [
         {
@@ -2896,8 +3174,7 @@
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "1"
-              },
-              "conditions": "SE only: Panoramic Sunroof Package, $1,200; verify installed equipment."
+              }
             },
             "lighting": {
               "status": "standard",
@@ -3065,12 +3342,11 @@
             },
             "heatedWheel": {
               "status": "unavailable",
-              "value": "Heated steering wheel with paddle shifters — delayed availability",
+              "value": "Heated steering wheel",
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "2"
-              },
-              "conditions": "Volkswagen explicitly notes delayed availability; verify production date and actual window sticker."
+              }
             },
             "mapPockets": {
               "status": "unavailable",
@@ -3329,6 +3605,23 @@
               "sourcePages": {
                 "vw-2026-tiguan-technical": "1"
               }
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "3"
+              },
+              "value": "Adaptive Cruise Control (ACC) with Stop & Go, part of IQ.DRIVE",
+              "conditions": "Driver supervision required. Volkswagen operating limits apply; not an equivalence claim for all Toyota DRCC functions."
+            },
+            "panoramicRoof": {
+              "status": "unavailable",
+              "value": "Panoramic sunroof",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "1"
+              }
             }
           },
           "highlightFieldIds": [
@@ -3583,8 +3876,7 @@
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "1"
-              },
-              "conditions": "SE only: Panoramic Sunroof Package, $1,200; verify installed equipment."
+              }
             },
             "lighting": {
               "status": "standard",
@@ -3752,12 +4044,11 @@
             },
             "heatedWheel": {
               "status": "unavailable",
-              "value": "Heated steering wheel with paddle shifters — delayed availability",
+              "value": "Heated steering wheel",
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "2"
-              },
-              "conditions": "Volkswagen explicitly notes delayed availability; verify production date and actual window sticker."
+              }
             },
             "mapPockets": {
               "status": "unavailable",
@@ -4015,6 +4306,23 @@
               "sourceIds": ["vw-2026-tiguan-technical"],
               "sourcePages": {
                 "vw-2026-tiguan-technical": "1"
+              }
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "3"
+              },
+              "value": "Adaptive Cruise Control (ACC) with Stop & Go, part of IQ.DRIVE",
+              "conditions": "Driver supervision required. Volkswagen operating limits apply; not an equivalence claim for all Toyota DRCC functions."
+            },
+            "panoramicRoof": {
+              "status": "unavailable",
+              "value": "Panoramic sunroof",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "1"
               }
             }
           },
@@ -4439,12 +4747,11 @@
             },
             "heatedWheel": {
               "status": "unavailable",
-              "value": "Heated steering wheel with paddle shifters — delayed availability",
+              "value": "Heated steering wheel",
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "2"
-              },
-              "conditions": "Volkswagen explicitly notes delayed availability; verify production date and actual window sticker."
+              }
             },
             "mapPockets": {
               "status": "standard",
@@ -4703,6 +5010,24 @@
               "sourcePages": {
                 "vw-2026-tiguan-technical": "1"
               }
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "3"
+              },
+              "value": "Adaptive Cruise Control (ACC) with Stop & Go, part of IQ.DRIVE",
+              "conditions": "Driver supervision required. Volkswagen operating limits apply; not an equivalence claim for all Toyota DRCC functions."
+            },
+            "panoramicRoof": {
+              "status": "optional",
+              "value": "Panoramic sunroof",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "1"
+              },
+              "conditions": "SE only: Panoramic Sunroof Package, $1,200; verify installed equipment."
             }
           },
           "highlightFieldIds": [
@@ -5126,12 +5451,11 @@
             },
             "heatedWheel": {
               "status": "unavailable",
-              "value": "Heated steering wheel with paddle shifters — delayed availability",
+              "value": "Heated steering wheel",
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "2"
-              },
-              "conditions": "Volkswagen explicitly notes delayed availability; verify production date and actual window sticker."
+              }
             },
             "mapPockets": {
               "status": "standard",
@@ -5390,6 +5714,24 @@
               "sourcePages": {
                 "vw-2026-tiguan-technical": "1"
               }
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "3"
+              },
+              "value": "Adaptive Cruise Control (ACC) with Stop & Go, part of IQ.DRIVE",
+              "conditions": "Driver supervision required. Volkswagen operating limits apply; not an equivalence claim for all Toyota DRCC functions."
+            },
+            "panoramicRoof": {
+              "status": "optional",
+              "value": "Panoramic sunroof",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "1"
+              },
+              "conditions": "SE only: Panoramic Sunroof Package, $1,200; verify installed equipment."
             }
           },
           "highlightFieldIds": [
@@ -5640,8 +5982,7 @@
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "1"
-              },
-              "conditions": "SE only: Panoramic Sunroof Package, $1,200; verify installed equipment."
+              }
             },
             "lighting": {
               "status": "standard",
@@ -5809,12 +6150,11 @@
             },
             "heatedWheel": {
               "status": "unavailable",
-              "value": "Heated steering wheel with paddle shifters — delayed availability",
+              "value": "Heated steering wheel",
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "2"
-              },
-              "conditions": "Volkswagen explicitly notes delayed availability; verify production date and actual window sticker."
+              }
             },
             "mapPockets": {
               "status": "standard",
@@ -6073,6 +6413,23 @@
               "sourcePages": {
                 "vw-2026-tiguan-technical": "1"
               }
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "3"
+              },
+              "value": "Adaptive Cruise Control (ACC) with Stop & Go, part of IQ.DRIVE",
+              "conditions": "Driver supervision required. Volkswagen operating limits apply; not an equivalence claim for all Toyota DRCC functions."
+            },
+            "panoramicRoof": {
+              "status": "standard",
+              "value": "Panoramic sunroof",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "1"
+              }
             }
           },
           "highlightFieldIds": [
@@ -6323,8 +6680,7 @@
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "1"
-              },
-              "conditions": "SE only: Panoramic Sunroof Package, $1,200; verify installed equipment."
+              }
             },
             "lighting": {
               "status": "standard",
@@ -6492,12 +6848,11 @@
             },
             "heatedWheel": {
               "status": "unavailable",
-              "value": "Heated steering wheel with paddle shifters — delayed availability",
+              "value": "Heated steering wheel",
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "2"
-              },
-              "conditions": "Volkswagen explicitly notes delayed availability; verify production date and actual window sticker."
+              }
             },
             "mapPockets": {
               "status": "standard",
@@ -6756,6 +7111,23 @@
               "sourcePages": {
                 "vw-2026-tiguan-technical": "1"
               }
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "3"
+              },
+              "value": "Adaptive Cruise Control (ACC) with Stop & Go, part of IQ.DRIVE",
+              "conditions": "Driver supervision required. Volkswagen operating limits apply; not an equivalence claim for all Toyota DRCC functions."
+            },
+            "panoramicRoof": {
+              "status": "standard",
+              "value": "Panoramic sunroof",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "1"
+              }
             }
           },
           "highlightFieldIds": [
@@ -7010,8 +7382,7 @@
               "sourceIds": ["vw-2026-tiguan-pricing"],
               "sourcePages": {
                 "vw-2026-tiguan-pricing": "1"
-              },
-              "conditions": "SE only: Panoramic Sunroof Package, $1,200; verify installed equipment."
+              }
             },
             "lighting": {
               "status": "standard",
@@ -7438,6 +7809,23 @@
               "sourceIds": ["vw-2026-tiguan-technical"],
               "sourcePages": {
                 "vw-2026-tiguan-technical": "1"
+              }
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "3"
+              },
+              "value": "Adaptive Cruise Control (ACC) with Stop & Go, part of IQ.DRIVE",
+              "conditions": "Driver supervision required. Volkswagen operating limits apply; not an equivalence claim for all Toyota DRCC functions."
+            },
+            "panoramicRoof": {
+              "status": "standard",
+              "value": "Panoramic sunroof",
+              "sourceIds": ["vw-2026-tiguan-pricing"],
+              "sourcePages": {
+                "vw-2026-tiguan-pricing": "1"
               }
             }
           },
@@ -7923,11 +8311,6 @@
           "group": "Safety"
         },
         {
-          "id": "areaView",
-          "label": "Overhead-view camera",
-          "group": "Safety"
-        },
-        {
           "id": "roadSigns",
           "label": "Road sign display",
           "group": "Safety"
@@ -8187,6 +8570,20 @@
             },
             "liftgate": {
               "status": "unverified"
+            },
+            "areaView": {
+              "status": "unverified",
+              "conditions": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-release"],
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         },
@@ -8330,6 +8727,22 @@
             },
             "liftgate": {
               "status": "unverified"
+            },
+            "areaView": {
+              "status": "standard",
+              "value": "3D Panoramic View Monitor with Multi-Terrain Monitor",
+              "sourceIds": ["toyota-2026-rav4-release"],
+              "featureIds": ["rav4-traffic-jam-assist"]
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-release"],
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         },
@@ -8493,6 +8906,22 @@
               "status": "standard",
               "value": "Hands-free power liftgate",
               "sourceIds": ["toyota-2026-rav4-release"]
+            },
+            "areaView": {
+              "status": "standard",
+              "value": "3D Panoramic View Monitor",
+              "sourceIds": ["toyota-2026-rav4-release"],
+              "featureIds": ["rav4-traffic-jam-assist"]
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-release"],
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         },
@@ -8639,6 +9068,21 @@
               "status": "standard",
               "value": "Power liftgate",
               "sourceIds": ["toyota-2026-rav4-release"]
+            },
+            "areaView": {
+              "status": "standard",
+              "value": "3D Panoramic View Monitor",
+              "sourceIds": ["toyota-2026-rav4-release"]
+            },
+            "adaptiveCruiseControl": {
+              "status": "standard",
+              "sourceIds": ["toyota-2026-rav4-release"],
+              "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+              "conditions": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+            },
+            "panoramicRoof": {
+              "status": "unverified",
+              "conditions": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
             }
           }
         }

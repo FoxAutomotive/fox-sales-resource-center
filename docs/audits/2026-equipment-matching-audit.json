@@ -1,0 +1,3107 @@
+{
+  "reviewDate": "2026-11-04",
+  "scope": "Retained manufacturer citations and prior audit; original PDF unavailable for direct reinspection. No new technical-specification research.",
+  "originalPdfReinspection": "blocked — attachment missing; Toyota brochure URL returned HTTP 403",
+  "vehicleId": "2026-toyota-rav4",
+  "entries": [
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "226 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Front-wheel drive (FWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "economy",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "towing",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6, 26): Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "17-inch dark gray metallic alloy wheels",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Core design; color-keyed grille; low-profile roof rails; LED projector headlights",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "roof",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 20–21): This trim’s moonroof entries are blank in the HEV S/A matrix. The legend defines S and A but does not define blank as an explicit not-offered symbol. No negative availability claim is established by another reviewed source."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "Fabric; manual 6-way front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "heatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The LE seat row confirms fabric/manual seats, but neither that text nor the unexplained blank explicitly states front-seat heating is not offered. Do not infer absence from another trim’s heated-seat row."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "ventilatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "heatedWheel",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 21–22): LE has a standard urethane steering-wheel row, while the heated-wheel row is blank for LE. The brochure does not explicitly define that blank as not offered; another trim’s heated/leather wheel cannot establish LE availability."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "10.5-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "6 speakers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "Backup camera with dynamic gridlines; Hill Start Assist; Trailer-Sway Control",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "wirelessCharging",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "headUpDisplay",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "cargoOutlet",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "advancedAssistance",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "parkingAutomation",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "liftgate",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 20): LE’s power-liftgate entries are blank. The SE available and higher-grade standard entries do not verify LE availability or an explicit exclusion."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "areaView",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "le-hev-fwd",
+      "fieldId": "panoramicRoof",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "236 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "economy",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "towing",
+      "status": "standard",
+      "value": "Up to 1,750 lb",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Properly equipped; confirm vehicle-specific limits, loading and owner’s manual."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "17-inch dark gray metallic alloy wheels",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Core design; color-keyed grille; low-profile roof rails; LED projector headlights",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "roof",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 20–21): This trim’s moonroof entries are blank in the HEV S/A matrix. The legend defines S and A but does not define blank as an explicit not-offered symbol. No negative availability claim is established by another reviewed source."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "Fabric; manual 6-way front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "heatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The LE seat row confirms fabric/manual seats, but neither that text nor the unexplained blank explicitly states front-seat heating is not offered. Do not infer absence from another trim’s heated-seat row."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "ventilatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "heatedWheel",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 21–22): LE has a standard urethane steering-wheel row, while the heated-wheel row is blank for LE. The brochure does not explicitly define that blank as not offered; another trim’s heated/leather wheel cannot establish LE availability."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "10.5-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "6 speakers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "Backup camera with dynamic gridlines; Hill Start Assist; Trailer-Sway Control",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "wirelessCharging",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "headUpDisplay",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "cargoOutlet",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "advancedAssistance",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "parkingAutomation",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "liftgate",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 20): LE’s power-liftgate entries are blank. The SE available and higher-grade standard entries do not verify LE availability or an explicit exclusion."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "areaView",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "le-hev-awd",
+      "fieldId": "panoramicRoof",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "226 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Front-wheel drive (FWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "economy",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "towing",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6, 26): Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "18-inch dark gray metallic alloy wheels",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Core design; power liftgate; heated mirrors with turn signals",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "roof",
+      "status": "optional",
+      "value": "Panoramic tilt/slide moonroof",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available). Panoramic Moonroof Package is named; full contents and prerequisites are not itemized."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "SofTex; power 8-way driver with lumbar support; manual 6-way front passenger",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "heatedSeats",
+      "status": "standard",
+      "value": "Heated front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "ventilatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "heatedWheel",
+      "status": "optional",
+      "value": "Heated leather-trimmed steering wheel",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available) in the HEV table. Exact package association and prerequisites are not itemized."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "10.5-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "6 speakers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "Front and rear Parking Assist with Automatic Braking; backup camera",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "wirelessCharging",
+      "status": "standard",
+      "value": "One Qi-compatible wireless phone charger",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "headUpDisplay",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "cargoOutlet",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "advancedAssistance",
+      "status": "optional",
+      "value": "Front Cross-Traffic Alert; Lane Change Assist; Traffic Jam Assist; Driver Monitor",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24, 26"
+      },
+      "reason": "Traffic Jam Assist requires an active Drive Connect trial/subscription and driver supervision; controlled-access highways at 25 mph or less. Package contents are not itemized."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "parkingAutomation",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "liftgate",
+      "status": "standard",
+      "value": "Height-adjustable power liftgate with jam protection",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "areaView",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "xle-premium-hev-fwd",
+      "fieldId": "panoramicRoof",
+      "status": "optional",
+      "value": "Panoramic tilt/slide moonroof",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available). Panoramic Moonroof Package is named; full contents and prerequisites are not itemized."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "236 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "economy",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "towing",
+      "status": "standard",
+      "value": "Up to 3,500 lb",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Properly equipped AWD configuration; confirm vehicle-specific limits, hitch equipment, loading and owner’s manual. Capacity does not establish that a receiver is included except on Woodland."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "18-inch dark gray metallic alloy wheels",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Core design; power liftgate; heated mirrors with turn signals",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "roof",
+      "status": "optional",
+      "value": "Panoramic tilt/slide moonroof",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available). Panoramic Moonroof Package is named; full contents and prerequisites are not itemized."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "SofTex; power 8-way driver with lumbar support; manual 6-way front passenger",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "heatedSeats",
+      "status": "standard",
+      "value": "Heated front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "ventilatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "heatedWheel",
+      "status": "optional",
+      "value": "Heated leather-trimmed steering wheel",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available) in the HEV table. Exact package association and prerequisites are not itemized."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "10.5-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "6 speakers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "Front and rear Parking Assist with Automatic Braking; backup camera",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "wirelessCharging",
+      "status": "standard",
+      "value": "One Qi-compatible wireless phone charger",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "headUpDisplay",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "cargoOutlet",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "advancedAssistance",
+      "status": "optional",
+      "value": "Front Cross-Traffic Alert; Lane Change Assist; Traffic Jam Assist; Driver Monitor",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24, 26"
+      },
+      "reason": "Traffic Jam Assist requires an active Drive Connect trial/subscription and driver supervision; controlled-access highways at 25 mph or less. Package contents are not itemized."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "parkingAutomation",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "liftgate",
+      "status": "standard",
+      "value": "Height-adjustable power liftgate with jam protection",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "areaView",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "xle-premium-hev-awd",
+      "fieldId": "panoramicRoof",
+      "status": "optional",
+      "value": "Panoramic tilt/slide moonroof",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available). Panoramic Moonroof Package is named; full contents and prerequisites are not itemized."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "226 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Front-wheel drive (FWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "economy",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "towing",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6, 26): Only the general up-to-3,500-lb headline appears in the brochure; the reviewed release does not establish this FWD configuration’s limit. A 900-lb example shown in footnote 12 is not a tow rating. The detailed Toyota specification PDF is blocked."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "18-inch multi-spoke black sport alloy wheels with black lug nuts",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Sport design; dark chrome grille accents; piano-black exterior trim and black badging",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "roof",
+      "status": "optional",
+      "value": "Power tilt/slide moonroof with one-touch open/close",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available); Moonroof Package is named on pp. 17–18, but complete package contents and combinations are not itemized."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "Fabric; power 8-way driver with lumbar support; manual 6-way front passenger; blue stitching",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22–23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "heatedSeats",
+      "status": "standard",
+      "value": "Heated front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "ventilatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "heatedWheel",
+      "status": "optional",
+      "value": "Heated leather-trimmed steering wheel",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available) in the HEV table. Exact package association and prerequisites are not itemized."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "10.5-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "6 speakers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "Front and rear Parking Assist with Automatic Braking; backup camera",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "wirelessCharging",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "headUpDisplay",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "cargoOutlet",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "advancedAssistance",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "parkingAutomation",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "liftgate",
+      "status": "optional",
+      "value": "Height-adjustable power liftgate with jam protection",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Listed A (Available); complete Convenience Package contents and ordering dependencies are not itemized."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "areaView",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "se-hev-fwd",
+      "fieldId": "panoramicRoof",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "236 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "economy",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "towing",
+      "status": "standard",
+      "value": "Up to 3,500 lb",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Properly equipped AWD configuration; confirm vehicle-specific limits, hitch equipment, loading and owner’s manual. Capacity does not establish that a receiver is included except on Woodland."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "18-inch multi-spoke black sport alloy wheels with black lug nuts",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Sport design; dark chrome grille accents; piano-black exterior trim and black badging",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "roof",
+      "status": "optional",
+      "value": "Power tilt/slide moonroof with one-touch open/close",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available); Moonroof Package is named on pp. 17–18, but complete package contents and combinations are not itemized."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "Fabric; power 8-way driver with lumbar support; manual 6-way front passenger; blue stitching",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22–23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "heatedSeats",
+      "status": "standard",
+      "value": "Heated front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "ventilatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "heatedWheel",
+      "status": "optional",
+      "value": "Heated leather-trimmed steering wheel",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available) in the HEV table. Exact package association and prerequisites are not itemized."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "10.5-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "6 speakers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "Front and rear Parking Assist with Automatic Braking; backup camera",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "wirelessCharging",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): LE/SE wired USB-C ports are documented, but their Qi charger entries are blank. Wired charging does not establish either presence or explicit exclusion of wireless charging."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "headUpDisplay",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "cargoOutlet",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "advancedAssistance",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): The FCTA/LCA/TJA/Driver Monitor row has no S/A mark for LE/SE. Standard TSS 4.0 is separately verified and must not be confused with this additional group. No explicit not-offered definition applies to blank entries."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "parkingAutomation",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "liftgate",
+      "status": "optional",
+      "value": "Height-adjustable power liftgate with jam protection",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Listed A (Available); complete Convenience Package contents and ordering dependencies are not itemized."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "areaView",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No independent surround-view availability or exclusion is established by the retained configuration-specific evidence. A standard rearview camera is not a surround-view camera."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "se-hev-awd",
+      "fieldId": "panoramicRoof",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "236 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "economy",
+      "status": "standard",
+      "value": "41 city / 35 highway / 38 combined mpg — manufacturer estimates, not verified EPA ratings",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Actual results vary. The reviewed source gives consistent Woodland HEV figures; other HEV estimates conflict and remain unverified."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "towing",
+      "status": "standard",
+      "value": "Up to 3,500 lb",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Properly equipped AWD configuration; confirm vehicle-specific limits, hitch equipment, loading and owner’s manual. Capacity does not establish that a receiver is included except on Woodland."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "18-inch 6-spoke matte-metallic gray alloy wheels; all-terrain tires",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20–21"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Rugged design; raised roof rails and crossbars; 2-inch hitch receiver with wiring; Rigid Industries LED fog lights; 8.5-inch ground clearance",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "roof",
+      "status": "optional",
+      "value": "Power tilt/slide moonroof with one-touch open/close",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available); Moonroof Package is named on pp. 17–18, but complete package contents and combinations are not itemized."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "SofTex; power 8-way driver with lumbar support; manual 6-way front passenger",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "heatedSeats",
+      "status": "standard",
+      "value": "Heated front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "ventilatedSeats",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 22): The trim’s seat row does not establish ventilation; the ventilation rows/marks apply to other named grades. No explicit negative availability statement was found for this configuration."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "heatedWheel",
+      "status": "standard",
+      "value": "Heated leather-trimmed steering wheel",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "10.5-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "6 speakers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "3D Panoramic View Monitor with Multi-Terrain Monitor; Front and rear Parking Assist with Automatic Braking; backup camera",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "cargoOutlet",
+      "status": "standard",
+      "value": "120V 1,500-watt AC cargo-area outlet",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "wirelessCharging",
+      "status": "standard",
+      "value": "One Qi-compatible wireless phone charger",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "headUpDisplay",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "advancedAssistance",
+      "status": "standard",
+      "value": "Front Cross-Traffic Alert; Lane Change Assist; Traffic Jam Assist; Driver Monitor",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24, 26"
+      },
+      "reason": "Traffic Jam Assist requires an active Drive Connect trial/subscription and driver supervision; controlled-access highways at 25 mph or less."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "parkingAutomation",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 24): Advanced Park is explicitly A for XSE and S for Limited. Other grades are blank, without a defined negative symbol or an explicit exclusion. Parking Assist with Automatic Braking is a different feature and remains verified separately."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "liftgate",
+      "status": "standard",
+      "value": "Height-adjustable power liftgate with jam protection",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "areaView",
+      "status": "standard",
+      "value": "3D Panoramic View Monitor with Multi-Terrain Monitor",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "woodland-hev-awd",
+      "fieldId": "panoramicRoof",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "No configuration-specific panoramic-roof availability or explicit exclusion in retained evidence. Conventional moonroof availability does not establish a panoramic roof."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "236 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "economy",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "towing",
+      "status": "standard",
+      "value": "Up to 3,500 lb",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Properly equipped AWD configuration; confirm vehicle-specific limits, hitch equipment, loading and owner’s manual. Capacity does not establish that a receiver is included except on Woodland."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "20-inch multi-spoke black sport alloy wheels with black lug nuts",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Sport design; hands-free power liftgate; distinctive LED daytime running lights",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "roof",
+      "status": "standard",
+      "value": "Power tilt/slide moonroof with one-touch open/close",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "This is the standard moonroof. A panoramic moonroof is separately marked A (Available) and listed in the optional-equipment section; it is not included by the Standard label here."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "SofTex/synthetic suede; power 8-way front seats; driver memory and lumbar support",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "heatedSeats",
+      "status": "standard",
+      "value": "Heated front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "ventilatedSeats",
+      "status": "standard",
+      "value": "Ventilated front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "heatedWheel",
+      "status": "optional",
+      "value": "Heated leather-trimmed steering wheel",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Listed A (Available) in the HEV table. Exact package association and prerequisites are not itemized."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "12.9-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "6 speakers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "3D Panoramic View Monitor; Front and rear Parking Assist with Automatic Braking; backup camera",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "wirelessCharging",
+      "status": "standard",
+      "value": "One Qi-compatible wireless phone charger",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "headUpDisplay",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 18, 21): The brochure confirms the Limited HUD option but supplies no explicit availability/exclusion statement for this trim. No transfer of the Limited option is assumed."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "cargoOutlet",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "advancedAssistance",
+      "status": "standard",
+      "value": "Front Cross-Traffic Alert; Lane Change Assist; Traffic Jam Assist; Driver Monitor",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24, 26"
+      },
+      "reason": "Traffic Jam Assist requires an active Drive Connect trial/subscription and driver supervision; controlled-access highways at 25 mph or less."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "parkingAutomation",
+      "status": "optional",
+      "value": "Advanced Park",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "8, 24, 26"
+      },
+      "reason": "Driver must remain attentive; see owner’s manual. Exact optional package contents are not itemized."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "liftgate",
+      "status": "standard",
+      "value": "Hands-free power liftgate with jam protection",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "areaView",
+      "status": "standard",
+      "value": "3D Panoramic View Monitor",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "xse-hev-awd",
+      "fieldId": "panoramicRoof",
+      "status": "optional",
+      "value": "Panoramic moonroof upgrade",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "A panoramic moonroof is available; the regular tilt/slide moonroof is standard. Full package contents not specified. Confirm exact option/package combination and actual window sticker. No PHEV availability is established by the HEV table."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "engine",
+      "status": "standard",
+      "value": "Hybrid: 2.5L Dynamic Force four-cylinder with Toyota Hybrid System",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "17–18, 25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "horsepower",
+      "status": "standard",
+      "value": "236 net combined hp",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "torque",
+      "status": "standard",
+      "value": "Brochure-listed maximum: 170 lb-ft (231 N·m); torque basis not specified",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Toyota brochure p. 25 marks this maximum S on all six HEV grades. It does not identify engine-only or combined-system torque. The release’s 163/172 lb-ft engine figures are not treated as equivalent metrics; do not sum motor and engine torque."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "transmission",
+      "status": "standard",
+      "value": "Electronically controlled continuously variable transmission (ECVT) with sequential shift mode",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "drivetrain",
+      "status": "standard",
+      "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "economy",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 6–7, 17–18, 25): The supplied brochure contains no configuration-specific fuel-economy ratings. The reviewed Toyota release has conflicting HEV estimates, and the EPA lookup is blocked by the proxy. Do not select a convenient number or label a manufacturer estimate EPA-certified."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "towing",
+      "status": "standard",
+      "value": "Up to 3,500 lb",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Properly equipped AWD configuration; confirm vehicle-specific limits, hitch equipment, loading and owner’s manual. Capacity does not establish that a receiver is included except on Woodland."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "wheels",
+      "status": "standard",
+      "value": "18-inch machined 5-spoke dark gray metallic alloy wheels",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "appearance",
+      "status": "standard",
+      "value": "Core design; hands-free power liftgate; LED fog lights; distinctive LED daytime running lights",
+      "sourceIds": ["toyota-2026-rav4-release"],
+      "sourcePages": {},
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "roof",
+      "status": "standard",
+      "value": "Panoramic tilt/slide moonroof",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "seating",
+      "status": "standard",
+      "value": "60/40 split reclining fold-flat rear seat; total seating capacity remains Unverified in the reviewed sources",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "upholstery",
+      "status": "standard",
+      "value": "SofTex; power 8-way front seats; driver memory and lumbar support",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "heatedSeats",
+      "status": "standard",
+      "value": "Heated front and rear outboard seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "ventilatedSeats",
+      "status": "standard",
+      "value": "Ventilated front seats",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "heatedWheel",
+      "status": "standard",
+      "value": "Heated leather-trimmed steering wheel",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "infotainment",
+      "status": "standard",
+      "value": "12.9-inch Toyota Audio Multimedia",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "instruments",
+      "status": "standard",
+      "value": "12.3-inch digital gauge cluster",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "22"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "audio",
+      "status": "standard",
+      "value": "9-speaker JBL Premium Audio including subwoofer and amplifier",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "phone",
+      "status": "standard",
+      "value": "Wireless Apple CarPlay and Android Auto",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23–24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "assistance",
+      "status": "standard",
+      "value": "3D Panoramic View Monitor; Front and rear Parking Assist with Automatic Braking; backup camera",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "safety",
+      "status": "standard",
+      "value": "Toyota Safety Sense 4.0; eight airbags; Star Safety System; Blind Spot Monitor with Rear Cross-Traffic Alert and Safe Exit Alert; TPMS",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "wirelessCharging",
+      "status": "standard",
+      "value": "Two Qi-compatible wireless phone chargers",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "23"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "headUpDisplay",
+      "status": "optional",
+      "value": "10-inch color Head-Up Display (HUD) with speedometer and Road Sign Assist",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "18, 21"
+      },
+      "reason": "Named as an option on Hybrid Limited; ordering combinations and prerequisites are not specified."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "electricRange",
+      "status": "not-applicable",
+      "value": "Not applicable — this is the conventional HEV, not a plug-in hybrid electric-range rating",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "charging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV powertrain; plug-in charging belongs to the separate PHEV system",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "dcCharging",
+      "status": "not-applicable",
+      "value": "Not applicable — conventional HEV, not an externally charged plug-in powertrain",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "15, 17–18, 25, 29"
+      },
+      "reason": "Classification-based not-applicable entry, not an inference from a blank equipment cell. The supplied brochure distinguishes Hybrid and externally charged PHEV powertrains on p. 15 and identifies these configurations as HEV on pp. 17–18/25. HEV EV Mode still allows short, low-speed electric operation under limited conditions (footnote 61); no zero-mile range is invented."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "cargoOutlet",
+      "status": "unverified",
+      "value": null,
+      "sourceIds": [],
+      "sourcePages": {},
+      "reason": "Prior brochure audit (B1 pp. 23): Woodland’s 120V/1,500W outlet is explicit; this trim’s corresponding cell is blank. Standard 12V outlets do not establish the availability or exclusion of the different AC outlet."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "advancedAssistance",
+      "status": "standard",
+      "value": "Front Cross-Traffic Alert; Lane Change Assist; Traffic Jam Assist; Driver Monitor",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24, 26"
+      },
+      "reason": "Traffic Jam Assist requires an active Drive Connect trial/subscription and driver supervision; controlled-access highways at 25 mph or less."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "parkingAutomation",
+      "status": "standard",
+      "value": "Advanced Park",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "8, 24, 26"
+      },
+      "reason": "Driver must remain attentive; see owner’s manual."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "liftgate",
+      "status": "standard",
+      "value": "Hands-free power liftgate with jam protection",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "20"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "areaView",
+      "status": "standard",
+      "value": "3D Panoramic View Monitor",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "adaptiveCruiseControl",
+      "status": "standard",
+      "value": "Full-Speed Range Dynamic Radar Cruise Control (DRCC), part of Toyota Safety Sense 4.0",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "24–25"
+      },
+      "reason": "Adaptive cruise category; Toyota-specific system and operating limits retained. Driver supervision required. This is not Traffic Jam Assist or autonomous driving."
+    },
+    {
+      "trimId": "limited-hev-awd",
+      "fieldId": "panoramicRoof",
+      "status": "standard",
+      "value": "Panoramic tilt/slide moonroof",
+      "sourceIds": ["toyota-2026-rav4-brochure"],
+      "sourcePages": {
+        "toyota-2026-rav4-brochure": "21"
+      },
+      "reason": "Retained source-verified configuration-specific claim."
+    }
+  ]
+}

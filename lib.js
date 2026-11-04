@@ -274,11 +274,22 @@ export function searchVehicles(
   features,
   { query = "", brand = "", year = "" } = {},
 ) {
-  const tokens = query
-    .toLocaleLowerCase("en-US")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean);
+  const normalize = (value) =>
+    value
+      .toLocaleLowerCase("en-US")
+      .replace(/[–—-]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  const normalizedQuery = normalize(query);
+  const tokens = normalizedQuery.trim().split(/\s+/).filter(Boolean);
+  const tokenMatches = (haystack, token) => {
+    if (!/^(s|se|sel|le|xle|xse|[0-9.]+)$/.test(token))
+      return haystack.includes(token);
+    const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(?<![a-z0-9.])${escaped}(?![a-z0-9.])`, "i").test(
+      haystack,
+    );
+  };
   const vehicles = catalog.vehicles.filter((v) => {
     if (
       (brand && v.brand !== brand) ||
@@ -286,12 +297,25 @@ export function searchVehicles(
     )
       return false;
     const base = `${v.year} ${v.brand} ${v.model} ${v.category}`.toLowerCase();
-    const configs = eligibleOptions({ vehicles: [v] }).map(({ trim }) => {
+    const requiredFeatures = equipmentFields(catalog, [v]).filter((f) =>
+      (f.searchTerms || []).some((alias) =>
+        ` ${normalizedQuery} `.includes(` ${normalize(alias)} `),
+      ),
+    );
+    const configs = eligibleOptions({ vehicles: [v] }).flatMap(({ trim }) => {
+      // A recognized feature phrase must be evidenced in its own category;
+      // unrelated words elsewhere in a configuration cannot manufacture a match.
+      if (
+        !requiredFeatures.every((f) =>
+          ["standard", "optional"].includes(resolveCell(v, trim, f.id).status),
+        )
+      )
+        return [];
       const cells = equipmentFields(catalog, [v]).flatMap((f) => {
         const c = resolveCell(v, trim, f.id);
         return ["standard", "optional"].includes(c.status)
           ? [
-              `${f.label} ${c.value || ""} ${c.featureIds?.map((id) => features.find((f) => f.id === id)?.name || "").join(" ") || ""}`,
+              `${f.label} ${(f.searchTerms || []).join(" ")} ${c.value || ""} ${c.featureIds?.map((id) => features.find((f) => f.id === id)?.name || "").join(" ") || ""}`,
             ]
           : [];
       });
@@ -309,12 +333,20 @@ export function searchVehicles(
           (o) => o.trimIds.includes(trim.id) && evidenceReady(v, o.sourceIds),
         )
         .map((o) => o.name);
-      return `${base} ${trim.name} ${trim.configuration || ""} ${cells.join(" ")} ${packageNames.join(" ")} ${optionNames.join(" ")}`.toLowerCase();
+      return [
+        normalize(
+          `${base} ${trim.name} ${trim.configuration || ""} ${cells.join(" ")} ${packageNames.join(" ")} ${optionNames.join(" ")}`,
+        ),
+      ];
     });
     // All feature tokens must match one configuration, rather than two incompatible trims.
-    return (configs.length ? configs : [base]).some((haystack) =>
-      tokens.every((t) => haystack.includes(t)),
-    );
+    return (
+      eligibleOptions({ vehicles: [v] }).length
+        ? configs
+        : requiredFeatures.length
+          ? []
+          : [normalize(base)]
+    ).some((haystack) => tokens.every((t) => tokenMatches(haystack, t)));
   });
   const glossary = features.filter(
     (f) =>
