@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { evidenceReady } from "../lib.js";
+import { evidenceReady, equipmentFields } from "../lib.js";
 
 export function validate(catalog, features) {
   const errors = [];
@@ -51,7 +51,7 @@ export function validate(catalog, features) {
   unique(catalog.vehicles, "Vehicles");
   unique(features, "Features");
   const brands = new Set(catalog.brands.map((b) => b.id));
-  const fields = new Set(catalog.fields.map((f) => f.id));
+
   const featureIds = new Set(features.map((f) => f.id));
   for (const b of catalog.brands)
     assert(url(b.sourceUrl), `${b.id}: HTTPS manufacturer URL required`);
@@ -63,6 +63,21 @@ export function validate(catalog, features) {
     );
   for (const v of catalog.vehicles) {
     const prefix = `${v.id}: `;
+    const definitions = [...catalog.fields, ...(v.additionalFields || [])];
+    unique(definitions, prefix + "equipment fields");
+    const fields = new Set(equipmentFields(catalog, [v]).map((f) => f.id));
+    for (const f of v.additionalFields || [])
+      assert(
+        f.label &&
+          [
+            "Performance",
+            "Exterior",
+            "Comfort",
+            "Technology",
+            "Safety",
+          ].includes(f.group),
+        prefix + "invalid model-specific field",
+      );
     assert(/^[a-z0-9-]+$/.test(v.id), prefix + "unsafe ID");
     assert(brands.has(v.brand), prefix + "unknown brand");
     assert(catalog.years.includes(v.year), prefix + "unsupported year");
@@ -121,12 +136,30 @@ export function validate(catalog, features) {
         evidenceReady(v, t.sourceIds),
         prefix + `${t.name}: trim structure needs reviewed sources`,
       );
+      if (t.highlightFieldIds)
+        assert(
+          t.highlightFieldIds.length >= 3 &&
+            t.highlightFieldIds.length <= 5 &&
+            new Set(t.highlightFieldIds).size === t.highlightFieldIds.length &&
+            t.highlightFieldIds.every(
+              (id) =>
+                fields.has(id) &&
+                t.equipment?.[id]?.status === "standard" &&
+                evidenceReady(v, t.equipment[id].sourceIds),
+            ),
+          prefix +
+            "trim highlights need three to five distinct verified standard fields",
+        );
       for (const [field, c] of Object.entries(t.equipment || {})) {
         assert(fields.has(field), prefix + `unknown equipment field ${field}`);
         assert(
-          ["standard", "optional", "unavailable", "unverified"].includes(
-            c.status,
-          ),
+          [
+            "standard",
+            "optional",
+            "unavailable",
+            "not-applicable",
+            "unverified",
+          ].includes(c.status),
           prefix + "invalid equipment state",
         );
         if (c.status === "unverified")
@@ -155,6 +188,13 @@ export function validate(catalog, features) {
       }
     }
     for (const p of v.packages) {
+      assert(
+        !p.status ||
+          ["standard", "optional", "unavailable", "not-applicable"].includes(
+            p.status,
+          ),
+        prefix + "invalid package state",
+      );
       assert(
         p.name && p.description && p.conditions && p.trimIds?.length,
         prefix + "package needs name, contents, conditions and eligible trims",

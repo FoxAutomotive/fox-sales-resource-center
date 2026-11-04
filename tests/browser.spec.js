@@ -90,7 +90,7 @@ test("manufacturer years remain distinct and model guides disclose missing evide
   await expect(page.locator(".vehicle-card")).toHaveCount(0);
   await page.getByRole("link", { name: "2026 models" }).click();
   await expect(page.locator(".vehicle-card")).toHaveCount(2);
-  await page.goto("./#/model/2026-volkswagen-tiguan");
+  await page.goto("./#/model/2026-chevrolet-equinox");
   await expect(
     page.getByText("Accuracy comes before a filled-in table."),
   ).toBeVisible();
@@ -100,7 +100,7 @@ test("manufacturer years remain distinct and model guides disclose missing evide
   await page
     .getByRole("link", { name: "Factory packages", exact: true })
     .click();
-  await expect(page).toHaveURL(/model\/2026-volkswagen-tiguan$/);
+  await expect(page).toHaveURL(/model\/2026-chevrolet-equinox$/);
   await expect(
     page.getByRole("heading", { name: "Factory packages", exact: true }),
   ).toBeInViewport();
@@ -207,7 +207,7 @@ test("verified model shows upgrades, package conditions, and all equipment contr
 test("pending guide print uses landscape Letter and creates exactly one PDF page", async ({
   page,
 }, testInfo) => {
-  await page.goto("./#/model/2026-volkswagen-tiguan");
+  await page.goto("./#/model/2026-chevrolet-equinox");
   await expect(
     page.getByRole("button", { name: "Print Quick Reference" }),
   ).toBeVisible();
@@ -317,6 +317,7 @@ test("key routes meet automated WCAG A/AA accessibility checks", async ({
     "/search",
     "/brand/toyota",
     "/model/2026-toyota-rav4",
+    "/model/2026-volkswagen-tiguan",
     "/features",
     "/compare",
     "/specials",
@@ -406,7 +407,7 @@ test("RAV4 HEV brochure equipment, package caveats and separate PHEV link render
 test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
   page,
 }) => {
-  await page.goto("./#/search?q=heated%20steering");
+  await page.goto("./#/search?q=heated%20steering&brand=toyota");
   await expect(page.locator(".vehicle-card")).toHaveCount(2);
   await page.goto("./#/compare");
   await page
@@ -883,4 +884,115 @@ test("text-first trim cards have complete context and no reserved image space", 
       expect(spacing).toBeLessThan(35);
     }
   }
+});
+
+test("Tiguan reuses trim cards, switches drivetrain specs, and displays sourced equipment", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2026-volkswagen-tiguan");
+  const cards = page.locator(".trim-training-card");
+  await expect(cards).toHaveCount(4);
+  await expect(
+    page.locator(".trim-card-visual, .trim-image-placeholder"),
+  ).toHaveCount(0);
+  for (const card of await cards.all()) {
+    await expect(card.locator(".trim-core-specs > div")).toHaveCount(4);
+    expect(
+      await card.locator(".trim-highlights li").count(),
+    ).toBeGreaterThanOrEqual(3);
+    expect(
+      await card.locator(".trim-highlights li").count(),
+    ).toBeLessThanOrEqual(5);
+    await expect(card.locator(".trim-msrp")).toContainText("2026-11-04");
+  }
+  await expect(cards.first()).toContainText("$30,805");
+  await cards
+    .first()
+    .getByLabel("Configuration", { exact: true })
+    .selectOption("2026-volkswagen-tiguan:s-4motion");
+  await expect(cards.first()).toContainText("$32,305");
+  await expect(cards.first()).toContainText(
+    "22 city / 30 highway / 25 combined",
+  );
+  await cards
+    .last()
+    .getByRole("button", { name: "View Equipment", exact: true })
+    .click();
+  await expect(page.locator("#equipment-config")).toHaveValue(
+    "2026-volkswagen-tiguan:sel-r-line-turbo-4motion",
+  );
+  const comfort = page
+    .locator(".equipment-category")
+    .filter({ has: page.locator("summary > span", { hasText: /^Comfort$/ }) });
+  await comfort.locator("summary").click();
+  await expect(comfort).toContainText("Quilted Varenna leather");
+  await expect(comfort).toContainText("delayed availability");
+  const tech = page.locator(".equipment-category").filter({
+    has: page.locator("summary > span", { hasText: /^Technology$/ }),
+  });
+  await tech.locator("summary").click();
+  await expect(tech).toContainText("15-inch display");
+  await expect(tech).toContainText("does not itemize them");
+  await expect(page.locator("#categorized-equipment")).toContainText(
+    "Not Applicable",
+  );
+  const changes = page.locator(
+    '#model-equipment .what-changes [data-comparison-table="equipment"]',
+  );
+  await expect(changes).toContainText("Starting MSRP");
+  await expect(
+    page.locator('#model-equipment [data-comparison-table="baseline"]'),
+  ).toContainText("201 hp");
+  await page.locator("#model-view-all").check();
+  await expect(
+    page.locator('#model-equipment [data-comparison-table="equipment"]'),
+  ).toContainText("Ground clearance");
+});
+
+test("Tiguan quick reference is a one-page gasoline guide with correct pricing and no photos", async ({
+  page,
+}, testInfo) => {
+  await page.goto("./#/model/2026-volkswagen-tiguan");
+  await expect(page.locator(".trim-training-card")).toHaveCount(4);
+  await page.emulateMedia({ media: "print" });
+  const sheet = page.locator(".print-reference");
+  await expect(sheet.locator(".print-grade-table tbody tr")).toHaveCount(4);
+  await expect(sheet).toContainText("4 gasoline trims / 7 configurations");
+  await expect(sheet).toContainText("$43,085");
+  await expect(sheet).not.toContainText("PHEV only");
+  const pdf = await page.pdf({
+    path: testInfo.outputPath("tiguan-reference.pdf"),
+    preferCSSPageSize: true,
+  });
+  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
+});
+
+test("Tiguan mobile layout and cross-brand comparison preserve existing components", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("./#/model/2026-volkswagen-tiguan");
+  await expect(page.locator(".trim-training-card")).toHaveCount(4);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await page.goto("./#/compare");
+  for (const id of [
+    "2026-toyota-rav4:le-hev-fwd",
+    "2026-volkswagen-tiguan:s-fwd",
+  ]) {
+    await page.locator("#compare-select").selectOption(id);
+    await page.locator("#add-compare").click();
+  }
+  await expect(page.locator("#comparison-results")).toContainText("207 lb-ft");
+  await expect(page.locator("#comparison-results")).toContainText(
+    "torque basis not specified",
+  );
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
 });

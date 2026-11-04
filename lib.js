@@ -1,3 +1,14 @@
+// Model-specific fields extend the shared schema without adding unknown rows to other guides.
+export function equipmentFields(catalog, vehicles = []) {
+  return [
+    ...new Map(
+      [
+        ...catalog.fields,
+        ...vehicles.flatMap((v) => v.additionalFields || []),
+      ].map((field) => [field.id, field]),
+    ).values(),
+  ];
+}
 export function evidenceReady(vehicle, sourceIds = []) {
   return (
     sourceIds.length > 0 &&
@@ -19,7 +30,10 @@ export function resolveCell(vehicle, trim, fieldId) {
     cell.status === "unverified" ||
     !evidenceReady(vehicle, cell.sourceIds)
   )
-    return { status: "unverified" };
+    return {
+      status: "unverified",
+      ...(cell?.conditions ? { conditions: cell.conditions } : {}),
+    };
   return cell;
 }
 export function eligibleOptions(catalog) {
@@ -49,7 +63,10 @@ export function comparisonRows(
   options,
   { differenceOnly = true, group = "" } = {},
 ) {
-  return catalog.fields
+  return equipmentFields(
+    catalog,
+    options.map((o) => o.vehicle),
+  )
     .filter((f) => !group || f.group === group)
     .map((field) => ({
       ...field,
@@ -189,9 +206,13 @@ export function packageComparisonRows(options, { differenceOnly = true } = {}) {
         ];
         const status =
           states.length === 1 &&
-          ["standard", "optional", "unavailable", "unverified"].includes(
-            states[0],
-          )
+          [
+            "standard",
+            "optional",
+            "unavailable",
+            "not-applicable",
+            "unverified",
+          ].includes(states[0])
             ? states[0]
             : "unverified";
         const contents = matches.flatMap((item) => {
@@ -266,7 +287,7 @@ export function searchVehicles(
       return false;
     const base = `${v.year} ${v.brand} ${v.model} ${v.category}`.toLowerCase();
     const configs = eligibleOptions({ vehicles: [v] }).map(({ trim }) => {
-      const cells = catalog.fields.flatMap((f) => {
+      const cells = equipmentFields(catalog, [v]).flatMap((f) => {
         const c = resolveCell(v, trim, f.id);
         return ["standard", "optional"].includes(c.status)
           ? [
@@ -277,7 +298,10 @@ export function searchVehicles(
       // Index evidenced package/option names, never their unverified contents.
       const packageNames = (v.packages || [])
         .filter(
-          (p) => p.trimIds.includes(trim.id) && evidenceReady(v, p.sourceIds),
+          (p) =>
+            p.trimIds.includes(trim.id) &&
+            ["standard", "optional"].includes(p.status || "optional") &&
+            evidenceReady(v, p.sourceIds),
         )
         .map((p) => p.name);
       const optionNames = (v.optionalEquipment || [])

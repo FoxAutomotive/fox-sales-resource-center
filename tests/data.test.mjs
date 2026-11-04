@@ -249,13 +249,17 @@ test("brochure provenance and print references remain valid", () => {
 
 test("package-name searches never infer unverified package contents", () => {
   assert.equal(
-    searchVehicles(catalog, features, { query: "Weather Package" }).vehicles
-      .length,
+    searchVehicles(catalog, features, {
+      query: "Weather Package",
+      brand: "toyota",
+    }).vehicles.length,
     1,
   );
   assert.equal(
-    searchVehicles(catalog, features, { query: "Weather ventilated" }).vehicles
-      .length,
+    searchVehicles(catalog, features, {
+      query: "Weather ventilated",
+      brand: "toyota",
+    }).vehicles.length,
     0,
   );
   assert.equal(
@@ -687,5 +691,182 @@ test("audit source provenance stays honest and rejects unofficial EPA lookalikes
     "https://fueleconomy.gov.evil.example/";
   assert.ok(
     validate(rejected, features).some((e) => e.includes("official HTTPS")),
+  );
+});
+
+test("Tiguan covers only the seven VW-priced configurations and correct drivetrain ratings", () => {
+  const v = catalog.vehicles.find((v) => v.id === "2026-volkswagen-tiguan");
+  assert.equal(v.trims.length, 7);
+  assert.equal(new Set(v.trims.map((t) => t.name)).size, 4);
+  const expected = [
+    [
+      "s-fwd",
+      30805,
+      "201 hp",
+      "207 lb-ft",
+      "26 city / 34 highway / 29",
+      "1,500",
+      "6.6",
+    ],
+    [
+      "s-4motion",
+      32305,
+      "201 hp",
+      "221 lb-ft",
+      "22 city / 30 highway / 25",
+      "1,800",
+      "7.0",
+    ],
+    [
+      "se-fwd",
+      33605,
+      "201 hp",
+      "207 lb-ft",
+      "25 city / 32 highway / 28",
+      "1,500",
+      "6.6",
+    ],
+    [
+      "se-4motion",
+      35105,
+      "201 hp",
+      "221 lb-ft",
+      "22 city / 30 highway / 25",
+      "1,800",
+      "7.0",
+    ],
+    [
+      "se-r-line-black-fwd",
+      37245,
+      "201 hp",
+      "207 lb-ft",
+      "25 city / 32 highway / 28",
+      "1,500",
+      "6.6",
+    ],
+    [
+      "se-r-line-black-4motion",
+      38745,
+      "201 hp",
+      "221 lb-ft",
+      "22 city / 30 highway / 25",
+      "1,800",
+      "7.0",
+    ],
+    [
+      "sel-r-line-turbo-4motion",
+      43085,
+      "268 hp",
+      "258 lb-ft",
+      "22 city / 29 highway / 25",
+      "1,800",
+      "7.0",
+    ],
+  ];
+  for (const [id, price, hp, torque, mpg, towing, clearance] of expected) {
+    const e = v.trims.find((t) => t.id === id).equipment;
+    for (const [key, text] of Object.entries({
+      horsepower: hp,
+      torque,
+      economy: mpg,
+      towing,
+      groundClearance: clearance,
+    }))
+      assert.ok(e[key].value.startsWith(text), `${id}/${key}`);
+    assert.ok(e.msrp.value.startsWith(`$${price.toLocaleString("en-US")}`));
+    assert.ok(
+      e.msrp.value.includes(`$${(price + 1475).toLocaleString("en-US")}`),
+    );
+    assert.match(e.msrp.conditions, /reviewed 2026-11-04/);
+    assert.equal(e.transmission.value, "8-speed automatic");
+    for (const cell of Object.values(e)) {
+      if (cell.status === "unverified") assert.ok(cell.conditions);
+      else
+        for (const source of cell.sourceIds)
+          assert.ok(cell.sourcePages[source]);
+    }
+  }
+  assert.ok(!v.trims.some((t) => t.id === "sel-r-line-turbo-fwd"));
+});
+
+test("Tiguan matrix resolves optional and unavailable equipment without assumed carryover", () => {
+  const v = catalog.vehicles.find((v) => v.id === "2026-volkswagen-tiguan");
+  const expected = {
+    S: ["unavailable", "unavailable", "unavailable", "unavailable"],
+    SE: ["optional", "standard", "unavailable", "unavailable"],
+    "SE R-Line Black": ["standard", "standard", "unavailable", "unavailable"],
+    "SEL R-Line Turbo": ["standard", "standard", "standard", "standard"],
+  };
+  for (const t of v.trims) {
+    assert.deepEqual(
+      ["roof", "liftgate", "ventilatedSeats", "parkingAutomation"].map(
+        (id) => t.equipment[id].status,
+      ),
+      expected[t.name],
+    );
+    for (const id of ["electricRange", "charging", "dcCharging"])
+      assert.equal(t.equipment[id].status, "not-applicable");
+    const unknown = Object.entries(t.equipment)
+      .filter(([, c]) => c.status === "unverified")
+      .map(([id]) => id)
+      .sort();
+    assert.deepEqual(
+      unknown,
+      [
+        "headUpDisplay",
+        "cargoOutlet",
+        ...(t.name === "SE R-Line Black" ? ["curbWeight"] : []),
+        ...(t.name === "SEL R-Line Turbo" ? ["mediaConnectivity"] : []),
+      ].sort(),
+    );
+  }
+  assert.match(
+    v.trims.at(-1).equipment.heatedWheel.conditions,
+    /delayed availability/,
+  );
+  assert.equal(
+    v.trims.at(-1).equipment.climate.value,
+    "Three-zone Climatronic with touch functionality",
+  );
+  const options = eligibleOptions({ ...catalog, vehicles: [v] });
+  for (const row of packageComparisonRows(options, { differenceOnly: false })) {
+    assert.ok(
+      row.cells.every((c) => ["optional", "unavailable"].includes(c.status)),
+    );
+    assert.ok(row.cells.every((c) => !c.contentsText?.includes("Unverified")));
+  }
+  const blackRoof = packageComparisonRows(options, {
+    differenceOnly: false,
+  }).find((r) => r.label === "Black Roof Package");
+  assert.match(blackRoof.cells.at(-1).contentsText, /Black mirror caps/);
+  assert.ok(!blackRoof.cells[4].contentsText.includes("mirror caps"));
+});
+
+test("Tiguan comparison retains shared powertrain and isolates model-specific dimensions", () => {
+  const v = catalog.vehicles.find((v) => v.id === "2026-volkswagen-tiguan");
+  const options = eligibleOptions({ ...catalog, vehicles: [v] });
+  const sections = trimComparisonSections(catalog, [options[0], options[2]]);
+  assert.ok(sections.baseRows.some((r) => r.id === "horsepower"));
+  assert.ok(sections.baseRows.some((r) => r.id === "wheelbase"));
+  assert.ok(sections.changeRows.some((r) => r.id === "economy"));
+  assert.ok(sections.changeRows.some((r) => r.id === "msrp"));
+  const rav4 = eligibleOptions(catalog).filter(
+    (o) => o.vehicle.id === "2026-toyota-rav4",
+  );
+  assert.ok(
+    !comparisonRows(catalog, rav4, { differenceOnly: false }).some(
+      (r) => r.id === "wheelbase",
+    ),
+  );
+  assert.ok(
+    searchVehicles(catalog, features, { query: "Tiguan 109.9" }).vehicles
+      .length === 1,
+  );
+  const bad = structuredClone(catalog);
+  bad.vehicles.find((x) => x.id === v.id).additionalFields[0].id = "engine";
+  assert.ok(
+    validate(bad, features).some((e) =>
+      e.includes("equipment fields: duplicate"),
+    ),
   );
 });

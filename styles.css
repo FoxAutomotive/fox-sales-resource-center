@@ -1252,10 +1252,12 @@ main:focus {
 .equipment-status.optional:before {
   background: #4e81bd;
 }
-.equipment-status.unavailable {
+.equipment-status.unavailable,
+.equipment-status.not-applicable {
   color: #6e757d;
 }
-.equipment-status.unavailable:before {
+.equipment-status.unavailable:before,
+.equipment-status.not-applicable:before {
   background: #757b81;
   border-radius: 1px;
   height: 2px;
@@ -2472,7 +2474,8 @@ input[type="checkbox"] {
     flex-shrink: 0;
   }
 }
-.equipment-status.unavailable {
+.equipment-status.unavailable,
+.equipment-status.not-applicable {
   color: #555e68;
 }
 .count {
@@ -2800,6 +2803,12 @@ input[type="checkbox"] {
   font-size: 24px;
   line-height: 1.25;
   margin: 7px 0 18px;
+}
+.trim-msrp small {
+  display: block;
+  color: #596572;
+  font-size: 11px;
+  margin-top: 4px;
 }
 .card-configuration {
   border: 1px solid #cbd2d9;
