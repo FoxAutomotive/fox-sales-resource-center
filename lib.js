@@ -67,6 +67,80 @@ export function sharedStandardRows(catalog, options, { group = "" } = {}) {
       row.cells.every((c) => c.status === "standard") && !rowsDiffer(row.cells),
   );
 }
+export function comparisonBaseline(catalog, options) {
+  if (!options.length) return null;
+  const catalogPosition = (option) => {
+    const model = catalog.vehicles.findIndex(
+      (v) => v.id === option.vehicle.id && v.year === option.vehicle.year,
+    );
+    const trim = option.vehicle.trims.findIndex((t) => t.id === option.trim.id);
+    return [
+      model < 0 ? Number.MAX_SAFE_INTEGER : model,
+      trim < 0 ? Number.MAX_SAFE_INTEGER : trim,
+    ];
+  };
+  const ordered = [...options].sort((a, b) => {
+    const x = catalogPosition(a),
+      y = catalogPosition(b);
+    return x[0] - y[0] || x[1] - y[1] || a.id.localeCompare(b.id);
+  });
+  const sameModel = options.every(
+    (o) =>
+      o.vehicle.id === options[0].vehicle.id &&
+      o.vehicle.year === options[0].vehicle.year,
+  );
+  if (!sameModel)
+    return { option: ordered[0], method: "cross-model-reference" };
+  const vehicle = ordered[0].vehicle;
+  const edges = (vehicle.upgrades || []).filter((u) =>
+    u.gains.some((g) => evidenceReady(vehicle, g.sourceIds)),
+  );
+  const reaches = (from, to, seen = new Set()) => {
+    if (from === to) return true;
+    if (seen.has(from)) return false;
+    seen.add(from);
+    return edges
+      .filter((e) => e.from === from)
+      .some((e) => reaches(e.to, to, new Set(seen)));
+  };
+  // Prefer the lowest selected grade established by existing verified upgrade
+  // relationships, even when intermediate trims are not selected. Never rank by
+  // a guessed price or equipment count. Catalog order breaks configuration ties.
+  const lowest = ordered.filter((a) =>
+    ordered.every((b) => reaches(a.trim.name, b.trim.name)),
+  );
+  if (
+    new Set(ordered.map((o) => o.trim.name)).size > 1 &&
+    lowest.length &&
+    !ordered.some(
+      (b) =>
+        b.trim.name !== lowest[0].trim.name &&
+        reaches(b.trim.name, lowest[0].trim.name),
+    )
+  )
+    return { option: lowest[0], method: "verified-upgrade-order" };
+  return { option: ordered[0], method: "catalog-order" };
+}
+export function trimComparisonSections(catalog, options, { group = "" } = {}) {
+  const baseline = comparisonBaseline(catalog, options);
+  if (!baseline) return { baseline: null, baseRows: [], changeRows: [] };
+  const allRows = comparisonRows(catalog, options, {
+    differenceOnly: false,
+    group,
+  });
+  const changeRows = allRows.filter((row) => rowsDiffer(row.cells));
+  const changed = new Set(changeRows.map((row) => row.id));
+  const baselineIndex = options.findIndex((o) => o === baseline.option);
+  // Changed specifications appear once, with the baseline value in What Changes.
+  // Only the actual baseline's evidenced Standard cells qualify for Base Equipment.
+  const baseRows = allRows
+    .filter(
+      (row) =>
+        !changed.has(row.id) && row.cells[baselineIndex].status === "standard",
+    )
+    .map((row) => ({ ...row, cells: [row.cells[baselineIndex]] }));
+  return { baseline, baseRows, changeRows };
+}
 export function packageComparisonRows(options, { differenceOnly = true } = {}) {
   const listings = new Map();
   for (const { vehicle } of options) {

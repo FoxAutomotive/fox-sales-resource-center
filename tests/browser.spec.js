@@ -452,7 +452,7 @@ test("RAV4 hybrid quick reference fits landscape Letter and includes all grades 
   expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
 });
 
-test("model trim picker supports three selections, shared standards, packages and verified Why Upgrade", async ({
+test("model trim picker supports three selections, visible baseline, packages and verified Why Upgrade", async ({
   page,
 }) => {
   const v = fixtureVehicle();
@@ -466,7 +466,7 @@ test("model trim picker supports three selections, shared standards, packages an
   );
   await page.goto("./#/model/fixture-a");
   await expect(
-    page.getByRole("radio", { name: "Differences Only", exact: true }),
+    page.getByRole("radio", { name: "Trim Differences", exact: true }),
   ).toBeChecked();
   const main = page.locator('[data-comparison-table="equipment"]');
   await expect(main).not.toContainText("Synthetic engine A");
@@ -478,12 +478,11 @@ test("model trim picker supports three selections, shared standards, packages an
   await expect(
     page.locator('[data-comparison-table="packages"]'),
   ).toContainText("Synthetic heated seats");
-  await page.locator(".shared-standard > summary").click();
-  await expect(page.locator('[data-comparison-table="shared"]')).toContainText(
-    "Synthetic engine A",
-  );
   await expect(
-    page.locator('[data-comparison-table="shared"]'),
+    page.locator('[data-comparison-table="baseline"]'),
+  ).toContainText("Synthetic engine A");
+  await expect(
+    page.locator('[data-comparison-table="baseline"]'),
   ).not.toContainText("Synthetic heated seats");
   await page.locator(".model-trim-picker > summary").click();
   await page.locator('input[name="model-trim"][value="fixture-a:max"]').check();
@@ -523,7 +522,7 @@ test("same availability filter applies to cross-model comparisons and package co
     await page.getByRole("button", { name: "Add to comparison" }).click();
   }
   await expect(
-    page.getByRole("radio", { name: "Differences Only", exact: true }),
+    page.getByRole("radio", { name: "Trim Differences", exact: true }),
   ).toBeChecked();
   const main = page.locator('[data-comparison-table="equipment"]');
   await expect(main).toContainText("Synthetic engine A");
@@ -536,7 +535,7 @@ test("same availability filter applies to cross-model comparisons and package co
   await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
   await expect(main.locator("tbody tr")).toHaveCount(catalog.fields.length);
   await page
-    .getByRole("radio", { name: "Differences Only", exact: true })
+    .getByRole("radio", { name: "Trim Differences", exact: true })
     .check();
   await expect(main.locator("tbody tr")).toHaveCount(4);
 });
@@ -559,4 +558,105 @@ test("selection and All Equipment never change the full model print reference", 
     preferCSSPageSize: true,
   });
   expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
+});
+
+test("Trim Differences shows verified base specifications once and updates the baseline", async ({
+  page,
+}) => {
+  const v = fixtureVehicle();
+  const third = structuredClone(v.trims[1]);
+  third.id = "max";
+  third.name = "Fixture Max";
+  third.equipment.audio.value = "Synthetic highest audio";
+  v.trims.push(third);
+  v.upgrades.push({
+    from: "Fixture Plus",
+    to: "Fixture Max",
+    gains: [{ text: "Synthetic max gain", sourceIds: ["test-source"] }],
+  });
+  await page.route("**/data/catalog.json", (route) =>
+    route.fulfill({ json: { ...catalog, vehicles: [v] } }),
+  );
+  await page.goto("./#/model/fixture-a");
+  await expect(
+    page.getByRole("radio", { name: "Trim Differences", exact: true }),
+  ).toBeChecked();
+  await expect(page.locator(".baseline-identity")).toContainText(
+    "Fixture Base",
+  );
+  const base = page.locator('[data-comparison-table="baseline"]');
+  const changes = page.locator('[data-comparison-table="equipment"]');
+  await expect(base).toContainText("Synthetic engine A");
+  await expect(changes).not.toContainText("Synthetic engine A");
+  await expect(changes).toContainText("Synthetic upgraded audio");
+  await expect(page.locator(".baseline-column-label")).toHaveCount(1);
+  await page.locator(".model-trim-picker > summary").click();
+  await page.locator('input[name="model-trim"][value="fixture-a:max"]').check();
+  await page
+    .locator('input[name="model-trim"][value="fixture-a:base"]')
+    .uncheck();
+  await expect(page.locator(".baseline-identity")).toContainText(
+    "Fixture Plus",
+  );
+  await expect(page.locator(".baseline-identity")).not.toContainText(
+    "Fixture Base",
+  );
+  await expect(base).toContainText("Synthetic engine A");
+  await expect(changes).not.toContainText("Synthetic engine A");
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
+  await expect(page.locator(".baseline-equipment")).toHaveCount(0);
+  await expect(changes).toContainText("Synthetic engine A");
+  await expect(changes.locator("tbody tr")).toHaveCount(catalog.fields.length);
+  await page
+    .getByRole("radio", { name: "Trim Differences", exact: true })
+    .check();
+  await expect(page.locator(".baseline-identity")).toContainText(
+    "Fixture Plus",
+  );
+});
+test("cross comparison chooses the lower selected trim even when added last", async ({
+  page,
+}) => {
+  await useFixtures(page);
+  await page.goto("./#/compare");
+  for (const id of ["fixture-a:plus", "fixture-a:base"]) {
+    await page.locator("#compare-select").selectOption(id);
+    await page.getByRole("button", { name: "Add to comparison" }).click();
+  }
+  await expect(page.locator(".baseline-identity")).toContainText(
+    "Fixture Base",
+  );
+  await expect(
+    page.locator('[data-comparison-table="baseline"]'),
+  ).toContainText("Synthetic engine A");
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).not.toContainText("Synthetic engine A");
+  await expect(
+    page.locator('[data-comparison-table="equipment"] thead th').last(),
+  ).toContainText("Baseline");
+});
+test("RAV4 baseline keeps its engine, output, drivetrain, safety and infotainment visible", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2026-toyota-rav4");
+  await expect(page.locator(".baseline-identity")).toContainText("LE Hybrid");
+  const base = page.locator('[data-comparison-table="baseline"]');
+  for (const text of [
+    "2.5L Dynamic Force",
+    "226 net combined hp",
+    "Front-wheel drive",
+    "Toyota Safety Sense 4.0",
+    "10.5-inch Toyota Audio Multimedia",
+  ])
+    await expect(base).toContainText(text);
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).not.toContainText("2.5L Dynamic Force");
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth + 1,
+    ),
+  ).toBe(true);
 });
