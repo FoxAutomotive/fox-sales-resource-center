@@ -2481,3 +2481,72 @@ input[type="checkbox"] {
 .year-tabs a[aria-current] {
   color: #bd1f2a;
 }
+/* The compact quick reference uses the existing model data and print palette. */
+@media print {
+  .compact-print-grid {
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+    gap: 14pt;
+  }
+  .compact-print-grid h2 {
+    font-size: 9pt;
+    margin: 7pt 0 4pt;
+  }
+  .compact-print-grid p {
+    font-size: 7.8pt;
+    line-height: 1.3;
+    margin-bottom: 4pt;
+  }
+  .print-grade-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.8pt;
+    line-height: 1.3;
+  }
+  .print-grade-table th,
+  .print-grade-table td {
+    border: 0.5pt solid #b8b8b8;
+    padding: 4pt;
+    vertical-align: top;
+    text-align: left;
+  }
+  .print-grade-table th {
+    width: 27%;
+  }
+  .print-grade-table thead th {
+    background: #eee;
+  }
+  .print-grade-table tr {
+    break-inside: avoid;
+  }
+}
+.equipment-table thead th > span,
+.equipment-table thead th > small {
+  color: #52606d;
+}
+@media print {
+  .print-grade-table {
+    table-layout: fixed;
+  }
+  .print-grade-table th {
+    width: auto;
+  }
+  .print-grade-table th:first-child {
+    width: 27%;
+  }
+  .print-grade-table thead th:last-child {
+    width: 73%;
+  }
+  .compact-print-grid p,
+  .print-grade-table {
+    font-size: 8pt;
+  }
+}
+@media print {
+  .compact-print-grid p {
+    margin-bottom: 3pt;
+  }
+}
+.source-panel p {
+  overflow-wrap: anywhere;
+}

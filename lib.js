@@ -84,7 +84,18 @@ export function searchVehicles(
             ]
           : [];
       });
-      return `${base} ${trim.name} ${trim.configuration || ""} ${cells.join(" ")}`.toLowerCase();
+      // Index evidenced package/option names, never their unverified contents.
+      const packageNames = (v.packages || [])
+        .filter(
+          (p) => p.trimIds.includes(trim.id) && evidenceReady(v, p.sourceIds),
+        )
+        .map((p) => p.name);
+      const optionNames = (v.optionalEquipment || [])
+        .filter(
+          (o) => o.trimIds.includes(trim.id) && evidenceReady(v, o.sourceIds),
+        )
+        .map((o) => o.name);
+      return `${base} ${trim.name} ${trim.configuration || ""} ${cells.join(" ")} ${packageNames.join(" ")} ${optionNames.join(" ")}`.toLowerCase();
     });
     // All feature tokens must match one configuration, rather than two incompatible trims.
     return (configs.length ? configs : [base]).some((haystack) =>

@@ -4,7 +4,7 @@
 
 Use official U.S. manufacturer brochures, specification PDFs, equipment matrices, and model-year releases. Record the exact model year and the date you actually reviewed the material. Prefer stable year-specific document links over live model pages, which may change to the next year. Keep a note of document title, revision, relevant page/table, and any production or drivetrain caveat in the source title or the vehicle notes.
 
-The initial source links are **research targets only**. At implementation time the environment’s outbound policy denied access to manufacturer sites, so none of the three requested initial guides was represented as verified. See [research status](RESEARCH.md).
+Unreviewed source links remain **research targets only**. The RAV4 guide now also records a reviewed, user-supplied brochure; see [its source audit](2026-RAV4-SOURCES.md). At implementation time the environment’s outbound policy denied access to manufacturer sites, so none of the three requested initial guides was represented as verified. See [research status](RESEARCH.md).
 
 For each reviewed guide:
 
@@ -92,3 +92,11 @@ Only eligible, source-verified configurations appear in the comparison picker. I
 See [artwork instructions](../assets/README.md) and [publishing instructions](../README.md#publish-to-github-pages). Quick references derive from the same records as the screen. Shared powertrain equipment is retained in print; comparison controls do not change printed data. Pending guides print a prominent warning rather than an empty specification grid. Keep source URLs and window-sticker reminders in every print sheet.
 
 Every claim is publicly visible. Review changes in a pull request and avoid unapproved incentives or confidential information. The included deployment workflow is manual; ordinary pushes only run checks.
+
+## Brochure-sourced options and compact quick references
+
+Equipment cells may include `sourcePages`, a map from source ID to page ranges. A user-supplied PDF source records `delivery: "user-upload"`, filename, SHA-256 and page count; its manufacturer reference link is not represented as a successful download URL.
+
+A package with verified name/grade listing but unknown contents uses `contentsStatus: "unverified"` and `eligibilityScope: "grade"`. Do not invent an itemized `contents` array or infer bundles from package names. `optionalEquipment` stores separately confirmed available features with conditions, source IDs and eligible grade/configuration references. Available does not mean installed.
+
+`quickReference` stores configuration groups, field IDs, representative powertrain configuration IDs and sourced caveats. It does not duplicate equipment specifications. The print renderer reads the live cells, resolves unknowns, groups towing ratings, lists package contents status and retains provenance. Validation requires each configuration to appear exactly once in the print groups. Review the PDF whenever the content grows: one-page output must remain readable and must not be forced by clipping or hiding facts. HEV and PHEV records and print sheets remain separate.
