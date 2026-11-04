@@ -10,6 +10,8 @@ import {
   sharedStandardRows,
   packageComparisonRows,
   verifiedUpgradePairs,
+  comparisonBaseline,
+  trimComparisonSections,
 } from "../lib.js";
 import { fixtureVehicle } from "./fixtures.mjs";
 const catalog = JSON.parse(
@@ -267,7 +269,7 @@ test("package-name searches never infer unverified package contents", () => {
   );
 });
 
-test("Differences Only is the default; all four availability states count independently", () => {
+test("What Changes retains all four availability-state distinctions", () => {
   const c = fixtureCatalog(),
     v = c.vehicles[0];
   const states = ["standard", "optional", "unavailable", "unverified"];
@@ -417,5 +419,153 @@ test("package contents order alone is not an equipment difference", () => {
     packageComparisonRows(eligibleOptions({ ...catalog, vehicles: [v] }))
       .length,
     1,
+  );
+});
+
+test("baseline uses verified upgrade order, independent of selection or array ordering", () => {
+  const v = fixtureVehicle();
+  v.trims.reverse();
+  const c = { ...catalog, vehicles: [v] };
+  const options = eligibleOptions(c);
+  const before = JSON.stringify(c);
+  const result = trimComparisonSections(c, options);
+  assert.equal(result.baseline.option.trim.id, "base");
+  assert.equal(result.baseline.method, "verified-upgrade-order");
+  assert.equal(
+    result.baseRows.find((r) => r.id === "engine").cells[0].value,
+    "Synthetic engine A",
+  );
+  assert.equal(JSON.stringify(c), before);
+});
+test("baseline updates after removing the lower trim and follows verified intermediate edges", () => {
+  const v = fixtureVehicle();
+  const top = structuredClone(v.trims[1]);
+  top.id = "max";
+  top.name = "Fixture Max";
+  v.trims.push(top);
+  v.upgrades.push({
+    from: "Fixture Plus",
+    to: "Fixture Max",
+    gains: [{ text: "Synthetic gain", sourceIds: ["test-source"] }],
+  });
+  const c = { ...catalog, vehicles: [v] },
+    o = eligibleOptions(c);
+  assert.equal(comparisonBaseline(c, [o[2], o[0]]).option.trim.id, "base");
+  assert.equal(comparisonBaseline(c, [o[2], o[1]]).option.trim.id, "plus");
+  assert.equal(comparisonBaseline(c, []), null);
+});
+test("Base Equipment and What Changes do not duplicate specifications", () => {
+  const v = fixtureVehicle();
+  v.trims[0].equipment.horsepower = {
+    status: "standard",
+    value: "Synthetic 100 hp",
+    sourceIds: ["test-source"],
+  };
+  v.trims[1].equipment.horsepower = {
+    status: "standard",
+    value: "Synthetic 120 hp",
+    sourceIds: ["test-source"],
+  };
+  const c = { ...catalog, vehicles: [v] },
+    o = eligibleOptions(c).reverse();
+  const { baseRows, changeRows, baseline } = trimComparisonSections(c, o);
+  assert.equal(baseline.option.trim.id, "base");
+  assert.ok(baseRows.some((r) => r.id === "engine"));
+  assert.ok(!baseRows.some((r) => r.id === "horsepower"));
+  assert.ok(changeRows.some((r) => r.id === "horsepower"));
+  assert.ok(baseRows.every((r) => !changeRows.some((x) => x.id === r.id)));
+  assert.equal(
+    changeRows.find((r) => r.id === "horsepower").cells[1].value,
+    "Synthetic 100 hp",
+  );
+});
+test("baseline never inherits optional, unavailable or unverified equipment", () => {
+  const v = fixtureVehicle();
+  v.trims[1].equipment.heatedSeats = structuredClone(
+    v.trims[0].equipment.heatedSeats,
+  );
+  v.trims[0].equipment.engine.sourceIds = ["missing"];
+  const c = { ...catalog, vehicles: [v] },
+    o = eligibleOptions(c);
+  const sections = trimComparisonSections(c, o);
+  assert.ok(sections.baseRows.every((r) => r.cells[0].status === "standard"));
+  assert.ok(
+    !sections.baseRows.some(
+      (r) =>
+        r.id === "heatedSeats" ||
+        r.id === "engine" ||
+        r.id === "ventilatedSeats",
+    ),
+  );
+  assert.ok(sections.changeRows.some((r) => r.id === "engine"));
+  assert.equal(
+    comparisonRows(c, o, { differenceOnly: false }).length,
+    c.fields.length,
+  );
+});
+test("baseline and core standard specifications work across manufacturers and years", () => {
+  for (const brand of ["chevrolet", "toyota", "volkswagen"])
+    for (const year of [2026, 2027]) {
+      const v = fixtureVehicle({ id: `${brand}-${year}`, brand });
+      v.year = year;
+      v.sources[0].modelYear = year;
+      for (const t of v.trims)
+        for (const id of [
+          "horsepower",
+          "drivetrain",
+          "safety",
+          "infotainment",
+          "upholstery",
+        ])
+          t.equipment[id] = {
+            status: "standard",
+            value: `Synthetic ${id}`,
+            sourceIds: ["test-source"],
+          };
+      const c = { ...catalog, vehicles: [v] },
+        sections = trimComparisonSections(c, eligibleOptions(c).reverse());
+      assert.equal(sections.baseline.option.trim.id, "base");
+      for (const id of [
+        "engine",
+        "horsepower",
+        "drivetrain",
+        "safety",
+        "infotainment",
+        "upholstery",
+      ])
+        assert.ok(
+          sections.baseRows.some((r) => r.id === id),
+          `${brand} ${year} ${id}`,
+        );
+    }
+});
+test("cross-model and year baselines are labeled as references rather than inferred trim ranks", () => {
+  const a = fixtureVehicle(),
+    b = fixtureVehicle({ id: "other-year", brand: "volkswagen" });
+  b.year = 2027;
+  b.sources[0].modelYear = 2027;
+  const c = { ...catalog, vehicles: [a, b] };
+  const o = eligibleOptions(c);
+  const baseline = comparisonBaseline(c, [o[3], o[1]]);
+  assert.equal(baseline.method, "cross-model-reference");
+  assert.equal(baseline.option.vehicle.id, a.id);
+});
+test("unverified or cyclic upgrade rankings fall back transparently to catalog order", () => {
+  const v = fixtureVehicle();
+  v.upgrades[0].gains[0].sourceIds = ["missing"];
+  let c = { ...catalog, vehicles: [v] };
+  assert.equal(
+    comparisonBaseline(c, eligibleOptions(c)).method,
+    "catalog-order",
+  );
+  v.upgrades[0].gains[0].sourceIds = ["test-source"];
+  v.upgrades.push({
+    from: "Fixture Plus",
+    to: "Fixture Base",
+    gains: [{ text: "Synthetic cycle", sourceIds: ["test-source"] }],
+  });
+  assert.equal(
+    comparisonBaseline(c, eligibleOptions(c)).method,
+    "catalog-order",
   );
 });

@@ -3,7 +3,7 @@ import {
   comparisonRows,
   eligibleOptions,
   resolveCell,
-  sharedStandardRows,
+  trimComparisonSections,
   packageComparisonRows,
   verifiedUpgradePairs,
 } from "./lib.js";
@@ -238,8 +238,8 @@ function cellHTML(cell) {
       : ""
   }${cell.sourceIds?.length ? `<small class="source-reference">Source: ${escape(citationText(cell.sourceIds, cell.sourcePages))}</small>` : ""}`;
 }
-function rowsTable(vehicles, rows, kind = "equipment") {
-  return `<div class="table-scroll" tabindex="0" role="region" aria-label="${kind === "shared" ? "Shared standard equipment" : kind === "packages" ? "Packages and listed options" : "Equipment comparison"}, scroll horizontally"><table class="equipment-table" data-comparison-table="${kind}"><thead><tr><th scope="col">${kind === "packages" ? "Package / option" : "Equipment"}</th>${vehicles.map(({ vehicle: v, trim: t }) => `<th scope="col"><span>${v.year} ${escape(v.model)}</span>${escape(t.name)}${t.configuration ? `<small>${escape(t.configuration)}</small>` : ""}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr><th scope="row"><small>${escape(row.group)}</small>${escape(row.label)}</th>${row.cells.map((c) => `<td>${cellHTML(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+function rowsTable(vehicles, rows, kind = "equipment", baselineId = null) {
+  return `<div class="table-scroll" tabindex="0" role="region" aria-label="${kind === "baseline" ? "Base Equipment" : kind === "packages" ? "Packages and listed options" : "Equipment comparison"}, scroll horizontally"><table class="equipment-table" data-comparison-table="${kind}"><thead><tr><th scope="col">${kind === "packages" ? "Package / option" : "Equipment"}</th>${vehicles.map(({ vehicle: v, trim: t }) => `<th scope="col"><span>${v.year} ${escape(v.model)}</span>${escape(t.name)}${t.configuration ? `<small>${escape(t.configuration)}</small>` : ""}${`${v.id}:${t.id}` === baselineId ? `<small class="baseline-column-label">Baseline</small>` : ""}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr><th scope="row"><small>${escape(row.group)}</small>${escape(row.label)}</th>${row.cells.map((c) => `<td>${cellHTML(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
 function equipmentTable(vehicles, differenceOnly = true, group = "") {
   const rows = comparisonRows(catalog, vehicles, { differenceOnly, group });
@@ -248,15 +248,30 @@ function equipmentTable(vehicles, differenceOnly = true, group = "") {
     : '<div class="empty-state compact"><h3>No equipment differences in this view</h3><p>Identical rows are hidden. Choose All Equipment for the complete reference.</p></div>';
 }
 function comparisonViewControls(prefix) {
-  return `<fieldset class="comparison-view-switch"><legend class="sr-only">Comparison view</legend><label><input type="radio" name="${prefix}-view" id="${prefix}-view-differences" value="differences" checked> Differences Only</label><label><input type="radio" name="${prefix}-view" id="${prefix}-view-all" value="all"> All Equipment</label></fieldset>`;
+  return `<fieldset class="comparison-view-switch"><legend class="sr-only">Comparison view</legend><label><input type="radio" name="${prefix}-view" id="${prefix}-view-differences" value="differences" checked> Trim Differences</label><label><input type="radio" name="${prefix}-view" id="${prefix}-view-all" value="all"> All Equipment</label></fieldset>`;
 }
 function comparisonView(options, differenceOnly = true, group = "") {
   if (options.length < 2)
     return '<div class="empty-state compact"><h2>Select at least two configurations</h2><p>Choose two to four trims to compare their equipment.</p></div>';
-  const shared = sharedStandardRows(catalog, options, { group });
+  const { baseline, baseRows, changeRows } = trimComparisonSections(
+    catalog,
+    options,
+    { group },
+  );
   const packages = packageComparisonRows(options, { differenceOnly });
   const upgrades = verifiedUpgradePairs(options);
-  return `<p class="comparison-note">${differenceOnly ? "Identical equipment and availability rows are hidden." : "All recorded equipment is shown, including unknown fields."} A known status versus Unverified is a verification difference, not proof that equipment is absent.</p>${equipmentTable(options, differenceOnly, group)}<details class="shared-standard"><summary>Standard Across All Selected Trims <span class="count">${shared.length}</span></summary>${shared.length ? rowsTable(options, shared, "shared") : "<p>No identical, source-verified standard equipment is recorded for this selection and category.</p>"}</details><section class="comparison-packages"><h3>Optional packages &amp; listed options</h3><p class="comparison-note">Package contents and conditions remain visible when they differ. No verified listing means Unverified, not Unavailable. Category filters apply to equipment; this section retains package context.</p>${packages.length ? rowsTable(options, packages, "packages") : `<p class="muted">${differenceOnly ? "No package or listed-option differences are recorded. Choose All Equipment to see shared listings." : "No source-verified package or option listings are recorded."}</p>`}</section><section class="comparison-upgrades"><h3>Why Upgrade?</h3>${upgrades.length ? upgrades.map(({ from, to, gains }) => `<article><h4>${escape(from.trim.name)} → ${escape(to.trim.name)}</h4><p class="comparison-note">${from.vehicle.year} ${escape(from.vehicle.model)} · ${escape(from.trim.configuration || "Matched configurations")}</p><p>${escape(gains[0].text)}</p><small>Source: ${escape(citationText(gains[0].sourceIds, gains[0].sourcePages))}</small></article>`).join("") : '<p class="muted">No source-authored, configuration-matched adjacent-trim explanation is verified for this selection. Equipment differences alone are not used to invent an upgrade recommendation.</p>'}</section>`;
+  const extras = `<section class="comparison-packages"><h3>Optional packages &amp; listed options</h3><p class="comparison-note">Package contents and conditions remain visible when they differ. No verified listing means Unverified, not Unavailable. Category filters apply to equipment; this section retains package context.</p>${packages.length ? rowsTable(options, packages, "packages") : `<p class="muted">${differenceOnly ? "No package or listed-option differences are recorded. Choose All Equipment to see shared listings." : "No source-verified package or option listings are recorded."}</p>`}</section><section class="comparison-upgrades"><h3>Why Upgrade?</h3>${upgrades.length ? upgrades.map(({ from, to, gains }) => `<article><h4>${escape(from.trim.name)} → ${escape(to.trim.name)}</h4><p class="comparison-note">${from.vehicle.year} ${escape(from.vehicle.model)} · ${escape(from.trim.configuration || "Matched configurations")}</p><p>${escape(gains[0].text)}</p><small>Source: ${escape(citationText(gains[0].sourceIds, gains[0].sourcePages))}</small></article>`).join("") : '<p class="muted">No source-authored, configuration-matched adjacent-trim explanation is verified for this selection. Equipment differences alone are not used to invent an upgrade recommendation.</p>'}</section>`;
+  if (!differenceOnly)
+    return `<section class="all-equipment-view"><h3>All Equipment</h3><p class="comparison-note">All recorded equipment is shown, including shared and unknown fields. A known status versus Unverified does not prove equipment is absent.</p>${equipmentTable(options, false, group)}${extras}</section>`;
+  const base = baseline.option;
+  const identity = `${base.vehicle.year} ${brandName(base.vehicle.brand)} ${base.vehicle.model} · ${base.trim.name}${base.trim.configuration ? ` · ${base.trim.configuration}` : ""}`;
+  const basis =
+    baseline.method === "verified-upgrade-order"
+      ? "Lowest selected grade established by this model’s recorded, verified upgrade relationships. Catalog order breaks configuration ties."
+      : baseline.method === "cross-model-reference"
+        ? "Reference baseline follows catalog order. Different models or model years do not have a shared trim ranking."
+        : "Baseline follows this model’s existing catalog order; a price ranking or equipment inheritance is not inferred.";
+  return `<section class="baseline-equipment"><h3>Base Equipment</h3><p class="baseline-identity"><strong>Baseline trim:</strong> ${escape(identity)}</p><p class="comparison-note">${basis} Verified standard equipment that does not change is shown below. Changed core specifications appear once under What Changes, with this baseline’s value marked. No equipment is assumed to carry over.</p>${baseRows.length ? rowsTable([base], baseRows, "baseline") : '<p class="muted">No unchanged, source-verified standard equipment is recorded for this baseline and category. Check What Changes or choose All Equipment.</p>'}</section><section class="what-changes"><h3>What Changes</h3><p class="comparison-note">Only equipment or availability that differs between the selected configurations is shown. Known versus Unverified indicates a verification difference, not proof of absence.</p>${changeRows.length ? rowsTable(options, changeRows, "equipment", base.id) : '<div class="empty-state compact"><h4>No equipment changes in this view</h4><p>Identical rows are shown under Base Equipment when standard. All Equipment includes every recorded field.</p></div>'}${extras}</section>`;
 }
 function defaultModelSelection(options) {
   if (options.length < 2) return options.map((o) => o.id);

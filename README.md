@@ -26,8 +26,8 @@ Each cloud task already has an isolated checkout. Work in the existing repositor
 
 ```sh
 npm run validate       # Verify catalog schema and source-evidence requirements
-npm test               # 24 data/search/comparison validation tests
-npm run test:browser   # 20 Chromium functional/layout/print/accessibility tests
+npm test               # 31 data/search/comparison validation tests
+npm run test:browser   # 23 Chromium functional/layout/print/accessibility tests
 npm run build          # Validate and copy only production files into dist/
 ```
 
@@ -51,9 +51,9 @@ Test-only synthetic equipment is isolated in `tests/fixtures.mjs` and intercepte
 
 ## Compare trims
 
-Model guides and Compare Vehicles open in **Differences Only**. Choose two to four configurations; model guides include a **Choose trims to compare** picker. **All Equipment** restores the complete equipment table. Shared, identical, source-verified standard items are available in **Standard Across All Selected Trims**.
+Model guides and Compare Vehicles open in **Trim Differences**. Choose two to four configurations; model guides include a **Choose trims to compare** picker. **Base Equipment** stays visible and identifies the baseline trim, showing its verified standard specifications that do not change. **What Changes** contains only differing equipment or availability, including the baseline value when a core specification changes. Each equipment field appears in just one section. **All Equipment** restores the complete comparison as a separate view.
 
-Different availability or verification statuses remain visible, including known-versus-Unverified comparisons. An unknown is not proof that a feature is absent. Differing package/option listings retain their contents and conditions; missing listings remain Unverified. **Why Upgrade?** displays existing source-authored upgrade text only for configuration-matched trim pairs. The full model guide and its print sheet remain independent of the selected comparison subset.
+The baseline updates automatically. Verified upgrade relationships identify the lowest selected grade where possible; catalog order breaks configuration ties. When there is no verified ordering, the fallback is stated. Different models or years use a clearly labeled catalog-order reference rather than an invented shared trim rank. No equipment is assumed to carry over. Different availability or verification statuses remain visible, including known-versus-Unverified comparisons. An unknown is not proof that a feature is absent. Differing package/option listings retain their contents and conditions; missing listings remain Unverified. **Why Upgrade?** displays existing source-authored upgrade text only for configuration-matched trim pairs. The full model guide and its print sheet remain independent of the selected comparison subset.
 
 ## Update the product library
 
