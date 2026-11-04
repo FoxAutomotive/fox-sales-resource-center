@@ -3,6 +3,9 @@ import {
   comparisonRows,
   eligibleOptions,
   resolveCell,
+  sharedStandardRows,
+  packageComparisonRows,
+  verifiedUpgradePairs,
 } from "./lib.js";
 
 const $ = (selector) => document.querySelector(selector);
@@ -222,7 +225,7 @@ function cellHTML(cell) {
     unavailable: "Unavailable",
     unverified: "Unverified",
   };
-  return `<span class="equipment-status ${cell.status}">${labels[cell.status]}</span>${cell.value ? `<span class="cell-value">${escape(cell.value)}</span>` : ""}${cell.conditions ? `<small>${escape(cell.conditions)}</small>` : ""}${
+  return `<span class="equipment-status ${cell.status}">${labels[cell.status]}</span>${cell.value ? `<span class="cell-value">${escape(cell.value)}</span>` : ""}${cell.conditions ? `<small>${escape(cell.conditions)}</small>` : ""}${cell.contentsText ? `<small class="package-contents">${escape(cell.contentsText)}</small>` : ""}${
     cell.featureIds?.length
       ? `<span class="cell-features">${cell.featureIds
           .map((id) => features.find((f) => f.id === id))
@@ -235,11 +238,41 @@ function cellHTML(cell) {
       : ""
   }${cell.sourceIds?.length ? `<small class="source-reference">Source: ${escape(citationText(cell.sourceIds, cell.sourcePages))}</small>` : ""}`;
 }
-function equipmentTable(vehicles, differenceOnly = false, group = "") {
+function rowsTable(vehicles, rows, kind = "equipment") {
+  return `<div class="table-scroll" tabindex="0" role="region" aria-label="${kind === "shared" ? "Shared standard equipment" : kind === "packages" ? "Packages and listed options" : "Equipment comparison"}, scroll horizontally"><table class="equipment-table" data-comparison-table="${kind}"><thead><tr><th scope="col">${kind === "packages" ? "Package / option" : "Equipment"}</th>${vehicles.map(({ vehicle: v, trim: t }) => `<th scope="col"><span>${v.year} ${escape(v.model)}</span>${escape(t.name)}${t.configuration ? `<small>${escape(t.configuration)}</small>` : ""}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr><th scope="row"><small>${escape(row.group)}</small>${escape(row.label)}</th>${row.cells.map((c) => `<td>${cellHTML(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function equipmentTable(vehicles, differenceOnly = true, group = "") {
   const rows = comparisonRows(catalog, vehicles, { differenceOnly, group });
-  if (!rows.length)
-    return '<div class="empty-state compact"><h3>No verified differences in this view</h3><p>Shared and unverified fields are hidden. Show all equipment to see the full reference.</p></div>';
-  return `<div class="table-scroll" tabindex="0" role="region" aria-label="Equipment comparison, scroll horizontally"><table class="equipment-table"><thead><tr><th scope="col">Equipment</th>${vehicles.map(({ vehicle: v, trim: t }) => `<th scope="col"><span>${v.year} ${escape(v.model)}</span>${escape(t.name)}${t.configuration ? `<small>${escape(t.configuration)}</small>` : ""}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr><th scope="row"><small>${escape(row.group)}</small>${escape(row.label)}${row.featureId && features.some((f) => f.id === row.featureId) ? `<a href="#/features?q=${encodeURIComponent(features.find((f) => f.id === row.featureId).name)}" class="feature-explain" aria-label="Explain ${escape(row.label)}">ⓘ</a>` : ""}</th>${row.cells.map((c) => `<td>${cellHTML(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  return rows.length
+    ? rowsTable(vehicles, rows)
+    : '<div class="empty-state compact"><h3>No equipment differences in this view</h3><p>Identical rows are hidden. Choose All Equipment for the complete reference.</p></div>';
+}
+function comparisonViewControls(prefix) {
+  return `<fieldset class="comparison-view-switch"><legend class="sr-only">Comparison view</legend><label><input type="radio" name="${prefix}-view" id="${prefix}-view-differences" value="differences" checked> Differences Only</label><label><input type="radio" name="${prefix}-view" id="${prefix}-view-all" value="all"> All Equipment</label></fieldset>`;
+}
+function comparisonView(options, differenceOnly = true, group = "") {
+  if (options.length < 2)
+    return '<div class="empty-state compact"><h2>Select at least two configurations</h2><p>Choose two to four trims to compare their equipment.</p></div>';
+  const shared = sharedStandardRows(catalog, options, { group });
+  const packages = packageComparisonRows(options, { differenceOnly });
+  const upgrades = verifiedUpgradePairs(options);
+  return `<p class="comparison-note">${differenceOnly ? "Identical equipment and availability rows are hidden." : "All recorded equipment is shown, including unknown fields."} A known status versus Unverified is a verification difference, not proof that equipment is absent.</p>${equipmentTable(options, differenceOnly, group)}<details class="shared-standard"><summary>Standard Across All Selected Trims <span class="count">${shared.length}</span></summary>${shared.length ? rowsTable(options, shared, "shared") : "<p>No identical, source-verified standard equipment is recorded for this selection and category.</p>"}</details><section class="comparison-packages"><h3>Optional packages &amp; listed options</h3><p class="comparison-note">Package contents and conditions remain visible when they differ. No verified listing means Unverified, not Unavailable. Category filters apply to equipment; this section retains package context.</p>${packages.length ? rowsTable(options, packages, "packages") : `<p class="muted">${differenceOnly ? "No package or listed-option differences are recorded. Choose All Equipment to see shared listings." : "No source-verified package or option listings are recorded."}</p>`}</section><section class="comparison-upgrades"><h3>Why Upgrade?</h3>${upgrades.length ? upgrades.map(({ from, to, gains }) => `<article><h4>${escape(from.trim.name)} → ${escape(to.trim.name)}</h4><p class="comparison-note">${from.vehicle.year} ${escape(from.vehicle.model)} · ${escape(from.trim.configuration || "Matched configurations")}</p><p>${escape(gains[0].text)}</p><small>Source: ${escape(citationText(gains[0].sourceIds, gains[0].sourcePages))}</small></article>`).join("") : '<p class="muted">No source-authored, configuration-matched adjacent-trim explanation is verified for this selection. Equipment differences alone are not used to invent an upgrade recommendation.</p>'}</section>`;
+}
+function defaultModelSelection(options) {
+  if (options.length < 2) return options.map((o) => o.id);
+  const first = options[0];
+  const second =
+    options.find(
+      (o) =>
+        o.trim.name !== first.trim.name &&
+        o.trim.configuration === first.trim.configuration,
+    ) ||
+    options.find((o) => o.trim.name !== first.trim.name) ||
+    options[1];
+  return [first.id, second.id];
+}
+function modelTrimPicker(options, ids) {
+  return `<details class="model-trim-picker"><summary>Choose trims to compare · <span id="model-selected-count">${ids.length}</span> selected</summary><fieldset><legend>Select two to four configurations</legend><div class="trim-checkbox-grid">${options.map((o) => `<label><input type="checkbox" name="model-trim" value="${escape(o.id)}" ${ids.includes(o.id) ? "checked" : ""}><span>${escape(o.trim.name)}${o.trim.configuration ? `<small>${escape(o.trim.configuration)}</small>` : ""}</span></label>`).join("")}</div></fieldset></details>`;
 }
 function citationText(ids = [], pages = {}) {
   return ids
@@ -260,8 +293,16 @@ function modelPage(id) {
   if (!v) return notFound();
   nav(`/brand/${v.brand}`);
   const options = eligibleOptions(catalog).filter((o) => o.vehicle.id === id);
+  let modelSelected = defaultModelSelection(options);
   $("#main").innerHTML =
-    `<div class="content page-content model-page">${breadcrumbs([{ label: brandName(v.brand), href: `#/brand/${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>${escape(v.summary)}</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button>${options.length ? `<a class="button secondary" href="#/compare">${icon("compare")} Compare trims</a>` : ""}</div></div><div class="notice">${icon("shield")} Verify actual equipment against the vehicle’s window sticker. Availability may depend on drivetrain, packages, production date, and region.</div>${v.relatedGuides?.length ? `<p class="related-guide">${v.relatedGuides.map((g) => `<a class="text-link" href="#/model/${escape(g.id)}">${escape(g.label)} ${icon("arrow")}</a>`).join(" ")}</p>` : ""}<nav class="section-nav" aria-label="Model sections"><a href="#trim-section" data-scroll="trim-section">Trims &amp; equipment</a><a href="#upgrade-section" data-scroll="upgrade-section">Reasons to upgrade</a><a href="#package-section" data-scroll="package-section">Factory packages</a><a href="#source-section" data-scroll="source-section">Sources &amp; verification</a></nav><section id="trim-section" class="section-block"><div class="section-heading"><div><span class="eyebrow">THE DETAILS THAT MATTER</span><h2>Trim &amp; equipment reference</h2></div></div><div class="legend">${["standard", "optional", "unavailable", "unverified"].map((s) => `<span class="equipment-status ${s}">${s[0].toUpperCase() + s.slice(1)}</span>`).join("")}</div>${options.length ? `<div class="table-controls"><label><input type="checkbox" id="model-differences" checked> Show verified differences only</label><div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((g) => `<option>${g}</option>`).join("")}</select></div></div><div id="model-equipment">${equipmentTable(options, true)}</div>` : `<div class="empty-state"><span class="empty-emblem">${icon("book")}</span><h3>Accuracy comes before a filled-in table.</h3><p>Trim structure and equipment are awaiting official ${v.year} ${escape(v.model)} documentation. No specifications have been carried over from another year.</p><a class="text-link" href="${escape(v.sources[0]?.url || catalog.brands.find((b) => b.id === v.brand).sourceUrl)}" target="_blank" rel="noopener noreferrer">Check the manufacturer’s model page ${icon("external")}</a></div>`}</section><div class="model-detail-grid"><section id="upgrade-section" class="detail-panel"><span class="panel-icon">${icon("arrow")}</span><h2>Reasons to upgrade</h2>${v.upgrades.length ? v.upgrades.map((u) => `<h3>${escape(u.from)} → ${escape(u.to)}</h3><ul>${u.gains.map((g) => `<li>${escape(g.text)} <small>Source: ${escape(citationText(g.sourceIds, g.sourcePages))}</small></li>`).join("")}</ul>`).join("") : "<p>Verified trim-to-trim gains will appear here after equipment research. There are no confirmed upgrade recommendations yet.</p>"}</section><section id="package-section" class="detail-panel"><span class="panel-icon">${icon("grid")}</span><h2>Factory packages</h2>${v.packages.length ? v.packages.map((p) => `<details><summary>${escape(p.name)}</summary>${p.contentsStatus === "unverified" ? `<p class="editorial-note">Package name verified · Contents Unverified</p>` : ""}<p>${escape(p.description)}</p><p>${p.eligibilityScope === "grade" ? "Listed grades" : "Eligible configurations"}: ${[...new Set(p.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(p.conditions)}</p><small>Source: ${escape(citationText(p.sourceIds, p.sourcePages))}</small></details>`).join("") : "<p>Package contents, eligible trims, and configuration dependencies are awaiting verification. An empty list does not mean no packages are offered.</p>"}${optionalEquipmentHTML(v)}</section></div><section class="section-block no-print"><h2>Equipment, explained</h2><p class="muted">General brand terminology. Inclusion here does not establish ${escape(v.model)} availability.</p>${featureCards(features.filter((f) => f.brand === v.brand))}</section><section id="source-section" class="source-panel"><div><span class="eyebrow">THE SOURCE OF TRUTH</span><h2>Sources &amp; verification</h2><p>Model year: <strong>${v.year}</strong> · Market: <strong>United States</strong> · Reviewed: <strong>${date(v.verifiedAt)}</strong></p></div><ul class="source-list">${sourceLinks(v)}</ul>${v.notes.map((n) => `<p class="muted">${escape(n)}</p>`).join("")}</section><section class="print-reference" aria-label="Printable quick reference">${printSheet(v, options)}</section></div>`;
+    `<div class="content page-content model-page">${breadcrumbs([{ label: brandName(v.brand), href: `#/brand/${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>${escape(v.summary)}</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button>${options.length ? `<a class="button secondary" href="#/compare">${icon("compare")} Compare trims</a>` : ""}</div></div><div class="notice">${icon("shield")} Verify actual equipment against the vehicle’s window sticker. Availability may depend on drivetrain, packages, production date, and region.</div>${v.relatedGuides?.length ? `<p class="related-guide">${v.relatedGuides.map((g) => `<a class="text-link" href="#/model/${escape(g.id)}">${escape(g.label)} ${icon("arrow")}</a>`).join(" ")}</p>` : ""}<nav class="section-nav" aria-label="Model sections"><a href="#trim-section" data-scroll="trim-section">Trims &amp; equipment</a><a href="#upgrade-section" data-scroll="upgrade-section">Reasons to upgrade</a><a href="#package-section" data-scroll="package-section">Factory packages</a><a href="#source-section" data-scroll="source-section">Sources &amp; verification</a></nav><section id="trim-section" class="section-block"><div class="section-heading"><div><span class="eyebrow">THE DETAILS THAT MATTER</span><h2>Trim &amp; equipment reference</h2></div></div><div class="legend">${["standard", "optional", "unavailable", "unverified"].map((s) => `<span class="equipment-status ${s}">${s[0].toUpperCase() + s.slice(1)}</span>`).join("")}</div>${
+      options.length
+        ? `${modelTrimPicker(options, modelSelected)}<div class="table-controls">${comparisonViewControls("model")}<div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((g) => `<option>${g}</option>`).join("")}</select></div></div><div id="model-equipment">${comparisonView(
+            options.filter((o) => modelSelected.includes(o.id)),
+            true,
+          )}</div>`
+        : `<div class="empty-state"><span class="empty-emblem">${icon("book")}</span><h3>Accuracy comes before a filled-in table.</h3><p>Trim structure and equipment are awaiting official ${v.year} ${escape(v.model)} documentation. No specifications have been carried over from another year.</p><a class="text-link" href="${escape(v.sources[0]?.url || catalog.brands.find((b) => b.id === v.brand).sourceUrl)}" target="_blank" rel="noopener noreferrer">Check the manufacturer’s model page ${icon("external")}</a></div>`
+    }</section><div class="model-detail-grid"><section id="upgrade-section" class="detail-panel"><span class="panel-icon">${icon("arrow")}</span><h2>Reasons to upgrade</h2>${v.upgrades.length ? v.upgrades.map((u) => `<h3>${escape(u.from)} → ${escape(u.to)}</h3><ul>${u.gains.map((g) => `<li>${escape(g.text)} <small>Source: ${escape(citationText(g.sourceIds, g.sourcePages))}</small></li>`).join("")}</ul>`).join("") : "<p>Verified trim-to-trim gains will appear here after equipment research. There are no confirmed upgrade recommendations yet.</p>"}</section><section id="package-section" class="detail-panel"><span class="panel-icon">${icon("grid")}</span><h2>Factory packages</h2>${v.packages.length ? v.packages.map((p) => `<details><summary>${escape(p.name)}</summary>${p.contentsStatus === "unverified" ? `<p class="editorial-note">Package name verified · Contents Unverified</p>` : ""}<p>${escape(p.description)}</p><p>${p.eligibilityScope === "grade" ? "Listed grades" : "Eligible configurations"}: ${[...new Set(p.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(p.conditions)}</p><small>Source: ${escape(citationText(p.sourceIds, p.sourcePages))}</small></details>`).join("") : "<p>Package contents, eligible trims, and configuration dependencies are awaiting verification. An empty list does not mean no packages are offered.</p>"}${optionalEquipmentHTML(v)}</section></div><section class="section-block no-print"><h2>Equipment, explained</h2><p class="muted">General brand terminology. Inclusion here does not establish ${escape(v.model)} availability.</p>${featureCards(features.filter((f) => f.brand === v.brand))}</section><section id="source-section" class="source-panel"><div><span class="eyebrow">THE SOURCE OF TRUTH</span><h2>Sources &amp; verification</h2><p>Model year: <strong>${v.year}</strong> · Market: <strong>United States</strong> · Reviewed: <strong>${date(v.verifiedAt)}</strong></p></div><ul class="source-list">${sourceLinks(v)}</ul>${v.notes.map((n) => `<p class="muted">${escape(n)}</p>`).join("")}</section><section class="print-reference" aria-label="Printable quick reference">${printSheet(v, options)}</section></div>`;
   $("#print-reference").onclick = () => window.print();
   document.querySelectorAll("[data-scroll]").forEach(
     (a) =>
@@ -275,14 +316,30 @@ function modelPage(id) {
   );
   if (options.length) {
     const update = () => {
-      $("#model-equipment").innerHTML = equipmentTable(
-        options,
-        $("#model-differences").checked,
+      $("#model-selected-count").textContent = modelSelected.length;
+      $("#model-equipment").innerHTML = comparisonView(
+        options.filter((o) => modelSelected.includes(o.id)),
+        !$("#model-view-all").checked,
         $("#model-group").value,
       );
     };
-    $("#model-differences").onchange = update;
+    document
+      .querySelectorAll('input[name="model-view"]')
+      .forEach((input) => (input.onchange = update));
     $("#model-group").onchange = update;
+    document.querySelectorAll('input[name="model-trim"]').forEach(
+      (input) =>
+        (input.onchange = () => {
+          if (input.checked && modelSelected.length >= 4) {
+            input.checked = false;
+            return notify("Compare up to four configurations at a time.");
+          }
+          modelSelected = input.checked
+            ? [...modelSelected, input.value]
+            : modelSelected.filter((id) => id !== input.value);
+          update();
+        }),
+    );
   }
 }
 function compactPrintSheet(v, options) {
@@ -343,9 +400,9 @@ function compactPrintSheet(v, options) {
 }
 function printSheet(v, options) {
   if (v.quickReference) return compactPrintSheet(v, options);
-  const rows = comparisonRows(catalog, options).filter((r) =>
-    r.cells.some((c) => c.status !== "unverified"),
-  );
+  const rows = comparisonRows(catalog, options, {
+    differenceOnly: false,
+  }).filter((r) => r.cells.some((c) => c.status !== "unverified"));
   const sections = [
     ["Performance", "Powertrain & drivetrain"],
     ["Comfort", "Comfort"],
@@ -379,7 +436,7 @@ function comparePage() {
   const options = eligibleOptions(catalog);
   selected = selected.filter((id) => options.some((o) => o.id === id));
   $("#main").innerHTML =
-    `<div class="content page-content">${breadcrumbs([{ label: "Compare Vehicles" }])}<div class="page-heading"><span class="eyebrow">A CLEARER CONVERSATION</span><h1>Find the meaningful differences.</h1><p>Compare two to four verified vehicle configurations, within a brand or across the showroom.</p></div><div class="notice">${icon("shield")} Only source-verified configurations can be selected. Unverified fields are labeled and never treated as equipment differences.</div>${options.length ? `<div class="compare-picker"><label for="compare-select">Add a vehicle &amp; trim</label><div><select id="compare-select"><option value="">Choose a verified configuration</option>${options.map((o) => `<option value="${o.id}">${o.vehicle.year} ${escape(brandName(o.vehicle.brand))} ${escape(o.vehicle.model)} · ${escape(o.trim.name)}${o.trim.configuration ? ` · ${escape(o.trim.configuration)}` : ""}</option>`).join("")}</select><button id="add-compare" class="button primary">Add to comparison +</button></div><p class="muted">Up to four configurations. Drivetrain and package conditions remain visible in the table.</p></div><div id="compare-selection"></div><div class="table-controls"><label><input type="checkbox" id="compare-differences" checked> Show verified differences only</label></div><div id="comparison-results"></div>` : `<div class="empty-state comparison-empty"><span class="empty-emblem">${icon("compare")}</span><h2>The tool is ready. The evidence comes first.</h2><p>Comparisons will become available as model-year equipment and trims are verified. We won’t imply a difference using unconfirmed specifications.</p><div class="comparison-examples"><span>Equinox ↔ RAV4 ↔ Tiguan</span><span>Traverse ↔ Grand Highlander ↔ Atlas</span><span>Trax ↔ Corolla Cross ↔ Taos</span></div><small>Planned research groups · availability and equipment not verified</small><a class="button secondary" href="#/search">Browse model guides ${icon("arrow")}</a></div>`}</div>`;
+    `<div class="content page-content">${breadcrumbs([{ label: "Compare Vehicles" }])}<div class="page-heading"><span class="eyebrow">A CLEARER CONVERSATION</span><h1>Find the meaningful differences.</h1><p>Compare two to four verified vehicle configurations, within a brand or across the showroom.</p></div><div class="notice">${icon("shield")} Only source-verified configurations can be selected. Different availability or verification states stay visible; an Unverified cell does not establish that equipment is unavailable.</div>${options.length ? `<div class="compare-picker"><label for="compare-select">Add a vehicle &amp; trim</label><div><select id="compare-select"><option value="">Choose a verified configuration</option>${options.map((o) => `<option value="${o.id}">${o.vehicle.year} ${escape(brandName(o.vehicle.brand))} ${escape(o.vehicle.model)} · ${escape(o.trim.name)}${o.trim.configuration ? ` · ${escape(o.trim.configuration)}` : ""}</option>`).join("")}</select><button id="add-compare" class="button primary">Add to comparison +</button></div><p class="muted">Up to four configurations. Drivetrain and package conditions remain visible in the table.</p></div><div id="compare-selection"></div><div class="table-controls">${comparisonViewControls("compare")}</div><div id="comparison-results"></div>` : `<div class="empty-state comparison-empty"><span class="empty-emblem">${icon("compare")}</span><h2>The tool is ready. The evidence comes first.</h2><p>Comparisons will become available as model-year equipment and trims are verified. We won’t imply a difference using unconfirmed specifications.</p><div class="comparison-examples"><span>Equinox ↔ RAV4 ↔ Tiguan</span><span>Traverse ↔ Grand Highlander ↔ Atlas</span><span>Trax ↔ Corolla Cross ↔ Taos</span></div><small>Planned research groups · availability and equipment not verified</small><a class="button secondary" href="#/search">Browse model guides ${icon("arrow")}</a></div>`}</div>`;
   if (options.length) {
     $("#add-compare").onclick = () => {
       const id = $("#compare-select").value;
@@ -391,7 +448,9 @@ function comparePage() {
       selected.push(id);
       renderComparison(options);
     };
-    $("#compare-differences").onchange = () => renderComparison(options);
+    document
+      .querySelectorAll('input[name="compare-view"]')
+      .forEach((input) => (input.onchange = () => renderComparison(options)));
     renderComparison(options);
   }
 }
@@ -409,13 +468,10 @@ function renderComparison(options) {
         renderComparison(options);
       }),
   );
-  $("#comparison-results").innerHTML =
-    selected.length < 2
-      ? '<div class="empty-state compact"><h2>Select at least two configurations</h2><p>Your comparison will appear here.</p></div>'
-      : equipmentTable(
-          selected.map((id) => options.find((o) => o.id === id)),
-          $("#compare-differences").checked,
-        );
+  $("#comparison-results").innerHTML = comparisonView(
+    selected.map((id) => options.find((o) => o.id === id)),
+    !$("#compare-view-all").checked,
+  );
 }
 function specialsPage() {
   nav("/specials");

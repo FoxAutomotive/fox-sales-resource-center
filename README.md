@@ -26,8 +26,8 @@ Each cloud task already has an isolated checkout. Work in the existing repositor
 
 ```sh
 npm run validate       # Verify catalog schema and source-evidence requirements
-npm test               # 17 data/search/comparison validation tests
-npm run test:browser   # 17 Chromium functional/layout/print/accessibility tests
+npm test               # 24 data/search/comparison validation tests
+npm run test:browser   # 20 Chromium functional/layout/print/accessibility tests
 npm run build          # Validate and copy only production files into dist/
 ```
 
@@ -48,6 +48,12 @@ Test-only synthetic equipment is isolated in `tests/fixtures.mjs` and intercepte
 | `scripts/`                 | Static server, validation, production build                 |
 | `tests/`                   | Data tests, browser flows, synthetic fixtures               |
 | `.github/workflows/`       | CI checks and an optional manual Pages deployment           |
+
+## Compare trims
+
+Model guides and Compare Vehicles open in **Differences Only**. Choose two to four configurations; model guides include a **Choose trims to compare** picker. **All Equipment** restores the complete equipment table. Shared, identical, source-verified standard items are available in **Standard Across All Selected Trims**.
+
+Different availability or verification statuses remain visible, including known-versus-Unverified comparisons. An unknown is not proof that a feature is absent. Differing package/option listings retain their contents and conditions; missing listings remain Unverified. **Why Upgrade?** displays existing source-authored upgrade text only for configuration-matched trim pairs. The full model guide and its print sheet remain independent of the selected comparison subset.
 
 ## Update the product library
 

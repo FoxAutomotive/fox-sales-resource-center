@@ -31,10 +31,23 @@ export function eligibleOptions(catalog) {
       : [],
   );
 }
+// Source citations do not change equipment. Availability, content and conditions do.
+export function equipmentKey(cell) {
+  return JSON.stringify([
+    cell.status,
+    cell.value || "",
+    cell.conditions || "",
+    [...(cell.featureIds || [])].sort(),
+    cell.contentsKey || cell.contentsText || "",
+  ]);
+}
+export function rowsDiffer(cells) {
+  return cells.length >= 2 && new Set(cells.map(equipmentKey)).size > 1;
+}
 export function comparisonRows(
   catalog,
   options,
-  { differenceOnly = false, group = "" } = {},
+  { differenceOnly = true, group = "" } = {},
 ) {
   return catalog.fields
     .filter((f) => !group || f.group === group)
@@ -42,21 +55,124 @@ export function comparisonRows(
       ...field,
       cells: options.map((o) => resolveCell(o.vehicle, o.trim, field.id)),
     }))
-    .filter((row) => {
-      if (!differenceOnly) return true;
-      if (
-        row.cells.length < 2 ||
-        row.cells.some((c) => c.status === "unverified")
-      )
-        return false;
-      return (
-        new Set(
-          row.cells.map((c) =>
-            JSON.stringify([c.status, c.value || "", c.conditions || ""]),
+    .filter((row) => !differenceOnly || rowsDiffer(row.cells));
+}
+export function sharedStandardRows(catalog, options, { group = "" } = {}) {
+  if (options.length < 2) return [];
+  return comparisonRows(catalog, options, {
+    differenceOnly: false,
+    group,
+  }).filter(
+    (row) =>
+      row.cells.every((c) => c.status === "standard") && !rowsDiffer(row.cells),
+  );
+}
+export function packageComparisonRows(options, { differenceOnly = true } = {}) {
+  const listings = new Map();
+  for (const { vehicle } of options) {
+    for (const [kind, items] of [
+      ["Package", vehicle.packages || []],
+      ["Listed option", vehicle.optionalEquipment || []],
+    ]) {
+      for (const item of items) {
+        if (!evidenceReady(vehicle, item.sourceIds)) continue;
+        const key = `${kind}:${item.name.trim().toLowerCase()}`;
+        if (!listings.has(key))
+          listings.set(key, {
+            id: key,
+            label: item.name,
+            group: kind,
+            items: [],
+          });
+        const row = listings.get(key);
+        if (
+          !row.items.some(
+            (x) => x.vehicleId === vehicle.id && x.item.id === item.id,
+          )
+        )
+          row.items.push({ vehicleId: vehicle.id, item });
+      }
+    }
+  }
+  return [...listings.values()]
+    .map(({ items, ...row }) => ({
+      ...row,
+      cells: options.map(({ vehicle, trim }) => {
+        const matches = items
+          .filter(
+            (x) =>
+              x.vehicleId === vehicle.id && x.item.trimIds.includes(trim.id),
+          )
+          .map((x) => x.item);
+        if (!matches.length)
+          return {
+            status: "unverified",
+            value:
+              "No source-verified listing for this configuration. This is not proof of unavailability.",
+          };
+        const states = [
+          ...new Set(matches.map((item) => item.status || "optional")),
+        ];
+        const status =
+          states.length === 1 &&
+          ["standard", "optional", "unavailable", "unverified"].includes(
+            states[0],
+          )
+            ? states[0]
+            : "unverified";
+        const contents = matches.flatMap((item) => {
+          if (row.group !== "Package") return [];
+          if (item.contentsStatus === "unverified")
+            return ["Contents Unverified"];
+          if (!item.contents?.length) return [item.description];
+          return item.contents.map((content) => {
+            if (typeof content === "string") return content;
+            return evidenceReady(vehicle, content.sourceIds)
+              ? content.text
+              : "Contents Unverified";
+          });
+        });
+        return {
+          status,
+          value: [...new Set(matches.map((x) => x.description))].join("; "),
+          conditions: [...new Set(matches.map((x) => x.conditions))]
+            .filter(Boolean)
+            .join("; "),
+          contentsText: [...new Set(contents)].join("; "),
+          contentsKey: [...new Set(contents)].sort(),
+          sourceIds: [...new Set(matches.flatMap((x) => x.sourceIds))],
+          sourcePages: Object.assign(
+            {},
+            ...matches.map((x) => x.sourcePages || {}),
           ),
-        ).size > 1
-      );
-    });
+        };
+      }),
+    }))
+    .filter((row) => !differenceOnly || rowsDiffer(row.cells));
+}
+export function verifiedUpgradePairs(options) {
+  const result = [];
+  for (const from of options)
+    for (const to of options) {
+      if (
+        from === to ||
+        from.vehicle.id !== to.vehicle.id ||
+        from.vehicle.year !== to.vehicle.year
+      )
+        continue;
+      // Never reuse a same-name upgrade across drivetrain/powertrain variants.
+      if ((from.trim.configuration || "") !== (to.trim.configuration || ""))
+        continue;
+      for (const upgrade of from.vehicle.upgrades || []) {
+        if (upgrade.from !== from.trim.name || upgrade.to !== to.trim.name)
+          continue;
+        const gains = upgrade.gains.filter((g) =>
+          evidenceReady(from.vehicle, g.sourceIds),
+        );
+        if (gains.length) result.push({ from, to, gains });
+      }
+    }
+  return result;
 }
 export function searchVehicles(
   catalog,

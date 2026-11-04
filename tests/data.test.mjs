@@ -7,6 +7,9 @@ import {
   searchVehicles,
   comparisonRows,
   resolveCell,
+  sharedStandardRows,
+  packageComparisonRows,
+  verifiedUpgradePairs,
 } from "../lib.js";
 import { fixtureVehicle } from "./fixtures.mjs";
 const catalog = JSON.parse(
@@ -67,15 +70,19 @@ test("feature searches do not infer pending equipment or use generic glossary as
     1,
   );
 });
-test("differences omit identical and unverified cells", () => {
+test("differences omit identical cells but retain different verification states", () => {
   const c = fixtureCatalog();
   const options = eligibleOptions(c);
   assert.equal(options.length, 2);
   assert.deepEqual(
     comparisonRows(c, options, { differenceOnly: true }).map((r) => r.id),
-    ["heatedSeats", "audio"],
+    ["heatedSeats", "ventilatedSeats", "audio"],
   );
-  assert.ok(comparisonRows(c, options).some((r) => r.id === "engine"));
+  assert.ok(
+    comparisonRows(c, options, { differenceOnly: false }).some(
+      (r) => r.id === "engine",
+    ),
+  );
 });
 test("equipment without source evidence degrades to unverified", () => {
   const v = fixtureVehicle();
@@ -257,5 +264,158 @@ test("package-name searches never infer unverified package contents", () => {
     v.trims.find((t) => t.id === "xle-premium-hev-awd").equipment.liftgate
       .status,
     "standard",
+  );
+});
+
+test("Differences Only is the default; all four availability states count independently", () => {
+  const c = fixtureCatalog(),
+    v = c.vehicles[0];
+  const states = ["standard", "optional", "unavailable", "unverified"];
+  for (let i = 0; i < states.length; i++)
+    for (let j = 0; j < states.length; j++) {
+      for (const [k, status] of [
+        [0, states[i]],
+        [1, states[j]],
+      ])
+        v.trims[k].equipment.wheels =
+          status === "unverified"
+            ? { status }
+            : { status, value: "Same wheel", sourceIds: ["test-source"] };
+      const options = eligibleOptions(c);
+      assert.equal(
+        comparisonRows(c, options).some((r) => r.id === "wheels"),
+        i !== j,
+        `${states[i]} vs ${states[j]}`,
+      );
+    }
+  assert.equal(
+    comparisonRows(c, eligibleOptions(c), { differenceOnly: false }).length,
+    c.fields.length,
+  );
+});
+test("shared standard rows exclude shared optional, unavailable and unknown equipment", () => {
+  const c = fixtureCatalog(),
+    v = c.vehicles[0];
+  v.trims[1].equipment.heatedSeats = structuredClone(
+    v.trims[0].equipment.heatedSeats,
+  );
+  const shared = sharedStandardRows(c, eligibleOptions(c));
+  assert.deepEqual(
+    shared.map((r) => r.id),
+    ["engine"],
+  );
+  assert.ok(
+    !comparisonRows(c, eligibleOptions(c)).some((r) => r.id === "heatedSeats"),
+  );
+  v.trims[1].equipment.engine.conditions =
+    "Different configuration restriction";
+  assert.equal(sharedStandardRows(c, eligibleOptions(c)).length, 0);
+  assert.ok(
+    comparisonRows(c, eligibleOptions(c)).some((r) => r.id === "engine"),
+  );
+});
+test("three-way comparison considers every selected cell and ignores citation-only differences", () => {
+  const c = fixtureCatalog(),
+    v = c.vehicles[0];
+  const third = structuredClone(v.trims[0]);
+  third.id = "third";
+  third.name = "Fixture Third";
+  v.trims.push(third);
+  const options = eligibleOptions(c);
+  assert.ok(comparisonRows(c, options).some((r) => r.id === "audio"));
+  v.sources.push({ ...v.sources[0], id: "other-source" });
+  third.equipment.engine.sourceIds = ["other-source"];
+  assert.ok(
+    !comparisonRows(c, eligibleOptions(c)).some((r) => r.id === "engine"),
+  );
+  third.equipment.engine.value = "Actually different engine";
+  assert.ok(
+    comparisonRows(c, eligibleOptions(c)).some((r) => r.id === "engine"),
+  );
+});
+test("package differences preserve contents and never turn missing listings into Unavailable", () => {
+  const c = fixtureCatalog();
+  let options = eligibleOptions(c);
+  let rows = packageComparisonRows(options);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].cells[0].status, "optional");
+  assert.equal(rows[0].cells[1].status, "unverified");
+  assert.match(rows[0].cells[0].contentsText, /Synthetic heated seats/);
+  const pkg = c.vehicles[0].packages[0];
+  pkg.trimIds = ["base", "plus"];
+  assert.equal(packageComparisonRows(eligibleOptions(c)).length, 0);
+  assert.equal(
+    packageComparisonRows(eligibleOptions(c), { differenceOnly: false }).length,
+    1,
+  );
+  pkg.trimIds = ["base"];
+  pkg.contentsStatus = "unverified";
+  assert.match(
+    packageComparisonRows(eligibleOptions(c))[0].cells[0].contentsText,
+    /Contents Unverified/,
+  );
+  const second = structuredClone(pkg);
+  second.id = "variant";
+  second.trimIds = ["plus"];
+  second.contentsStatus = "verified";
+  second.description = "Different verified contents";
+  c.vehicles[0].packages.push(second);
+  assert.equal(packageComparisonRows(eligibleOptions(c)).length, 1);
+  assert.notEqual(
+    packageComparisonRows(eligibleOptions(c))[0].cells[0].contentsText,
+    packageComparisonRows(eligibleOptions(c))[0].cells[1].contentsText,
+  );
+});
+test("only evidenced and configuration-matched authored upgrade edges are displayed", () => {
+  const c = fixtureCatalog();
+  let pairs = verifiedUpgradePairs(eligibleOptions(c).reverse());
+  assert.equal(pairs.length, 1);
+  assert.equal(pairs[0].gains[0].text, "Synthetic audio upgrade");
+  c.vehicles[0].trims[1].configuration = "Different powertrain";
+  assert.equal(verifiedUpgradePairs(eligibleOptions(c)).length, 0);
+  c.vehicles[0].trims[1].configuration = c.vehicles[0].trims[0].configuration;
+  c.vehicles[0].upgrades[0].gains[0].sourceIds = ["missing"];
+  assert.equal(verifiedUpgradePairs(eligibleOptions(c)).length, 0);
+});
+test("filtering is manufacturer- and model-year-independent", () => {
+  for (const brand of ["chevrolet", "toyota", "volkswagen"])
+    for (const year of [2026, 2027]) {
+      const v = fixtureVehicle({ brand, id: `${brand}-${year}` });
+      v.year = year;
+      v.sources[0].modelYear = year;
+      const c = { ...catalog, vehicles: [v] },
+        options = eligibleOptions(c);
+      assert.equal(options.length, 2);
+      assert.deepEqual(
+        comparisonRows(c, options).map((r) => r.id),
+        ["heatedSeats", "ventilatedSeats", "audio"],
+      );
+      assert.equal(sharedStandardRows(c, options).length, 1);
+      assert.equal(verifiedUpgradePairs(options).length, 1);
+    }
+});
+
+test("package contents order alone is not an equipment difference", () => {
+  const v = fixtureVehicle();
+  const pkg = v.packages[0];
+  pkg.trimIds = ["base"];
+  pkg.contentsStatus = "verified";
+  pkg.contents = ["Synthetic roof", "Synthetic heated seats"];
+  v.packages.push({
+    ...structuredClone(pkg),
+    id: "other-listing",
+    trimIds: ["plus"],
+    contents: ["Synthetic heated seats", "Synthetic roof"],
+  });
+  assert.equal(
+    packageComparisonRows(eligibleOptions({ ...catalog, vehicles: [v] }))
+      .length,
+    0,
+  );
+  v.packages[1].contents.push("Synthetic new equipment");
+  assert.equal(
+    packageComparisonRows(eligibleOptions({ ...catalog, vehicles: [v] }))
+      .length,
+    1,
   );
 });
