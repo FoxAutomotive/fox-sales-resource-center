@@ -2550,3 +2550,145 @@ input[type="checkbox"] {
 .source-panel p {
   overflow-wrap: anywhere;
 }
+/* Shared comparison controls; product records and print sheets are unchanged. */
+.comparison-view-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  border: 1px solid var(--line);
+  padding: 5px;
+  margin: 0;
+  border-radius: 7px;
+  min-width: 0;
+  background: white;
+}
+.comparison-view-switch label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.comparison-view-switch label:has(input:checked) {
+  background: #fcecee;
+  color: #a41a25;
+  font-weight: 650;
+}
+.comparison-view-switch input {
+  accent-color: #bd1f2a;
+  margin: 0;
+}
+.comparison-note {
+  color: #596572;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 12px 0;
+}
+.model-trim-picker,
+.shared-standard {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 18px 0;
+}
+.model-trim-picker > summary,
+.shared-standard > summary {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+.model-trim-picker fieldset {
+  border: 0;
+  padding: 12px 18px 18px;
+  margin: 0;
+  min-width: 0;
+}
+.model-trim-picker legend {
+  font-size: 12px;
+  color: #596572;
+}
+.trim-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+}
+.trim-checkbox-grid label {
+  display: flex;
+  gap: 9px;
+  align-items: start;
+  padding: 8px 0;
+  font-size: 13px;
+  cursor: pointer;
+}
+.trim-checkbox-grid label span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.trim-checkbox-grid label small {
+  display: block;
+  color: #596572;
+  font-size: 11px;
+}
+.trim-checkbox-grid input {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.shared-standard > p {
+  padding: 0 18px 12px;
+  font-size: 13px;
+}
+.shared-standard .table-scroll {
+  margin: 0 15px 15px;
+}
+.comparison-packages,
+.comparison-upgrades {
+  margin-top: 25px;
+}
+.comparison-packages h3,
+.comparison-upgrades h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.comparison-upgrades article {
+  border-left: 3px solid var(--red);
+  background: white;
+  padding: 16px 20px;
+  margin: 12px 0;
+  border-radius: 0 6px 6px 0;
+}
+.comparison-upgrades h4 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.comparison-upgrades article > p {
+  font-size: 13px;
+}
+.comparison-upgrades article > small {
+  font-size: 11px;
+  color: #596572;
+}
+.package-contents {
+  font-weight: 600;
+}
+.selection-chip {
+  max-width: 100%;
+}
+.selection-chip button {
+  flex-shrink: 0;
+}
+@media (max-width: 760px) {
+  .trim-checkbox-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .comparison-view-switch {
+    width: 100%;
+  }
+  .comparison-view-switch label {
+    flex: 1;
+    justify-content: center;
+    padding: 8px 4px;
+  }
+}

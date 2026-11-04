@@ -14,7 +14,7 @@ For each reviewed guide:
 4. Populate each equipment field from evidence, with one of the four states. An omitted field renders as Unverified. Do not use `unavailable` for a missing source or an empty brochure cell unless the document’s legend establishes that meaning.
 5. Attach `sourceIds` to every confirmed equipment cell. Include both a readable `value` and any `conditions`. Optional equipment requires conditions describing the package or other availability requirements. Use `featureIds` to associate a cell with a general glossary term for search.
 6. Add factory packages with their source IDs, included equipment description, eligible `trimIds`, and conditions. Add upgrade gains only when both trims and the differences are verified for the same year/configuration.
-7. Set the guide’s `status: "verified"` and `verifiedAt` only after reviewing its trim identity. A verified guide can still have individual unverified cells; these stay labeled and do not count as confirmed differences.
+7. Set the guide’s `status: "verified"` and `verifiedAt` only after reviewing its trim identity. A verified guide can still have individual unverified cells; these stay labeled. Known-versus-unverified cells count as differences in verification, not proof of a physical equipment difference.
 8. Run validation, tests, and build. Review the model page, search results, cross-brand comparison, source references, and print preview. Ensure the printed sheet stays readable on one landscape Letter page before publishing a populated model. Very large trim lineups may need concise wording or a dedicated follow-up print-layout improvement; never clip or silently drop claims to fit.
 
 ## Schema example (illustrative only, not real vehicle data)
@@ -81,7 +81,15 @@ Package records: `{id, name, description, trimIds, conditions, sourceIds}`. Upgr
 
 Search is local and case insensitive. It combines manufacturer and year filters with all query terms. Model identity is searchable even for pending guides. Equipment, trim, and technology matches require a source-verified guide and trim; equipment must be Standard or Optional with reviewed evidence. All feature terms must match **one configuration**, preventing a result based on two incompatible trims. Optional matches do not imply the feature is installed—read the conditions and actual window sticker.
 
-Only eligible, source-verified configurations appear in the comparison picker. It accepts two to four configurations. Differences-only mode hides shared rows and any row with an unverified cell. Show all equipment to expose those unknowns. A blank comparison never implies equivalence. Package and drivetrain conditions remain visible with the relevant cell. Cross-brand comparisons use these same rules.
+Only eligible, source-verified configurations appear in the comparison pickers. Model guides and cross-model comparisons accept two to four configurations and default to **Differences Only**. The model picker initially chooses two different trim names with matching configuration labels where possible; users can change that selection. **All Equipment** restores every equipment field, including shared unknowns.
+
+Rows are identical only when availability status, equipment value, conditions, technology references and displayed package contents match across every selected configuration. Source IDs, dates and citation pages do not create equipment differences. All-Unverified rows are identical and hidden in Differences Only; Standard/Optional/Unavailable versus Unverified rows remain visible with an explanation that this is a verification difference. No unknown is relabeled as Unavailable. The **Standard Across All Selected Trims** disclosure contains only identical, source-verified Standard cells, never shared optional items or unknowns.
+
+Packages and listed options use the same availability/content filtering in their own section, which retains context when an equipment category is selected. Same-name listings can be compared across models; eligibility, descriptions, restrictions, source labels and unknown contents remain visible. An absent source-verified listing becomes Unverified, not Unavailable. Name-only package verification never becomes an invented contents list.
+
+**Why Upgrade?** shows the first existing verified gain for source-authored upgrade edges only when both selected trims belong to the same model/year and have matching configuration labels. Reversed selection order is supported; no upgrade is synthesized for arbitrary trims, different powertrain/drivetrain contexts, model years or manufacturers. Full upgrade details remain in the unchanged model guide. These rules are generic across brands and model years; they do not populate missing 2027 data.
+
+Comparison selection and view controls do not change stored data or the full-model print reference. Print rendering explicitly requests all equipment and still uses all of the model’s configurations.
 
 ## Glossary
 

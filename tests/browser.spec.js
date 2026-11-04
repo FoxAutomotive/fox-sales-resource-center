@@ -150,18 +150,22 @@ test("verified synthetic configurations compare across brands and trims", async 
   await page.getByRole("button", { name: "Add to comparison" }).click();
   await page.locator("#compare-select").selectOption("fixture-a:plus");
   await page.getByRole("button", { name: "Add to comparison" }).click();
-  await expect(page.locator(".equipment-table tbody tr")).toHaveCount(2);
-  await expect(page.locator(".equipment-table")).toContainText(
-    "Requires synthetic package",
-  );
-  await expect(page.locator(".equipment-table")).not.toContainText(
-    "Synthetic engine A",
-  );
-  await page.getByLabel("Show verified differences only").uncheck();
-  await expect(page.locator(".equipment-table")).toContainText(
-    "Synthetic engine A",
-  );
-  await expect(page.locator(".equipment-table")).toContainText("Unverified");
+  await expect(
+    page.locator('[data-comparison-table="equipment"] tbody tr'),
+  ).toHaveCount(3);
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).toContainText("Requires synthetic package");
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).not.toContainText("Synthetic engine A");
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).toContainText("Synthetic engine A");
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).toContainText("Unverified");
   await page.locator("#compare-select").selectOption("fixture-b:plus");
   await page.getByRole("button", { name: "Add to comparison" }).click();
   await expect(page.locator(".selection-chip")).toHaveCount(3);
@@ -173,13 +177,25 @@ test("verified model shows upgrades, package conditions, and all equipment contr
 }) => {
   await useFixtures(page);
   await page.goto("./#/model/fixture-a");
-  await expect(page.locator("#model-equipment tbody tr")).toHaveCount(2);
-  await page.getByLabel("Show verified differences only").uncheck();
-  await expect(page.locator("#model-equipment tbody tr")).toHaveCount(30);
+  await expect(
+    page.locator(
+      '#model-equipment [data-comparison-table="equipment"] tbody tr',
+    ),
+  ).toHaveCount(3);
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
+  await expect(
+    page.locator(
+      '#model-equipment [data-comparison-table="equipment"] tbody tr',
+    ),
+  ).toHaveCount(30);
   await page
     .getByLabel("Category", { exact: true })
     .selectOption("Performance");
-  await expect(page.locator("#model-equipment tbody tr")).toHaveCount(10);
+  await expect(
+    page.locator(
+      '#model-equipment [data-comparison-table="equipment"] tbody tr',
+    ),
+  ).toHaveCount(10);
   await expect(
     page.locator("#upgrade-section").getByText("Synthetic audio upgrade"),
   ).toBeVisible();
@@ -353,9 +369,13 @@ test("RAV4 HEV brochure equipment, package caveats and separate PHEV link render
   page,
 }) => {
   await page.goto("./#/model/2026-toyota-rav4");
-  await expect(page.locator("#model-equipment thead th")).toHaveCount(10);
+  await expect(
+    page.locator(
+      '#model-equipment [data-comparison-table="equipment"] thead th',
+    ),
+  ).toHaveCount(3);
   await expect(page.locator("#model-equipment")).not.toContainText("Plug-in");
-  await page.getByLabel("Show verified differences only").uncheck();
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
   await expect(page.locator("#model-equipment")).toContainText("B1 pp. 21");
   await expect(page.locator("#model-equipment")).toContainText("Unverified");
   await page
@@ -374,7 +394,11 @@ test("RAV4 HEV brochure equipment, package caveats and separate PHEV link render
   await expect(
     page.getByRole("heading", { name: "RAV4 Plug-in Hybrid", exact: true }),
   ).toBeVisible();
-  await expect(page.locator("#model-equipment thead th")).toHaveCount(5);
+  await expect(
+    page.locator(
+      '#model-equipment [data-comparison-table="equipment"] thead th',
+    ),
+  ).toHaveCount(3);
   await expect(page.locator("#model-equipment")).not.toContainText("B1");
 });
 test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
@@ -391,14 +415,20 @@ test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
     .locator("#compare-select")
     .selectOption("2026-toyota-rav4:xse-hev-awd");
   await page.getByRole("button", { name: "Add to comparison" }).click();
-  await expect(page.locator(".equipment-table")).toContainText("10.5-inch");
-  await expect(page.locator(".equipment-table")).toContainText("12.9-inch");
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).toContainText("10.5-inch");
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).toContainText("12.9-inch");
 });
 test("RAV4 hybrid quick reference fits landscape Letter and includes all grades and package caveats", async ({
   page,
 }, testInfo) => {
   await page.goto("./#/model/2026-toyota-rav4");
-  await expect(page.locator("#model-equipment table")).toBeVisible();
+  await expect(
+    page.locator('#model-equipment [data-comparison-table="equipment"]'),
+  ).toBeVisible();
   await page.emulateMedia({ media: "print" });
   const sheet = page.locator(".print-reference");
   await expect(sheet.locator(".print-grade-table tbody tr")).toHaveCount(6);
@@ -417,6 +447,115 @@ test("RAV4 hybrid quick reference fits landscape Letter and includes all grades 
   await expect(sheet).not.toContainText("GR SPORT");
   const pdf = await page.pdf({
     path: testInfo.outputPath("rav4-hybrid-reference.pdf"),
+    preferCSSPageSize: true,
+  });
+  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
+});
+
+test("model trim picker supports three selections, shared standards, packages and verified Why Upgrade", async ({
+  page,
+}) => {
+  const v = fixtureVehicle();
+  const third = structuredClone(v.trims[1]);
+  third.id = "max";
+  third.name = "Fixture Max";
+  third.equipment.audio.value = "Synthetic premium audio";
+  v.trims.push(third);
+  await page.route("**/data/catalog.json", (route) =>
+    route.fulfill({ json: { ...catalog, vehicles: [v] } }),
+  );
+  await page.goto("./#/model/fixture-a");
+  await expect(
+    page.getByRole("radio", { name: "Differences Only", exact: true }),
+  ).toBeChecked();
+  const main = page.locator('[data-comparison-table="equipment"]');
+  await expect(main).not.toContainText("Synthetic engine A");
+  await expect(main).toContainText("Unavailable");
+  await expect(main).toContainText("Unverified");
+  await expect(page.locator(".comparison-upgrades")).toContainText(
+    "Synthetic audio upgrade",
+  );
+  await expect(
+    page.locator('[data-comparison-table="packages"]'),
+  ).toContainText("Synthetic heated seats");
+  await page.locator(".shared-standard > summary").click();
+  await expect(page.locator('[data-comparison-table="shared"]')).toContainText(
+    "Synthetic engine A",
+  );
+  await expect(
+    page.locator('[data-comparison-table="shared"]'),
+  ).not.toContainText("Synthetic heated seats");
+  await page.locator(".model-trim-picker > summary").click();
+  await page.locator('input[name="model-trim"][value="fixture-a:max"]').check();
+  await expect(main.locator("thead th")).toHaveCount(4);
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
+  await expect(main).toContainText("Synthetic engine A");
+  await expect(main.locator("tbody tr")).toHaveCount(catalog.fields.length);
+  await page
+    .locator('input[name="model-trim"][value="fixture-a:base"]')
+    .uncheck();
+  await page
+    .locator('input[name="model-trim"][value="fixture-a:plus"]')
+    .uncheck();
+  await expect(
+    page.getByRole("heading", { name: "Select at least two configurations" }),
+  ).toBeVisible();
+  await page
+    .locator('input[name="model-trim"][value="fixture-a:base"]')
+    .check();
+  await expect(main.locator("thead th")).toHaveCount(3);
+  await expect(
+    page.getByRole("radio", { name: "All Equipment", exact: true }),
+  ).toBeChecked();
+});
+test("same availability filter applies to cross-model comparisons and package contents", async ({
+  page,
+}) => {
+  const v = fixtureVehicle();
+  v.trims[1].equipment.engine.status = "optional";
+  v.trims[1].equipment.engine.conditions = "Synthetic engine package";
+  await page.route("**/data/catalog.json", (route) =>
+    route.fulfill({ json: { ...catalog, vehicles: [v] } }),
+  );
+  await page.goto("./#/compare");
+  for (const id of ["fixture-a:base", "fixture-a:plus"]) {
+    await page.locator("#compare-select").selectOption(id);
+    await page.getByRole("button", { name: "Add to comparison" }).click();
+  }
+  await expect(
+    page.getByRole("radio", { name: "Differences Only", exact: true }),
+  ).toBeChecked();
+  const main = page.locator('[data-comparison-table="equipment"]');
+  await expect(main).toContainText("Synthetic engine A");
+  await expect(main).toContainText("Optional");
+  await expect(main).toContainText("Unavailable");
+  await expect(main).toContainText("Unverified");
+  await expect(
+    page.locator('[data-comparison-table="packages"]'),
+  ).toContainText("Synthetic heated seats");
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
+  await expect(main.locator("tbody tr")).toHaveCount(catalog.fields.length);
+  await page
+    .getByRole("radio", { name: "Differences Only", exact: true })
+    .check();
+  await expect(main.locator("tbody tr")).toHaveCount(4);
+});
+test("selection and All Equipment never change the full model print reference", async ({
+  page,
+}, testInfo) => {
+  await page.goto("./#/model/2026-toyota-rav4");
+  await page.locator(".model-trim-picker > summary").click();
+  await page
+    .locator('input[name="model-trim"]')
+    .filter({ visible: true })
+    .first()
+    .uncheck();
+  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
+  await page.emulateMedia({ media: "print" });
+  await expect(page.locator(".print-grade-table tbody tr")).toHaveCount(6);
+  await expect(page.locator(".model-trim-picker")).toBeHidden();
+  const pdf = await page.pdf({
+    path: testInfo.outputPath("unchanged-full-model-reference.pdf"),
     preferCSSPageSize: true,
   });
   expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
