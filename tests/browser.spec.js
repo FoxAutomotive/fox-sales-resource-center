@@ -619,7 +619,7 @@ test("Trim Differences shows verified base specifications once and updates the b
     "Fixture Plus",
   );
 });
-test("cross comparison chooses the lower selected trim even when added last", async ({
+test("comparison page omits Base Equipment while retaining selections, tables and modes", async ({
   page,
 }) => {
   await useFixtures(page);
@@ -628,18 +628,37 @@ test("cross comparison chooses the lower selected trim even when added last", as
     await page.locator("#compare-select").selectOption(id);
     await page.getByRole("button", { name: "Add to comparison" }).click();
   }
-  await expect(page.locator(".baseline-identity")).toContainText(
-    "Fixture Base",
-  );
   await expect(
-    page.locator('[data-comparison-table="baseline"]'),
-  ).toContainText("Synthetic engine A");
+    page.locator(".baseline-equipment, .baseline-identity"),
+  ).toHaveCount(0);
+  await expect(page.locator('[data-comparison-table="baseline"]')).toHaveCount(
+    0,
+  );
+  await expect(page.locator(".selection-chip")).toHaveCount(2);
   await expect(
     page.locator('[data-comparison-table="equipment"]'),
   ).not.toContainText("Synthetic engine A");
   await expect(
     page.locator('[data-comparison-table="equipment"] thead th').last(),
   ).toContainText("Baseline");
+  await page.locator("#compare-view-all").check();
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).toContainText("Synthetic engine A");
+  await expect(page.locator(".baseline-equipment")).toHaveCount(0);
+  await page.locator("#compare-view-differences").check();
+  await expect(page.locator(".what-changes")).toBeVisible();
+  await expect(page.locator(".baseline-equipment")).toHaveCount(0);
+  await expect(page.locator(".selection-chip")).toHaveCount(2);
+  await page.locator('[data-remove="fixture-a:plus"]').click();
+  await page.locator("#compare-select").selectOption("fixture-b:base");
+  await page.getByRole("button", { name: "Add to comparison" }).click();
+  await expect(page.locator(".what-changes")).toContainText(
+    "No equipment changes in this view",
+  );
+  await expect(page.locator(".what-changes")).not.toContainText(
+    "Base Equipment",
+  );
 });
 test("RAV4 baseline keeps its engine, output, drivetrain, safety and infotainment visible", async ({
   page,

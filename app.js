@@ -250,7 +250,12 @@ function equipmentTable(vehicles, differenceOnly = true, group = "") {
 function comparisonViewControls(prefix) {
   return `<fieldset class="comparison-view-switch"><legend class="sr-only">Comparison view</legend><label><input type="radio" name="${prefix}-view" id="${prefix}-view-differences" value="differences" checked> Trim Differences</label><label><input type="radio" name="${prefix}-view" id="${prefix}-view-all" value="all"> All Equipment</label></fieldset>`;
 }
-function comparisonView(options, differenceOnly = true, group = "") {
+function comparisonView(
+  options,
+  differenceOnly = true,
+  group = "",
+  showBaseEquipment = true,
+) {
   if (options.length < 2)
     return '<div class="empty-state compact"><h2>Select at least two configurations</h2><p>Choose two to four trims to compare their equipment.</p></div>';
   const { baseline, baseRows, changeRows } = trimComparisonSections(
@@ -271,7 +276,7 @@ function comparisonView(options, differenceOnly = true, group = "") {
       : baseline.method === "cross-model-reference"
         ? "Reference baseline follows catalog order. Different models or model years do not have a shared trim ranking."
         : "Baseline follows this model’s existing catalog order; a price ranking or equipment inheritance is not inferred.";
-  return `<section class="baseline-equipment"><h3>Base Equipment</h3><p class="baseline-identity"><strong>Baseline trim:</strong> ${escape(identity)}</p><p class="comparison-note">${basis} Verified standard equipment that does not change is shown below. Changed core specifications appear once under What Changes, with this baseline’s value marked. No equipment is assumed to carry over.</p>${baseRows.length ? rowsTable([base], baseRows, "baseline") : '<p class="muted">No unchanged, source-verified standard equipment is recorded for this baseline and category. Check What Changes or choose All Equipment.</p>'}</section><section class="what-changes"><h3>What Changes</h3><p class="comparison-note">Only equipment or availability that differs between the selected configurations is shown. Known versus Unverified indicates a verification difference, not proof of absence.</p>${changeRows.length ? rowsTable(options, changeRows, "equipment", base.id) : '<div class="empty-state compact"><h4>No equipment changes in this view</h4><p>Identical rows are shown under Base Equipment when standard. All Equipment includes every recorded field.</p></div>'}${extras}</section>`;
+  return `${showBaseEquipment ? `<section class="baseline-equipment"><h3>Base Equipment</h3><p class="baseline-identity"><strong>Baseline trim:</strong> ${escape(identity)}</p><p class="comparison-note">${basis} Verified standard equipment that does not change is shown below. Changed core specifications appear once under What Changes, with this baseline’s value marked. No equipment is assumed to carry over.</p>${baseRows.length ? rowsTable([base], baseRows, "baseline") : '<p class="muted">No unchanged, source-verified standard equipment is recorded for this baseline and category. Check What Changes or choose All Equipment.</p>'}</section>` : ""}<section class="what-changes"><h3>What Changes</h3><p class="comparison-note">Only equipment or availability that differs between the selected configurations is shown. Known versus Unverified indicates a verification difference, not proof of absence.</p>${changeRows.length ? rowsTable(options, changeRows, "equipment", base.id) : `<div class="empty-state compact"><h4>No equipment changes in this view</h4><p>${showBaseEquipment ? "Identical rows are shown under Base Equipment when standard. " : ""}All Equipment includes every recorded field.</p></div>`}${extras}</section>`;
 }
 function defaultModelSelection(options) {
   if (options.length < 2) return options.map((o) => o.id);
@@ -702,6 +707,8 @@ function renderComparison(options) {
   $("#comparison-results").innerHTML = comparisonView(
     selected.map((id) => options.find((o) => o.id === id)),
     !$("#compare-view-all").checked,
+    "",
+    false,
   );
 }
 function stageTwoPage(kind) {
