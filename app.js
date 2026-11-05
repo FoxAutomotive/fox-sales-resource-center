@@ -448,6 +448,8 @@ function modelPage(id) {
         ? `${modelTrimPicker(options, modelSelected)}<div class="table-controls">${comparisonViewControls("model")}<div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((g) => `<option>${g}</option>`).join("")}</select></div></div><div id="model-equipment">${comparisonView(
             options.filter((o) => modelSelected.includes(o.id)),
             true,
+            "",
+            false,
           )}</div>`
         : `<div class="empty-state"><span class="empty-emblem">${icon("book")}</span><h3>Accuracy comes before a filled-in table.</h3><p>Trim structure and equipment are awaiting official ${v.year} ${escape(v.model)} documentation. No specifications have been carried over from another year.</p><a class="text-link" href="${escape(v.sources[0]?.url || catalog.brands.find((b) => b.id === v.brand).sourceUrl)}" target="_blank" rel="noopener noreferrer">Check the manufacturer’s model page ${icon("external")}</a></div>`
     }</section><div class="model-detail-grid"><section id="upgrade-section" class="detail-panel"><span class="panel-icon">${icon("arrow")}</span><h2>Reasons to upgrade</h2>${v.upgrades.length ? v.upgrades.map((u) => `<h3>${escape(u.from)} → ${escape(u.to)}</h3><ul>${u.gains.map((g) => `<li>${escape(g.text)} <small>Source: ${escape(citationText(g.sourceIds, g.sourcePages))}</small></li>`).join("")}</ul>`).join("") : "<p>Verified trim-to-trim gains will appear here after equipment research. There are no confirmed upgrade recommendations yet.</p>"}</section><section id="package-section" class="detail-panel"><span class="panel-icon">${icon("grid")}</span><h2>Factory packages</h2>${
@@ -481,6 +483,7 @@ function modelPage(id) {
         options.filter((o) => modelSelected.includes(o.id)),
         !$("#model-view-all").checked,
         $("#model-group").value,
+        false,
       );
     };
     const renderEquipment = () => {
