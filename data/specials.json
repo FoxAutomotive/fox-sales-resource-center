@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "timeZone": "America/Detroit",
+  "offers": [
+    {
+      "id": "toyota-corolla-2027-lease-nov-2026",
+      "manufacturer": "toyota",
+      "year": 2027,
+      "model": "Corolla",
+      "trim": "LE",
+      "type": "lease",
+      "monthlyPayment": 199,
+      "dueAtSigning": 2999,
+      "termMonths": 36,
+      "annualMileage": 10000,
+      "expiresOn": "2026-11-30",
+      "stockNumber": "T270028",
+      "vinLast8": "VP521000",
+      "msrp": 25043,
+      "sellingPrice": 23667,
+      "lender": "ADVIA CU",
+      "paymentIncludingTax": 211,
+      "downPayment": 2287,
+      "source": {
+        "file": "FOX-VW-LEASE-SPECIALS.xlsx",
+        "sheet": "Sheet1",
+        "column": "B"
+      }
+    },
+    {
+      "id": "toyota-tacoma-2026-lease-nov-2026",
+      "manufacturer": "toyota",
+      "year": 2026,
+      "model": "Tacoma",
+      "trim": "SR5 Double Cab 4WD",
+      "type": "lease",
+      "monthlyPayment": 351,
+      "dueAtSigning": 2999,
+      "termMonths": 36,
+      "annualMileage": 10000,
+      "expiresOn": "2026-11-30",
+      "stockNumber": "T261026",
+      "vinLast8": "TM331661",
+      "msrp": 43914,
+      "sellingPrice": 41461,
+      "lender": "TOYOTA",
+      "paymentIncludingTax": 372,
+      "downPayment": 2135,
+      "source": {
+        "file": "FOX-VW-LEASE-SPECIALS.xlsx",
+        "sheet": "Sheet1",
+        "column": "C"
+      }
+    },
+    {
+      "id": "toyota-camry-2026-lease-nov-2026",
+      "manufacturer": "toyota",
+      "year": 2026,
+      "model": "Camry",
+      "trim": "LE",
+      "type": "lease",
+      "monthlyPayment": 269,
+      "dueAtSigning": 2999,
+      "termMonths": 36,
+      "annualMileage": 10000,
+      "expiresOn": "2026-11-30",
+      "stockNumber": "T260957",
+      "vinLast8": "TU911858",
+      "msrp": 33268,
+      "sellingPrice": 31126,
+      "lender": "ADVIA",
+      "paymentIncludingTax": 285,
+      "downPayment": 2216,
+      "source": {
+        "file": "FOX-VW-LEASE-SPECIALS.xlsx",
+        "sheet": "Sheet1",
+        "column": "D"
+      }
+    },
+    {
+      "id": "toyota-tundra-2026-lease-nov-2026",
+      "manufacturer": "toyota",
+      "year": 2026,
+      "model": "Tundra",
+      "trim": "SR5 4WD CrewMax",
+      "type": "lease",
+      "monthlyPayment": 502,
+      "dueAtSigning": 2999,
+      "termMonths": 36,
+      "annualMileage": 10000,
+      "expiresOn": "2026-11-30",
+      "stockNumber": "T260832",
+      "vinLast8": "TX442860",
+      "msrp": 57767,
+      "sellingPrice": 54183,
+      "lender": "TOYOTA",
+      "paymentIncludingTax": 507,
+      "downPayment": 1984,
+      "source": {
+        "file": "FOX-VW-LEASE-SPECIALS.xlsx",
+        "sheet": "Sheet1",
+        "column": "F"
+      }
+    }
+  ]
+}

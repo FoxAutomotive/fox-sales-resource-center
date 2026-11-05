@@ -1,4 +1,11 @@
 import {
+  manufacturers,
+  offerTypes,
+  activeOffers,
+  dealershipDate,
+  validateSpecials,
+} from "./specials.js";
+import {
   searchVehicles,
   equipmentFields,
   comparisonRows,
@@ -50,6 +57,7 @@ const marks = {
 let catalog, features;
 let selected = [];
 let searchTimer;
+let disposeSpecials = () => {};
 let focusAfterRoute = false;
 const brandName = (id) => catalog.brands.find((b) => b.id === id)?.name || id;
 const mark = (id) => `<span class="brand-mark ${id}">${marks[id] || ""}</span>`;
@@ -79,10 +87,10 @@ function nav(active) {
     ["/compare", "Compare Trims"],
     ["/compare-vehicles", "Compare Vehicles"],
     ["/equipment-search", "Equipment Search"],
-    ["/specials", "Manager’s Specials"],
+    ["/specials", "Current Specials"],
   ];
   const link = ([path, label]) =>
-    `<a href="#${path}" ${active === path ? 'aria-current="page"' : ""}>${escape(label)}${["/compare-vehicles", "/equipment-search"].includes(path) ? '<span class="soon-label">STAGE 2</span>' : path === "/specials" ? '<span class="soon-label">SOON</span>' : ""}</a>`;
+    `<a href="#${path}" ${active === path ? 'aria-current="page"' : ""}>${escape(label)}${["/compare-vehicles", "/equipment-search"].includes(path) ? '<span class="soon-label">STAGE 2</span>' : ""}</a>`;
   $("#navigation").innerHTML =
     `<div class="primary-links">${primary.map(link).join("")}</div><div class="manufacturer-links"><span class="eyebrow">BROWSE BY BRAND</span>${catalog.brands.map((b) => link([`/brand/${b.id}`, b.name])).join("")}<a class="glossary-link" href="#/features">Equipment glossary ↗</a></div>`;
 }
@@ -721,10 +729,106 @@ function stageTwoPage(kind) {
   $("main").innerHTML =
     `<div class="content page-content">${breadcrumbs([{ label: title }])}<section class="stage-two-panel"><span class="badge pending">STAGE 2 · COMING NEXT</span><span class="tool-icon">${icon(isSearch ? "search" : "compare")}</span><h1>${title}</h1><p>${isSearch ? "A dedicated workspace for finding vehicles by verified equipment and feature combinations." : "A dedicated workspace for researching competing models and their verified specifications."}</p><p class="muted">This workspace is planned for Stage 2. For now, use the model guides, categorized equipment and existing trim comparison tools.</p><div class="stage-two-actions"><a class="button primary" href="#/search">Browse Model Guides ${icon("arrow")}</a><a class="button secondary" href="#/compare">Compare Trims</a><a class="text-link" href="#/features">Equipment glossary ${icon("arrow")}</a></div></section></div>`;
 }
-function specialsPage() {
+function offerCard(o) {
+  const money = (value) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    }).format(value);
+  const number = (value) => value.toLocaleString("en-US");
+  const row = (label, value) =>
+    value === undefined
+      ? ""
+      : `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`;
+  const amount = (value) => (value === undefined ? undefined : money(value));
+  const details = [
+    ["Stock number", o.stockNumber],
+    ["VIN", o.vin],
+    ["VIN (last 8)", o.vinLast8],
+    ["MSRP", amount(o.msrp)],
+    ["Selling price", amount(o.sellingPrice)],
+    ["Lender", o.lender],
+    ["Payment including tax", amount(o.paymentIncludingTax)],
+    ["Down payment", amount(o.downPayment)],
+    ["Qualifications / notes", o.notes],
+  ].filter(([, value]) => value !== undefined);
+  return `<article class="special-offer" data-offer-id="${escape(o.id)}"><span class="eyebrow">${escape(offerTypes[o.type])}</span><h3>${o.year} ${escape(manufacturers[o.manufacturer])} ${escape(o.model)} ${escape(o.trim)}</h3>${o.monthlyPayment !== undefined ? `<p class="special-payment">${money(o.monthlyPayment)}<span> / month</span></p>` : ""}<dl class="special-facts">${row("Purchase price", amount(o.purchasePrice))}${row("APR", o.apr === undefined ? undefined : `${o.apr}%`)}${row("Due at signing", amount(o.dueAtSigning))}${row(o.type === "lease" ? "Lease term" : "Term", o.termMonths === undefined ? undefined : `${o.termMonths} months`)}${row("Annual mileage", o.annualMileage === undefined ? undefined : `${number(o.annualMileage)} miles`)}${row("Expiration date", date(o.expiresOn))}</dl>${details.length ? `<details><summary>Full Offer Details</summary><dl class="special-facts special-details">${details.map(([label, value]) => row(label, value)).join("")}</dl></details>` : ""}</article>`;
+}
+async function specialsPage() {
   nav("/specials");
+  document.title = "Current Specials · Fox Automotive";
+  let disposed = false;
+  let timer;
+  const refresh = () => checkDate();
+  disposeSpecials = () => {
+    disposed = true;
+    clearInterval(timer);
+    document.removeEventListener("visibilitychange", refresh);
+  };
   $("#main").innerHTML =
-    `<div class="content page-content">${breadcrumbs([{ label: "Manager’s Specials" }])}<section class="coming-soon"><span class="badge pending">COMING SOON</span><span class="specials-icon">${icon("car")}</span><span class="eyebrow">A NEW SPOT FOR SHOWROOM OPPORTUNITIES</span><h1>Manager’s Specials</h1><p>A dedicated home for featured vehicles and current offers.<br>We’re getting the details ready.</p><div class="coming-rule"></div><p class="muted">No offers or incentives are published here yet.<br>For current availability, speak with your sales manager.</p><a class="button secondary" href="#/">Back to the resource center ${icon("arrow")}</a></section></div>`;
+    `<div class="content page-content">${breadcrumbs([{ label: "Current Specials" }])}<div class="page-heading"><h1>Current Specials</h1><p>Internal reference for salespeople and managers.</p></div><p id="specials-loading" role="status">Loading current offers…</p><div id="specials-content"></div></div>`;
+  let data, currentDay;
+  function checkDate() {
+    if (
+      !disposed &&
+      data &&
+      currentDay !== dealershipDate(new Date(), data.timeZone)
+    )
+      render();
+  }
+  function render() {
+    currentDay = dealershipDate(new Date(), data.timeZone);
+    const manufacturer = $("#special-manufacturer").value;
+    const type = $("#special-type").value;
+    const offers = activeOffers(data, { manufacturer, type });
+    const brands = manufacturer ? [manufacturer] : Object.keys(manufacturers);
+    $("#special-results").innerHTML =
+      `<p class="muted" role="status">${offers.length} active ${offers.length === 1 ? "offer" : "offers"}</p>` +
+      brands
+        .map((brand) => {
+          const matches = offers.filter((o) => o.manufacturer === brand);
+          return `<section class="special-brand" aria-labelledby="special-${brand}"><h2 id="special-${brand}">${manufacturers[brand]}</h2>${matches.length ? `<div class="special-grid">${matches.map(offerCard).join("")}</div>` : `<p class="notice">No current ${type ? offerTypes[type].toLowerCase() + " " : ""}offers are available for ${manufacturers[brand]}.</p>`}</section>`;
+        })
+        .join("");
+  }
+  try {
+    const response = await fetch(
+      new URL("./data/specials.json", import.meta.url),
+      { cache: "no-cache" },
+    );
+    if (!response.ok) throw new Error("Offers could not be loaded.");
+    data = await response.json();
+    if (validateSpecials(data).length) throw new Error("Invalid offer data.");
+    if (disposed) return;
+    $("#specials-loading").remove();
+    $("#specials-content").innerHTML =
+      `<div class="special-filters"><div><label for="special-manufacturer">Manufacturer</label><select id="special-manufacturer"><option value="">All Brands</option>${Object.entries(
+        manufacturers,
+      )
+        .map(([key, name]) => `<option value="${key}">${name}</option>`)
+        .join(
+          "",
+        )}</select></div><div><label for="special-type">Offer Type</label><select id="special-type"><option value="">All Offers</option>${Object.entries(
+        offerTypes,
+      )
+        .map(([key, name]) => `<option value="${key}">${name}</option>`)
+        .join("")}</select></div></div><div id="special-results"></div>`;
+    $("#special-manufacturer").onchange = render;
+    $("#special-type").onchange = render;
+    render();
+    timer = setInterval(checkDate, 1000);
+    document.addEventListener("visibilitychange", refresh);
+  } catch {
+    if (disposed) return;
+    $("#specials-loading").innerHTML =
+      `Current offers couldn’t load. <button class="button secondary" id="retry-specials">Try again</button>`;
+    $("#retry-specials").onclick = () => {
+      disposeSpecials();
+      specialsPage();
+    };
+  }
 }
 function aboutPage() {
   nav("");
@@ -742,6 +846,7 @@ function notify(text) {
   setTimeout(() => $("#toast").classList.remove("visible"), 3000);
 }
 function route() {
+  disposeSpecials();
   clearTimeout(searchTimer);
   const [path, query = ""] = (location.hash.slice(1) || "/").split("?");
   const params = new URLSearchParams(query);

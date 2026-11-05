@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "validate": "node scripts/validate.mjs",
-    "test": "node --test --test-isolation=none tests/data.test.mjs tests/import.test.mjs",
+    "test": "node --test --test-isolation=none tests/data.test.mjs tests/import.test.mjs tests/specials.test.mjs",
     "test:browser": "playwright test",
     "build": "node scripts/build.mjs",
     "format": "prettier --write .",

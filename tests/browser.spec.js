@@ -48,13 +48,13 @@ test("homepage and primary navigation work under the GitHub Pages subpath", asyn
     ).toBeVisible();
   }
   await page
-    .getByRole("link", { name: "Manager’s Specials", exact: false })
+    .getByRole("link", { name: "Current Specials", exact: false })
     .first()
     .click();
   await expect(
-    page.getByRole("heading", { name: "Manager’s Specials" }),
+    page.getByRole("heading", { name: "Current Specials" }),
   ).toBeVisible();
-  await expect(page.getByText("COMING SOON", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Offer Type", { exact: true })).toBeVisible();
   expect(errors).toEqual([]);
   expect(missing).toEqual([]);
 });
@@ -457,7 +457,7 @@ test("RAV4 hybrid quick reference fits landscape Letter and includes all grades 
   expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
 });
 
-test("model trim picker supports three selections, visible baseline, packages and verified Why Upgrade", async ({
+test("model trim picker supports three selections, packages and verified Why Upgrade", async ({
   page,
 }) => {
   const v = fixtureVehicle();
@@ -483,12 +483,9 @@ test("model trim picker supports three selections, visible baseline, packages an
   await expect(
     page.locator('[data-comparison-table="packages"]'),
   ).toContainText("Synthetic heated seats");
-  await expect(
-    page.locator('[data-comparison-table="baseline"]'),
-  ).toContainText("Synthetic engine A");
-  await expect(
-    page.locator('[data-comparison-table="baseline"]'),
-  ).not.toContainText("Synthetic heated seats");
+  await expect(page.locator('[data-comparison-table="baseline"]')).toHaveCount(
+    0,
+  );
   await page.locator(".model-trim-picker > summary").click();
   await page.locator('input[name="model-trim"][value="fixture-a:max"]').check();
   await expect(main.locator("thead th")).toHaveCount(4);
@@ -565,7 +562,7 @@ test("selection and All Equipment never change the full model print reference", 
   expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
 });
 
-test("Trim Differences shows verified base specifications once and updates the baseline", async ({
+test("Trim Differences omits the base panel and updates reference columns", async ({
   page,
 }) => {
   const v = fixtureVehicle();
@@ -586,12 +583,10 @@ test("Trim Differences shows verified base specifications once and updates the b
   await expect(
     page.getByRole("radio", { name: "Trim Differences", exact: true }),
   ).toBeChecked();
-  await expect(page.locator(".baseline-identity")).toContainText(
-    "Fixture Base",
-  );
+  await expect(page.locator(".baseline-identity")).toHaveCount(0);
   const base = page.locator('[data-comparison-table="baseline"]');
   const changes = page.locator('[data-comparison-table="equipment"]');
-  await expect(base).toContainText("Synthetic engine A");
+  await expect(base).toHaveCount(0);
   await expect(changes).not.toContainText("Synthetic engine A");
   await expect(changes).toContainText("Synthetic upgraded audio");
   await expect(page.locator(".baseline-column-label")).toHaveCount(1);
@@ -600,13 +595,11 @@ test("Trim Differences shows verified base specifications once and updates the b
   await page
     .locator('input[name="model-trim"][value="fixture-a:base"]')
     .uncheck();
-  await expect(page.locator(".baseline-identity")).toContainText(
+  await expect(changes.locator("thead th").nth(1)).toContainText(
     "Fixture Plus",
   );
-  await expect(page.locator(".baseline-identity")).not.toContainText(
-    "Fixture Base",
-  );
-  await expect(base).toContainText("Synthetic engine A");
+  await expect(changes.locator("thead")).not.toContainText("Fixture Base");
+  await expect(base).toHaveCount(0);
   await expect(changes).not.toContainText("Synthetic engine A");
   await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
   await expect(page.locator(".baseline-equipment")).toHaveCount(0);
@@ -615,9 +608,10 @@ test("Trim Differences shows verified base specifications once and updates the b
   await page
     .getByRole("radio", { name: "Trim Differences", exact: true })
     .check();
-  await expect(page.locator(".baseline-identity")).toContainText(
+  await expect(changes.locator("thead th").nth(1)).toContainText(
     "Fixture Plus",
   );
+  await expect(base).toHaveCount(0);
 });
 test("comparison page omits Base Equipment while retaining selections, tables and modes", async ({
   page,
@@ -660,12 +654,18 @@ test("comparison page omits Base Equipment while retaining selections, tables an
     "Base Equipment",
   );
 });
-test("RAV4 baseline keeps its engine, output, drivetrain, safety and infotainment visible", async ({
+test("RAV4 All Equipment retains engine, output, drivetrain, safety and infotainment", async ({
   page,
 }) => {
   await page.goto("./#/model/2026-toyota-rav4");
-  await expect(page.locator(".baseline-identity")).toContainText("LE Hybrid");
-  const base = page.locator('[data-comparison-table="baseline"]');
+  await expect(page.locator('[data-comparison-table="baseline"]')).toHaveCount(
+    0,
+  );
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).not.toContainText("2.5L Dynamic Force");
+  await page.locator("#model-view-all").check();
+  const base = page.locator('[data-comparison-table="equipment"]');
   for (const text of [
     "2.5L Dynamic Force",
     "226 net combined hp",
@@ -674,9 +674,7 @@ test("RAV4 baseline keeps its engine, output, drivetrain, safety and infotainmen
     "10.5-inch Toyota Audio Multimedia",
   ])
     await expect(base).toContainText(text);
-  await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).not.toContainText("2.5L Dynamic Force");
+
   await page.setViewportSize({ width: 390, height: 844 });
   expect(
     await page.evaluate(
@@ -744,7 +742,7 @@ test("Stage 1 trim cards keep configuration-specific facts and open categorized 
   await expect(packages).toContainText("Contents Unverified");
 });
 
-test("trim card comparison action preserves the baseline and All Equipment views", async ({
+test("trim card comparison action preserves differences and All Equipment views", async ({
   page,
 }) => {
   await page.goto("./#/model/2026-toyota-rav4");
@@ -759,7 +757,7 @@ test("trim card comparison action preserves the baseline and All Equipment views
   ).toBeChecked();
   await expect(page.locator("#trim-section")).toBeFocused();
   await expect(page.locator("#model-view-differences")).toBeChecked();
-  await expect(page.locator("#model-equipment")).toContainText(
+  await expect(page.locator("#model-equipment")).not.toContainText(
     "Base Equipment",
   );
   await expect(page.locator("#model-equipment")).toContainText("What Changes");
@@ -964,8 +962,11 @@ test("Tiguan reuses trim cards, switches drivetrain specs, and displays sourced 
   await expect(changes).toContainText("Starting MSRP");
   await expect(
     page.locator('#model-equipment [data-comparison-table="baseline"]'),
-  ).toContainText("201 hp");
+  ).toHaveCount(0);
   await page.locator("#model-view-all").check();
+  await expect(
+    page.locator('#model-equipment [data-comparison-table="equipment"]'),
+  ).toContainText("201 hp");
   await expect(
     page.locator('#model-equipment [data-comparison-table="equipment"]'),
   ).toContainText("Ground clearance");
@@ -1177,4 +1178,143 @@ test("bulk-imported Taos and GLI compare their actual configuration-specific equ
   });
   await expect(remote.locator("td").nth(2)).toContainText("Not Offered");
   await expect(remote.locator("td").nth(3)).toContainText("Standard");
+});
+
+test("current specials filters, spreadsheet details and responsive cards", async ({
+  page,
+}) => {
+  await page.clock.install({ time: new Date("2026-11-05T12:00:00Z") });
+  await page.goto("./#/specials");
+  await expect(page.locator(".special-offer")).toHaveCount(4);
+  await expect(
+    page.getByText("No current offers are available for Volkswagen."),
+  ).toBeVisible();
+  await expect(
+    page.getByText("No current offers are available for Chevrolet."),
+  ).toBeVisible();
+  const corolla = page.locator(".special-offer").first();
+  await expect(corolla).toContainText("2027 Toyota Corolla LE");
+  await expect(corolla).toContainText("$199");
+  await corolla.getByText("Full Offer Details", { exact: true }).click();
+  await expect(corolla.getByText("VP521000")).toBeVisible();
+  await expect(corolla.getByText("T270028")).toBeVisible();
+  await expect(corolla.getByText("$211")).toBeVisible();
+  await expect(corolla.getByText("$2,287")).toBeVisible();
+  await corolla.getByText("Full Offer Details", { exact: true }).click();
+  await expect(corolla.getByText("VP521000")).not.toBeVisible();
+  await page
+    .getByLabel("Manufacturer", { exact: true })
+    .selectOption("volkswagen");
+  await expect(page.locator(".special-offer")).toHaveCount(0);
+  await expect(page.locator(".special-brand")).toHaveCount(1);
+  await page.getByLabel("Manufacturer", { exact: true }).selectOption("toyota");
+  await page.getByLabel("Offer Type", { exact: true }).selectOption("finance");
+  await expect(
+    page.getByText("No current finance offers are available for Toyota."),
+  ).toBeVisible();
+  await page.getByLabel("Offer Type", { exact: true }).selectOption("purchase");
+  await expect(page.locator(".special-offer")).toHaveCount(0);
+  await page.getByLabel("Offer Type", { exact: true }).selectOption("lease");
+  await expect(page.locator(".special-offer")).toHaveCount(4);
+  const cards = page.locator(".special-offer");
+  const first = await cards.nth(0).boundingBox(),
+    second = await cards.nth(1).boundingBox();
+  expect(first.y).toEqual(second.y);
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobileFirst = await cards.nth(0).boundingBox(),
+    mobileSecond = await cards.nth(1).boundingBox();
+  expect(mobileSecond.y).toBeGreaterThan(mobileFirst.y + mobileFirst.height);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page
+    .getByRole("navigation", { name: "Primary navigation" })
+    .getByRole("link", { name: "Model Guides", exact: true })
+    .click();
+  await expect(page.getByRole("searchbox")).toBeVisible();
+  await page
+    .getByRole("navigation", { name: "Primary navigation" })
+    .getByRole("link", { name: "Current Specials", exact: true })
+    .click();
+  await expect(cards).toHaveCount(4);
+});
+
+test("specials expire on an open page at dealership midnight", async ({
+  page,
+}) => {
+  await page.clock.install({ time: new Date("2026-12-01T04:59:59Z") });
+  await page.goto("./#/specials");
+  await expect(page.locator(".special-offer")).toHaveCount(4);
+  await page.clock.fastForward(2000);
+  await expect(page.locator(".special-offer")).toHaveCount(0);
+  await expect(
+    page.getByText("No current offers are available for Toyota."),
+  ).toBeVisible();
+});
+
+test("specials data additions need no layout changes and omit missing fields", async ({
+  page,
+}) => {
+  const data = JSON.parse(
+    await readFile(new URL("../data/specials.json", import.meta.url), "utf8"),
+  );
+  const source = data.offers[0].source;
+  data.offers = [
+    {
+      id: "finance",
+      manufacturer: "volkswagen",
+      year: 2027,
+      model: "Test",
+      trim: "SE",
+      type: "finance",
+      apr: 0,
+      termMonths: 60,
+      expiresOn: "2026-11-30",
+      source,
+    },
+    {
+      id: "purchase",
+      manufacturer: "chevrolet",
+      year: 2026,
+      model: "Test",
+      trim: "LT",
+      type: "purchase",
+      purchasePrice: 30000,
+      expiresOn: "2026-11-30",
+      source,
+    },
+  ];
+  await page.route("**/data/specials.json", (route) =>
+    route.fulfill({ json: data }),
+  );
+  await page.clock.install({ time: new Date("2026-11-05T12:00:00Z") });
+  await page.goto("./#/specials");
+  await expect(page.locator(".special-offer")).toHaveCount(2);
+  await expect(page.getByText("0%", { exact: true })).toBeVisible();
+  await expect(page.getByText("$30,000", { exact: true })).toBeVisible();
+  await expect(
+    page.getByText("Full Offer Details", { exact: true }),
+  ).toHaveCount(0);
+  await expect(page.getByText("Annual mileage", { exact: true })).toHaveCount(
+    0,
+  );
+  await page.getByLabel("Offer Type", { exact: true }).selectOption("purchase");
+  await expect(page.locator(".special-offer")).toHaveCount(1);
+});
+
+test("specials loading failure is isolated from model guides", async ({
+  page,
+}) => {
+  await page.route("**/data/specials.json", (route) =>
+    route.fulfill({ status: 503, body: "Unavailable" }),
+  );
+  await page.goto("./#/specials");
+  await expect(page.getByRole("button", { name: "Try again" })).toBeVisible();
+  await page.unroute("**/data/specials.json");
+  await page.getByRole("button", { name: "Try again" }).click();
+  await expect(page.getByLabel("Offer Type", { exact: true })).toBeVisible();
+  await page.goto("./#/search");
+  await expect(page.getByRole("searchbox")).toBeVisible();
 });
