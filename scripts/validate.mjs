@@ -1,3 +1,4 @@
+import { validateSpecials } from "../specials.js";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { evidenceReady, equipmentFields } from "../lib.js";
@@ -314,7 +315,13 @@ export async function validateFiles() {
       ),
     ),
   );
-  const errors = validate(catalog, features);
+  const specials = JSON.parse(
+    await readFile(new URL("../data/specials.json", import.meta.url), "utf8"),
+  );
+  const errors = [
+    ...validate(catalog, features),
+    ...validateSpecials(specials),
+  ];
   if (errors.length) throw new Error(errors.join("\n"));
   console.log(
     `Validated ${catalog.vehicles.length} model guides, ${catalog.fields.length} equipment fields, and ${features.length} explanations. ${catalog.vehicles.filter((v) => v.status === "verified").length} guides source-verified.`,

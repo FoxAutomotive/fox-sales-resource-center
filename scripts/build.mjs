@@ -9,6 +9,7 @@ for (const path of [
   "styles.css",
   "app.js",
   "lib.js",
+  "specials.js",
   "data",
   "assets",
 ])
