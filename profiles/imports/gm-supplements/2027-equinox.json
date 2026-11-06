@@ -1,0 +1,30 @@
+{
+  "year": 2027,
+  "model": "Equinox",
+  "source": {
+    "id": "chevrolet-2027-equinox-web",
+    "title": "Chevrolet 2027 Equinox \u2014 Performance & Capability",
+    "kind": "verified",
+    "modelYear": 2027,
+    "checkedAt": "2026-11-06",
+    "url": "https://www.chevrolet.com/suvs/equinox",
+    "shortLabel": "CHEV27",
+    "snapshotSha256": "ba1b64e1d7acfbc7a5e4e99c7c9a691996d33637144d57c0ea75d9536f4c76aa",
+    "scope": "Reviewed 2027 U.S. manufacturer model page; Performance & Capability section. Equipment still uses the workbook matrix."
+  },
+  "facts": {
+    "horsepower": {
+      "value": "175 hp",
+      "locator": "Performance & Capability: 175 hp"
+    },
+    "torque": {
+      "value": "203 lb-ft",
+      "locator": "Performance & Capability: 203 lb.-ft. Torque"
+    }
+  },
+  "researchNotes": [
+    "Manufacturer model page states a properly equipped model-wide maximum of 1,500 lb towing, without resolving the configuration-specific limits in the reviewed material. Configuration tow ratings remain Unverified.",
+    "The workbook and reviewed public pages do not establish configuration-specific EPA fuel economy, ground clearance, passenger volume or MSRP. No prior-year values or AWD price increment are inferred."
+  ],
+  "category": "SUV"
+}

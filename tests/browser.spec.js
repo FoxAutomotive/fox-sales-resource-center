@@ -1451,3 +1451,153 @@ test("2027 equipment respects AWD qualifiers, production exceptions and cross-ye
       .nth(1),
   ).toContainText("Unverified");
 });
+
+test("Equinox standard-only guide reuses trim cards, colors and drivetrain controls", async ({
+  page,
+}, testInfo) => {
+  await page.goto("./#/brand/chevrolet");
+  await expect(page.locator(".vehicle-card")).toHaveCount(1);
+  await page
+    .getByRole("link", { name: "Open 2027 Equinox guide", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Equinox", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("STANDARD EQUIPMENT GUIDE", { exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".trim-training-card")).toHaveCount(3);
+  await expect(page.locator(".card-configuration")).toHaveCount(3);
+  await expect(page.locator(".feature-card")).toHaveCount(0);
+  await expect(
+    page.locator(".trim-card-visual, .trim-image-placeholder"),
+  ).toHaveCount(0);
+  await expect(page.locator("#model-year-changes")).toContainText(
+    "Eight Speed Transmission New for FWD",
+  );
+  await expect(page.locator("#model-year-changes")).toContainText(
+    "Autumn Harvest",
+  );
+  await expect(page.locator("#model-year-changes")).not.toContainText(
+    "Connected Cameras",
+  );
+  await expect(
+    page.locator("#package-section, .comparison-packages"),
+  ).toHaveCount(0);
+  await expect(page.locator("#categorized-equipment")).not.toContainText(
+    "Convenience Package",
+  );
+  await expect(page.locator("#categorized-equipment")).not.toContainText(
+    "Available (Optional)",
+  );
+  const colors = page.locator("#color-section");
+  const autumn = colors
+    .getByRole("row")
+    .filter({ hasText: "Autumn Harvest Metallic" });
+  await expect(autumn).toContainText("LT");
+  await expect(autumn).toContainText("ACTIV");
+  await expect(autumn).not.toContainText("RS");
+  await expect(colors).toContainText("Artemis Gray");
+  await expect(colors).toContainText("Sueded Microfiber");
+  await expect(colors).toContainText("additional color/material reference");
+  await colors
+    .getByText("Mosaic Black Metallic Roof — RS, LT", { exact: true })
+    .click();
+  await expect(colors).toContainText("Lakeshore Blue Metallic");
+  await page
+    .locator("#equipment-config")
+    .selectOption("2027-chevrolet-equinox:lt-fwd");
+  await expect(page.locator("#categorized-equipment")).toContainText(
+    "14.8 U.S. gal",
+  );
+  await page
+    .locator("#equipment-config")
+    .selectOption("2027-chevrolet-equinox:lt-awd");
+  await expect(page.locator("#categorized-equipment")).toContainText(
+    "15.6 U.S. gal",
+  );
+  await expect(page.locator("#categorized-equipment")).toContainText("3583 lb");
+  for (const width of [1280, 390, 320]) {
+    await page.setViewportSize({ width, height: 850 });
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+      String(width),
+    ).toBe(true);
+  }
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.screenshot({ path: testInfo.outputPath("equinox-desktop.png") });
+});
+
+test("Equinox Differences Only retains engine context and compares standard equipment", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2027-chevrolet-equinox");
+  await page.locator(".model-trim-picker > summary").click();
+  await page
+    .locator('input[name="model-trim"][value="2027-chevrolet-equinox:rs-fwd"]')
+    .check();
+  const table = page.locator(
+    '#model-equipment [data-comparison-table="equipment"]',
+  );
+  await expect(table.locator("thead th")).toHaveCount(4);
+  await expect(table).toContainText("1.5L Turbo");
+  await expect(table).toContainText("8-speed automatic");
+  const charging = table.locator("tbody tr").filter({
+    has: page.locator("th", { hasText: /Wireless phone charging/ }),
+  });
+  await expect(charging.locator("td").nth(0)).toContainText("Not standard");
+  await expect(charging.locator("td").nth(1)).toContainText("Standard");
+  await expect(charging.locator("td").nth(2)).toContainText("Standard");
+  await expect(table).not.toContainText("Available (Optional)");
+  await expect(
+    page.locator(".baseline-equipment, .comparison-packages"),
+  ).toHaveCount(0);
+  await page.locator("#model-view-all").check();
+  await expect(table).toContainText("Heated front seats");
+  await expect(table).toContainText("Heated steering wheel");
+  await expect(table).not.toContainText("Ventilated seats");
+  await page
+    .getByRole("navigation", { name: "Primary navigation" })
+    .getByRole("link", { name: "Compare Trims", exact: true })
+    .click();
+  for (const id of ["lt-fwd", "rs-fwd", "activ-fwd"]) {
+    await page
+      .locator("#compare-select")
+      .selectOption(`2027-chevrolet-equinox:${id}`);
+    await page.locator("#add-compare").click();
+  }
+  await expect(
+    page.locator('[data-comparison-table="equipment"]'),
+  ).toContainText("1.5L Turbo");
+  await expect(
+    page.locator(".baseline-equipment, .comparison-packages"),
+  ).toHaveCount(0);
+});
+
+test("Equinox print stays one page, contains standard specifications, and meets accessibility checks", async ({
+  page,
+}, testInfo) => {
+  await page.goto("./#/model/2027-chevrolet-equinox");
+  await expect(page.locator("#equipment-config option")).toHaveCount(6);
+  const { default: AxeBuilder } = await import("@axe-core/playwright");
+  const audit = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(audit.violations).toEqual([]);
+  await page.emulateMedia({ media: "print" });
+  const print = page.locator(".print-reference");
+  await expect(print).toContainText("175 hp");
+  await expect(print).toContainText("203 lb-ft");
+  await expect(print).toContainText("14.8 U.S. gal");
+  await expect(print).toContainText("15.6 U.S. gal");
+  await expect(print).toContainText("63.5 cu ft");
+  await expect(print).not.toContainText("Named factory packages");
+  await expect(print).not.toContainText("Confirmed individual options");
+  const pdf = await page.pdf({
+    path: testInfo.outputPath("2027-equinox-reference.pdf"),
+    preferCSSPageSize: true,
+  });
+  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
+});

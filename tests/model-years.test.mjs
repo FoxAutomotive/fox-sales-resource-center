@@ -53,7 +53,9 @@ test("2027 imports all 41 reviewed pages, eight models and 38 configurations wit
     }
   }
   assert.equal(
-    eligibleOptions(catalog).filter((o) => o.vehicle.year === 2027).length,
+    eligibleOptions(catalog).filter(
+      (o) => o.vehicle.year === 2027 && o.vehicle.brand === "volkswagen",
+    ).length,
     38,
   );
   assert.equal(

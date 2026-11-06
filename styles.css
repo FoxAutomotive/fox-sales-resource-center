@@ -3178,3 +3178,8 @@ input[type="checkbox"] {
     max-width: none;
   }
 }
+
+/* Keep the color reference table inside its existing responsive panel. */
+.color-reference {
+  min-width: 0;
+}

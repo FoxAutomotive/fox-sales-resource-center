@@ -94,3 +94,7 @@ The reviewed profile supplies shifted price-column bounds and per-table option b
 For 2028, add a new document profile, verify column/symbol alignment and exceptions, and review model-year notes against both editions. Missing technical ratings stay unknown. Update the new year's coverage note only. Re-run the dry-run/review/digest-checked apply process above and all regression checks. No separate import system or year-specific page is needed.
 
 The source identifies its release as **CW43-2026** and has a **9/28/26 cover-footer revision date**. That footer is recorded as `documentDate` with an explicit `dateBasis`; it is not presented as a guessed October publication date. Individual model footer revisions vary. The original attachment and rendered inspection pages are not committed or bundled in the static site.
+
+## GM Excel exports
+
+Chevrolet factory-standard equipment now has a workbook adapter feeding the same catalog/review/apply workflow. See [GM XLSX import instructions](GM-XLSX.md) for single-file and batch use, source interpretation, original-file preservation and limitations.
