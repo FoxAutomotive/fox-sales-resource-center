@@ -1588,7 +1588,7 @@ input[type="checkbox"] {
   display: none;
 }
 #trim-section {
-  scroll-margin-top: 25px;
+  scroll-margin-top: 140px;
 }
 @media (min-width: 1500px) {
   :root {
@@ -3182,4 +3182,106 @@ input[type="checkbox"] {
 /* Keep the color reference table inside its existing responsive panel. */
 .color-reference {
   min-width: 0;
+}
+
+/* Shared reference modal reuses the guide's existing panels and typography. */
+body.reference-open {
+  overflow: hidden;
+}
+.reference-dialog {
+  width: min(980px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: white;
+}
+.reference-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.reference-dialog::backdrop {
+  background: rgb(20 28 40 / 45%);
+}
+.reference-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.reference-header h2 {
+  margin: 0 0 6px;
+}
+.reference-header p {
+  margin: 0;
+}
+.reference-close {
+  flex-shrink: 0;
+}
+.reference-body {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 24px;
+  overflow-wrap: anywhere;
+}
+.reference-body .source-list a {
+  overflow-wrap: anywhere;
+}
+.source-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: underline;
+}
+button.text-link {
+  background: none;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+.section-nav button {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  padding: 14px 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.section-nav button:hover {
+  color: var(--red);
+}
+.model-page .section-block {
+  scroll-margin-top: 140px;
+}
+@media (max-width: 600px) {
+  .reference-dialog {
+    width: calc(100% - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+  .reference-header,
+  .reference-body {
+    padding: 16px;
+  }
+  .reference-header h2 {
+    font-size: 20px;
+  }
+}
+@media print {
+  .reference-dialog {
+    display: none !important;
+  }
+  body.reference-open {
+    overflow: visible !important;
+    padding-right: 0 !important;
+  }
 }
