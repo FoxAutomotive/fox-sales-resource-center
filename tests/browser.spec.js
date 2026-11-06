@@ -301,10 +301,7 @@ test("current specials filters, spreadsheet details and responsive cards", async
 }) => {
   await page.clock.install({ time: new Date("2026-11-05T12:00:00Z") });
   await page.goto("./#/specials");
-  await expect(page.locator(".special-offer")).toHaveCount(4);
-  await expect(
-    page.getByText("No current offers are available for Volkswagen."),
-  ).toBeVisible();
+  await expect(page.locator(".special-offer")).toHaveCount(9);
   await expect(
     page.getByText("No current offers are available for Chevrolet."),
   ).toBeVisible();
@@ -321,7 +318,7 @@ test("current specials filters, spreadsheet details and responsive cards", async
   await page
     .getByLabel("Manufacturer", { exact: true })
     .selectOption("volkswagen");
-  await expect(page.locator(".special-offer")).toHaveCount(0);
+  await expect(page.locator(".special-offer")).toHaveCount(5);
   await expect(page.locator(".special-brand")).toHaveCount(1);
   await page.getByLabel("Manufacturer", { exact: true }).selectOption("toyota");
   await page.getByLabel("Offer Type", { exact: true }).selectOption("finance");
@@ -354,7 +351,7 @@ test("current specials filters, spreadsheet details and responsive cards", async
     .getByRole("navigation", { name: "Primary navigation" })
     .getByRole("link", { name: "Current Specials", exact: true })
     .click();
-  await expect(cards).toHaveCount(4);
+  await expect(cards).toHaveCount(9);
 });
 
 test("specials expire on an open page at dealership midnight", async ({
@@ -362,7 +359,7 @@ test("specials expire on an open page at dealership midnight", async ({
 }) => {
   await page.clock.install({ time: new Date("2026-12-01T04:59:59Z") });
   await page.goto("./#/specials");
-  await expect(page.locator(".special-offer")).toHaveCount(4);
+  await expect(page.locator(".special-offer")).toHaveCount(9);
   await page.clock.fastForward(2000);
   await expect(page.locator(".special-offer")).toHaveCount(0);
   await expect(
@@ -1331,3 +1328,169 @@ for (const width of [1280, 390]) {
     }
   });
 }
+
+test("November Volkswagen lease cards preserve approved cents, totals, rebates and qualifications", async ({
+  page,
+}) => {
+  await page.clock.install({ time: new Date("2026-11-06T12:00:00Z") });
+  await page.goto("./#/specials");
+  await page
+    .getByLabel("Manufacturer", { exact: true })
+    .selectOption("volkswagen");
+  await page.getByLabel("Offer Type", { exact: true }).selectOption("lease");
+  const cards = page.locator(".special-offer");
+  await expect(cards).toHaveCount(5);
+  const rows = [
+    [
+      "2027 Volkswagen Jetta Sport",
+      "$373.25",
+      "$500",
+      false,
+      "2027-volkswagen-jetta",
+    ],
+    [
+      "2027 Volkswagen Taos S",
+      "$405.00",
+      "$500",
+      false,
+      "2027-volkswagen-taos",
+    ],
+    [
+      "2026 Volkswagen Tiguan S",
+      "$409.83",
+      "$1,950",
+      true,
+      "2026-volkswagen-tiguan",
+    ],
+    [
+      "2026 Volkswagen Atlas Cross Sport SE",
+      "$560.40",
+      "$4,750",
+      true,
+      "2026-volkswagen-atlas-cross-sport",
+    ],
+    [
+      "2026 Volkswagen Atlas SE",
+      "$572.60",
+      "$1,250",
+      true,
+      "2026-volkswagen-atlas",
+    ],
+  ];
+  for (const [name, payment, rebate, costco, guide] of rows) {
+    const card = cards.filter({
+      has: page.getByRole("heading", { name, exact: true }),
+    });
+    await expect(card.locator(".special-payment")).toHaveText(
+      `${payment} / month`,
+    );
+    await expect(card).toContainText(
+      "Total out of pocket (due at signing)$2,000",
+    );
+    await expect(card).toContainText(`Rebate included in payment${rebate}`);
+    await expect(card).toContainText("36 months");
+    await expect(card).toContainText("10,000 miles");
+    await expect(card).toContainText("Nov 30, 2026");
+    await expect(card.locator("p > strong")).toHaveText(
+      costco ? "Costco Executive Membership Required" : "Everyone Qualifies",
+    );
+    await expect(card).toContainText(
+      "Lease payments subject to approved credit through the applicable leasing company. Not all customers will qualify.",
+    );
+    await card.getByText("Full Offer Details", { exact: true }).click();
+    for (const label of [
+      "Stock number",
+      "VIN",
+      "MSRP",
+      "Selling price",
+      "Leasing company",
+      "Payment including tax",
+      "Down payment",
+      "Lienholder",
+      "Residual value",
+      "Residual percentage",
+      "Money factor",
+      "Acquisition fee",
+      "Disposition fee",
+      "Security deposit",
+      "Credit tier",
+    ])
+      await expect(
+        card
+          .locator(".special-details > div")
+          .filter({
+            has: page.locator("dt", { hasText: new RegExp(`^${label}$`) }),
+          })
+          .locator("dd"),
+      ).toHaveText("TBD");
+    await expect(card).not.toContainText("Volkswagen Credit");
+    await expect(card).toContainText(
+      "Rebates are already reflected in the monthly payment",
+    );
+    await expect(
+      card.getByRole("link", { name: /Product Guide/ }),
+    ).toHaveAttribute("href", `#/model/${guide}`);
+  }
+  const first = await cards.nth(0).boundingBox(),
+    second = await cards.nth(1).boundingBox();
+  expect(first.y).toBe(second.y);
+  for (const width of [390, 320]) {
+    await page.setViewportSize({ width, height: 844 });
+    const a = await cards.nth(0).boundingBox(),
+      b = await cards.nth(1).boundingBox();
+    expect(b.y).toBeGreaterThan(a.y + a.height);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  }
+  await cards
+    .first()
+    .getByRole("link", { name: /Product Guide/ })
+    .click();
+  await expect(page.locator("h1")).toHaveText("Jetta 1.5T");
+});
+
+test("lease details keep zero, N/A and TBD distinct without inventing membership or guide matches", async ({
+  page,
+}) => {
+  const data = JSON.parse(
+    await readFile(new URL("../data/specials.json", import.meta.url), "utf8"),
+  );
+  const offer = structuredClone(
+    data.offers.find((o) => o.manufacturer === "volkswagen"),
+  );
+  delete offer.qualification;
+  offer.vehicleId = "2026-volkswagen-jetta"; // A different year must never receive the link.
+  offer.leaseDetails = {
+    securityDeposit: 0,
+    dispositionFee: "N/A",
+    creditTier: null,
+  };
+  await page.route("**/data/specials.json", (route) =>
+    route.fulfill({ json: { ...data, offers: [offer] } }),
+  );
+  await page.clock.install({ time: new Date("2026-11-06T12:00:00Z") });
+  await page.goto("./#/specials");
+  const card = page.locator(".special-offer");
+  await card.getByText("Full Offer Details", { exact: true }).click();
+  for (const [label, value] of [
+    ["Security deposit", "$0"],
+    ["Disposition fee", "N/A"],
+    ["Credit tier", "TBD"],
+  ])
+    await expect(
+      card
+        .locator(".special-details > div")
+        .filter({
+          has: page.locator("dt", { hasText: new RegExp(`^${label}$`) }),
+        })
+        .locator("dd"),
+    ).toHaveText(value);
+  await expect(card).not.toContainText("Costco");
+  await expect(card.getByRole("link", { name: /Product Guide/ })).toHaveCount(
+    0,
+  );
+  await expect(card).toContainText("2027 Volkswagen Jetta Sport");
+});
