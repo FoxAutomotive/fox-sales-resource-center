@@ -1,5 +1,5 @@
 // Read-only sales views. Manufacturer records and import classifications stay untouched.
-import { comparisonRows, resolveCell } from "./lib.js";
+import { comparisonRows, equipmentFields, resolveCell } from "./lib.js";
 export const coreFields = [
   "engine",
   "horsepower",
@@ -105,7 +105,11 @@ export function salesOptions(options) {
     };
   });
 }
-export function standardReasons(catalog, options) {
+export function standardReasons(
+  catalog,
+  options,
+  { directional = false } = {},
+) {
   const priority = [
     "heatedSeats",
     "heatedWheel",
@@ -125,7 +129,7 @@ export function standardReasons(catalog, options) {
   ];
   const result = [];
   for (let i = 0; i < options.length; i++)
-    for (let j = i + 1; j < options.length; j++) {
+    for (let j = directional ? 0 : i + 1; j < options.length; j++) {
       let from = options[i],
         to = options[j];
       if (
@@ -135,12 +139,29 @@ export function standardReasons(catalog, options) {
       )
         continue;
       const order = from.vehicle.trims.map((t) => t.id);
-      if (order.indexOf(from.trim.id) > order.indexOf(to.trim.id))
+      if (
+        !directional &&
+        order.indexOf(from.trim.id) > order.indexOf(to.trim.id)
+      )
         [from, to] = [to, from];
       const rows = comparisonRows(catalog, [from, to], {
         differenceOnly: true,
       });
-      const gains = priority
+      const fields = directional
+        ? [
+            ...new Set([
+              "horsepower",
+              ...priority,
+              "tires",
+              "chassis",
+              ...equipmentFields(catalog, [from.vehicle])
+                .filter((field) => !specificationFields.has(field.id))
+                .map((field) => field.id),
+            ]),
+          ]
+        : priority;
+      const seen = new Set();
+      const gains = fields
         .flatMap((id) => {
           const row = rows.find((r) => r.id === id);
           if (!row) return [];
@@ -151,12 +172,51 @@ export function standardReasons(catalog, options) {
             (before.value === after.value && before.status === after.status)
           )
             return [];
+          if (
+            directional &&
+            id === "horsepower" &&
+            !(parseFloat(after.value) > parseFloat(before.value))
+          )
+            return [];
+          const key = JSON.stringify([
+            before.status,
+            before.value,
+            after.value,
+          ]);
+          if (directional && seen.has(key)) return [];
+          seen.add(key);
           return [{ label: row.label, cell: after, before }];
         })
         .slice(0, 4);
       if (gains.length) result.push({ from, to, gains });
     }
   return result;
+}
+// Group identical evidence across matched drivetrains; never mix configurations.
+export function modelUpgradePaths(catalog, options) {
+  const paths = new Map();
+  for (const reason of standardReasons(catalog, salesOptions(options), {
+    directional: true,
+  })) {
+    const key = JSON.stringify([
+      reason.from.vehicle.id,
+      reason.from.trim.name,
+      reason.to.trim.name,
+      reason.gains.map((g) => [
+        g.label,
+        g.before.status,
+        g.before.value,
+        g.cell.value,
+      ]),
+    ]);
+    if (!paths.has(key)) paths.set(key, { ...reason, configurations: [] });
+    paths.get(key).configurations.push({
+      name: reason.from.trim.configuration,
+      from: reason.from.trim.id,
+      to: reason.to.trim.id,
+    });
+  }
+  return [...paths.values()];
 }
 export function visibleYearChanges(vehicle) {
   return (vehicle.modelYearChanges?.items || []).flatMap((item) => {

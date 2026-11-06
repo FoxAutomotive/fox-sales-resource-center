@@ -3285,3 +3285,12 @@ button.text-link {
     padding-right: 0 !important;
   }
 }
+/* Keep automatic upgrade facts readable inside the existing guide panels. */
+.model-page #why-upgrade li {
+  margin: 12px 0;
+}
+.model-page #why-upgrade .cell-value,
+.model-page #why-upgrade li > small {
+  display: block;
+  margin-top: 4px;
+}

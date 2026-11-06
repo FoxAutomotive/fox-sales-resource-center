@@ -4,6 +4,7 @@ import {
   salesText,
   specificationFields,
   standardReasons,
+  modelUpgradePaths,
   visibleYearChanges,
   printView,
 } from "./presentation.js";
@@ -222,7 +223,7 @@ function glossaryPage(params) {
   $("#feature-search").addEventListener("input", render);
   render();
 }
-function cellHTML(cell, { audit = false, vehicle = null } = {}) {
+function cellHTML(cell, { audit = false, vehicle = null, trimId = null } = {}) {
   const shown = audit ? cell : salesCell(cell);
   const labels = {
     standard: "Standard",
@@ -254,7 +255,7 @@ function cellHTML(cell, { audit = false, vehicle = null } = {}) {
           )
           .join("")}</span>`
       : ""
-  }${shown.sourceIds?.length ? `<small class="source-reference">${audit ? `Source: ${escape(citationText(shown.sourceIds, shown.sourcePages, shown.sourceCells, shown.sourceSections))}` : `<button class="text-link source-link" type="button" data-view-sources="${escape(owner?.id || "")}">Source: ${escape(citationText(shown.sourceIds, shown.sourcePages, shown.sourceCells, shown.sourceSections))}</button>`}</small>` : ""}`;
+  }${shown.sourceIds?.length ? `<small class="source-reference">${audit ? `Source: ${escape(citationText(shown.sourceIds, shown.sourcePages, shown.sourceCells, shown.sourceSections))}` : `<button class="text-link source-link" type="button" ${trimId ? `data-source-trim="${escape(trimId)}"` : ""} data-view-sources="${escape(owner?.id || "")}">Source: ${escape(citationText(shown.sourceIds, shown.sourcePages, shown.sourceCells, shown.sourceSections))}</button>`}</small>` : ""}`;
 }
 function rowsTable(vehicles, rows, kind = "equipment", baselineId = null) {
   return `<div class="table-scroll" tabindex="0" role="region" aria-label="${kind === "baseline" ? "Base Equipment" : kind === "packages" ? "Packages and listed options" : "Equipment comparison"}, scroll horizontally"><table class="equipment-table" data-comparison-table="${kind}"><thead><tr><th scope="col">${kind === "packages" ? "Package / option" : "Equipment"}</th>${vehicles.map(({ vehicle: v, trim: t }) => `<th scope="col"><span>${v.year} ${escape(v.model)}</span>${escape(t.name)}<button class="text-link source-link" type="button" data-view-sources="${escape(v.id)}" data-source-trim="${escape(t.id)}">View Sources</button>${t.configuration ? `<small>${escape(t.configuration)}</small>` : ""}${`${v.id}:${t.id}` === baselineId ? `<small class="baseline-column-label">Baseline</small>` : ""}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr><th scope="row"><small>${escape(row.group)}</small>${escape(row.label)}</th>${row.cells.map((c, i) => `<td>${cellHTML(c, { vehicle: vehicles[i].vehicle })}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
@@ -270,22 +271,6 @@ function comparisonView(options, differenceOnly = true, group = "") {
   const reasons = standardReasons(catalog, projected);
   const why = `<section class="comparison-upgrades" id="why-upgrade"><h3>Why Upgrade?</h3>${reasons.length ? reasons.map(({ from, to, gains }) => `<article><h4>${escape(from.trim.name)} → ${escape(to.trim.name)}</h4><p class="comparison-note">${from.vehicle.year} ${escape(from.vehicle.model)} · ${escape(from.trim.configuration || "Matched configurations")}</p><ul>${gains.map((g) => `<li><strong>${escape(g.label)}:</strong> ${cellHTML(g.cell, { vehicle: to.vehicle })}${g.before.status === "not-standard" ? `<small>Not standard on ${escape(from.trim.name)}.</small>` : `<small>${escape(from.trim.name)}: ${escape(g.before.value)}</small>`}</li>`).join("")}</ul></article>`).join("") : '<p class="muted">No additional verified standard-equipment gains are established for this selection. Compare different trims with matching drivetrains for upgrade context.</p>'}</section>`;
   return `<section class="${differenceOnly ? "what-changes" : "all-equipment-view"}"><h3>${differenceOnly ? "What Changes" : "All Equipment"}</h3><p class="comparison-note">Factory-standard equipment only. Essential common mechanical specifications remain visible for context. Not standard does not mean unavailable. N/A means not yet verified or not applicable; View Sources retains the original distinctions.</p>${rows.length ? rowsTable(projected, rows) : '<p class="muted">No verified standard-equipment differences in this category.</p>'}${new Set(options.map((o) => o.vehicle.id)).size === 1 ? why : ""}</section>`;
-}
-function defaultModelSelection(options) {
-  if (options.length < 2) return options.map((o) => o.id);
-  const first = options[0];
-  const second =
-    options.find(
-      (o) =>
-        o.trim.name !== first.trim.name &&
-        o.trim.configuration === first.trim.configuration,
-    ) ||
-    options.find((o) => o.trim.name !== first.trim.name) ||
-    options[1];
-  return [first.id, second.id];
-}
-function modelTrimPicker(options, ids) {
-  return `<details class="model-trim-picker"><summary>Choose trims to compare · <span id="model-selected-count">${ids.length}</span> selected</summary><fieldset><legend>Select two to four configurations</legend><div class="trim-checkbox-grid">${options.map((o) => `<label><input type="checkbox" name="model-trim" value="${escape(o.id)}" ${ids.includes(o.id) ? "checked" : ""}><span>${escape(o.trim.name)}${o.trim.configuration ? `<small>${escape(o.trim.configuration)}</small>` : ""}</span></label>`).join("")}</div></fieldset></details>`;
 }
 function citationText(ids = [], pages = {}, cells = {}, sections = {}) {
   return ids
@@ -386,7 +371,7 @@ function trimCardHTML(vehicle, group, index, selectedId = group[0].id) {
     })
     .join(
       "",
-    )}</dl><h4>Equipment highlights</h4><ul class="trim-highlights">${highlights.length ? highlights.map((id) => `<li>${escape(resolveCell(vehicle, trim, id).value)}</li>`).join("") : "<li>Standard equipment details await verification.</li>"}</ul><div class="trim-card-actions"><button class="button primary" data-trim-action="equipment" data-option="${escape(option.id)}">View Equipment</button><button class="button secondary" data-trim-action="compare" data-option="${escape(option.id)}">Find Your Differences</button></div></div></article>`;
+    )}</dl><h4>Equipment highlights</h4><ul class="trim-highlights">${highlights.length ? highlights.map((id) => `<li>${escape(resolveCell(vehicle, trim, id).value)}</li>`).join("") : "<li>Standard equipment details await verification.</li>"}</ul><div class="trim-card-actions"><button class="button primary" data-trim-action="equipment" data-option="${escape(option.id)}">View Equipment</button></div></div></article>`;
 }
 function trimExplorerHTML(vehicle, options) {
   if (!options.length) return "";
@@ -504,6 +489,43 @@ function showSources(v, trimId, trigger = document.activeElement) {
     },
   });
 }
+function modelUpgradeHTML(v, options) {
+  const paths = modelUpgradePaths(catalog, options);
+  const names = [...new Set(options.map((o) => o.trim.name))];
+  return `<section id="why-upgrade" class="section-block comparison-upgrades"><h2>Why Upgrade?</h2><p class="comparison-note">Selected verified standard-equipment gains and changes, grouped by starting trim and matched drivetrain. Different materials, wheels or systems reflect different priorities; they do not make one trim universally better. This is not a complete list of differences.</p>${
+    paths.length
+      ? names
+          .map((name) => {
+            const relevant = paths.filter(
+              (path) => path.from.trim.name === name,
+            );
+            if (!relevant.length) return "";
+            const grouped = new Map();
+            for (const path of relevant) {
+              const key = JSON.stringify(
+                path.gains.map((gain) => [
+                  gain.label,
+                  gain.before.status,
+                  gain.before.value,
+                  gain.cell.value,
+                ]),
+              );
+              if (!grouped.has(key)) grouped.set(key, []);
+              grouped.get(key).push(path);
+            }
+            return `<details class="equipment-category"><summary><span>From ${escape(name)}</span><small>${new Set(relevant.map((path) => path.to.trim.name)).size} trim paths</small></summary>${[
+              ...grouped.values(),
+            ]
+              .map((paths) => {
+                const path = paths[0];
+                return `<article><h3>${paths.map((item) => `${escape(item.from.trim.name)} → ${escape(item.to.trim.name)}`).join(" · ")}</h3><p class="muted">${paths.map((item) => `${escape(item.to.trim.name)}: ${item.configurations.map((config) => `${escape(config.name || "Matched configuration")} <button type="button" class="text-link" data-view-sources="${escape(v.id)}" data-source-trim="${escape(config.to)}">View Sources</button>`).join(" · ")}`).join("; ")}</p><ul>${path.gains.map((gain) => `<li><strong>${escape(gain.label)} — ${gain.before.status === "not-standard" ? "Becomes standard" : "Standard equipment changes"}:</strong> ${cellHTML(gain.cell, { vehicle: v, trimId: path.to.trim.id })}${gain.before.status === "standard" ? `<small>${escape(path.from.trim.name)}: ${escape(gain.before.value)}</small>` : `<small>Not standard on ${escape(path.from.trim.name)}; this does not establish unavailability.</small>`}</li>`).join("")}</ul></article>`;
+              })
+              .join("")}</details>`;
+          })
+          .join("")
+      : "<p>No additional source-verified standard-equipment gains or changes are established between matched trim configurations.</p>"
+  }</section>`;
+}
 function modelPage(id) {
   const v = catalog.vehicles.find((v) => v.id === id);
   if (!v) return notFound();
@@ -512,19 +534,40 @@ function modelPage(id) {
     projected = salesOptions(options);
   const view = projected[0]?.vehicle || v;
   let activeId = options[0]?.id;
-  let modelSelected = defaultModelSelection(options);
   const printed = printView(catalog, v, options);
   $("#main").innerHTML =
-    `<div class="content page-content model-page">${breadcrumbs([{ label: "Model Guides", href: `#/search?brand=${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>Factory-standard equipment, verified specifications and trim differences.</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button><button class="text-link" id="view-sources">View Sources</button></div></div><div class="notice"><div><strong>STANDARD EQUIPMENT GUIDE</strong><p>${escape(standardEquipmentNotice)}</p><p>N/A means not yet verified or not applicable. It does not mean unavailable.</p></div></div><nav class="section-nav" aria-label="Model sections"><a href="#trim-section" data-scroll="trim-section">Find Your Differences</a><button type="button" id="view-equipment">View Equipment</button><a href="#equipment-explained" data-scroll="equipment-explained">Equipment Explained</a><a href="#specifications" data-scroll="specifications">Specifications</a>${v.colors ? '<a href="#color-section" data-scroll="color-section">Colors</a>' : ""}${v.modelYearChanges ? `<a href="#model-year-changes" data-scroll="model-year-changes">What's New for ${v.year}</a>` : ""}</nav>${trimExplorerHTML(view, projected)}<section id="trim-section" class="section-block"><div class="section-heading"><h2>Find Your Differences</h2></div><p class="comparison-note">Compare verified factory-standard equipment. Shared engine and transmission information stays visible.</p>${options.length ? `${modelTrimPicker(options, modelSelected)}<div class="table-controls">${comparisonViewControls("model")}<div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((group) => `<option>${group}</option>`).join("")}</select></div></div><div id="model-equipment"></div>` : "<p>Trim structure and equipment are awaiting official manufacturer documentation. No specifications are carried over from another year.</p>"}</section><section id="specifications" class="section-block"><h2>Specifications</h2>${options.length ? `<label class="field-label" for="spec-config">Specifications for</label><select id="spec-config" class="standalone-input">${options.map((o) => `<option value="${escape(o.id)}">${escape(o.trim.name)} · ${escape(o.trim.configuration || "")}</option>`).join("")}</select>` : ""}<div id="specification-values"></div></section>${colorsPanelHTML(v)}${modelYearChangesHTML(v)}<section id="equipment-explained" class="section-block no-print"><h2>Equipment Explained</h2><p class="muted">Manufacturer terminology and system explanations. These explanations do not establish standard equipment on a particular trim.</p>${featureCards(features.filter((f) => f.brand === v.brand))}</section><p class="no-print"><button class="text-link" id="view-sources-bottom">View Sources</button></p><section class="print-reference" aria-label="Printable quick reference">${printSheet(printed.vehicle, printed.options)}</section></div>`;
+    `<div class="content page-content model-page">${breadcrumbs([{ label: "Model Guides", href: `#/search?brand=${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>Factory-standard equipment, verified specifications and trim differences.</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button><button class="text-link" id="view-sources">View Sources</button></div></div><div class="notice"><div><strong>STANDARD EQUIPMENT GUIDE</strong><p>${escape(standardEquipmentNotice)}</p><p>N/A means not yet verified or not applicable. It does not mean unavailable.</p></div></div><nav class="section-nav" aria-label="Model sections"><button type="button" id="view-equipment">View Equipment</button><a href="#equipment-explained" data-scroll="equipment-explained">Equipment Explained</a><button type="button" id="view-specifications">View Specifications</button>${v.colors ? '<a href="#color-section" data-scroll="color-section">Colors</a>' : ""}${v.modelYearChanges ? `<a href="#model-year-changes" data-scroll="model-year-changes">What's New for ${v.year}</a>` : ""}</nav>${trimExplorerHTML(view, projected)}${modelUpgradeHTML(v, options)}${colorsPanelHTML(v)}${modelYearChangesHTML(v)}<section id="equipment-explained" class="section-block no-print"><h2>Equipment Explained</h2><p class="muted">Manufacturer terminology and system explanations. These explanations do not establish standard equipment on a particular trim.</p>${featureCards(features.filter((f) => f.brand === v.brand))}</section><p class="no-print"><button class="text-link" id="view-sources-bottom">View Sources</button></p><section class="print-reference" aria-label="Printable quick reference">${printSheet(printed.vehicle, printed.options)}</section></div>`;
   const active = () => options.find((o) => o.id === activeId) || options[0];
-  const renderSpecs = () => {
-    $("#specification-values").innerHTML = specificationsHTML(v, active());
-    if ($("#spec-config")) $("#spec-config").value = activeId;
-  };
   const setActive = (id) => {
     activeId = id;
-    renderSpecs();
   };
+  const showSpecifications = (trigger) => {
+    openReferenceDialog({
+      title: "Specifications",
+      context: guideContext(v, active()?.trim),
+      trigger,
+      content: `${options.length ? `<label class="field-label" for="spec-config">Specifications for</label><select id="spec-config" class="standalone-input">${options.map((option) => `<option value="${escape(option.id)}" ${option.id === activeId ? "selected" : ""}>${escape(option.trim.name)} · ${escape(option.trim.configuration || "")}</option>`).join("")}</select>` : ""}<div id="specification-values"></div>`,
+      onReady: (dialog) => {
+        const render = () => {
+          dialog.querySelector("#reference-context").textContent = guideContext(
+            v,
+            active()?.trim,
+          );
+          dialog.querySelector("#specification-values").innerHTML =
+            specificationsHTML(v, active());
+        };
+        const select = dialog.querySelector("#spec-config");
+        if (select)
+          select.onchange = () => {
+            setActive(select.value);
+            render();
+          };
+        render();
+      },
+    });
+  };
+  $("#view-specifications").onclick = (event) =>
+    showSpecifications(event.currentTarget);
   const showEquipment = (trigger) => {
     const chosen = active();
     openReferenceDialog({
@@ -559,9 +602,6 @@ function modelPage(id) {
     $(selector).onclick = (event) =>
       showSources(v, active()?.trim.id, event.currentTarget);
   $("#print-reference").onclick = () => window.print();
-  if ($("#spec-config"))
-    $("#spec-config").onchange = (event) => setActive(event.target.value);
-  renderSpecs();
   document.querySelectorAll("[data-scroll]").forEach(
     (link) =>
       (link.onclick = (event) => {
@@ -577,14 +617,6 @@ function modelPage(id) {
       }),
   );
   if (!options.length) return;
-  const update = () => {
-    $("#model-selected-count").textContent = modelSelected.length;
-    $("#model-equipment").innerHTML = comparisonView(
-      options.filter((o) => modelSelected.includes(o.id)),
-      !$("#model-view-all").checked,
-      $("#model-group").value,
-    );
-  };
   $(".trim-card-grid").addEventListener(
     "error",
     (event) => {
@@ -615,41 +647,10 @@ function modelPage(id) {
     const button = event.target.closest("[data-trim-action]");
     if (!button) return;
     setActive(button.dataset.option);
-    if (button.dataset.trimAction === "equipment") showEquipment(button);
-    else {
-      if (!modelSelected.includes(button.dataset.option)) {
-        modelSelected = [...modelSelected.slice(0, 3), button.dataset.option];
-        document
-          .querySelectorAll('input[name="model-trim"]')
-          .forEach(
-            (input) => (input.checked = modelSelected.includes(input.value)),
-          );
-        update();
-      }
-      $("#trim-section").scrollIntoView();
-      $("#trim-section").tabIndex = -1;
-      $("#trim-section").focus({ preventScroll: true });
-    }
+    showEquipment(button);
   };
-  document
-    .querySelectorAll('input[name="model-view"]')
-    .forEach((input) => (input.onchange = update));
-  $("#model-group").onchange = update;
-  document.querySelectorAll('input[name="model-trim"]').forEach(
-    (input) =>
-      (input.onchange = () => {
-        if (input.checked && modelSelected.length >= 4) {
-          input.checked = false;
-          return notify("Compare up to four configurations at a time.");
-        }
-        modelSelected = input.checked
-          ? [...modelSelected, input.value]
-          : modelSelected.filter((id) => id !== input.value);
-        update();
-      }),
-  );
-  update();
 }
+
 function standardOnlyPrintHTML(v, options, performance) {
   const specs = (v.quickReference.standardSpecFields || [])
     .map((id) => {

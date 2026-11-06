@@ -284,7 +284,7 @@ test("text-first trim cards have complete context and no reserved image space", 
       );
       await expect(card.getByRole("heading", { level: 3 })).toBeVisible();
       await expect(card.locator(".trim-core-specs > div")).toHaveCount(4);
-      await expect(card.locator(".trim-card-actions button")).toHaveCount(2);
+      await expect(card.locator(".trim-card-actions button")).toHaveCount(1);
       const spacing = await card.evaluate(
         (node) =>
           node.querySelector(".trim-card-context").getBoundingClientRect().top -
@@ -540,7 +540,7 @@ test("legacy links resolve to working destinations with no duplicate comparison 
   );
 });
 
-test("all model guides retain cards, standard-only comparisons, equipment explanations and sources", async ({
+test("all model guides retain cards, automatic upgrades, equipment explanations and sources", async ({
   page,
 }) => {
   test.setTimeout(90000);
@@ -553,7 +553,7 @@ test("all model guides retain cards, standard-only comparisons, equipment explan
       new Set(v.trims.map((t) => t.name)).size,
     );
     await expect(
-      page.locator("#specifications, #equipment-explained"),
+      page.locator("#view-specifications, #equipment-explained"),
     ).toHaveCount(2);
     await expect(
       page.locator(
@@ -561,10 +561,14 @@ test("all model guides retain cards, standard-only comparisons, equipment explan
       ),
     ).toHaveCount(0);
     await expect(page.locator(".model-page")).not.toContainText("Unverified");
-    if (v.trims.length)
-      await expect(page.locator("#model-equipment")).not.toContainText(
-        "Available (Optional)",
-      );
+    await expect(
+      page.locator(
+        "#trim-section, #model-equipment, #specifications, .model-trim-picker, .model-page .table-controls, .model-page .equipment-table[data-comparison-table], [data-trim-action=compare]",
+      ),
+    ).toHaveCount(0);
+    await expect(page.locator(".model-page")).not.toContainText(
+      /Find Your Differences|Choose trims to compare|What Changes|Differences Only/,
+    );
     await page.locator("#view-equipment").click();
     await expect(page.getByRole("dialog")).toContainText(
       `${v.year} ${catalog.brands.find((b) => b.id === v.brand).name} ${v.model}`,
@@ -653,12 +657,19 @@ test("sources modal preserves original optional and unknown classifications and 
 }) => {
   await useFixtures(page);
   await page.goto(modelPath("fixture-a"));
-  await page.locator("#model-view-all").check();
-  await expect(equipmentTable(page)).toContainText("Not standard");
-  await expect(equipmentTable(page)).not.toContainText(
+  await page.goto("./#/compare");
+  await addComparisons(page, ["fixture-a:base", "fixture-a:plus"]);
+  await page.locator("#compare-view-all").check();
+  await expect(equipmentTable(page, "#comparison-results")).toContainText(
+    "Not standard",
+  );
+  await expect(equipmentTable(page, "#comparison-results")).not.toContainText(
     "Requires synthetic package",
   );
-  await expect(page.locator("#specifications")).toContainText("N/A");
+  await page.goto(modelPath("fixture-a"));
+  await page.locator("#view-specifications").click();
+  await expect(page.getByRole("dialog")).toContainText("N/A");
+  await page.keyboard.press("Escape");
   await page.locator("#view-sources").click();
   const dialog = page.getByRole("dialog", {
     name: "Sources & Verification",
@@ -697,39 +708,29 @@ test("equipment source citations use the same dialog and return focus to the ori
   await expect(page.locator("#view-equipment")).toBeFocused();
 });
 
-test("Find Your Differences keeps core mechanics and one selection-aware standard Why Upgrade", async ({
+test("Why Upgrade automatically shows standard gains without individual comparison controls", async ({
   page,
 }) => {
   await useFixtures(page);
   await page.goto(modelPath("fixture-a"));
-  const table = equipmentTable(page);
-  await expect(table).toContainText("Synthetic engine A");
-  await expect(table).toContainText("Synthetic upgraded audio");
-  await expect(table).toContainText("Not standard");
   await expect(page.locator("#why-upgrade")).toHaveCount(1);
-  await expect(page.locator("#why-upgrade")).toContainText(
-    "Synthetic heated seats",
-  );
-  await expect(page.locator("#why-upgrade")).not.toContainText(
-    /package|Available|Unverified/,
-  );
-  await page.locator("#model-view-all").check();
-  await expect(table).toContainText("Synthetic engine A");
-  await page.locator("#model-view-differences").check();
-  await page.locator(".model-trim-picker > summary").click();
-  await page.locator('input[value="fixture-a:plus"]').uncheck();
-  await expect(
-    page.getByRole("heading", { name: "Select at least two configurations" }),
-  ).toBeVisible();
-  await expect(page.locator("#why-upgrade")).toHaveCount(0);
-  await page.locator('input[value="fixture-a:plus"]').check();
   await expect(page.locator("#why-upgrade")).toContainText(
     "Fixture Base → Fixture Plus",
   );
-  await page.locator("#model-group").selectOption("Safety");
-  await expect(table).toHaveCount(0);
-  await page.locator("#model-group").selectOption("");
-  await expect(table).toContainText("Synthetic engine A");
+  await expect(page.locator("#why-upgrade")).toContainText(
+    "Synthetic heated seats",
+  );
+  await expect(page.locator("#why-upgrade")).toContainText("Becomes standard");
+  await expect(page.locator("#why-upgrade")).not.toContainText(
+    /package|Available|Unverified/,
+  );
+  await expect(
+    page.locator(
+      "#model-equipment, #trim-section, .model-trim-picker, input[name=model-view], input[name=model-trim], #model-group",
+    ),
+  ).toHaveCount(0);
+  await page.locator("#why-upgrade > details > summary").first().click();
+  await expect(page.locator("#why-upgrade article").first()).toBeVisible();
 });
 
 test("cross-brand and cross-year comparisons preserve verified values, N/A, standard and not-standard", async ({
@@ -794,9 +795,7 @@ test("compact shortcuts focus visible headings and keep Chevrolet explanations, 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto(modelPath("2027-chevrolet-equinox"));
   for (const [name, target] of [
-    ["Find Your Differences", "trim-section"],
     ["Equipment Explained", "equipment-explained"],
-    ["Specifications", "specifications"],
   ]) {
     await page
       .locator(".section-nav")
@@ -825,13 +824,17 @@ test("specifications follow the selected Equinox drivetrain and retain important
   page,
 }) => {
   await page.goto(modelPath("2027-chevrolet-equinox"));
+  await page.locator("#view-specifications").click();
   await page
     .locator("#spec-config")
     .selectOption("2027-chevrolet-equinox:lt-fwd");
-  await expect(page.locator("#specifications")).toContainText("14.8 U.S. gal");
-  await expect(page.locator("#specifications")).toContainText(
+  await expect(page.locator("#specification-values")).toContainText(
+    "14.8 U.S. gal",
+  );
+  await expect(page.locator("#specification-values")).toContainText(
     "8-speed automatic",
   );
+  await page.keyboard.press("Escape");
   const dialog = await openEquipment(page);
   await page
     .locator("#equipment-config")
@@ -839,13 +842,16 @@ test("specifications follow the selected Equinox drivetrain and retain important
   await expect(dialog).toContainText("15.6 U.S. gal");
   await expect(dialog).toContainText("3583 lb");
   await page.keyboard.press("Escape");
+  await page.locator("#view-specifications").click();
   await expect(page.locator("#spec-config")).toHaveValue(
     "2027-chevrolet-equinox:lt-awd",
   );
-  await expect(page.locator("#specifications")).toContainText(
+  await expect(page.locator("#specification-values")).toContainText(
     "8-speed automatic",
   );
-  await expect(page.locator("#specifications")).toContainText("63.5 cu ft");
+  await expect(page.locator("#specification-values")).toContainText(
+    "63.5 cu ft",
+  );
 });
 
 test("all guides and shared modals fit desktop, tablet and narrow mobile", async ({
@@ -866,7 +872,11 @@ test("all guides and shared modals fit desktop, tablet and narrow mobile", async
         `${v.id} ${width}`,
       ).toBe(true);
     }
-    for (const trigger of ["#view-equipment", "#view-sources"]) {
+    for (const trigger of [
+      "#view-equipment",
+      "#view-specifications",
+      "#view-sources",
+    ]) {
       await page.locator(trigger).click();
       const dialog = page.getByRole("dialog");
       const rect = await dialog.boundingBox();
@@ -889,12 +899,16 @@ test("all guides and shared modals fit desktop, tablet and narrow mobile", async
   await page.screenshot({ path: testInfo.outputPath("equipment-mobile.png") });
 });
 
-test("both shared dialogs pass accessible naming and automated WCAG checks", async ({
+test("all three shared dialogs pass accessible naming and automated WCAG checks", async ({
   page,
 }) => {
   const { default: AxeBuilder } = await import("@axe-core/playwright");
   await page.goto(modelPath("2027-chevrolet-equinox"));
-  for (const trigger of ["#view-equipment", "#view-sources"]) {
+  for (const trigger of [
+    "#view-equipment",
+    "#view-specifications",
+    "#view-sources",
+  ]) {
     await page.locator(trigger).click();
     await expect(page.getByRole("dialog")).toHaveAttribute(
       "aria-labelledby",
@@ -966,10 +980,11 @@ test("model selections and Sources dialog do not change the full print reference
     "63.5 cu ft",
   ])
     expect(text).toContain(value);
-  await page.locator("#model-view-all").check();
+  await page.locator("#view-specifications").click();
   await page
     .locator("#spec-config")
     .selectOption("2027-chevrolet-equinox:rs-awd");
+  await page.keyboard.press("Escape");
   await page.locator("#view-sources").click();
   await page.emulateMedia({ media: "print" });
   await expect(print).toBeVisible();
@@ -1017,11 +1032,13 @@ test("production exceptions and genuine not-applicable states retain their origi
     "production credit 2PD",
   );
   await page.goto(modelPath("2026-toyota-rav4"));
+  await page.locator("#view-specifications").click();
   await expect(
     page.locator(
-      '#specifications [title="N/A — not applicable to this configuration"]',
+      '#specification-values [title="N/A — not applicable to this configuration"]',
     ),
   ).not.toHaveCount(0);
+  await page.keyboard.press("Escape");
   await page.locator("#view-sources").click();
   await page
     .getByText("Equipment verification details", { exact: true })
@@ -1046,7 +1063,7 @@ for (const width of [1280, 390]) {
       await expect(page.locator("h1")).toHaveText(vehicle.model);
       const unchanged = [
         "#navigation",
-        "#model-equipment",
+        "#why-upgrade",
         "#equipment-explained",
         "#color-section",
         "#model-year-changes",
@@ -1151,8 +1168,10 @@ for (const width of [1280, 390]) {
         await expect(
           page.getByRole("heading", { name: "Compare Trims", exact: true }),
         ).toHaveCount(0);
-        await expect(page.locator("#specifications")).toBeVisible();
-        await expect(page.locator("#model-equipment")).toHaveCount(1);
+        await expect(page.locator("#view-specifications")).toBeVisible();
+        await expect(
+          page.locator("#model-equipment, #specifications, #trim-section"),
+        ).toHaveCount(0);
       }
       const after = await Promise.all(
         unchanged.map((selector) =>
@@ -1165,10 +1184,11 @@ for (const width of [1280, 390]) {
         ),
       );
       expect(after, `${id}: protected sections`).toEqual(before);
-      await page.locator("#model-view-all").check();
-      await expect(equipmentTable(page)).toBeVisible();
-      await page.locator("#model-view-differences").check();
-      await expect(equipmentTable(page)).toBeVisible();
+      await expect(
+        page.locator(
+          "input[name=model-view], input[name=model-trim], #model-group",
+        ),
+      ).toHaveCount(0);
       await page.emulateMedia({ media: "print" });
       await expect(page.locator(".print-reference")).toBeVisible();
       const pdf = await page.pdf({ preferCSSPageSize: true });
@@ -1176,6 +1196,138 @@ for (const width of [1280, 390]) {
         1,
       );
       await page.emulateMedia({ media: "screen" });
+    }
+  });
+}
+
+for (const width of [1280, 390]) {
+  test(`Specifications modal follows every RAV4, Tiguan and Equinox configuration at ${width}px`, async ({
+    page,
+  }) => {
+    test.setTimeout(90000);
+    await page.setViewportSize({ width, height: 850 });
+    for (const id of [
+      "2026-toyota-rav4",
+      "2026-volkswagen-tiguan",
+      "2027-chevrolet-equinox",
+    ]) {
+      const vehicle = catalog.vehicles.find((v) => v.id === id);
+      await page.goto(modelPath(vehicle));
+      const opener = page.getByRole("button", {
+        name: "View Specifications",
+        exact: true,
+      });
+      await expect(
+        page.locator(
+          "#specifications, #specification-values, #model-equipment, #trim-section, .model-trim-picker, [data-trim-action=compare]",
+        ),
+      ).toHaveCount(0);
+      await expect(page.locator(".model-page")).not.toContainText(
+        /Find Your Differences|Choose Trims to Compare|What Changes|Differences Only|All Equipment/,
+      );
+      const upgrades = page.locator("#why-upgrade");
+      await expect(upgrades).toBeVisible();
+      await expect(upgrades.locator("details")).not.toHaveCount(0);
+      if (id === "2027-chevrolet-equinox") {
+        for (const path of ["LT → RS", "LT → ACTIV", "RS → ACTIV"])
+          await expect(upgrades).toContainText(path);
+        const fromLT = upgrades
+          .locator("details")
+          .filter({ has: page.locator("summary", { hasText: "From LT" }) });
+        await expect(fromLT.locator("article")).toHaveCount(1);
+        await upgrades
+          .locator("details > summary")
+          .filter({ hasText: "From RS" })
+          .click();
+        await expect(
+          upgrades.getByRole("heading", { name: "RS → ACTIV", exact: true }),
+        ).toBeVisible();
+        const link = upgrades
+          .getByRole("heading", { name: "RS → ACTIV", exact: true })
+          .locator("..")
+          .getByRole("button", { name: "View Sources", exact: true })
+          .first();
+        await link.click();
+        await expect(page.locator("#source-config")).toHaveValue("activ-fwd");
+        await page.keyboard.press("Escape");
+        await expect(link).toBeFocused();
+      }
+      await opener.scrollIntoViewIfNeeded();
+      const position = await page.evaluate(() => scrollY);
+      const printBefore = await page.locator(".print-reference").textContent();
+      await opener.click();
+      const dialog = page.getByRole("dialog", {
+        name: "Specifications",
+        exact: true,
+      });
+      await expect(dialog).toBeVisible();
+      await expect(dialog.locator("#spec-config option")).toHaveCount(
+        vehicle.trims.length,
+      );
+      for (const trim of vehicle.trims) {
+        await dialog.locator("#spec-config").selectOption(`${id}:${trim.id}`);
+        await expect(dialog.locator("#reference-context")).toContainText(
+          trim.name,
+        );
+        await expect(dialog.locator("#reference-context")).toContainText(
+          trim.configuration,
+        );
+        for (const field of [
+          "engine",
+          "horsepower",
+          "torque",
+          "transmission",
+          "drivetrain",
+          "economy",
+          "dimensions",
+          "cargo",
+          "fuel",
+          "towing",
+        ]) {
+          const cell = trim.equipment[field];
+          if (
+            cell?.status === "standard" &&
+            evidenceReady(vehicle, cell.sourceIds)
+          )
+            await expect(dialog.locator("#specification-values")).toContainText(
+              cell.value,
+            );
+        }
+      }
+      expect(await page.evaluate(() => scrollY)).toBe(position);
+      await dialog.locator(".reference-body").evaluate((node) => {
+        node.scrollTop = 200;
+      });
+      expect(await page.evaluate(() => scrollY)).toBe(position);
+      for (let i = 0; i < 8; i++) {
+        await page.keyboard.press("Tab");
+        expect(
+          await dialog.evaluate((node) =>
+            node.contains(document.activeElement),
+          ),
+        ).toBe(true);
+      }
+      await page.keyboard.press("Escape");
+      await expect(opener).toBeFocused();
+      expect(await page.evaluate(() => scrollY)).toBe(position);
+      await opener.click();
+      await page.emulateMedia({ media: "print" });
+      await expect(dialog).toBeHidden();
+      await expect(page.locator(".print-reference")).toBeVisible();
+      expect(await page.locator(".print-reference").textContent()).toBe(
+        printBefore,
+      );
+      const pdf = await page.pdf({ preferCSSPageSize: true });
+      expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(
+        1,
+      );
+      await page.emulateMedia({ media: "screen" });
+      await page.keyboard.press("Escape");
+      await expect(opener).toBeFocused();
+      await expect(page.locator("body")).not.toHaveClass(/reference-open/);
+      await opener.click();
+      await dialog.getByRole("button", { name: "Close dialog" }).click();
+      await expect(opener).toBeFocused();
     }
   });
 }
