@@ -66,6 +66,46 @@ class PdfExtractionTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "hash differs"):
                 extractor.extract(path, {"sha256": "0" * 64})
 
+    def test_retail_only_option_bounds_keep_trim_columns_and_full_name(self):
+        doc = fitz.open()
+        page = doc.new_page(width=612, height=792)
+        for x, y, value in [
+            (43, 50, "Factory Option Packages"), (393, 75, "Retail"),
+            (393, 85, "Price"), (74, 85, "Option"), (490, 85, "Trim Availability"),
+            (41, 109, "P16"), (63, 101, "Panoramic Sunroof"), (63, 111, "Package"),
+            (145, 109, "Power sliding roof. SE only."), (405, 109, "$1200"),
+            (466, 109, "-"), (497, 109, "SE"), (530, 109, "-"), (561, 109, "-"),
+        ]:
+            page.insert_text((x, y), value, fontsize=7)
+        page.draw_rect(fitz.Rect(36, 123, 576, 123.3), fill=(1, 1, 1), color=None)
+        model = {"optionColumns": [["S"], ["SE"], ["SEL"], ["Premium"]],
+                 "optionBounds": [450, 481.5, 513, 544.5, 576]}
+        self.assertEqual(extractor.coded_options(page, 1, model), [])
+        result = extractor.coded_options(page, 1, model, retail_only=True)
+        self.assertEqual(result[0]["name"], "Panoramic Sunroof Package")
+        self.assertEqual(result[0]["availability"], ["-", "SE", "-", "-"])
+        self.assertEqual(result[0]["retail"], 1200)
+        doc.close()
+
+    def test_reviewed_pricing_bounds_read_shifted_sales_code_and_full_transmission(self):
+        doc = fitz.open()
+        page = doc.new_page(width=612, height=792)
+        for x, y, value in [
+            (74, 100, "Descriptions"), (43, 140, "SE"), (175, 140, "2.0T 4-cyl."),
+            (250, 140, "FWD"), (310, 140, "8-speed Automatic w/ Tiptronic"),
+            (470, 140, "DJ13WS"), (530, 140, "$41610"),
+            (310, 200, "Destination"), (530, 200, "$1525"),
+        ]:
+            page.insert_text((x, y), value, fontsize=7)
+        model = {"id": "atlas", "trims": ["SE"], "pricingBounds": {
+            "code": [400, 510], "engine": [155, 225], "drive": [225, 300], "transmission": [300, 445]}}
+        result = extractor.configurations(page, 2, model)
+        self.assertEqual(result[0]["salesCode"], "DJ13WS")
+        self.assertEqual(result[0]["transmission"], "8-speed Automatic w/ Tiptronic")
+        self.assertEqual(result[0]["msrp"], 41610)
+        self.assertEqual(result[0]["destination"], 1525)
+        doc.close()
+
     def test_retail_option_column_excludes_adjacent_invoice(self):
         doc = fitz.open()
         page = doc.new_page(width=612, height=792)

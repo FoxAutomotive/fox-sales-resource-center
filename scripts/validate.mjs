@@ -128,6 +128,64 @@ export function validate(catalog, features) {
           prefix + "supplied PDF needs filename, SHA-256 and page count",
         );
     }
+    if (v.modelYearChanges) {
+      const review = v.modelYearChanges;
+      const baseline = catalog.vehicles.find(
+        (b) => b.id === review.baselineVehicleId,
+      );
+      assert(
+        baseline &&
+          baseline.year === v.year - 1 &&
+          baseline.brand === v.brand &&
+          baseline.model === v.model,
+        prefix + "model-year review needs matching previous-year guide",
+      );
+      assert(
+        iso(review.reviewedAt) &&
+          review.items?.length &&
+          Array.isArray(review.gaps),
+        prefix + "model-year review needs date, changes and open questions",
+      );
+      for (const item of review.items || []) {
+        assert(
+          item.text &&
+            evidenceReady(v, item.sourceIds) &&
+            baseline &&
+            evidenceReady(baseline, item.baselineSourceIds),
+          prefix + "model-year change needs verified evidence for both years",
+        );
+        for (const [owner, ids, pages] of [
+          [v, item.sourceIds, item.sourcePages],
+          [baseline, item.baselineSourceIds, item.baselineSourcePages],
+        ]) {
+          for (const id of ids || []) {
+            const source = owner?.sources.find((s) => s.id === id);
+            const refs = String(pages?.[id] || "");
+            assert(
+              /^[0-9]+(?:, [0-9]+)*$/.test(refs) &&
+                refs
+                  .split(", ")
+                  .every(
+                    (n) =>
+                      Number(n) > 0 &&
+                      (!source?.pageCount || Number(n) <= source.pageCount),
+                  ),
+              prefix +
+                "model-year change needs valid source pages for both years",
+            );
+          }
+        }
+      }
+    }
+    for (const note of v.sourcePageNotes || [])
+      assert(
+        evidenceReady(v, [note.sourceId]) &&
+          note.text &&
+          Number.isInteger(note.page) &&
+          note.page > 0 &&
+          note.page <= v.sources.find((s) => s.id === note.sourceId)?.pageCount,
+        prefix + "invalid manufacturer page note",
+      );
     for (const t of v.trims) {
       assert(
         /^[a-z0-9-]+$/.test(t.id) && t.name,

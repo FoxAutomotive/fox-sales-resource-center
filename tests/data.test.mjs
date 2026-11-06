@@ -922,8 +922,12 @@ test("normalized equipment rows retain manufacturer systems and availability ind
 });
 
 test("feature alias searches match evidenced categories across brands without manufacturing availability", () => {
+  const catalog2026 = {
+    ...catalog,
+    vehicles: catalog.vehicles.filter((v) => v.year === 2026),
+  };
   assert.equal(
-    searchVehicles(catalog, features, { query: "Tigu" }).vehicles.length,
+    searchVehicles(catalog2026, features, { query: "Tigu" }).vehicles.length,
     1,
   );
   for (const query of [
@@ -933,7 +937,7 @@ test("feature alias searches match evidenced categories across brands without ma
     "Area View",
   ])
     assert.deepEqual(
-      searchVehicles(catalog, features, { query })
+      searchVehicles(catalog2026, features, { query })
         .vehicles.map((v) => v.id)
         .sort(),
       [
@@ -950,27 +954,28 @@ test("feature alias searches match evidenced categories across brands without ma
     "Dynamic Radar Cruise Control",
   ])
     assert.ok(
-      searchVehicles(catalog, features, { query, brand: "volkswagen" }).vehicles
-        .length === 9,
+      searchVehicles(catalog2026, features, { query, brand: "volkswagen" })
+        .vehicles.length === 9,
     );
   assert.equal(
-    searchVehicles(catalog, features, { query: "Tiguan moonroof" }).vehicles
+    searchVehicles(catalog2026, features, { query: "Tiguan moonroof" }).vehicles
       .length,
     1,
   );
   assert.equal(
-    searchVehicles(catalog, features, { query: "LE Hybrid heated front seats" })
-      .vehicles.length,
+    searchVehicles(catalog2026, features, {
+      query: "LE Hybrid heated front seats",
+    }).vehicles.length,
     0,
   );
   assert.equal(
-    searchVehicles(catalog, features, {
+    searchVehicles(catalog2026, features, {
       query: "Tiguan SE heated steering wheel",
     }).vehicles.length,
     0,
   );
   assert.equal(
-    searchVehicles(catalog, features, { query: "RAV4 XLE heated wheel" })
+    searchVehicles(catalog2026, features, { query: "RAV4 XLE heated wheel" })
       .vehicles.length,
     1,
   );
