@@ -153,10 +153,12 @@ def configurations(page, number, model):
     destination = next(w for w in words if w[4] == "Destination")
     lo = title[3] + 1
     hi = destination[1] - 1
+    bounds = model.get("pricingBounds", {})
+    code_min, code_max = bounds.get("code", [410, 465])
     codes = [
         w
         for w in words
-        if 410 < w[0] < 465 and lo < w[1] < hi and re.fullmatch("[A-Z0-9]{6}", w[4])
+        if code_min < w[0] < code_max and lo < w[1] < hi and re.fullmatch("[A-Z0-9]{6}", w[4])
     ]
     if not codes:
         raise ValueError(f"No sales codes on page {number}")
@@ -182,9 +184,12 @@ def configurations(page, number, model):
     for code in codes:
         y = (code[1] + code[3]) / 2
         trim = min(labels, key=lambda label: abs(label[0] - y))[1]
-        power = text(words, (155, y - 7, 225, y + 7))
-        drive = text(words, (225, y - 9, 289, y + 9))
-        transmission = text(words, (280, y - 6, 414, y + 6))
+        engine_min, engine_max = bounds.get("engine", [155, 225])
+        drive_min, drive_max = bounds.get("drive", [225, 289])
+        trans_min, trans_max = bounds.get("transmission", [280, 414])
+        power = text(words, (engine_min, y - 7, engine_max, y + 7))
+        drive = text(words, (drive_min, y - 9, drive_max, y + 9))
+        transmission = text(words, (trans_min, y - 6, trans_max, y + 6))
         if model["id"] == "id4":
             drive = text(words, (340, y - 7, 411, y + 7))
             power = text(words, (245, y - 7, 330, y + 7))
@@ -235,10 +240,18 @@ def configurations(page, number, model):
                 page=number,
             )
         )
+    if bounds:
+        # Engine cells span the FWD/AWD rows of a trim in this reviewed layout.
+        for trim in model["trims"]:
+            group = [row for row in rows if row["trim"] == trim]
+            ys = [(w[1] + w[3]) / 2 for w in codes if any(row["salesCode"] == w[4] for row in group)]
+            power = text(words, (engine_min, min(ys) - 7, engine_max, max(ys) + 7))
+            for row in group:
+                row["powertrain"] = power
     return rows
 
 
-def coded_options(page, number, model):
+def coded_options(page, number, model, retail_only=False):
     words = page.get_text("words")
     rects = rectangles(page)
     codes = [
@@ -263,10 +276,10 @@ def coded_options(page, number, model):
         if any("Colors" in w[4] and hy < w[1] < y for w in words):
             continue
         inv = [w for w in words if w[4] == "Invoice" and abs(w[1] - hy) < 3]
-        if not inv:
+        if not inv and not retail_only:
             continue
-        invx = inv[0][0]
         retx = header[0]
+        invx = inv[0][0] if inv else retx
         if invx < 300:
             continue
         next_headers = [h[1] for h in headers if h[1] > hy + 2]
@@ -286,12 +299,15 @@ def coded_options(page, number, model):
             continue
         ys = sorted(set((w[1] + w[3]) / 2 for w in prices))
         pos = ys.index(cy)
-        top = (ys[pos - 1] + cy) / 2 if pos else hy + 19
+        header_labels = {"Code", "Option", "Name", "Color", "Description", "/", "Comments", "Retail", "Price", "Credit", "Trim", "Availability", "Trims", "Affected"}
+        header_bottom = max([w[3] for w in words if hy - 1 <= w[1] <= hy + 16 and w[4] in header_labels] or [hy + 12])
+        top = (ys[pos - 1] + cy) / 2 if pos else header_bottom if retail_only else hy + 19
         bottom = (
             (cy + ys[pos + 1]) / 2
             if pos < len(ys) - 1
             else min([z for z in separators if cy < z < section_end] or [cy + 20])
         )
+        bottom = min(bottom, model.get("optionBottoms", {}).get(f"{number}:{code[4]}", bottom))
         name = text(words, (62, top, 138, bottom))
         desc = text(words, (138, top, invx - 3, bottom))
         retail = text(words, (retx - 4, top, retx + 31, bottom))
@@ -301,13 +317,19 @@ def coded_options(page, number, model):
         availabilityStart = retx + 31
         groups = model["optionColumns"]
         width = (576 - availabilityStart) / len(groups)
+        availability_bounds = model.get("optionBounds")
+        for layout in model.get("optionLayouts", []):
+            if layout["page"] == number and abs(layout["headerY"] - hy) < 1:
+                availability_bounds = layout["bounds"]
+        if availability_bounds and len(availability_bounds) != len(groups) + 1:
+            raise ValueError("Option column boundary count differs from reviewed trim groups")
         availability = [
             text(
                 words,
                 (
-                    availabilityStart + i * width,
+                    availability_bounds[i] if availability_bounds else availabilityStart + i * width,
                     top,
-                    availabilityStart + (i + 1) * width,
+                    availability_bounds[i + 1] if availability_bounds else availabilityStart + (i + 1) * width,
                     bottom,
                 ),
             )
@@ -448,6 +470,7 @@ def extract(pdf, profile):
             rows=[],
             options=[],
             colors=[],
+            **({"pageNotes": []} if profile.get("captureEquipmentFootnotes") else {}),
         )
         for n in model["matrixPages"]:
             rows = matrix(doc[n - 1], n, model)
@@ -456,8 +479,14 @@ def extract(pdf, profile):
                     f"Page {n}: equipment row count changed; review extraction alignment"
                 )
             data["rows"] += rows
+            if profile.get("captureEquipmentFootnotes"):
+                end = max(row["bbox"][3] for row in rows)
+                for block in doc[n - 1].get_text("blocks"):
+                    note = clean(block[4])
+                    if block[1] >= end - 1 and block[1] < 730 and note.startswith("*"):
+                        data["pageNotes"].append({"page": n, "text": note})
         for n in range(model["firstPage"], model["lastPage"] + 1):
-            data["options"] += coded_options(doc[n - 1], n, model)
+            data["options"] += coded_options(doc[n - 1], n, model, profile.get("retailOnlyLayout", False))
             # Color matrices have no financial columns; preserve exact color/trim/interior restrictions as reference rows.
             pg = doc[n - 1]
             ws = pg.get_text("words")
@@ -473,6 +502,8 @@ def extract(pdf, profile):
                                 page=n,
                             )
                         )
+        if "expectedOptions" in model and len(data["options"]) != model["expectedOptions"]:
+            raise ValueError(f"{model['id']}: option count differs from reviewed profile")
         result["models"].append(data)
     result["financialAudit"] = audit_financial_columns(doc, result)
     return result

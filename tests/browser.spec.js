@@ -320,6 +320,8 @@ test("key routes meet automated WCAG A/AA accessibility checks", async ({
     "/brand/toyota",
     "/model/2026-toyota-rav4",
     "/model/2026-volkswagen-tiguan",
+    "/model/2027-volkswagen-atlas",
+    "/model/2027-volkswagen-taos",
     "/features",
     "/compare",
     "/specials",
@@ -1100,7 +1102,9 @@ test("camera and panoramic roof categories preserve documented system difference
 test("all imported Volkswagen guides reuse cards, sourced categories and compact print", async ({
   page,
 }, testInfo) => {
-  const guides = catalog.vehicles.filter((v) => v.brand === "volkswagen");
+  const guides = catalog.vehicles.filter(
+    (v) => v.brand === "volkswagen" && v.year === 2026,
+  );
   expect(guides).toHaveLength(9);
   for (const v of guides) {
     await page.goto(`./#/model/${v.id}`);
@@ -1317,4 +1321,133 @@ test("specials loading failure is isolated from model guides", async ({
   await expect(page.getByLabel("Offer Type", { exact: true })).toBeVisible();
   await page.goto("./#/search");
   await expect(page.getByRole("searchbox")).toBeVisible();
+});
+
+test("2027 Volkswagen year selection, eight existing-layout guides, mobile and print", async ({
+  page,
+}, testInfo) => {
+  test.setTimeout(90000);
+  await page.goto("./#/brand/volkswagen");
+  await page.getByRole("link", { name: "2027 models", exact: true }).click();
+  await expect(page.locator(".vehicle-card")).toHaveCount(8);
+  await expect(
+    page.locator(".vehicle-card").filter({ hasText: "ID.4" }),
+  ).toHaveCount(0);
+  const guides = catalog.vehicles.filter(
+    (v) => v.brand === "volkswagen" && v.year === 2027,
+  );
+  for (const v of guides) {
+    await page.goto(`./#/model/${v.id}`);
+    await expect(
+      page.getByRole("heading", { name: "What's New for 2027", exact: true }),
+    ).toBeVisible();
+    if (v.model === "Atlas")
+      await page.screenshot({
+        path: testInfo.outputPath("2027-atlas-desktop.png"),
+      });
+    await expect(page.locator("#model-year-changes")).toContainText("VW-O26");
+    await expect(page.locator("#model-year-changes")).toContainText("VW-O27");
+    await expect(page.locator(".trim-training-card")).toHaveCount(
+      new Set(v.trims.map((t) => t.name)).size,
+    );
+    await expect(page.locator("#equipment-config option")).toHaveCount(
+      v.trims.length,
+    );
+    await expect(page.locator("#categorized-equipment")).toContainText(
+      "VW-O27",
+    );
+    await expect(
+      page.locator(".trim-card-visual, .trim-image-placeholder"),
+    ).toHaveCount(0);
+    await page
+      .locator("#equipment-config")
+      .selectOption(`${v.id}:${v.trims.at(-1).id}`);
+    await expect(page.locator("#categorized-equipment")).toContainText(
+      v.trims.at(-1).name,
+    );
+    if (v.trims.length > 1) {
+      await page.locator("#model-view-all").check();
+      await expect(
+        page.locator('#model-equipment [data-comparison-table="equipment"]'),
+      ).toContainText("Fuel economy");
+      await page.locator("#model-view-differences").check();
+      await expect(page.locator("#model-equipment")).toContainText(
+        "What Changes",
+      );
+    } else {
+      await expect(
+        page.getByRole("heading", {
+          name: "Select at least two configurations",
+        }),
+      ).toBeVisible();
+      await expect(page.locator("#categorized-equipment")).toContainText(
+        "Fuel economy",
+      );
+    }
+    for (const width of [375, 320]) {
+      await page.setViewportSize({ width, height: 812 });
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+        v.id,
+      ).toBe(true);
+    }
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.emulateMedia({ media: "print" });
+    const pdf = await page.pdf({
+      path: testInfo.outputPath(`${v.id}.pdf`),
+      preferCSSPageSize: true,
+    });
+    expect(
+      pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length,
+      v.id,
+    ).toBe(1);
+    await page.emulateMedia({ media: "screen" });
+  }
+});
+
+test("2027 equipment respects AWD qualifiers, production exceptions and cross-year comparisons", async ({
+  page,
+}) => {
+  await page.goto("./#/model/2027-volkswagen-taos");
+  await page
+    .locator("#equipment-config")
+    .selectOption("2027-volkswagen-taos:cl27sz");
+  const comfort = page
+    .locator(".equipment-category")
+    .filter({ has: page.locator("summary > span", { hasText: /^Comfort$/ }) });
+  await comfort.locator("summary").click();
+  const heating = comfort
+    .locator(".categorized-fields > div")
+    .filter({ has: page.locator("dt", { hasText: /^Heated front seats$/ }) })
+    .first();
+  await expect(heating).toContainText("Not Offered");
+  await page
+    .locator("#equipment-config")
+    .selectOption("2027-volkswagen-taos:cl27sr");
+  await comfort.locator("summary").click();
+  await expect(heating).toContainText("Standard");
+  await page.goto("./#/compare");
+  for (const id of [
+    "2026-volkswagen-tiguan:se-r-line-black-fwd",
+    "2027-volkswagen-tiguan:rm1vps",
+  ]) {
+    await page.locator("#compare-select").selectOption(id);
+    await page.locator("#add-compare").click();
+  }
+  const row = page
+    .locator('[data-comparison-table="equipment"] tbody tr')
+    .filter({ has: page.locator("th", { hasText: /Heated steering wheel/ }) });
+  await expect(row.locator("td").nth(0)).toContainText("Not Offered");
+  await expect(row.locator("td").nth(1)).toContainText("Standard");
+  await expect(row.locator("td").nth(1)).toContainText("2PD");
+  await page.locator("#compare-view-all").check();
+  await expect(
+    page
+      .locator('[data-comparison-table="equipment"] tbody tr')
+      .filter({ has: page.locator("th", { hasText: /Fuel economy/ }) })
+      .locator("td")
+      .nth(1),
+  ).toContainText("Unverified");
 });

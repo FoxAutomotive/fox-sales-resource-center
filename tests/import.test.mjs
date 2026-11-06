@@ -131,7 +131,9 @@ test("package eligibility, contents and nonorderable production exceptions are e
       .find((p) => p.id.includes("p35") && p.status === "unavailable")
       .trimIds.includes(awd.id),
   );
-  for (const v of catalog.vehicles.filter((v) => v.brand === "volkswagen"))
+  for (const v of catalog.vehicles.filter(
+    (v) => v.brand === "volkswagen" && v.year === 2026,
+  ))
     for (const p of v.packages.filter((p) => p.id.startsWith("vw-order-"))) {
       assert.equal(p.contentsStatus, "verified");
       assert.ok(p.contents.length);

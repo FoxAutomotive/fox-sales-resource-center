@@ -34,7 +34,7 @@ const mappings = {
   highBeam: /Light Assist/i,
   rearCamera: /Rear View Camera System/i,
   mediaConnectivity: /MIB[34]|Bluetooth|SiriusXM|USB/i,
-  voiceControl: /^(?:Natural )?Voice [Cc]ontrol/,
+  voiceControl: /^(?:Natural |Enhanced )?Voice [Cc]ontrol/i,
   telematics: /connected vehicle services|in-vehicle.*Wi-Fi/i,
   wipers: /windshield wipers.*rain sensor|rain sensor/i,
   steeringWheel: /Leather.*steering wheel|multi.function steering wheel/i,
@@ -94,6 +94,13 @@ function decode(row, index, config, report, model) {
     )
       ? "standard"
       : "not-applicable";
+    if (
+      status === "not-applicable" &&
+      /heated|washer nozzles|wheels|independent rear suspension/i.test(
+        row.label,
+      )
+    )
+      status = "unavailable";
     basis = "explicit drivetrain qualifier";
   }
   if (row.section.includes("IQ.DRIVE") && !/IQ\.DRIVE/.test(row.label)) {
@@ -102,8 +109,7 @@ function decode(row, index, config, report, model) {
     if (model.id === "jetta-gli" && /manual/i.test(config.transmission)) {
       if (/Emergency Assist|ACC.*Stop & Go/.test(row.label))
         status = "unavailable";
-      basis =
-        "page 49 explicitly says manual has all other suite features, except Emergency Assist and Stop & Go";
+      basis = `page ${row.page} explicitly says manual has all other suite features, except Emergency Assist and Stop & Go`;
     }
   }
   if (/standard, but.*deleted when/i.test(row.label)) {
@@ -270,6 +276,8 @@ export function importCatalog(stage, base, features) {
     if (
       !p ||
       m.configurations.length !== p.expectedConfigurations ||
+      (p.expectedOptions !== undefined &&
+        m.options.length !== p.expectedOptions) ||
       p.matrixPages.some(
         (page) =>
           m.rows.filter((r) => r.page === page).length !==
@@ -322,6 +330,11 @@ export function importCatalog(stage, base, features) {
     baseSha256: createHash("sha256").update(JSON.stringify(base)).digest("hex"),
     sourceId: sid,
     sourceDate: stage.source.documentDate,
+    sourceTitle: stage.source.title,
+    sourceYear: stage.source.year,
+    sourceEdition: stage.source.edition,
+    dateBasis: stage.source.dateBasis,
+    yearChanges: [],
     reviewedAt: stage.source.checkedAt,
     pagesProcessed: stage.pages.length,
     models: [],
@@ -406,7 +419,11 @@ export function importCatalog(stage, base, features) {
   // This source is a supplied PDF. The URL identifies the manufacturer, not a public PDF download.
   const source = {
     id: sid,
-    title: stage.source.title + ` — dated ${stage.source.documentDate}`,
+    title:
+      stage.source.title +
+      (stage.source.edition
+        ? ` — cover footer revision ${stage.source.documentDate}`
+        : ` — dated ${stage.source.documentDate}`),
     kind: "verified",
     modelYear: stage.source.year,
     checkedAt: stage.source.checkedAt,
@@ -418,6 +435,9 @@ export function importCatalog(stage, base, features) {
     shortLabel:
       stage.source.shortLabel || `VW-O${String(stage.source.year).slice(-2)}`,
     documentDate: stage.source.documentDate,
+    ...(stage.source.edition
+      ? { edition: stage.source.edition, dateBasis: stage.source.dateBasis }
+      : {}),
     scope:
       "Supplied manufacturer order guide; public manufacturer link is a provenance reference, not a PDF download. Only retail MSRP and retail option charges imported. Original PDF is not redistributed.",
   };
@@ -434,7 +454,7 @@ export function importCatalog(stage, base, features) {
         model: model.name,
         year: stage.source.year,
         category: /Atlas|Tiguan|Taos|ID\.4/.test(model.name) ? "SUV" : "Car",
-        summary: `${stage.source.year} ${model.name} — manufacturer order-guide equipment and retail pricing, dated ${stage.source.documentDate}. Missing technical specifications remain explicitly Unverified.`,
+        summary: `${stage.source.year} ${model.name} — manufacturer order-guide equipment and retail pricing, ${stage.source.edition ? `edition ${stage.source.edition}` : `dated ${stage.source.documentDate}`}. Missing technical specifications remain explicitly Unverified.`,
         status: "verified",
         verifiedAt: stage.source.checkedAt,
         sources: [],
@@ -563,7 +583,7 @@ export function importCatalog(stage, base, features) {
       }
       incoming.transmission = sourceCell(config.transmission, config.page, sid);
       incoming.drivetrain = sourceCell(config.configuration, config.page, sid);
-      const priceNote = `Order guide dated ${stage.source.documentDate}, reviewed ${stage.source.checkedAt}; destination ${config.destination === null ? "TBA" : `$${config.destination.toLocaleString("en-US")}`} additional; prices subject to change. Excludes options, taxes and dealer charges.`;
+      const priceNote = `Order guide ${stage.source.edition ? stage.source.edition + " (cover footer revision " + stage.source.documentDate + ")" : "dated " + stage.source.documentDate}, reviewed ${stage.source.checkedAt}; destination ${config.destination === null ? "TBA" : `$${config.destination.toLocaleString("en-US")}`} additional; prices subject to change. Excludes options, taxes and dealer charges.`;
       incoming.msrp =
         config.msrp === null
           ? unknown(
@@ -805,8 +825,79 @@ export function importCatalog(stage, base, features) {
       (n) => !n.startsWith("Bulk order-guide import:"),
     );
     vehicle.notes.push(
-      `Bulk order-guide import: ${stage.source.documentDate}, reviewed ${stage.source.checkedAt}. Every equipment-table row is recorded separately by configuration. Factory packages, paint charges, market-delivery options and services retain distinct descriptions and restrictions. MSRP excludes destination. ID.4 prices marked TBA remain Unverified. Missing measurements require technical specifications. Original supplied PDF is not republished. Manufacturer source link is not a PDF download URL.`,
+      `Bulk order-guide import: ${stage.source.documentDate}, reviewed ${stage.source.checkedAt}. Every equipment-table row is recorded separately by configuration. Factory packages, paint charges, market-delivery options and services retain distinct descriptions and restrictions. MSRP excludes destination. ${stage.source.year === 2026 ? "ID.4 prices marked TBA remain Unverified." : "Prices marked TBA remain Unverified."} Missing measurements require technical specifications. Original supplied PDF is not republished. Manufacturer source link is not a PDF download URL.`,
     );
+    if (model.pageNotes) {
+      vehicle.sourcePageNotes = model.pageNotes.map((note) => ({
+        ...note,
+        sourceId: sid,
+      }));
+      for (const note of model.pageNotes) {
+        for (const t of vehicle.trims) {
+          for (const cell of Object.values(t.equipment)) {
+            if (
+              cell.sourceIds?.includes(sid) &&
+              /\*/.test(cell.value || "") &&
+              cell.sourcePages?.[sid]
+                ?.split(/,\s*/)
+                .includes(String(note.page)) &&
+              !cell.conditions?.includes(note.text)
+            ) {
+              cell.conditions =
+                `${cell.conditions || ""} Manufacturer page notes (apply to starred systems): ${note.text}`.trim();
+            }
+          }
+        }
+      }
+    }
+    // Production credits qualify equipment; they are never orderable packages.
+    for (const option of model.options.filter(
+      (o) => /Credits/.test(o.section) && /lacks heating/i.test(o.description),
+    )) {
+      for (const t of vehicle.trims) {
+        const config = model.configurations.find(
+          (c) => c.salesCode === t.salesCode,
+        );
+        if (optionState(option, config) !== "optional") continue;
+        for (const [key, cell] of Object.entries(t.equipment)) {
+          if (
+            (key === "heatedWheel" ||
+              /Heated steering wheel/i.test(cell.value || "")) &&
+            cell.status === "standard"
+          ) {
+            const condition = `Production exception ${option.code} (p. ${option.page}): ${option.description}. Confirm the vehicle's window sticker; this is a removal credit, not an orderable option.`;
+            if (!cell.conditions?.includes(condition))
+              cell.conditions = `${cell.conditions || ""} ${condition}`.trim();
+          }
+        }
+      }
+    }
+    if (profile.yearReview) {
+      const baseline = catalog.vehicles.find(
+        (v) =>
+          v.id === `${stage.source.year - 1}-${stage.source.brand}-${model.id}`,
+      );
+      if (!baseline)
+        throw new Error(`Missing baseline for ${model.name} model-year review`);
+      vehicle.modelYearChanges = {
+        baselineVehicleId: baseline.id,
+        reviewedAt: stage.source.checkedAt,
+        items: profile.yearReview.items.map((item) => ({
+          ...item,
+          sourceIds: [sid],
+          sourcePages: { [sid]: item.pages },
+          baselineSourceIds: [profile.yearReview.baselineSourceId],
+          baselineSourcePages: {
+            [profile.yearReview.baselineSourceId]: item.baselinePages,
+          },
+        })),
+        gaps: profile.yearReview.gaps,
+      };
+      report.yearChanges.push({
+        model: model.name,
+        ...vehicle.modelYearChanges,
+      });
+    }
     if (!existing) {
       vehicle.quickReference = {
         scope: model.id === "id4" ? "electric" : "gasoline",
@@ -818,7 +909,21 @@ export function importCatalog(stage, base, features) {
           fieldIds: ["wheels", "upholstery", "heatedSeats"],
         })),
         commonFieldIds: ["adaptiveCruiseControl", "wirelessCharging"],
-        powertrainTrimIds: [vehicle.trims[0].id],
+        powertrainTrimIds:
+          stage.source.year > 2026
+            ? [
+                ...new Map(
+                  vehicle.trims.map((t) => [
+                    [
+                      t.equipment.engine?.value,
+                      t.equipment.transmission?.value,
+                      t.equipment.drivetrain?.value,
+                    ].join("|"),
+                    t.id,
+                  ]),
+                ).values(),
+              ]
+            : [vehicle.trims[0].id],
         optionalEquipmentIds: [],
         caveats: [
           {
@@ -830,6 +935,9 @@ export function importCatalog(stage, base, features) {
     }
     report.models.push(stats);
   }
+  if (stage.source.coverageNote)
+    catalog.coverageNotes[String(stage.source.year)] =
+      stage.source.coverageNote;
   const errors = validate(catalog, features);
   if (errors.length) throw new Error(errors.join("\n"));
   report.summary = {
@@ -851,6 +959,7 @@ export function importCatalog(stage, base, features) {
   return { catalog, report };
 }
 export function markdownReport(report) {
+  if (report.sourceYear !== 2026) return editionMarkdownReport(report);
   const missing = new Map();
   for (const item of report.missingSpecifications)
     missing.set(item.field, (missing.get(item.field) || 0) + 1);
@@ -924,6 +1033,55 @@ These **${report.summary.missingSpecificationCells}** unresolved requested field
 See [the import workflow](../../scripts/import/README.md). The pipeline defaults to a candidate and report; local apply checks the reviewed candidate digest and unchanged base. It never merges or deploys. Changed PDFs need a new reviewed profile. Future manufacturer layouts require an extraction adapter rather than guessed column interpretation.
 
 Validation covers the full existing Node/browser suites plus extraction geometry, privacy, idempotency, source alignment, preservation and stale-apply checks. The companion JSON contains every configuration, option/restriction, missing field, preserved source-text comparison and source-page reference.
+`;
+}
+
+function editionMarkdownReport(report) {
+  const missing = new Map();
+  for (const item of report.missingSpecifications)
+    missing.set(item.field, (missing.get(item.field) || 0) + 1);
+  const price = (n) => (n === null ? "TBA" : `$${n.toLocaleString("en-US")}`);
+  return `# ${report.sourceTitle} — import review
+
+Reviewed ${report.reviewedAt}. ${report.pagesProcessed} pages processed. ${report.dateBasis || ""}
+
+## Coverage
+
+| Model | Configurations | Populated equipment cells | Matrix rows | Coded options/services |
+| --- | ---: | ---: | ---: | ---: |
+${report.models.map((m) => `| ${m.model} | ${m.configurations.length} | ${m.equipmentFieldsPopulated} | ${m.matrixRows} | ${m.codedOptions} |`).join("\n")}
+
+${report.summary.configurations} configurations; ${report.summary.equipmentFieldsPopulated} confirmed cells (canonical summaries plus detailed source rows, not unique physical features). No trim or prior-year equipment inheritance. ${report.protectedVehicles.length} existing vehicles protected by preservation hashes. Original PDF is not redistributed; only retail prices are emitted.
+
+## Configuration / retail price review
+
+MSRP excludes destination, options, taxes and dealer charges. Prices use this document edition, not a current retail quote.
+
+| Model | Exact trim | Configuration | Sales code | MSRP | Destination | Page |
+| --- | --- | --- | --- | ---: | ---: | ---: |
+${report.models.flatMap((m) => m.configurations.map((c) => `| ${m.model} | ${c.trim} | ${c.configuration} | ${c.salesCode} | ${price(c.msrp)} | ${price(c.destination)} | ${c.sourcePage} |`)).join("\n")}
+
+## What's new — reviewed comparisons
+
+${report.yearChanges.map((m) => `### ${m.model}\n\n${m.items.map((i) => `- ${i.text} (2026 pp. ${i.baselinePages}; 2027 pp. ${i.pages})`).join("\n")}\n\nOpen questions: ${m.gaps.join(" ")}`).join("\n\n")}
+
+## Missing specifications
+
+| Field | Unresolved configuration cells |
+| --- | ---: |
+${[...missing].map(([f, n]) => `| ${f} | ${n} |`).join("\n")}
+
+The guide is not a technical specification listing. No previous-year fuel economy, measurements or ratings are substituted. Atlas Cross Sport retail/destination and option prices are explicitly TBA. ID.4 is absent; no 2027 ID.4 guide is invented.
+
+## Conflicts and manual verification
+
+${report.sourceConflicts.map((c) => `- ${c.model}: option ${c.optionCode}, package p. ${c.packagePage} uses ${c.packageValue}; matrix p. ${c.matrixPage} uses ${c.matrixValue}. Both retained; manufacturer clarification required.`).join("\n") || "No internal numeric/code conflicts detected."}
+
+${report.manualVerification.length} unresolved matrix/option cells; ${report.conflicts.length} conflicts with existing same-year cells. Production credits, region/service footnotes and configuration restrictions are retained. Full per-cell gaps, options, exceptions and preservation hashes are in the companion report.json.
+
+## Repeatability
+
+Run the existing PDF import with the reviewed SHA-256 profile, review this report and candidate, then apply the exact candidate digest locally. The importer never publishes. See scripts/import/README.md. Model-year comparison notes are reviewed profile annotations with citations for both years, not an automatic assumption that wording or missing listings prove changes.
 `;
 }
 
