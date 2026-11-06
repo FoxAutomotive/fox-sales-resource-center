@@ -75,9 +75,38 @@ export function comparisonRows(
     )
     .map((field) => ({
       ...field,
-      cells: options.map((o) => resolveCell(o.vehicle, o.trim, field.id)),
+      cells: options.map((o) => {
+        const cell = resolveCell(o.vehicle, o.trim, field.id);
+        return options.some(
+          (o) => o.vehicle.equipmentScope === "standard-only",
+        ) && ["optional", "unavailable"].includes(cell.status)
+          ? {
+              status: "not-standard",
+              value: "Not standard in this configuration",
+              sourceIds: cell.sourceIds,
+              sourcePages: cell.sourcePages,
+              sourceCells: cell.sourceCells,
+            }
+          : cell;
+      }),
     }))
-    .filter((row) => !differenceOnly || rowsDiffer(row.cells));
+    .filter(
+      (row) =>
+        !options.some((o) => o.vehicle.equipmentScope === "standard-only") ||
+        row.cells.some((c) => c.status === "standard") ||
+        options.some((o) =>
+          o.vehicle.standardOnlyMissingFields?.includes(row.id),
+        ),
+    )
+    .filter(
+      (row) =>
+        !differenceOnly ||
+        rowsDiffer(row.cells) ||
+        (options.some((o) =>
+          o.vehicle.comparisonContextFields?.includes(row.id),
+        ) &&
+          row.cells.every((c) => c.status === "standard")),
+    );
 }
 export function sharedStandardRows(catalog, options, { group = "" } = {}) {
   if (options.length < 2) return [];
@@ -150,7 +179,14 @@ export function trimComparisonSections(catalog, options, { group = "" } = {}) {
     differenceOnly: false,
     group,
   });
-  const changeRows = allRows.filter((row) => rowsDiffer(row.cells));
+  const changeRows = allRows.filter(
+    (row) =>
+      rowsDiffer(row.cells) ||
+      (options.some((o) =>
+        o.vehicle.comparisonContextFields?.includes(row.id),
+      ) &&
+        row.cells.every((c) => c.status === "standard")),
+  );
   const changed = new Set(changeRows.map((row) => row.id));
   const baselineIndex = options.findIndex((o) => o === baseline.option);
   // Changed specifications appear once, with the baseline value in What Changes.

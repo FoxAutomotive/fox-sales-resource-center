@@ -37,6 +37,7 @@ export function validate(catalog, features) {
         "toyota.com",
         "chevrolet.com",
         "gm.com",
+        "gmfleetorderguide.com",
         "vw.com",
         "fueleconomy.gov",
         "epa.gov",
@@ -124,11 +125,85 @@ export function validate(catalog, features) {
         assert(
           s.fileName &&
             /^[a-f0-9]{64}$/.test(s.sha256 || "") &&
-            s.pageCount > 0,
-          prefix + "supplied PDF needs filename, SHA-256 and page count",
+            (s.format === "xlsx"
+              ? Array.isArray(s.sheets) &&
+                s.sheets.length > 0 &&
+                s.sheets.every(
+                  (sheet) => sheet.name && sheet.rows > 0 && sheet.columns > 0,
+                )
+              : s.pageCount > 0),
+          prefix +
+            "supplied document needs filename, SHA-256 and page/sheet inventory",
         );
     }
-    if (v.modelYearChanges) {
+    const workbookRefs = (item) => {
+      for (const id of item.sourceIds || []) {
+        const source = v.sources.find((s) => s.id === id);
+        if (source?.format !== "xlsx") continue;
+        const refs = item.sourceCells?.[id];
+        assert(
+          Array.isArray(refs) && refs.length > 0,
+          prefix + "workbook claim needs worksheet/cell references",
+        );
+        for (const ref of refs || []) {
+          const match =
+            /^(.+)!([A-Z]+)([1-9][0-9]*)(?::([A-Z]+)([1-9][0-9]*))?$/.exec(ref);
+          const sheet = source.sheets.find((s) => s.name === match?.[1]);
+          const column = (letters) =>
+            [...letters].reduce((n, c) => n * 26 + c.charCodeAt(0) - 64, 0);
+          assert(
+            match &&
+              sheet &&
+              Number(match[3]) <= sheet.rows &&
+              column(match[2]) <= sheet.columns &&
+              (!match[4] ||
+                (Number(match[5]) >= Number(match[3]) &&
+                  Number(match[5]) <= sheet.rows &&
+                  column(match[4]) >= column(match[2]) &&
+                  column(match[4]) <= sheet.columns)),
+            prefix + "invalid worksheet/cell reference",
+          );
+        }
+      }
+    };
+    if (v.modelYearChanges?.basis === "manufacturer-highlights") {
+      const review = v.modelYearChanges;
+      assert(
+        iso(review.reviewedAt) &&
+          review.items?.length &&
+          Array.isArray(review.gaps),
+        prefix + "manufacturer change review needs date, items and gaps",
+      );
+      for (const item of review.items || []) {
+        assert(
+          item.text && evidenceReady(v, item.sourceIds),
+          prefix + "manufacturer change needs evidence",
+        );
+        workbookRefs(item);
+      }
+    }
+    if (v.colors)
+      for (const c of [
+        ...v.colors.interiors,
+        ...v.colors.exteriors,
+        ...(v.colors.roofs || []),
+      ]) {
+        assert(
+          c.name && evidenceReady(v, c.sourceIds),
+          prefix + "color reference needs name and evidence",
+        );
+        assert(
+          c.trims
+            ? c.trims.every((name) => v.trims.some((t) => t.name === name))
+            : v.trims.some((t) => t.name === c.trim),
+          prefix + "color references unknown trim",
+        );
+        workbookRefs(c);
+      }
+    if (
+      v.modelYearChanges &&
+      v.modelYearChanges.basis !== "manufacturer-highlights"
+    ) {
       const review = v.modelYearChanges;
       const baseline = catalog.vehicles.find(
         (b) => b.id === review.baselineVehicleId,
@@ -217,6 +292,7 @@ export function validate(catalog, features) {
             "optional",
             "unavailable",
             "not-applicable",
+            ...(v.equipmentScope === "standard-only" ? ["not-standard"] : []),
             "unverified",
           ].includes(c.status),
           prefix + "invalid equipment state",
@@ -235,6 +311,13 @@ export function validate(catalog, features) {
             typeof c.value === "string" && c.value.length > 0,
             prefix + `${field}: verified equipment requires a value`,
           );
+          workbookRefs(c);
+          if (v.equipmentScope === "standard-only")
+            assert(
+              !["optional", "unavailable"].includes(c.status),
+              prefix +
+                "standard-only guide must not expose optional availability",
+            );
           if (c.status === "optional")
             assert(
               c.conditions,
@@ -246,6 +329,13 @@ export function validate(catalog, features) {
           assert(featureIds.has(f), prefix + `unknown glossary feature ${f}`);
       }
     }
+    if (v.equipmentScope === "standard-only")
+      assert(
+        !v.packages.length &&
+          !(v.optionalEquipment || []).length &&
+          !(v.listedOptions || []).length,
+        prefix + "standard-only guide cannot list optional packages",
+      );
     for (const p of v.packages) {
       assert(
         !p.status ||

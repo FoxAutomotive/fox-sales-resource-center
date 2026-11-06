@@ -1,0 +1,1153 @@
+{
+  "schemaVersion": 1,
+  "baseSha256": "6024d76bc2b6c3541c818efadb3a0898c0bc28391e7c6e78c2edc317475a4a57",
+  "jobs": [
+    {
+      "file": "2027 Chevrolet Truck Equinox Export.xlsx",
+      "status": "imported",
+      "id": "2027-chevrolet-equinox",
+      "source": {
+        "year": 2027,
+        "model": "Equinox",
+        "fileName": "2027 Chevrolet Truck Equinox Export.xlsx",
+        "sha256": "1ad8836c29f693f272c2e4d0e9d64a3a8d7cc6e7d6467a7266fba3c4274cf068",
+        "identityBasis": "Original user-supplied export filename; model/body codes are not interpreted as years",
+        "sheets": [
+          {
+            "name": "Highlights",
+            "rows": 8,
+            "columns": 1
+          },
+          {
+            "name": "Standard Equipment",
+            "rows": 118,
+            "columns": 9
+          },
+          {
+            "name": "Equipment Groups",
+            "rows": 44,
+            "columns": 9
+          },
+          {
+            "name": "Interior",
+            "rows": 104,
+            "columns": 9
+          },
+          {
+            "name": "Exterior",
+            "rows": 46,
+            "columns": 9
+          },
+          {
+            "name": "Mechanical",
+            "rows": 31,
+            "columns": 9
+          },
+          {
+            "name": "Engine Axles",
+            "rows": 5,
+            "columns": 5
+          },
+          {
+            "name": "Color and Trim",
+            "rows": 19,
+            "columns": 8
+          },
+          {
+            "name": "Dimensions",
+            "rows": 19,
+            "columns": 4
+          },
+          {
+            "name": "Specs",
+            "rows": 12,
+            "columns": 4
+          }
+        ]
+      },
+      "ambiguous": [],
+      "missing": [
+        "economy",
+        "towing",
+        "groundClearance",
+        "passengerVolume",
+        "msrp"
+      ],
+      "excluded": [
+        {
+          "sheet": "Highlights",
+          "row": 3,
+          "reason": "Change concerns nonstandard optional equipment; excluded from standard-only page"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 8,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 9,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 10,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 11,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 12,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 13,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 14,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 15,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 16,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 17,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 18,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 19,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 20,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 21,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 22,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 23,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 24,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 25,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 26,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 27,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 28,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 29,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 30,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 31,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 32,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 33,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 34,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 35,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 36,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 37,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 38,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 39,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 40,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 41,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 42,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Equipment Groups",
+          "row": 43,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 7,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 8,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 23,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 36,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 37,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 41,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 42,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 43,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 44,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 45,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 46,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 47,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 48,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 49,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 50,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 53,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 55,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 56,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 57,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 58,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 59,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 63,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 64,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 69,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 77,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 78,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 79,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 84,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 85,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 94,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Interior",
+          "row": 97,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 4,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 5,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 6,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 8,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 13,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 16,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 17,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 18,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 19,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 20,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 21,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 24,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 25,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 37,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 42,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 43,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Exterior",
+          "row": 44,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 15,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 16,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 17,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 18,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 19,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 20,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 22,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 27,
+          "reason": "Not factory-standard for any configuration"
+        },
+        {
+          "sheet": "Mechanical",
+          "row": 28,
+          "reason": "Not factory-standard for any configuration"
+        }
+      ],
+      "standardCounts": {
+        "LT FWD": 92,
+        "LT AWD": 92,
+        "ACTIV FWD": 100,
+        "ACTIV AWD": 100,
+        "RS FWD": 100,
+        "RS AWD": 100
+      },
+      "duplicate": false,
+      "standardPackageChecks": [
+        {
+          "package": "ZQ2",
+          "member": "BTV",
+          "configuration": "LT 1LT1",
+          "confirmed": true,
+          "ref": "Interior!D5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "BTV",
+          "configuration": "LT 2LT1",
+          "confirmed": true,
+          "ref": "Interior!E5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "BTV",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "BTV",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "BTV",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "BTV",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "DAE",
+          "configuration": "LT 1LT1",
+          "confirmed": true,
+          "ref": "Interior!D5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "DAE",
+          "configuration": "LT 2LT1",
+          "confirmed": true,
+          "ref": "Interior!E5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "DAE",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "DAE",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "DAE",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "DAE",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KA1",
+          "configuration": "LT 1LT1",
+          "confirmed": true,
+          "ref": "Interior!D5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KA1",
+          "configuration": "LT 2LT1",
+          "confirmed": true,
+          "ref": "Interior!E5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KA1",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KA1",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KA1",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KA1",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KI3",
+          "configuration": "LT 1LT1",
+          "confirmed": true,
+          "ref": "Interior!D5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KI3",
+          "configuration": "LT 2LT1",
+          "confirmed": true,
+          "ref": "Interior!E5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KI3",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KI3",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KI3",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "KI3",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "WLM",
+          "configuration": "LT 1LT1",
+          "confirmed": true,
+          "ref": "Interior!D5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "WLM",
+          "configuration": "LT 2LT1",
+          "confirmed": true,
+          "ref": "Interior!E5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "WLM",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "WLM",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "WLM",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H5"
+        },
+        {
+          "package": "ZQ2",
+          "member": "WLM",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I5"
+        },
+        {
+          "package": "ZQ3",
+          "member": "A2X",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "A2X",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "A2X",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "A2X",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "AL9",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "AL9",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "AL9",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "AL9",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "ASV",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "ASV",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "ASV",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "ASV",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "K7A",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "K7A",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "K7A",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "K7A",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CE1",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CE1",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CE1",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CE1",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CJ2",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CJ2",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CJ2",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CJ2",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CMO",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CMO",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CMO",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "CMO",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "TCP",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "TCP",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "TCP",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "TCP",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "UG1",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "UG1",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "UG1",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "UG1",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "VK8",
+          "configuration": "ACTIV XDB2",
+          "confirmed": true,
+          "ref": "Interior!F6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "VK8",
+          "configuration": "ACTIV KDZ2",
+          "confirmed": true,
+          "ref": "Interior!G6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "VK8",
+          "configuration": "RS 1RS3",
+          "confirmed": true,
+          "ref": "Interior!H6"
+        },
+        {
+          "package": "ZQ3",
+          "member": "VK8",
+          "configuration": "RS 2RS3",
+          "confirmed": true,
+          "ref": "Interior!I6"
+        }
+      ],
+      "publishedStandardCounts": {
+        "LT FWD": 86,
+        "LT AWD": 86,
+        "ACTIV FWD": 92,
+        "ACTIV AWD": 92,
+        "RS FWD": 92,
+        "RS AWD": 92
+      },
+      "unverifiedFields": [
+        "economy",
+        "towing",
+        "headUpDisplay",
+        "cargoOutlet",
+        "parkingAutomation",
+        "msrp",
+        "ambient",
+        "steeringWheel",
+        "groundClearance",
+        "passengerVolume"
+      ]
+    }
+  ],
+  "protectedVehicles": [
+    {
+      "id": "2026-toyota-rav4",
+      "sha256": "bfa40e855862e0e5d5d537bc184db4de837f17bf6843cca3eaeb770e9eb228b2"
+    },
+    {
+      "id": "2026-volkswagen-tiguan",
+      "sha256": "5021114693204abb3ecff4f9f555d77a9e491ef871fc0324b15c3ca0d976a8b4"
+    },
+    {
+      "id": "2026-chevrolet-equinox",
+      "sha256": "f8da1feebcdd9b2a3679514fa6259ac8220ed22448ffe7c09fd7b812d17480ba"
+    },
+    {
+      "id": "2026-toyota-rav4-plug-in-hybrid",
+      "sha256": "871390834e29aab04dca5d6bb759fc20abceea2502be58c3f52d5c5c892dce40"
+    },
+    {
+      "id": "2026-volkswagen-atlas",
+      "sha256": "527d40fd79c1d6faa1747fe8a0e547d80afab81e664e5f295aeb36cd727540d4"
+    },
+    {
+      "id": "2026-volkswagen-atlas-cross-sport",
+      "sha256": "52c1d702230d73f0d8753cf34953973aff28a759658ea719c7f1092002bd6bd5"
+    },
+    {
+      "id": "2026-volkswagen-taos",
+      "sha256": "40af8451757ef8e6b65b3494e7b87796643ea9f1fd49082759269f79e7ab7303"
+    },
+    {
+      "id": "2026-volkswagen-id4",
+      "sha256": "156569c3209d833e6c5b5360a0b19f4ffea39c1ed1ec678dbd9ccde4745c2551"
+    },
+    {
+      "id": "2026-volkswagen-golf-gti",
+      "sha256": "a7835e3d1d8ea2896a60378ca972e8c38956958797ce575ba431c8b99aa4f2ab"
+    },
+    {
+      "id": "2026-volkswagen-golf-r",
+      "sha256": "9005adfe99f09e29b14cf36c393f74964057cc3efe89c0f1f3a6f671eba7ef9b"
+    },
+    {
+      "id": "2026-volkswagen-jetta",
+      "sha256": "d0abfb4d8013221697d3c9366466b12efed1fb7a896e004033e4de35841e5085"
+    },
+    {
+      "id": "2026-volkswagen-jetta-gli",
+      "sha256": "242a8ced273050932deec03483c1ce6797ce1c9c7f41bb46ad0e708d4d9bebfa"
+    },
+    {
+      "id": "2027-volkswagen-atlas",
+      "sha256": "b668b91512b5565c6bdd4eadb588292a4b5c67bb20d712744e9b69dca113194e"
+    },
+    {
+      "id": "2027-volkswagen-atlas-cross-sport",
+      "sha256": "8fcfb79e1ef2332e96b8ff38c118111d587a532f450d171a9b7b2198c870457a"
+    },
+    {
+      "id": "2027-volkswagen-tiguan",
+      "sha256": "27267326c033be51df23fe5a225d011ad9dcfa2a54393d8fd72fd498a2fafa91"
+    },
+    {
+      "id": "2027-volkswagen-taos",
+      "sha256": "2ba5e81f1b4b3fed682fb8c8b4f8385a9a4bf1c94b2257d9e1c5ab85b8bee8ac"
+    },
+    {
+      "id": "2027-volkswagen-golf-gti",
+      "sha256": "1ab999a74fea3b2e21706ca5b2d02c6e6db0fe0d715b5aa81e9b2253a6214a41"
+    },
+    {
+      "id": "2027-volkswagen-golf-r",
+      "sha256": "bb4fdac85caabc0a2975c23532ecc64f611de10b2ba791d41da602500f1de38d"
+    },
+    {
+      "id": "2027-volkswagen-jetta",
+      "sha256": "0f7cf840843c99d0b8c701339f7934aad9a675a214fc88ea0be521025ae50a34"
+    },
+    {
+      "id": "2027-volkswagen-jetta-gli",
+      "sha256": "50ff3e0ebbc1344a5e233c432a4e91df7f490d78416d04c0cd47be02580be36d"
+    }
+  ]
+}
