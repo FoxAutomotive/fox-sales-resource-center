@@ -10,6 +10,7 @@ import {
 } from "./presentation.js";
 import { openReferenceDialog, closeReferenceDialog } from "./dialog.js";
 import {
+  leaseDetailFields,
   manufacturers,
   offerTypes,
   activeOffers,
@@ -810,18 +811,57 @@ function offerCard(o) {
       ? ""
       : `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`;
   const amount = (value) => (value === undefined ? undefined : money(value));
+  const pending = (value) =>
+    value === undefined && o.leaseDetails ? "TBD" : value;
+  const detailValue = (field, value) =>
+    value === null || value === undefined
+      ? "TBD"
+      : value === "N/A"
+        ? "N/A"
+        : field.format === "currency"
+          ? money(value)
+          : field.format === "percent"
+            ? `${value}%`
+            : String(value);
   const details = [
-    ["Stock number", o.stockNumber],
-    ["VIN", o.vin],
+    ["Stock number", pending(o.stockNumber)],
+    ["VIN", pending(o.vin)],
     ["VIN (last 8)", o.vinLast8],
-    ["MSRP", amount(o.msrp)],
-    ["Selling price", amount(o.sellingPrice)],
-    ["Lender", o.lender],
-    ["Payment including tax", amount(o.paymentIncludingTax)],
-    ["Down payment", amount(o.downPayment)],
+    ["MSRP", pending(amount(o.msrp))],
+    ["Selling price", pending(amount(o.sellingPrice))],
+    [o.leaseDetails ? "Leasing company" : "Lender", pending(o.lender)],
+    ["Payment including tax", pending(amount(o.paymentIncludingTax))],
+    ["Down payment", pending(amount(o.downPayment))],
+    ...leaseDetailFields
+      .filter((field) => Object.hasOwn(o.leaseDetails || {}, field.id))
+      .map((field) => [
+        field.label,
+        detailValue(field, o.leaseDetails[field.id]),
+      ]),
     ["Qualifications / notes", o.notes],
   ].filter(([, value]) => value !== undefined);
-  return `<article class="special-offer" data-offer-id="${escape(o.id)}"><span class="eyebrow">${escape(offerTypes[o.type])}</span><h3>${o.year} ${escape(manufacturers[o.manufacturer])} ${escape(o.model)} ${escape(o.trim)}</h3>${o.monthlyPayment !== undefined ? `<p class="special-payment">${money(o.monthlyPayment)}<span> / month</span></p>` : ""}<dl class="special-facts">${row("Purchase price", amount(o.purchasePrice))}${row("APR", o.apr === undefined ? undefined : `${o.apr}%`)}${row("Due at signing", amount(o.dueAtSigning))}${row(o.type === "lease" ? "Lease term" : "Term", o.termMonths === undefined ? undefined : `${o.termMonths} months`)}${row("Annual mileage", o.annualMileage === undefined ? undefined : `${number(o.annualMileage)} miles`)}${row("Expiration date", date(o.expiresOn))}</dl>${details.length ? `<details><summary>Full Offer Details</summary><dl class="special-facts special-details">${details.map(([label, value]) => row(label, value)).join("")}</dl></details>` : ""}</article>`;
+  const guide =
+    o.vehicleId &&
+    catalog.vehicles.find(
+      (v) =>
+        v.id === o.vehicleId &&
+        v.year === o.year &&
+        v.brand === o.manufacturer &&
+        v.model === (o.guideModel || o.model) &&
+        v.status === "verified",
+    );
+  const payment =
+    o.monthlyPayment === undefined
+      ? ""
+      : o.paymentPrecision === undefined
+        ? money(o.monthlyPayment)
+        : new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: o.paymentPrecision,
+            maximumFractionDigits: o.paymentPrecision,
+          }).format(o.monthlyPayment);
+  return `<article class="special-offer" data-offer-id="${escape(o.id)}"><span class="eyebrow">${escape(offerTypes[o.type])}</span><h3>${o.year} ${escape(manufacturers[o.manufacturer])} ${escape(o.model)} ${escape(o.trim)}</h3>${o.monthlyPayment !== undefined ? `<p class="special-payment">${payment}<span> / month</span></p>` : ""}${o.qualification ? `<p><strong>${escape(o.qualification)}</strong></p>` : ""}${o.creditQualification ? `<p class="muted">${escape(o.creditQualification)}</p>` : ""}<dl class="special-facts">${row("Purchase price", amount(o.purchasePrice))}${row("APR", o.apr === undefined ? undefined : `${o.apr}%`)}${row(o.signingAmountType === "total-out-of-pocket" ? "Total out of pocket (due at signing)" : "Due at signing", amount(o.dueAtSigning))}${row("Rebate included in payment", amount(o.rebate))}${row(o.type === "lease" ? "Lease term" : "Term", o.termMonths === undefined ? undefined : `${o.termMonths} months`)}${row("Annual mileage", o.annualMileage === undefined ? undefined : `${number(o.annualMileage)} miles`)}${row("Expiration date", date(o.expiresOn))}</dl>${guide ? `<p><a class="text-link" href="#/model/${escape(guide.id)}">View ${guide.year} ${escape(guide.model)} Product Guide</a></p>` : ""}${details.length ? `<details><summary>Full Offer Details</summary><dl class="special-facts special-details">${details.map(([label, value]) => row(label, value)).join("")}</dl></details>` : ""}</article>`;
 }
 async function specialsPage() {
   nav("/specials");
