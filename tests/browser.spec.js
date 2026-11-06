@@ -22,42 +22,6 @@ async function useFixtures(page) {
   );
 }
 
-test("homepage and primary navigation work under the GitHub Pages subpath", async ({
-  page,
-}) => {
-  const errors = [];
-  page.on("pageerror", (e) => errors.push(e.message));
-  const missing = [];
-  page.on("response", (r) => {
-    if (r.status() >= 400) missing.push(r.url());
-  });
-  await page.goto("./");
-  await expect(
-    page.getByRole("heading", {
-      name: "Know the vehicle. Build the confidence.",
-    }),
-  ).toBeVisible();
-  await expect(page.locator(".manufacturer-card")).toHaveCount(3);
-  for (const brand of ["Chevrolet", "Toyota", "Volkswagen"]) {
-    await page
-      .getByRole("navigation", { name: "Primary navigation" })
-      .getByRole("link", { name: brand, exact: true })
-      .click();
-    await expect(
-      page.getByRole("heading", { name: brand, exact: true }),
-    ).toBeVisible();
-  }
-  await page
-    .getByRole("link", { name: "Current Specials", exact: false })
-    .first()
-    .click();
-  await expect(
-    page.getByRole("heading", { name: "Current Specials" }),
-  ).toBeVisible();
-  await expect(page.getByLabel("Offer Type", { exact: true })).toBeVisible();
-  expect(errors).toEqual([]);
-  expect(missing).toEqual([]);
-});
 test("global search, filters, empty states, and clear filters", async ({
   page,
 }) => {
@@ -82,31 +46,6 @@ test("global search, filters, empty states, and clear filters", async ({
   await expect(page.locator(".vehicle-card")).toHaveCount(0);
   await expect(page.locator('img[src="x"]')).toHaveCount(0);
 });
-test("manufacturer years remain distinct and model guides disclose missing evidence", async ({
-  page,
-}) => {
-  await page.goto("./#/brand/toyota?year=2027");
-  await expect(
-    page.getByRole("heading", { name: "Model-year research in progress" }),
-  ).toBeVisible();
-  await expect(page.locator(".vehicle-card")).toHaveCount(0);
-  await page.getByRole("link", { name: "2026 models" }).click();
-  await expect(page.locator(".vehicle-card")).toHaveCount(2);
-  await page.goto("./#/model/2026-chevrolet-equinox");
-  await expect(
-    page.getByText("Accuracy comes before a filled-in table."),
-  ).toBeVisible();
-  await expect(
-    page.getByText("Not yet verified", { exact: false }).first(),
-  ).toBeVisible();
-  await page
-    .getByRole("link", { name: "Factory packages", exact: true })
-    .click();
-  await expect(page).toHaveURL(/model\/2026-chevrolet-equinox$/);
-  await expect(
-    page.getByRole("heading", { name: "Factory packages", exact: true }),
-  ).toBeInViewport();
-});
 test("glossary expands and can be searched with the keyboard shortcut", async ({
   page,
 }) => {
@@ -125,136 +64,6 @@ test("glossary expands and can be searched with the keyboard shortcut", async ({
   await expect(
     page.getByRole("heading", { name: "Know the limits" }),
   ).toBeVisible();
-});
-test("comparison refuses pending data", async ({ page }) => {
-  await page.route("**/data/catalog.json", (route) =>
-    route.fulfill({
-      json: {
-        ...catalog,
-        vehicles: catalog.vehicles.filter((v) => v.status !== "verified"),
-      },
-    }),
-  );
-  await page.goto("./#/compare");
-  await expect(
-    page.getByRole("heading", {
-      name: "The tool is ready. The evidence comes first.",
-    }),
-  ).toBeVisible();
-  await expect(page.locator("#compare-select")).toHaveCount(0);
-});
-test("verified synthetic configurations compare across brands and trims", async ({
-  page,
-}) => {
-  await useFixtures(page);
-  await page.goto("./#/compare");
-  await page.locator("#compare-select").selectOption("fixture-a:base");
-  await page.getByRole("button", { name: "Add to comparison" }).click();
-  await page.locator("#compare-select").selectOption("fixture-a:plus");
-  await page.getByRole("button", { name: "Add to comparison" }).click();
-  await expect(
-    page.locator('[data-comparison-table="equipment"] tbody tr'),
-  ).toHaveCount(3);
-  await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).toContainText("Requires synthetic package");
-  await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).not.toContainText("Synthetic engine A");
-  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
-  await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).toContainText("Synthetic engine A");
-  await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).toContainText("Unverified");
-  await page.locator("#compare-select").selectOption("fixture-b:plus");
-  await page.getByRole("button", { name: "Add to comparison" }).click();
-  await expect(page.locator(".selection-chip")).toHaveCount(3);
-  await page.locator(".selection-chip button").first().click();
-  await expect(page.locator(".selection-chip")).toHaveCount(2);
-});
-test("verified model shows upgrades, package conditions, and all equipment controls", async ({
-  page,
-}) => {
-  await useFixtures(page);
-  await page.goto("./#/model/fixture-a");
-  await expect(
-    page.locator(
-      '#model-equipment [data-comparison-table="equipment"] tbody tr',
-    ),
-  ).toHaveCount(3);
-  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
-  await expect(
-    page.locator(
-      '#model-equipment [data-comparison-table="equipment"] tbody tr',
-    ),
-  ).toHaveCount(catalog.fields.length);
-  await page
-    .getByLabel("Category", { exact: true })
-    .selectOption("Performance");
-  await expect(
-    page.locator(
-      '#model-equipment [data-comparison-table="equipment"] tbody tr',
-    ),
-  ).toHaveCount(catalog.fields.filter((f) => f.group === "Performance").length);
-  await expect(
-    page.locator("#upgrade-section").getByText("Synthetic audio upgrade"),
-  ).toBeVisible();
-  await page.locator("#package-section summary").click();
-  await expect(
-    page.getByText("Eligible configurations: Fixture Base"),
-  ).toBeVisible();
-});
-test("pending guide print uses landscape Letter and creates exactly one PDF page", async ({
-  page,
-}, testInfo) => {
-  await page.goto("./#/model/2026-chevrolet-equinox");
-  await expect(
-    page.getByRole("button", { name: "Print Quick Reference" }),
-  ).toBeVisible();
-  await page.evaluate(() => {
-    window.print = () => {
-      window.__printed = true;
-    };
-  });
-  await page.getByRole("button", { name: "Print Quick Reference" }).click();
-  expect(await page.evaluate(() => window.__printed)).toBe(true);
-  await page.emulateMedia({ media: "print" });
-  await expect(page.locator(".print-reference")).toBeVisible();
-  await expect(page.locator(".site-header")).toBeHidden();
-  await expect(page.locator(".print-reference")).toContainText(
-    "NOT A SPECIFICATION SHEET",
-  );
-  const pdf = await page.pdf({
-    path: testInfo.outputPath("pending-reference.pdf"),
-    preferCSSPageSize: true,
-  });
-  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
-});
-test("verified synthetic quick reference shares guide data and fits one page", async ({
-  page,
-}, testInfo) => {
-  await useFixtures(page);
-  await page.goto("./#/model/fixture-a");
-  await expect(
-    page.getByRole("heading", { name: "Fixture A", exact: true }),
-  ).toBeVisible();
-  await page.emulateMedia({ media: "print" });
-  await expect(page.locator(".print-reference")).toContainText(
-    "Synthetic engine A",
-  );
-  await expect(page.locator(".print-reference")).toContainText(
-    "Synthetic audio upgrade",
-  );
-  await expect(page.locator(".print-reference")).toContainText(
-    "Synthetic comfort package",
-  );
-  const pdf = await page.pdf({
-    path: testInfo.outputPath("verified-fixture-reference.pdf"),
-    preferCSSPageSize: true,
-  });
-  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
 });
 test("mobile layouts do not overflow the viewport", async ({
   page,
@@ -312,6 +121,7 @@ test("desktop homepage has no console or HTTP errors and unknown routes recover"
 test("key routes meet automated WCAG A/AA accessibility checks", async ({
   page,
 }) => {
+  test.setTimeout(90000);
   const { default: AxeBuilder } = await import("@axe-core/playwright");
   const violations = [];
   for (const route of [
@@ -372,42 +182,6 @@ test("a library loading failure gives a usable retry screen", async ({
   await expect(page.getByRole("button", { name: "Try again" })).toBeVisible();
 });
 
-test("RAV4 HEV brochure equipment, package caveats and separate PHEV link render", async ({
-  page,
-}) => {
-  await page.goto("./#/model/2026-toyota-rav4");
-  await expect(
-    page.locator(
-      '#model-equipment [data-comparison-table="equipment"] thead th',
-    ),
-  ).toHaveCount(3);
-  await expect(page.locator("#model-equipment")).not.toContainText("Plug-in");
-  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
-  await expect(page.locator("#model-equipment")).toContainText("B1 pp. 21");
-  await expect(page.locator("#model-equipment")).toContainText("Unverified");
-  await page
-    .locator("#package-section summary")
-    .filter({ hasText: "XLE Driver Assist Package" })
-    .click();
-  await expect(
-    page.locator("#package-section details[open] .editorial-note"),
-  ).toBeVisible();
-  await page
-    .getByRole("link", {
-      name: "Separate plug-in hybrid reference",
-      exact: false,
-    })
-    .click();
-  await expect(
-    page.getByRole("heading", { name: "RAV4 Plug-in Hybrid", exact: true }),
-  ).toBeVisible();
-  await expect(
-    page.locator(
-      '#model-equipment [data-comparison-table="equipment"] thead th',
-    ),
-  ).toHaveCount(3);
-  await expect(page.locator("#model-equipment")).not.toContainText("B1");
-});
 test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
   page,
 }) => {
@@ -429,392 +203,6 @@ test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
     page.locator('[data-comparison-table="equipment"]'),
   ).toContainText("12.9-inch");
 });
-test("RAV4 hybrid quick reference fits landscape Letter and includes all grades and package caveats", async ({
-  page,
-}, testInfo) => {
-  await page.goto("./#/model/2026-toyota-rav4");
-  await expect(
-    page.locator('#model-equipment [data-comparison-table="equipment"]'),
-  ).toBeVisible();
-  await page.emulateMedia({ media: "print" });
-  const sheet = page.locator(".print-reference");
-  await expect(sheet.locator(".print-grade-table tbody tr")).toHaveCount(6);
-  for (const name of [
-    "LE HEV",
-    "SE HEV",
-    "XLE Premium HEV",
-    "Woodland HEV",
-    "XSE HEV",
-    "Limited HEV",
-    "Weather Package",
-    "XLE Driver Assist Package",
-    "Contents U.",
-  ])
-    await expect(sheet).toContainText(name);
-  await expect(sheet).not.toContainText("GR SPORT");
-  const pdf = await page.pdf({
-    path: testInfo.outputPath("rav4-hybrid-reference.pdf"),
-    preferCSSPageSize: true,
-  });
-  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
-});
-
-test("model trim picker supports three selections, packages and verified Why Upgrade", async ({
-  page,
-}) => {
-  const v = fixtureVehicle();
-  const third = structuredClone(v.trims[1]);
-  third.id = "max";
-  third.name = "Fixture Max";
-  third.equipment.audio.value = "Synthetic premium audio";
-  v.trims.push(third);
-  await page.route("**/data/catalog.json", (route) =>
-    route.fulfill({ json: { ...catalog, vehicles: [v] } }),
-  );
-  await page.goto("./#/model/fixture-a");
-  await expect(
-    page.getByRole("radio", { name: "Trim Differences", exact: true }),
-  ).toBeChecked();
-  const main = page.locator('[data-comparison-table="equipment"]');
-  await expect(main).not.toContainText("Synthetic engine A");
-  await expect(main).toContainText("Not Offered");
-  await expect(main).toContainText("Unverified");
-  await expect(page.locator(".comparison-upgrades")).toContainText(
-    "Synthetic audio upgrade",
-  );
-  await expect(
-    page.locator('[data-comparison-table="packages"]'),
-  ).toContainText("Synthetic heated seats");
-  await expect(page.locator('[data-comparison-table="baseline"]')).toHaveCount(
-    0,
-  );
-  await page.locator(".model-trim-picker > summary").click();
-  await page.locator('input[name="model-trim"][value="fixture-a:max"]').check();
-  await expect(main.locator("thead th")).toHaveCount(4);
-  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
-  await expect(main).toContainText("Synthetic engine A");
-  await expect(main.locator("tbody tr")).toHaveCount(catalog.fields.length);
-  await page
-    .locator('input[name="model-trim"][value="fixture-a:base"]')
-    .uncheck();
-  await page
-    .locator('input[name="model-trim"][value="fixture-a:plus"]')
-    .uncheck();
-  await expect(
-    page.getByRole("heading", { name: "Select at least two configurations" }),
-  ).toBeVisible();
-  await page
-    .locator('input[name="model-trim"][value="fixture-a:base"]')
-    .check();
-  await expect(main.locator("thead th")).toHaveCount(3);
-  await expect(
-    page.getByRole("radio", { name: "All Equipment", exact: true }),
-  ).toBeChecked();
-});
-test("same availability filter applies to cross-model comparisons and package contents", async ({
-  page,
-}) => {
-  const v = fixtureVehicle();
-  v.trims[1].equipment.engine.status = "optional";
-  v.trims[1].equipment.engine.conditions = "Synthetic engine package";
-  await page.route("**/data/catalog.json", (route) =>
-    route.fulfill({ json: { ...catalog, vehicles: [v] } }),
-  );
-  await page.goto("./#/compare");
-  for (const id of ["fixture-a:base", "fixture-a:plus"]) {
-    await page.locator("#compare-select").selectOption(id);
-    await page.getByRole("button", { name: "Add to comparison" }).click();
-  }
-  await expect(
-    page.getByRole("radio", { name: "Trim Differences", exact: true }),
-  ).toBeChecked();
-  const main = page.locator('[data-comparison-table="equipment"]');
-  await expect(main).toContainText("Synthetic engine A");
-  await expect(main).toContainText("Optional");
-  await expect(main).toContainText("Not Offered");
-  await expect(main).toContainText("Unverified");
-  await expect(
-    page.locator('[data-comparison-table="packages"]'),
-  ).toContainText("Synthetic heated seats");
-  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
-  await expect(main.locator("tbody tr")).toHaveCount(catalog.fields.length);
-  await page
-    .getByRole("radio", { name: "Trim Differences", exact: true })
-    .check();
-  await expect(main.locator("tbody tr")).toHaveCount(4);
-});
-test("selection and All Equipment never change the full model print reference", async ({
-  page,
-}, testInfo) => {
-  await page.goto("./#/model/2026-toyota-rav4");
-  await page.locator(".model-trim-picker > summary").click();
-  await page
-    .locator('input[name="model-trim"]')
-    .filter({ visible: true })
-    .first()
-    .uncheck();
-  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
-  await page.emulateMedia({ media: "print" });
-  await expect(page.locator(".print-grade-table tbody tr")).toHaveCount(6);
-  await expect(page.locator(".model-trim-picker")).toBeHidden();
-  const pdf = await page.pdf({
-    path: testInfo.outputPath("unchanged-full-model-reference.pdf"),
-    preferCSSPageSize: true,
-  });
-  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
-});
-
-test("Trim Differences omits the base panel and updates reference columns", async ({
-  page,
-}) => {
-  const v = fixtureVehicle();
-  const third = structuredClone(v.trims[1]);
-  third.id = "max";
-  third.name = "Fixture Max";
-  third.equipment.audio.value = "Synthetic highest audio";
-  v.trims.push(third);
-  v.upgrades.push({
-    from: "Fixture Plus",
-    to: "Fixture Max",
-    gains: [{ text: "Synthetic max gain", sourceIds: ["test-source"] }],
-  });
-  await page.route("**/data/catalog.json", (route) =>
-    route.fulfill({ json: { ...catalog, vehicles: [v] } }),
-  );
-  await page.goto("./#/model/fixture-a");
-  await expect(
-    page.getByRole("radio", { name: "Trim Differences", exact: true }),
-  ).toBeChecked();
-  await expect(page.locator(".baseline-identity")).toHaveCount(0);
-  const base = page.locator('[data-comparison-table="baseline"]');
-  const changes = page.locator('[data-comparison-table="equipment"]');
-  await expect(base).toHaveCount(0);
-  await expect(changes).not.toContainText("Synthetic engine A");
-  await expect(changes).toContainText("Synthetic upgraded audio");
-  await expect(page.locator(".baseline-column-label")).toHaveCount(1);
-  await page.locator(".model-trim-picker > summary").click();
-  await page.locator('input[name="model-trim"][value="fixture-a:max"]').check();
-  await page
-    .locator('input[name="model-trim"][value="fixture-a:base"]')
-    .uncheck();
-  await expect(changes.locator("thead th").nth(1)).toContainText(
-    "Fixture Plus",
-  );
-  await expect(changes.locator("thead")).not.toContainText("Fixture Base");
-  await expect(base).toHaveCount(0);
-  await expect(changes).not.toContainText("Synthetic engine A");
-  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
-  await expect(page.locator(".baseline-equipment")).toHaveCount(0);
-  await expect(changes).toContainText("Synthetic engine A");
-  await expect(changes.locator("tbody tr")).toHaveCount(catalog.fields.length);
-  await page
-    .getByRole("radio", { name: "Trim Differences", exact: true })
-    .check();
-  await expect(changes.locator("thead th").nth(1)).toContainText(
-    "Fixture Plus",
-  );
-  await expect(base).toHaveCount(0);
-});
-test("comparison page omits Base Equipment while retaining selections, tables and modes", async ({
-  page,
-}) => {
-  await useFixtures(page);
-  await page.goto("./#/compare");
-  for (const id of ["fixture-a:plus", "fixture-a:base"]) {
-    await page.locator("#compare-select").selectOption(id);
-    await page.getByRole("button", { name: "Add to comparison" }).click();
-  }
-  await expect(
-    page.locator(".baseline-equipment, .baseline-identity"),
-  ).toHaveCount(0);
-  await expect(page.locator('[data-comparison-table="baseline"]')).toHaveCount(
-    0,
-  );
-  await expect(page.locator(".selection-chip")).toHaveCount(2);
-  await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).not.toContainText("Synthetic engine A");
-  await expect(
-    page.locator('[data-comparison-table="equipment"] thead th').last(),
-  ).toContainText("Baseline");
-  await page.locator("#compare-view-all").check();
-  await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).toContainText("Synthetic engine A");
-  await expect(page.locator(".baseline-equipment")).toHaveCount(0);
-  await page.locator("#compare-view-differences").check();
-  await expect(page.locator(".what-changes")).toBeVisible();
-  await expect(page.locator(".baseline-equipment")).toHaveCount(0);
-  await expect(page.locator(".selection-chip")).toHaveCount(2);
-  await page.locator('[data-remove="fixture-a:plus"]').click();
-  await page.locator("#compare-select").selectOption("fixture-b:base");
-  await page.getByRole("button", { name: "Add to comparison" }).click();
-  await expect(page.locator(".what-changes")).toContainText(
-    "No equipment changes in this view",
-  );
-  await expect(page.locator(".what-changes")).not.toContainText(
-    "Base Equipment",
-  );
-});
-test("RAV4 All Equipment retains engine, output, drivetrain, safety and infotainment", async ({
-  page,
-}) => {
-  await page.goto("./#/model/2026-toyota-rav4");
-  await expect(page.locator('[data-comparison-table="baseline"]')).toHaveCount(
-    0,
-  );
-  await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).not.toContainText("2.5L Dynamic Force");
-  await page.locator("#model-view-all").check();
-  const base = page.locator('[data-comparison-table="equipment"]');
-  for (const text of [
-    "2.5L Dynamic Force",
-    "226 net combined hp",
-    "Front-wheel drive",
-    "Toyota Safety Sense 4.0",
-    "10.5-inch Toyota Audio Multimedia",
-  ])
-    await expect(base).toContainText(text);
-
-  await page.setViewportSize({ width: 390, height: 844 });
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth + 1,
-    ),
-  ).toBe(true);
-});
-
-test("audited RAV4 technical facts and HEV not-applicable states render without hiding genuine unknowns", async ({
-  page,
-}) => {
-  await page.goto("./#/model/2026-toyota-rav4");
-  await page.getByRole("radio", { name: "All Equipment", exact: true }).check();
-  const table = page.locator('[data-comparison-table="equipment"]');
-  await expect(table).toContainText("170 lb-ft (231 N·m)");
-  await expect(table).toContainText("torque basis not specified");
-  await expect(table).toContainText("Not applicable — conventional HEV");
-  await expect(table).toContainText("Not Applicable");
-  await expect(table).toContainText("Unverified");
-  await expect(page.locator("#source-section")).toContainText(
-    "all 93 previously Unverified",
-  );
-});
-
-test("Stage 1 trim cards keep configuration-specific facts and open categorized equipment", async ({
-  page,
-}) => {
-  await page.goto("./#/model/2026-toyota-rav4");
-  const cards = page.locator(".trim-training-card");
-  await expect(cards).toHaveCount(6);
-  await expect(page.locator("#trim-lineup")).toContainText("9 configurations");
-  const le = cards.filter({
-    has: page.getByRole("heading", { name: "LE Hybrid", exact: true }),
-  });
-  await expect(le.locator(".trim-core-specs")).toContainText("226");
-  await le.locator("select").selectOption({ label: "HEV · AWD" });
-  await expect(le.locator(".trim-core-specs")).toContainText("236");
-  await expect(le.locator(".trim-core-specs")).toContainText("AWD");
-  for (const card of await cards.all()) {
-    const count = await card.locator(".trim-highlights li").count();
-    expect(count).toBeGreaterThanOrEqual(3);
-    expect(count).toBeLessThanOrEqual(5);
-  }
-  await le.getByRole("button", { name: "View Equipment", exact: true }).click();
-  await expect(page.locator("#equipment-config option:checked")).toHaveText(
-    "LE Hybrid · HEV · AWD",
-  );
-  await expect(page.locator("#equipment-detail-title")).toBeFocused();
-  await expect(page.locator(".categorized-fields dt")).toHaveCount(
-    catalog.fields.length,
-  );
-  const comfort = page
-    .locator(".equipment-category")
-    .filter({ has: page.locator("summary > span", { hasText: /^Comfort$/ }) });
-  await comfort.locator("summary").click();
-  await expect(comfort.locator(".categorized-fields")).toBeVisible();
-  await expect(page.locator("#categorized-equipment")).toContainText("Source:");
-  await page
-    .locator("#equipment-config")
-    .selectOption({ label: "XLE Premium Hybrid · HEV · FWD" });
-  const packages = page
-    .locator(".equipment-category")
-    .filter({ hasText: "Packages & listed options" });
-  await packages.locator("summary").click();
-  await expect(packages).toContainText("Contents Unverified");
-});
-
-test("trim card comparison action preserves differences and All Equipment views", async ({
-  page,
-}) => {
-  await page.goto("./#/model/2026-toyota-rav4");
-  const limited = page.locator(".trim-training-card").filter({
-    has: page.getByRole("heading", { name: "Limited Hybrid", exact: true }),
-  });
-  await limited
-    .getByRole("button", { name: "Compare Trims", exact: true })
-    .click();
-  await expect(
-    page.locator('input[name="model-trim"][value$="limited-hev-awd"]'),
-  ).toBeChecked();
-  await expect(page.locator("#trim-section")).toBeFocused();
-  await expect(page.locator("#model-view-differences")).toBeChecked();
-  await expect(page.locator("#model-equipment")).not.toContainText(
-    "Base Equipment",
-  );
-  await expect(page.locator("#model-equipment")).toContainText("What Changes");
-  await page.locator("#model-view-all").check();
-  await expect(
-    page.locator(
-      '#model-equipment [data-comparison-table="equipment"] tbody tr',
-    ),
-  ).toHaveCount(catalog.fields.length);
-});
-
-test("Stage 2 navigation provides honest landing pages and retains working guide links", async ({
-  page,
-}) => {
-  await page.goto("./");
-  const nav = page.getByRole("navigation", { name: "Primary navigation" });
-  for (const title of ["Compare Vehicles", "Equipment Search"]) {
-    await nav.getByRole("link", { name: new RegExp(`^${title}`) }).click();
-    await expect(
-      page.getByRole("heading", { name: title, exact: true }),
-    ).toBeVisible();
-    await expect(page.locator("main")).toContainText("STAGE 2");
-    await expect(page.locator("main input, main select")).toHaveCount(0);
-    await expect(page.locator('main a[href="#/search"]')).toBeVisible();
-  }
-  await nav.getByRole("link", { name: "Model Guides", exact: true }).click();
-  await expect(page.locator(".vehicle-card")).toHaveCount(
-    catalog.vehicles.length,
-  );
-});
-
-test("trim lineup and equipment remain usable on narrow mobile and desktop", async ({
-  page,
-}, testInfo) => {
-  for (const width of [320, 768, 1440]) {
-    await page.setViewportSize({ width, height: 950 });
-    await page.goto("./#/model/2026-toyota-rav4");
-    await expect(page.locator(".trim-training-card")).toHaveCount(6);
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth + 1,
-      ),
-      `viewport ${width}`,
-    ).toBe(true);
-    await expect(page.locator(".trim-card-visual img")).toHaveCount(0);
-    await expect(page.locator(".trim-image-placeholder")).toHaveCount(0);
-    await expect(page.locator(".trim-card-visual")).toHaveCount(0);
-    await page.locator("#trim-lineup").scrollIntoViewIfNeeded();
-    await page.screenshot({
-      path: testInfo.outputPath(`rav4-lineup-${width}.png`),
-      fullPage: false,
-    });
-  }
-});
-
 test("trim imagery requires source evidence and renders only the verified record", async ({
   page,
 }) => {
@@ -905,283 +293,6 @@ test("text-first trim cards have complete context and no reserved image space", 
       expect(spacing).toBeLessThan(35);
     }
   }
-});
-
-test("Tiguan reuses trim cards, switches drivetrain specs, and displays sourced equipment", async ({
-  page,
-}) => {
-  await page.goto("./#/model/2026-volkswagen-tiguan");
-  const cards = page.locator(".trim-training-card");
-  await expect(cards).toHaveCount(4);
-  await expect(
-    page.locator(".trim-card-visual, .trim-image-placeholder"),
-  ).toHaveCount(0);
-  for (const card of await cards.all()) {
-    await expect(card.locator(".trim-core-specs > div")).toHaveCount(4);
-    expect(
-      await card.locator(".trim-highlights li").count(),
-    ).toBeGreaterThanOrEqual(3);
-    expect(
-      await card.locator(".trim-highlights li").count(),
-    ).toBeLessThanOrEqual(5);
-    await expect(card.locator(".trim-msrp")).toContainText("2026-11-04");
-  }
-  await expect(cards.first()).toContainText("$30,805");
-  await cards
-    .first()
-    .getByLabel("Configuration", { exact: true })
-    .selectOption("2026-volkswagen-tiguan:s-4motion");
-  await expect(cards.first()).toContainText("$32,305");
-  await expect(cards.first()).toContainText(
-    "22 city / 30 highway / 25 combined",
-  );
-  await cards
-    .last()
-    .getByRole("button", { name: "View Equipment", exact: true })
-    .click();
-  await expect(page.locator("#equipment-config")).toHaveValue(
-    "2026-volkswagen-tiguan:sel-r-line-turbo-4motion",
-  );
-  const comfort = page
-    .locator(".equipment-category")
-    .filter({ has: page.locator("summary > span", { hasText: /^Comfort$/ }) });
-  await comfort.locator("summary").click();
-  await expect(comfort).toContainText("Quilted Varenna leather");
-  await expect(comfort).toContainText("delayed availability");
-  const tech = page.locator(".equipment-category").filter({
-    has: page.locator("summary > span", { hasText: /^Technology$/ }),
-  });
-  await tech.locator("summary").click();
-  await expect(tech).toContainText("15-inch display");
-  await expect(tech).toContainText("MIB4 Discover Media");
-  await expect(tech).not.toContainText("does not itemize them");
-  await expect(page.locator("#categorized-equipment")).toContainText(
-    "Not Applicable",
-  );
-  const changes = page.locator(
-    '#model-equipment .what-changes [data-comparison-table="equipment"]',
-  );
-  await expect(changes).toContainText("Starting MSRP");
-  await expect(
-    page.locator('#model-equipment [data-comparison-table="baseline"]'),
-  ).toHaveCount(0);
-  await page.locator("#model-view-all").check();
-  await expect(
-    page.locator('#model-equipment [data-comparison-table="equipment"]'),
-  ).toContainText("201 hp");
-  await expect(
-    page.locator('#model-equipment [data-comparison-table="equipment"]'),
-  ).toContainText("Ground clearance");
-});
-
-test("Tiguan quick reference is a one-page gasoline guide with correct pricing and no photos", async ({
-  page,
-}, testInfo) => {
-  await page.goto("./#/model/2026-volkswagen-tiguan");
-  await expect(page.locator(".trim-training-card")).toHaveCount(4);
-  await page.emulateMedia({ media: "print" });
-  const sheet = page.locator(".print-reference");
-  await expect(sheet.locator(".print-grade-table tbody tr")).toHaveCount(4);
-  await expect(sheet).toContainText("4 gasoline trims / 7 configurations");
-  await expect(sheet).toContainText("$43,085");
-  await expect(sheet).not.toContainText("PHEV only");
-  const pdf = await page.pdf({
-    path: testInfo.outputPath("tiguan-reference.pdf"),
-    preferCSSPageSize: true,
-  });
-  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
-});
-
-test("Tiguan mobile layout and cross-brand comparison preserve existing components", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 375, height: 812 });
-  await page.goto("./#/model/2026-volkswagen-tiguan");
-  await expect(page.locator(".trim-training-card")).toHaveCount(4);
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= window.innerWidth,
-    ),
-  ).toBe(true);
-  await page.goto("./#/compare");
-  for (const id of [
-    "2026-toyota-rav4:le-hev-fwd",
-    "2026-volkswagen-tiguan:s-fwd",
-  ]) {
-    await page.locator("#compare-select").selectOption(id);
-    await page.locator("#add-compare").click();
-  }
-  await expect(page.locator("#comparison-results")).toContainText("207 lb-ft");
-  await expect(page.locator("#comparison-results")).toContainText(
-    "torque basis not specified",
-  );
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= window.innerWidth,
-    ),
-  ).toBe(true);
-});
-
-test("cross-brand feature rows distinguish unknown, optional, standard and not offered", async ({
-  page,
-}) => {
-  await page.goto("./#/compare");
-  for (const id of [
-    "2026-toyota-rav4:le-hev-fwd",
-    "2026-volkswagen-tiguan:se-fwd",
-  ]) {
-    await page.locator("#compare-select").selectOption(id);
-    await page.locator("#add-compare").click();
-  }
-  await page.locator("#compare-view-all").check();
-  const table = page.locator(
-    '#comparison-results [data-comparison-table="equipment"]',
-  );
-  const heated = table.locator("tr").filter({
-    has: page.getByRole("rowheader", {
-      name: "Comfort Heated front seats",
-      exact: true,
-    }),
-  });
-  await expect(heated.locator("td").nth(0)).toContainText("Unverified");
-  await expect(heated.locator("td").nth(0)).toContainText("blank");
-  await expect(heated.locator("td").nth(1)).toContainText("Standard");
-  const wheel = table.locator("tr").filter({
-    has: page.getByRole("rowheader", {
-      name: "Comfort Heated steering wheel",
-      exact: true,
-    }),
-  });
-  await expect(wheel.locator("td").nth(0)).toContainText("Unverified");
-  await expect(wheel.locator("td").nth(1)).toContainText("Not Offered");
-  const cruise = table.locator("tr").filter({
-    has: page.getByRole("rowheader", {
-      name: "Safety Adaptive cruise control",
-      exact: true,
-    }),
-  });
-  await expect(cruise).toContainText("Dynamic Radar Cruise Control");
-  await expect(cruise).toContainText("ACC) with Stop & Go");
-  await expect(cruise.locator(".equipment-status.standard")).toHaveCount(2);
-});
-
-test("camera and panoramic roof categories preserve documented system differences", async ({
-  page,
-}) => {
-  await page.goto("./#/compare");
-  for (const id of [
-    "2026-toyota-rav4:xse-hev-awd",
-    "2026-volkswagen-tiguan:sel-r-line-turbo-4motion",
-  ]) {
-    await page.locator("#compare-select").selectOption(id);
-    await page.locator("#add-compare").click();
-  }
-  await page.locator("#compare-view-all").check();
-  const table = page.locator(
-    '#comparison-results [data-comparison-table="equipment"]',
-  );
-  const camera = table.locator("tr").filter({
-    has: page.getByRole("rowheader", {
-      name: "Safety Surround-view / 360-degree camera",
-      exact: true,
-    }),
-  });
-  await expect(camera).toContainText("Panoramic View Monitor");
-  await expect(camera).toContainText("Area View");
-  await expect(camera.locator(".equipment-status.standard")).toHaveCount(2);
-  const roof = table.locator("tr").filter({
-    has: page.getByRole("rowheader", {
-      name: "Exterior Panoramic sunroof / moonroof",
-      exact: true,
-    }),
-  });
-  await expect(roof.locator("td").nth(0)).toContainText("Available (Optional)");
-  await expect(roof.locator("td").nth(1)).toContainText("Standard");
-});
-
-test("all imported Volkswagen guides reuse cards, sourced categories and compact print", async ({
-  page,
-}, testInfo) => {
-  const guides = catalog.vehicles.filter(
-    (v) => v.brand === "volkswagen" && v.year === 2026,
-  );
-  expect(guides).toHaveLength(9);
-  for (const v of guides) {
-    await page.goto(`./#/model/${v.id}`);
-    await expect(page.locator(".trim-training-card")).toHaveCount(
-      new Set(v.trims.map((t) => t.name)).size,
-    );
-    await expect(
-      page.locator(".trim-card-visual, .trim-image-placeholder"),
-    ).toHaveCount(0);
-    await expect(page.locator("#equipment-config option")).toHaveCount(
-      v.trims.length,
-    );
-    await expect(page.locator("#categorized-equipment")).toContainText(
-      "VW-O26",
-    );
-    await page.setViewportSize({ width: 375, height: 812 });
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= window.innerWidth,
-      ),
-      v.model,
-    ).toBe(true);
-    if (v.model === "ID.4")
-      await expect(page.locator(".trim-training-card").first()).toContainText(
-        "TBA",
-      );
-    await page.setViewportSize({ width: 1280, height: 900 });
-    await page.emulateMedia({ media: "print" });
-    await expect(page.locator(".print-reference")).not.toContainText(
-      "PHEV only",
-    );
-    const pdf = await page.pdf({
-      path: testInfo.outputPath(`${v.id}.pdf`),
-      preferCSSPageSize: true,
-    });
-    expect(
-      pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length,
-      v.model,
-    ).toBe(1);
-    await page.emulateMedia({ media: "screen" });
-  }
-});
-
-test("bulk-imported Taos and GLI compare their actual configuration-specific equipment", async ({
-  page,
-}) => {
-  await page.goto("./#/compare");
-  for (const id of [
-    "2026-volkswagen-taos:cl22sz",
-    "2026-volkswagen-taos:cl22sr",
-    "2026-volkswagen-jetta-gli:bu59v2",
-    "2026-volkswagen-jetta-gli:bu59vz",
-  ]) {
-    await page.locator("#compare-select").selectOption(id);
-    await page.locator("#add-compare").click();
-  }
-  await page.locator("#compare-view-all").check();
-  const table = page.locator(
-    '#comparison-results [data-comparison-table="equipment"]',
-  );
-  const heated = table.locator("tr").filter({
-    has: page.getByRole("rowheader", {
-      name: "Comfort Heated front seats",
-      exact: true,
-    }),
-  });
-  await expect(heated).toHaveCount(1);
-  await expect(heated.locator("td").nth(0)).toContainText("Not Offered");
-  await expect(heated.locator("td").nth(1)).toContainText("Standard");
-  const remote = table.locator("tr").filter({
-    has: page.getByRole("rowheader", {
-      name: "Comfort Remote start",
-      exact: true,
-    }),
-  });
-  await expect(remote.locator("td").nth(2)).toContainText("Not Offered");
-  await expect(remote.locator("td").nth(3)).toContainText("Standard");
 });
 
 test("current specials filters, spreadsheet details and responsive cards", async ({
@@ -1323,78 +434,510 @@ test("specials loading failure is isolated from model guides", async ({
   await expect(page.getByRole("searchbox")).toBeVisible();
 });
 
-test("2027 Volkswagen year selection, eight existing-layout guides, mobile and print", async ({
+const guides = catalog.vehicles;
+const verified = guides.filter((v) => v.status === "verified");
+const modelPath = (v) => `./#/model/${typeof v === "string" ? v : v.id}`;
+async function openEquipment(page) {
+  await page.locator("#view-equipment").click();
+  return page.getByRole("dialog", { name: "Standard Equipment", exact: true });
+}
+async function addComparisons(page, ids) {
+  for (const id of ids) {
+    await page.locator("#compare-select").selectOption(id);
+    await page.locator("#add-compare").click();
+  }
+}
+const equipmentTable = (page, parent = "#model-equipment") =>
+  page.locator(`${parent} [data-comparison-table="equipment"]`);
+const equipmentRow = (table, label) =>
+  table.locator("tbody tr").filter({
+    has: table.page().getByRole("rowheader", { name: label, exact: true }),
+  });
+
+test("homepage retains branding, Axel and three manufacturer links without vehicle listings", async ({
   page,
-}, testInfo) => {
-  test.setTimeout(90000);
-  await page.goto("./#/brand/volkswagen");
-  await page.getByRole("link", { name: "2027 models", exact: true }).click();
-  await expect(page.locator(".vehicle-card")).toHaveCount(8);
+}) => {
+  await page.goto("./");
+  await expect(page.locator(".manufacturer-card")).toHaveCount(3);
+  await expect(page.locator(".vehicle-card, .quick-links")).toHaveCount(0);
+  await expect(page.getByRole("img", { name: /Axel the Fox/ })).toBeVisible();
   await expect(
-    page.locator(".vehicle-card").filter({ hasText: "ID.4" }),
-  ).toHaveCount(0);
-  const guides = catalog.vehicles.filter(
-    (v) => v.brand === "volkswagen" && v.year === 2027,
-  );
-  for (const v of guides) {
-    await page.goto(`./#/model/${v.id}`);
+    page.getByRole("img", { name: /Fox Automotive of Rochester Hills/ }),
+  ).toBeVisible();
+  for (const brand of catalog.brands) {
+    await page.locator(`.manufacturer-card.${brand.id}`).click();
+    await expect(page).toHaveURL(new RegExp(`#/search\\?brand=${brand.id}$`));
     await expect(
-      page.getByRole("heading", { name: "What's New for 2027", exact: true }),
+      page.getByRole("heading", { name: "Model Guides", exact: true }),
     ).toBeVisible();
-    if (v.model === "Atlas")
-      await page.screenshot({
-        path: testInfo.outputPath("2027-atlas-desktop.png"),
-      });
-    await expect(page.locator("#model-year-changes")).toContainText("VW-O26");
-    await expect(page.locator("#model-year-changes")).toContainText("VW-O27");
+    await expect(page.locator("#brand-filter")).toHaveValue(brand.id);
+    await expect(page.locator(".vehicle-card")).toHaveCount(
+      guides.filter((v) => v.brand === brand.id).length,
+    );
+    await page.goBack();
+    await expect(page.locator(".manufacturer-card")).toHaveCount(3);
+  }
+});
+
+test("central directory filters all brands and years and restores URL filters with back and forward", async ({
+  page,
+}) => {
+  await page.goto("./#/search");
+  await expect(page.locator(".vehicle-card")).toHaveCount(guides.length);
+  await page.locator("#brand-filter").selectOption("volkswagen");
+  await page.locator("#year-filter").selectOption("2027");
+  await expect(page.locator(".vehicle-card")).toHaveCount(8);
+  await page.getByRole("searchbox").fill("Golf");
+  await expect(page.locator(".vehicle-card")).toHaveCount(2);
+  await page
+    .getByRole("link", { name: "Open 2027 Golf R guide", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Golf R", exact: true, level: 1 }),
+  ).toBeVisible();
+  await page.goBack();
+  await expect(page.locator("#brand-filter")).toHaveValue("volkswagen");
+  await expect(page.locator("#year-filter")).toHaveValue("2027");
+  await expect(page.getByRole("searchbox")).toHaveValue("Golf");
+  await page.goForward();
+  await expect(
+    page.getByRole("heading", { name: "Golf R", exact: true, level: 1 }),
+  ).toBeVisible();
+  await page.goBack();
+  await page.getByRole("button", { name: "Clear filters" }).click();
+  await expect(page.locator(".vehicle-card")).toHaveCount(guides.length);
+});
+
+test("legacy links resolve to working destinations with no duplicate comparison navigation", async ({
+  page,
+}) => {
+  for (const [from, to] of [
+    ["/brand/toyota?year=2027", "/search?year=2027&brand=toyota"],
+    ["/compare-vehicles", "/compare"],
+    ["/equipment-search?q=RAV4", "/search?q=RAV4"],
+  ]) {
+    await page.goto(`./#${from}`);
+    await expect.poll(() => page.evaluate(() => location.hash)).toBe(`#${to}`);
+    await expect(page.locator("body")).not.toContainText(/Stage (?:Two|2)/i);
+  }
+  const nav = page.getByRole("navigation", { name: "Primary navigation" });
+  await expect(
+    nav.getByRole("link", { name: "Compare Models", exact: true }),
+  ).toHaveCount(1);
+  await expect(
+    nav.getByRole("link", { name: /Compare Trims|Compare Vehicles/ }),
+  ).toHaveCount(0);
+  await nav.getByRole("link", { name: "Compare Models", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Compare Models", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator("#compare-select option")).toHaveCount(
+    1 + verified.reduce((n, v) => n + v.trims.length, 0),
+  );
+  await expect(page.locator("#compare-select")).not.toContainText(
+    "2026 Chevrolet Equinox",
+  );
+});
+
+test("all model guides retain cards, standard-only comparisons, equipment explanations and sources", async ({
+  page,
+}) => {
+  test.setTimeout(90000);
+  for (const v of guides) {
+    await page.goto(modelPath(v));
+    await expect(
+      page.getByRole("heading", { name: v.model, exact: true, level: 1 }),
+    ).toBeVisible();
     await expect(page.locator(".trim-training-card")).toHaveCount(
       new Set(v.trims.map((t) => t.name)).size,
     );
-    await expect(page.locator("#equipment-config option")).toHaveCount(
-      v.trims.length,
-    );
-    await expect(page.locator("#categorized-equipment")).toContainText(
-      "VW-O27",
-    );
     await expect(
-      page.locator(".trim-card-visual, .trim-image-placeholder"),
+      page.locator("#specifications, #equipment-explained"),
+    ).toHaveCount(2);
+    await expect(
+      page.locator(
+        ".equipment-detail, #package-section, #source-section, .upgrade-grid, #categorized-equipment, #compare-select",
+      ),
     ).toHaveCount(0);
-    await page
-      .locator("#equipment-config")
-      .selectOption(`${v.id}:${v.trims.at(-1).id}`);
-    await expect(page.locator("#categorized-equipment")).toContainText(
-      v.trims.at(-1).name,
-    );
-    if (v.trims.length > 1) {
-      await page.locator("#model-view-all").check();
-      await expect(
-        page.locator('#model-equipment [data-comparison-table="equipment"]'),
-      ).toContainText("Fuel economy");
-      await page.locator("#model-view-differences").check();
-      await expect(page.locator("#model-equipment")).toContainText(
-        "What Changes",
+    await expect(page.locator(".model-page")).not.toContainText("Unverified");
+    if (v.trims.length)
+      await expect(page.locator("#model-equipment")).not.toContainText(
+        "Available (Optional)",
       );
-    } else {
+    await page.locator("#view-equipment").click();
+    await expect(page.getByRole("dialog")).toContainText(
+      `${v.year} ${catalog.brands.find((b) => b.id === v.brand).name} ${v.model}`,
+    );
+    if (v.trims.length) {
+      await expect(page.locator("#equipment-config option")).toHaveCount(
+        v.trims.length,
+      );
+      await page
+        .locator("#equipment-config")
+        .selectOption(`${v.id}:${v.trims.at(-1).id}`);
+      await expect(page.locator("#reference-context")).toContainText(
+        v.trims.at(-1).name,
+      );
       await expect(
-        page.getByRole("heading", {
-          name: "Select at least two configurations",
-        }),
-      ).toBeVisible();
-      await expect(page.locator("#categorized-equipment")).toContainText(
-        "Fuel economy",
+        page.locator("#categorized-equipment .equipment-status:not(.standard)"),
+      ).toHaveCount(0);
+      await expect(page.locator("#categorized-equipment")).not.toContainText(
+        "Available (Optional)",
       );
     }
-    for (const width of [375, 320]) {
-      await page.setViewportSize({ width, height: 812 });
+    await page.keyboard.press("Escape");
+    await page.locator("#view-sources").click();
+    for (const source of v.sources)
+      await expect(
+        page
+          .getByRole("dialog")
+          .getByRole("link", { name: source.title, exact: false }),
+      ).toBeVisible();
+    for (const item of v.modelYearChanges?.items || [])
+      await expect(page.getByRole("dialog")).toContainText(item.text);
+    await page.getByRole("button", { name: "Close dialog" }).click();
+  }
+});
+
+test("equipment modal matches the trim card and active drivetrain, traps focus and restores scroll", async ({
+  page,
+}) => {
+  await page.goto(modelPath("2026-volkswagen-tiguan"));
+  const card = page
+    .locator(".trim-training-card")
+    .filter({ has: page.getByRole("heading", { name: "SE", exact: true }) });
+  await card
+    .locator("select")
+    .selectOption("2026-volkswagen-tiguan:se-4motion");
+  const trigger = card.getByRole("button", {
+    name: "View Equipment",
+    exact: true,
+  });
+  await trigger.click();
+  const dialog = page.getByRole("dialog", {
+    name: "Standard Equipment",
+    exact: true,
+  });
+  await expect(dialog).toBeVisible();
+  await expect(page.locator("#equipment-config")).toHaveValue(
+    "2026-volkswagen-tiguan:se-4motion",
+  );
+  await expect(dialog).toContainText("4MOTION");
+  await expect(dialog).toContainText("201 hp");
+  const scroll = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, 1200);
+  expect(await page.evaluate(() => scrollY)).toBe(scroll);
+  for (let i = 0; i < 12; i++) {
+    await page.keyboard.press("Tab");
+    expect(
+      await dialog.evaluate((d) => d.contains(document.activeElement)),
+    ).toBe(true);
+  }
+  await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+  expect(await page.evaluate(() => scrollY)).toBe(scroll);
+  await page.locator("#view-equipment").click();
+  await expect(page.locator("#equipment-config")).toHaveValue(
+    "2026-volkswagen-tiguan:se-4motion",
+  );
+  await page.mouse.click(1, 1);
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(page.locator("#view-equipment")).toBeFocused();
+  await expect(page.locator("body")).not.toHaveClass(/reference-open/);
+});
+
+test("sources modal preserves original optional and unknown classifications and source references", async ({
+  page,
+}) => {
+  await useFixtures(page);
+  await page.goto(modelPath("fixture-a"));
+  await page.locator("#model-view-all").check();
+  await expect(equipmentTable(page)).toContainText("Not standard");
+  await expect(equipmentTable(page)).not.toContainText(
+    "Requires synthetic package",
+  );
+  await expect(page.locator("#specifications")).toContainText("N/A");
+  await page.locator("#view-sources").click();
+  const dialog = page.getByRole("dialog", {
+    name: "Sources & Verification",
+    exact: true,
+  });
+  await dialog
+    .getByText("Equipment verification details", { exact: true })
+    .click();
+  await expect(dialog).toContainText("Available (Optional)");
+  await expect(dialog).toContainText("Requires synthetic package");
+  await expect(dialog).toContainText("Unverified");
+  await expect(
+    dialog.getByRole("link", { name: /Synthetic evidence fixture/ }),
+  ).toHaveAttribute("href", "https://www.toyota.com/test-fixture");
+  await dialog.locator("#source-config").selectOption("plus");
+  await dialog
+    .getByText("Equipment verification details", { exact: true })
+    .click();
+  await expect(dialog).toContainText("Not Offered");
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await expect(page.locator("#view-sources")).toBeFocused();
+});
+
+test("equipment source citations use the same dialog and return focus to the original opener", async ({
+  page,
+}) => {
+  await page.goto(modelPath("2026-toyota-rav4"));
+  const equipment = await openEquipment(page);
+  await equipment.locator(".source-link").first().click();
+  await expect(page.getByRole("dialog")).toHaveCount(1);
+  await expect(page.getByRole("dialog")).toHaveAccessibleName(
+    "Sources & Verification",
+  );
+  await expect(page.getByRole("dialog")).toContainText("B1");
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#view-equipment")).toBeFocused();
+});
+
+test("Find Your Differences keeps core mechanics and one selection-aware standard Why Upgrade", async ({
+  page,
+}) => {
+  await useFixtures(page);
+  await page.goto(modelPath("fixture-a"));
+  const table = equipmentTable(page);
+  await expect(table).toContainText("Synthetic engine A");
+  await expect(table).toContainText("Synthetic upgraded audio");
+  await expect(table).toContainText("Not standard");
+  await expect(page.locator("#why-upgrade")).toHaveCount(1);
+  await expect(page.locator("#why-upgrade")).toContainText(
+    "Synthetic heated seats",
+  );
+  await expect(page.locator("#why-upgrade")).not.toContainText(
+    /package|Available|Unverified/,
+  );
+  await page.locator("#model-view-all").check();
+  await expect(table).toContainText("Synthetic engine A");
+  await page.locator("#model-view-differences").check();
+  await page.locator(".model-trim-picker > summary").click();
+  await page.locator('input[value="fixture-a:plus"]').uncheck();
+  await expect(
+    page.getByRole("heading", { name: "Select at least two configurations" }),
+  ).toBeVisible();
+  await expect(page.locator("#why-upgrade")).toHaveCount(0);
+  await page.locator('input[value="fixture-a:plus"]').check();
+  await expect(page.locator("#why-upgrade")).toContainText(
+    "Fixture Base → Fixture Plus",
+  );
+  await page.locator("#model-group").selectOption("Safety");
+  await expect(table).toHaveCount(0);
+  await page.locator("#model-group").selectOption("");
+  await expect(table).toContainText("Synthetic engine A");
+});
+
+test("cross-brand and cross-year comparisons preserve verified values, N/A, standard and not-standard", async ({
+  page,
+}) => {
+  await page.goto("./#/compare");
+  await addComparisons(page, [
+    "2026-toyota-rav4:le-hev-fwd",
+    "2026-volkswagen-tiguan:se-fwd",
+    "2027-chevrolet-equinox:lt-fwd",
+    "2027-volkswagen-tiguan:rm14qj",
+  ]);
+  await page.locator("#compare-view-all").check();
+  const table = equipmentTable(page, "#comparison-results");
+  await expect(table.locator("thead th")).toHaveCount(5);
+  const heated = equipmentRow(table, "Comfort Heated front seats");
+  await expect(heated.locator("td").nth(0)).toContainText("N/A");
+  await expect(heated.locator("td").nth(1)).toContainText("Standard");
+  const wheel = equipmentRow(table, "Comfort Heated steering wheel");
+  await expect(wheel.locator("td").nth(0)).toContainText("N/A");
+  await expect(wheel.locator("td").nth(1)).toContainText("Not standard");
+  const cruise = equipmentRow(table, "Safety Adaptive cruise control");
+  await expect(cruise).toContainText("Dynamic Radar Cruise Control");
+  await expect(cruise).toContainText("Stop & Go");
+  await expect(table).not.toContainText(/Available \(Optional\)|Unverified/);
+  await expect(
+    page.locator(".comparison-packages, .baseline-equipment, #why-upgrade"),
+  ).toHaveCount(0);
+  await page.locator("#compare-view-differences").check();
+  await expect(table).toContainText("1.5L Turbo");
+  await page
+    .getByRole("button", { name: "Remove Equinox LT", exact: true })
+    .click();
+  await expect(table.locator("thead th")).toHaveCount(4);
+});
+
+test("standard camera systems keep manufacturer terminology while optional roofs become Not standard", async ({
+  page,
+}) => {
+  await page.goto("./#/compare");
+  await addComparisons(page, [
+    "2026-toyota-rav4:xse-hev-awd",
+    "2026-volkswagen-tiguan:sel-r-line-turbo-4motion",
+  ]);
+  await page.locator("#compare-view-all").check();
+  const table = equipmentTable(page, "#comparison-results");
+  const camera = equipmentRow(
+    table,
+    "Safety Surround-view / 360-degree camera",
+  );
+  await expect(camera).toContainText("Panoramic View Monitor");
+  await expect(camera).toContainText("Area View");
+  await expect(camera.locator(".equipment-status.standard")).toHaveCount(2);
+  const roof = equipmentRow(table, "Exterior Panoramic sunroof / moonroof");
+  await expect(roof.locator("td").nth(0)).toContainText("Not standard");
+  await expect(roof.locator("td").nth(1)).toContainText("Standard");
+});
+
+test("compact shortcuts focus visible headings and keep Chevrolet explanations, colors and What's New", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto(modelPath("2027-chevrolet-equinox"));
+  for (const [name, target] of [
+    ["Find Your Differences", "trim-section"],
+    ["Equipment Explained", "equipment-explained"],
+    ["Specifications", "specifications"],
+  ]) {
+    await page
+      .locator(".section-nav")
+      .getByRole("link", { name, exact: true })
+      .click();
+    await expect(page.locator(`#${target}`)).toBeFocused();
+    const rect = await page.locator(`#${target}`).boundingBox();
+    expect(rect.y).toBeGreaterThan(80);
+  }
+  await expect(page.locator("#equipment-explained .feature-card")).toHaveCount(
+    1,
+  );
+  await expect(page.locator("#color-section")).toContainText(
+    "Autumn Harvest Metallic",
+  );
+  await expect(page.locator("#color-section")).toContainText("Artemis Gray");
+  await expect(page.locator("#model-year-changes")).toContainText(
+    "Eight Speed Transmission New for FWD",
+  );
+  await expect(page.locator("#model-year-changes")).not.toContainText(
+    "Connected Cameras",
+  );
+});
+
+test("specifications follow the selected Equinox drivetrain and retain important numerical facts", async ({
+  page,
+}) => {
+  await page.goto(modelPath("2027-chevrolet-equinox"));
+  await page
+    .locator("#spec-config")
+    .selectOption("2027-chevrolet-equinox:lt-fwd");
+  await expect(page.locator("#specifications")).toContainText("14.8 U.S. gal");
+  await expect(page.locator("#specifications")).toContainText(
+    "8-speed automatic",
+  );
+  const dialog = await openEquipment(page);
+  await page
+    .locator("#equipment-config")
+    .selectOption("2027-chevrolet-equinox:lt-awd");
+  await expect(dialog).toContainText("15.6 U.S. gal");
+  await expect(dialog).toContainText("3583 lb");
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#spec-config")).toHaveValue(
+    "2027-chevrolet-equinox:lt-awd",
+  );
+  await expect(page.locator("#specifications")).toContainText(
+    "8-speed automatic",
+  );
+  await expect(page.locator("#specifications")).toContainText("63.5 cu ft");
+});
+
+test("all guides and shared modals fit desktop, tablet and narrow mobile", async ({
+  page,
+}, testInfo) => {
+  test.setTimeout(120000);
+  for (const v of guides) {
+    await page.goto(modelPath(v));
+    await expect(
+      page.getByRole("heading", { name: v.model, exact: true, level: 1 }),
+    ).toBeVisible();
+    for (const width of [1280, 768, 390, 320]) {
+      await page.setViewportSize({ width, height: 850 });
       expect(
         await page.evaluate(
           () => document.documentElement.scrollWidth <= innerWidth,
         ),
-        v.id,
+        `${v.id} ${width}`,
       ).toBe(true);
     }
+    for (const trigger of ["#view-equipment", "#view-sources"]) {
+      await page.locator(trigger).click();
+      const dialog = page.getByRole("dialog");
+      const rect = await dialog.boundingBox();
+      expect(rect.x).toBeGreaterThanOrEqual(0);
+      expect(rect.y).toBeGreaterThanOrEqual(0);
+      expect(rect.x + rect.width).toBeLessThanOrEqual(320);
+      expect(rect.y + rect.height).toBeLessThanOrEqual(850);
+      const body = dialog.locator(".reference-body");
+      expect(await body.evaluate((e) => e.scrollWidth <= e.clientWidth)).toBe(
+        true,
+      );
+      await page.keyboard.press("Escape");
+    }
     await page.setViewportSize({ width: 1280, height: 900 });
+  }
+  await page.goto(modelPath("2027-chevrolet-equinox"));
+  await page.screenshot({ path: testInfo.outputPath("equinox-desktop.png") });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator("#view-equipment").click();
+  await page.screenshot({ path: testInfo.outputPath("equipment-mobile.png") });
+});
+
+test("both shared dialogs pass accessible naming and automated WCAG checks", async ({
+  page,
+}) => {
+  const { default: AxeBuilder } = await import("@axe-core/playwright");
+  await page.goto(modelPath("2027-chevrolet-equinox"));
+  for (const trigger of ["#view-equipment", "#view-sources"]) {
+    await page.locator(trigger).click();
+    await expect(page.getByRole("dialog")).toHaveAttribute(
+      "aria-labelledby",
+      "reference-title",
+    );
+    const audit = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    expect(audit.violations).toEqual([]);
+    await page.keyboard.press("Escape");
+  }
+});
+
+test("every printable guide remains one landscape Letter page with standard data and no open-modal dependency", async ({
+  page,
+}, testInfo) => {
+  test.setTimeout(120000);
+  for (const v of guides) {
+    await page.goto(modelPath(v));
+    await expect(
+      page.getByRole("heading", { name: v.model, exact: true, level: 1 }),
+    ).toBeVisible();
+    const print = page.locator(".print-reference");
+    const text = await print.textContent();
+    expect(text).not.toMatch(
+      /Named factory packages|Confirmed individual options|Unverified|Contents U\./,
+    );
+    if (v.quickReference)
+      await expect(print.locator(".print-grade-table tbody tr")).toHaveCount(
+        v.quickReference.groups.length,
+      );
+    await page.evaluate(() => {
+      window.print = () => {
+        window.__printed = true;
+      };
+    });
+    await page.locator("#print-reference").click();
+    expect(await page.evaluate(() => window.__printed)).toBe(true);
+    await page.locator("#view-equipment").click();
     await page.emulateMedia({ media: "print" });
+    await expect(page.getByRole("dialog")).toBeHidden();
+    await expect(print).toBeVisible();
+    await expect(page.locator(".site-header")).toBeHidden();
+    expect(await print.textContent()).toBe(text);
     const pdf = await page.pdf({
       path: testInfo.outputPath(`${v.id}.pdf`),
       preferCSSPageSize: true,
@@ -1404,200 +947,84 @@ test("2027 Volkswagen year selection, eight existing-layout guides, mobile and p
       v.id,
     ).toBe(1);
     await page.emulateMedia({ media: "screen" });
+    await page.keyboard.press("Escape");
   }
 });
 
-test("2027 equipment respects AWD qualifiers, production exceptions and cross-year comparisons", async ({
+test("model selections and Sources dialog do not change the full print reference", async ({
   page,
 }) => {
-  await page.goto("./#/model/2027-volkswagen-taos");
-  await page
-    .locator("#equipment-config")
-    .selectOption("2027-volkswagen-taos:cl27sz");
-  const comfort = page
-    .locator(".equipment-category")
-    .filter({ has: page.locator("summary > span", { hasText: /^Comfort$/ }) });
-  await comfort.locator("summary").click();
-  const heating = comfort
-    .locator(".categorized-fields > div")
-    .filter({ has: page.locator("dt", { hasText: /^Heated front seats$/ }) })
-    .first();
-  await expect(heating).toContainText("Not Offered");
-  await page
-    .locator("#equipment-config")
-    .selectOption("2027-volkswagen-taos:cl27sr");
-  await comfort.locator("summary").click();
-  await expect(heating).toContainText("Standard");
-  await page.goto("./#/compare");
-  for (const id of [
-    "2026-volkswagen-tiguan:se-r-line-black-fwd",
-    "2027-volkswagen-tiguan:rm1vps",
-  ]) {
-    await page.locator("#compare-select").selectOption(id);
-    await page.locator("#add-compare").click();
-  }
-  const row = page
-    .locator('[data-comparison-table="equipment"] tbody tr')
-    .filter({ has: page.locator("th", { hasText: /Heated steering wheel/ }) });
-  await expect(row.locator("td").nth(0)).toContainText("Not Offered");
-  await expect(row.locator("td").nth(1)).toContainText("Standard");
-  await expect(row.locator("td").nth(1)).toContainText("2PD");
-  await page.locator("#compare-view-all").check();
-  await expect(
-    page
-      .locator('[data-comparison-table="equipment"] tbody tr')
-      .filter({ has: page.locator("th", { hasText: /Fuel economy/ }) })
-      .locator("td")
-      .nth(1),
-  ).toContainText("Unverified");
-});
-
-test("Equinox standard-only guide reuses trim cards, colors and drivetrain controls", async ({
-  page,
-}, testInfo) => {
-  await page.goto("./#/brand/chevrolet");
-  await expect(page.locator(".vehicle-card")).toHaveCount(1);
-  await page
-    .getByRole("link", { name: "Open 2027 Equinox guide", exact: true })
-    .click();
-  await expect(
-    page.getByRole("heading", { name: "Equinox", exact: true }),
-  ).toBeVisible();
-  await expect(
-    page.getByText("STANDARD EQUIPMENT GUIDE", { exact: true }),
-  ).toBeVisible();
-  await expect(page.locator(".trim-training-card")).toHaveCount(3);
-  await expect(page.locator(".card-configuration")).toHaveCount(3);
-  await expect(page.locator(".feature-card")).toHaveCount(0);
-  await expect(
-    page.locator(".trim-card-visual, .trim-image-placeholder"),
-  ).toHaveCount(0);
-  await expect(page.locator("#model-year-changes")).toContainText(
-    "Eight Speed Transmission New for FWD",
-  );
-  await expect(page.locator("#model-year-changes")).toContainText(
-    "Autumn Harvest",
-  );
-  await expect(page.locator("#model-year-changes")).not.toContainText(
-    "Connected Cameras",
-  );
-  await expect(
-    page.locator("#package-section, .comparison-packages"),
-  ).toHaveCount(0);
-  await expect(page.locator("#categorized-equipment")).not.toContainText(
-    "Convenience Package",
-  );
-  await expect(page.locator("#categorized-equipment")).not.toContainText(
-    "Available (Optional)",
-  );
-  const colors = page.locator("#color-section");
-  const autumn = colors
-    .getByRole("row")
-    .filter({ hasText: "Autumn Harvest Metallic" });
-  await expect(autumn).toContainText("LT");
-  await expect(autumn).toContainText("ACTIV");
-  await expect(autumn).not.toContainText("RS");
-  await expect(colors).toContainText("Artemis Gray");
-  await expect(colors).toContainText("Sueded Microfiber");
-  await expect(colors).toContainText("additional color/material reference");
-  await colors
-    .getByText("Mosaic Black Metallic Roof — RS, LT", { exact: true })
-    .click();
-  await expect(colors).toContainText("Lakeshore Blue Metallic");
-  await page
-    .locator("#equipment-config")
-    .selectOption("2027-chevrolet-equinox:lt-fwd");
-  await expect(page.locator("#categorized-equipment")).toContainText(
+  await page.goto(modelPath("2027-chevrolet-equinox"));
+  const print = page.locator(".print-reference");
+  const text = await print.textContent();
+  for (const value of [
+    "175 hp",
+    "203 lb-ft",
     "14.8 U.S. gal",
-  );
-  await page
-    .locator("#equipment-config")
-    .selectOption("2027-chevrolet-equinox:lt-awd");
-  await expect(page.locator("#categorized-equipment")).toContainText(
     "15.6 U.S. gal",
-  );
-  await expect(page.locator("#categorized-equipment")).toContainText("3583 lb");
-  for (const width of [1280, 390, 320]) {
-    await page.setViewportSize({ width, height: 850 });
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-      String(width),
-    ).toBe(true);
-  }
-  await page.setViewportSize({ width: 1280, height: 900 });
-  await page.screenshot({ path: testInfo.outputPath("equinox-desktop.png") });
+    "63.5 cu ft",
+  ])
+    expect(text).toContain(value);
+  await page.locator("#model-view-all").check();
+  await page
+    .locator("#spec-config")
+    .selectOption("2027-chevrolet-equinox:rs-awd");
+  await page.locator("#view-sources").click();
+  await page.emulateMedia({ media: "print" });
+  await expect(print).toBeVisible();
+  await expect(page.getByRole("dialog")).toBeHidden();
+  expect(await print.textContent()).toBe(text);
 });
 
-test("Equinox Differences Only retains engine context and compares standard equipment", async ({
+test("comparison selections reject duplicates, limit to four, survive navigation and support removal", async ({
   page,
 }) => {
-  await page.goto("./#/model/2027-chevrolet-equinox");
-  await page.locator(".model-trim-picker > summary").click();
-  await page
-    .locator('input[name="model-trim"][value="2027-chevrolet-equinox:rs-fwd"]')
-    .check();
-  const table = page.locator(
-    '#model-equipment [data-comparison-table="equipment"]',
-  );
-  await expect(table.locator("thead th")).toHaveCount(4);
-  await expect(table).toContainText("1.5L Turbo");
-  await expect(table).toContainText("8-speed automatic");
-  const charging = table.locator("tbody tr").filter({
-    has: page.locator("th", { hasText: /Wireless phone charging/ }),
-  });
-  await expect(charging.locator("td").nth(0)).toContainText("Not standard");
-  await expect(charging.locator("td").nth(1)).toContainText("Standard");
-  await expect(charging.locator("td").nth(2)).toContainText("Standard");
-  await expect(table).not.toContainText("Available (Optional)");
-  await expect(
-    page.locator(".baseline-equipment, .comparison-packages"),
-  ).toHaveCount(0);
-  await page.locator("#model-view-all").check();
-  await expect(table).toContainText("Heated front seats");
-  await expect(table).toContainText("Heated steering wheel");
-  await expect(table).not.toContainText("Ventilated seats");
+  await page.goto("./#/compare");
+  const ids = verified
+    .flatMap((v) => v.trims.map((t) => `${v.id}:${t.id}`))
+    .slice(0, 5);
+  await addComparisons(page, [ids[0], ids[0]]);
+  await expect(page.locator(".selection-chip")).toHaveCount(1);
+  await expect(page.locator("#toast")).toContainText("already selected");
+  await addComparisons(page, ids.slice(1));
+  await expect(page.locator(".selection-chip")).toHaveCount(4);
+  await expect(page.locator("#toast")).toContainText("Remove a configuration");
   await page
     .getByRole("navigation", { name: "Primary navigation" })
-    .getByRole("link", { name: "Compare Trims", exact: true })
+    .getByRole("link", { name: "Model Guides", exact: true })
     .click();
-  for (const id of ["lt-fwd", "rs-fwd", "activ-fwd"]) {
-    await page
-      .locator("#compare-select")
-      .selectOption(`2027-chevrolet-equinox:${id}`);
-    await page.locator("#add-compare").click();
-  }
+  await page.goBack();
+  await expect(page.locator(".selection-chip")).toHaveCount(4);
+  await page.locator(".selection-chip button").first().click();
+  await expect(page.locator(".selection-chip")).toHaveCount(3);
   await expect(
-    page.locator('[data-comparison-table="equipment"]'),
-  ).toContainText("1.5L Turbo");
-  await expect(
-    page.locator(".baseline-equipment, .comparison-packages"),
-  ).toHaveCount(0);
+    equipmentTable(page, "#comparison-results").locator("thead th"),
+  ).toHaveCount(4);
 });
 
-test("Equinox print stays one page, contains standard specifications, and meets accessibility checks", async ({
+test("production exceptions and genuine not-applicable states retain their original evidence", async ({
   page,
-}, testInfo) => {
-  await page.goto("./#/model/2027-chevrolet-equinox");
-  await expect(page.locator("#equipment-config option")).toHaveCount(6);
-  const { default: AxeBuilder } = await import("@axe-core/playwright");
-  const audit = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
-  expect(audit.violations).toEqual([]);
-  await page.emulateMedia({ media: "print" });
-  const print = page.locator(".print-reference");
-  await expect(print).toContainText("175 hp");
-  await expect(print).toContainText("203 lb-ft");
-  await expect(print).toContainText("14.8 U.S. gal");
-  await expect(print).toContainText("15.6 U.S. gal");
-  await expect(print).toContainText("63.5 cu ft");
-  await expect(print).not.toContainText("Named factory packages");
-  await expect(print).not.toContainText("Confirmed individual options");
-  const pdf = await page.pdf({
-    path: testInfo.outputPath("2027-equinox-reference.pdf"),
-    preferCSSPageSize: true,
-  });
-  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(1);
+}) => {
+  await page.goto(modelPath("2027-volkswagen-tiguan"));
+  const dialog = await openEquipment(page);
+  await page
+    .locator("#equipment-config")
+    .selectOption("2027-volkswagen-tiguan:rm1vpj");
+  await expect(dialog).toContainText("Production exception 2PD");
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#model-year-changes")).toContainText(
+    "production credit 2PD",
+  );
+  await page.goto(modelPath("2026-toyota-rav4"));
+  await expect(
+    page.locator(
+      '#specifications [title="N/A — not applicable to this configuration"]',
+    ),
+  ).not.toHaveCount(0);
+  await page.locator("#view-sources").click();
+  await page
+    .getByText("Equipment verification details", { exact: true })
+    .click();
+  await expect(page.getByRole("dialog")).toContainText("Not Applicable");
+  await expect(page.getByRole("dialog")).toContainText("Unverified");
 });

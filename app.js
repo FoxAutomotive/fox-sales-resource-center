@@ -1,4 +1,14 @@
 import {
+  salesCell,
+  salesOptions,
+  salesText,
+  specificationFields,
+  standardReasons,
+  visibleYearChanges,
+  printView,
+} from "./presentation.js";
+import { openReferenceDialog, closeReferenceDialog } from "./dialog.js";
+import {
   manufacturers,
   offerTypes,
   activeOffers,
@@ -13,9 +23,6 @@ import {
   resolveCell,
   evidenceReady,
   equipmentKey,
-  trimComparisonSections,
-  packageComparisonRows,
-  verifiedUpgradePairs,
 } from "./lib.js";
 
 const standardEquipmentNotice =
@@ -56,7 +63,7 @@ const marks = {
   volkswagen:
     '<svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="m15 7 11 22L37 7M6 19l12 26 8-15 8 15 12-26"/></svg>',
 };
-let catalog, features;
+let catalog, features, directoryCatalog;
 let selected = [];
 let searchTimer;
 let disposeSpecials = () => {};
@@ -86,15 +93,13 @@ function nav(active) {
   const primary = [
     ["/", "Home"],
     ["/search", "Model Guides"],
-    ["/compare", "Compare Trims"],
-    ["/compare-vehicles", "Compare Vehicles"],
-    ["/equipment-search", "Equipment Search"],
+    ["/compare", "Compare Models"],
     ["/specials", "Current Specials"],
   ];
   const link = ([path, label]) =>
-    `<a href="#${path}" ${active === path ? 'aria-current="page"' : ""}>${escape(label)}${["/compare-vehicles", "/equipment-search"].includes(path) ? '<span class="soon-label">STAGE 2</span>' : ""}</a>`;
+    `<a href="#${path}" ${active === path ? 'aria-current="page"' : ""}>${escape(label)}</a>`;
   $("#navigation").innerHTML =
-    `<div class="primary-links">${primary.map(link).join("")}</div><div class="manufacturer-links"><span class="eyebrow">BROWSE BY BRAND</span>${catalog.brands.map((b) => link([`/brand/${b.id}`, b.name])).join("")}<a class="glossary-link" href="#/features">Equipment glossary ↗</a></div>`;
+    `<div class="primary-links">${primary.map(link).join("")}</div><div class="manufacturer-links"><span class="eyebrow">BROWSE BY BRAND</span>${catalog.brands.map((b) => link([`/search?brand=${b.id}`, b.name])).join("")}<a class="glossary-link" href="#/features">Equipment glossary ↗</a></div>`;
 }
 function breadcrumbs(parts) {
   return `<div class="breadcrumbs"><a href="#/">Home</a>${parts.map((p) => `${icon("chevron")}${p.href ? `<a href="${p.href}">${escape(p.label)}</a>` : `<span>${escape(p.label)}</span>`}`).join("")}</div>`;
@@ -107,14 +112,10 @@ function vehicleCard(v) {
 }
 function home() {
   nav("/");
-  const verifiedCount = catalog.vehicles.filter(
-    (v) => v.status === "verified",
-  ).length;
   $("#main").innerHTML =
     `<section class="hero"><div class="hero-inner"><div class="hero-copy"><div class="eyebrow"><span class="red-line"></span> THE FOX AUTOMOTIVE KNOWLEDGE LIBRARY</div><h1>Know the vehicle.<br><span>Build the confidence.</span></h1><p>Your everyday reference for models, trims, and technology.<br class="desktop-break"> Three brands. One place to find the details that matter.</p><div class="hero-tags"><span>${icon("book")} Model &amp; trim guides</span><span>${icon("compare")} Side-by-side comparisons</span><span>${icon("print")} Desk-ready references</span></div></div><aside class="axel-card"><div><span class="eyebrow">A LITTLE KNOWLEDGE.<br>A LOT OF CONFIDENCE.</span><p>Ready for your next<br>customer conversation.</p><span class="axel-signature">The Fox way.</span></div></aside></div></section>
- <div class="content home-content"><section class="search-panel" aria-labelledby="search-title"><div class="section-inline"><h2 id="search-title">What are you looking for?</h2><span class="muted">2026 &amp; 2027 model-year library</span></div>${searchForm()}<div class="popular">QUICK FINDS <a href="#/model/2026-toyota-rav4">RAV4 ${icon("arrow")}</a><a href="#/model/2026-volkswagen-tiguan">Tiguan ${icon("arrow")}</a><a href="#/model/2026-chevrolet-equinox">Equinox ${icon("arrow")}</a><a href="#/features">Technology explained ${icon("arrow")}</a></div></section>
- <section class="section-block" aria-labelledby="brands-title"><div class="section-heading"><div><span class="eyebrow">START WITH A BRAND</span><h2 id="brands-title">Three brands. Your whole showroom.</h2></div><span class="muted">U.S. retail vehicles</span></div><div class="brand-grid">${catalog.brands.map((b) => `<a class="manufacturer-card ${b.id}" href="#/brand/${b.id}">${mark(b.id)}<div><h3>${b.name}</h3><p>Explore models &amp; trim guides</p></div><span class="circle-arrow">${icon("arrow")}</span></a>`).join("")}</div></section>
- <section class="section-block" aria-labelledby="guides-title"><div class="section-heading"><div><span class="eyebrow">THE PRODUCT DESK</span><h2 id="guides-title">Start with these model guides</h2></div><a class="text-link" href="#/search">Browse the library ${icon("arrow")}</a></div><div class="vehicle-grid">${catalog.vehicles.map(vehicleCard).join("")}</div><p class="coverage-note">${icon("shield")} Designed for source-backed information. ${verifiedCount ? `${verifiedCount} verified guides available.` : "Initial guides are open; equipment research is awaiting official source review."} <a href="#/about">Our accuracy standard</a></p></section>
+ <div class="content home-content"><section class="search-panel" aria-labelledby="search-title"><div class="section-inline"><h2 id="search-title">What are you looking for?</h2><span class="muted">2026 &amp; 2027 model-year library</span></div>${searchForm()}</section>
+ <section class="section-block" aria-labelledby="brands-title"><div class="section-heading"><div><span class="eyebrow">START WITH A BRAND</span><h2 id="brands-title">Three brands. Your whole showroom.</h2></div><span class="muted">U.S. retail vehicles</span></div><div class="brand-grid">${catalog.brands.map((b) => `<a class="manufacturer-card ${b.id}" href="#/search?brand=${b.id}">${mark(b.id)}<div><h3>${b.name}</h3><p>Explore models &amp; trim guides</p></div><span class="circle-arrow">${icon("arrow")}</span></a>`).join("")}</div></section>
  <section class="tools-grid" aria-label="Sales tools"><a href="#/compare" class="tool-card"><span class="tool-icon">${icon("compare")}</span><div><span class="eyebrow">SPOT THE DIFFERENCES</span><h3>Compare with confidence</h3><p>See meaningful equipment differences across verified vehicles and trims.</p><span class="text-link">Open comparison tool ${icon("arrow")}</span></div></a><a href="#/features" class="tool-card"><span class="tool-icon">${icon("book")}</span><div><span class="eyebrow">MAKE THE TECHNOLOGY SIMPLE</span><h3>Know what the feature does</h3><p>Plain-language explanations, customer benefits, and limitations.</p><span class="text-link">Explore the equipment glossary ${icon("arrow")}</span></div></a></section>
  <section class="library-status"><span class="status-symbol">${icon("clock")}</span><div><h3>A growing library. A consistent standard.</h3><p>We’re building the 2026 and 2027 reference library, one verified model at a time. Unconfirmed equipment is always clearly labeled.</p></div><a href="#/about">How we verify ${icon("arrow")}</a></section></div>`;
   attachSearch();
@@ -177,32 +178,25 @@ function searchPage(params) {
     year: params.get("year") || "",
   };
   $("#main").innerHTML =
-    `<div class="content page-content">${breadcrumbs([{ label: "Vehicle library" }])}<div class="page-heading"><span class="eyebrow">FIND YOUR NEXT ANSWER</span><h1>Vehicle library</h1><p>Search models, verified trim names, and confirmed equipment.</p></div><div class="search-panel">${searchForm(options)}</div><div id="search-results"></div></div>`;
+    `<div class="content page-content">${breadcrumbs([{ label: "Model Guides" }])}<div class="page-heading"><span class="eyebrow">FIND YOUR NEXT ANSWER</span><h1>Model Guides</h1><p>Search models, verified trim names, and confirmed equipment.</p></div><div class="search-panel">${searchForm(options)}</div><div id="search-results"></div></div>`;
   attachSearch();
   renderSearchResults(options);
 }
 function renderSearchResults(options) {
-  const { vehicles, glossary } = searchVehicles(catalog, features, options);
+  const { vehicles, glossary } = searchVehicles(
+    directoryCatalog,
+    features,
+    options,
+  );
   $("#search-results").innerHTML =
     `<div class="results-heading"><h2 aria-live="polite">Model guides <span class="count">${vehicles.length}</span></h2><button class="button small secondary" id="clear-filters">Clear filters</button></div><p class="muted search-note">Feature and trim searches match verified data only. Unreviewed guides are searchable by manufacturer, model, and year.</p>${vehicles.length ? `<div class="vehicle-grid">${vehicles.map(vehicleCard).join("")}</div>` : `<div class="empty-state">${icon("search")}<h3>No matching guides yet</h3><p>Try a model name or remove a filter. ${options.year === "2027" ? escape(catalog.coverageNotes["2027"]) : "A feature search returning no results does not mean the feature is unavailable; it may not yet be verified."}</p><a href="#/search" class="text-link">Browse all available guides ${icon("arrow")}</a></div>`}${glossary.length && options.query ? `<section class="section-block"><h2>Equipment glossary <span class="count">${glossary.length}</span></h2><p class="muted">General explanations, not evidence of model-specific availability.</p>${featureCards(glossary)}</section>` : ""}`;
+  applySalesLabels($("#search-results"));
   $("#clear-filters").onclick = () => {
     $("#vehicle-search").value = "";
     $("#brand-filter").value = "";
     $("#year-filter").value = "";
     updateSearch(false);
   };
-}
-function brandPage(id, params) {
-  const b = catalog.brands.find((b) => b.id === id);
-  if (!b) return notFound();
-  nav(`/brand/${id}`);
-  const year = params.get("year") || String(b.defaultYear || 2026);
-  const coverageNote = b.coverageNotes?.[year] || catalog.coverageNotes[year];
-  const vehicles = catalog.vehicles.filter(
-    (v) => v.brand === id && String(v.year) === year,
-  );
-  $("#main").innerHTML =
-    `<div class="content page-content">${breadcrumbs([{ label: b.name }])}<div class="brand-page-heading">${mark(id)}<div><span class="eyebrow">MANUFACTURER LIBRARY</span><h1>${b.name}</h1><p>Model guides, trim differences, and equipment details.</p></div></div><div class="year-tabs" aria-label="Model year">${catalog.years.map((y) => `<a href="#/brand/${id}?year=${y}" ${String(y) === year ? 'aria-current="page"' : ""}>${y} models</a>`).join("")}</div><div class="section-heading"><h2>${escape(year)} model guides</h2><span class="muted">${vehicles.length} ${vehicles.length === 1 ? "guide" : "guides"} in the library</span></div>${vehicles.length ? `<div class="vehicle-grid">${vehicles.map(vehicleCard).join("")}</div>` : `<div class="empty-state">${icon("book")}<h2>Model-year research in progress</h2><p>${escape(coverageNote || "No verified guides are available for this model year.")}</p><a href="${b.sourceUrl}" target="_blank" rel="noopener noreferrer" class="text-link">Official ${b.name} website ${icon("external")}</a></div>`}<div class="notice">${icon("shield")} ${escape(coverageNote || "")} Do not infer availability from a previous model year.</div><section class="section-block"><div class="section-heading"><h2>${b.name} technology</h2><a class="text-link" href="#/features">Full glossary ${icon("arrow")}</a></div>${featureCards(features.filter((f) => f.brand === id))}</section></div>`;
 }
 function featureCards(items) {
   return `<div class="feature-grid">${items.map((f) => `<details class="feature-card" id="${f.id}"><summary><span><span class="eyebrow">${escape(brandName(f.brand))} · ${escape(f.category)}</span><strong>${escape(f.name)}</strong></span><span class="expand-icon" aria-hidden="true">+</span></summary><div class="feature-body"><p>${escape(f.summary)}</p><h4>How it works</h4><p>${escape(f.how)}</p><h4>Why a customer might value it</h4><p>${escape(f.value)}</p><h4>Know the limits</h4><p>${escape(f.limitations)}</p><div class="editorial-note">${f.verifiedAt ? `Reviewed ${date(f.verifiedAt)}` : "Editorial overview · source review pending"}. This explanation does not establish availability on any model or trim.${f.sourceNote ? ` <span>${escape(f.sourceNote)}</span>` : ""}</div><a class="text-link" href="${escape(f.sourceUrl)}" target="_blank" rel="noopener noreferrer">Manufacturer reference ${icon("external")}</a></div></details>`).join("")}</div>`;
@@ -228,18 +222,30 @@ function glossaryPage(params) {
   $("#feature-search").addEventListener("input", render);
   render();
 }
-function cellHTML(cell) {
+function cellHTML(cell, { audit = false, vehicle = null } = {}) {
+  const shown = audit ? cell : salesCell(cell);
   const labels = {
     standard: "Standard",
     optional: "Available (Optional)",
     unavailable: "Not Offered",
     "not-standard": "Not standard",
-    "not-applicable": "Not Applicable",
-    unverified: "Unverified",
+    "not-applicable": audit ? "Not Applicable" : "N/A",
+    unverified: audit ? "Unverified" : "N/A",
   };
-  return `<span class="equipment-status ${cell.status === "not-standard" ? "unavailable" : cell.status}">${labels[cell.status]}</span>${cell.value ? `<span class="cell-value">${escape(cell.value)}</span>` : ""}${cell.conditions ? `<small>${escape(cell.conditions)}</small>` : ""}${cell.contentsText ? `<small class="package-contents">${escape(cell.contentsText)}</small>` : ""}${
-    cell.featureIds?.length
-      ? `<span class="cell-features">${cell.featureIds
+  const tooltip =
+    !audit && ["unverified", "not-applicable"].includes(shown.status)
+      ? ` title="${shown.status === "unverified" ? "N/A — information not yet verified" : "N/A — not applicable to this configuration"}"`
+      : "";
+  const owner =
+    vehicle ||
+    catalog.vehicles.find((v) =>
+      shown.sourceIds?.some((id) =>
+        v.sources.some((source) => source.id === id),
+      ),
+    );
+  return `<span class="equipment-status ${shown.status === "not-standard" ? "unavailable" : shown.status}"${tooltip}>${labels[shown.status]}</span>${shown.value ? `<span class="cell-value">${escape(audit ? shown.value : salesText(shown.value))}</span>` : ""}${shown.conditions ? `<small>${escape(shown.conditions)}</small>` : ""}${
+    shown.featureIds?.length
+      ? `<span class="cell-features">${shown.featureIds
           .map((id) => features.find((f) => f.id === id))
           .filter(Boolean)
           .map(
@@ -248,54 +254,22 @@ function cellHTML(cell) {
           )
           .join("")}</span>`
       : ""
-  }${cell.sourceIds?.length ? `<small class="source-reference">Source: ${escape(citationText(cell.sourceIds, cell.sourcePages, cell.sourceCells, cell.sourceSections))}</small>` : ""}`;
+  }${shown.sourceIds?.length ? `<small class="source-reference">${audit ? `Source: ${escape(citationText(shown.sourceIds, shown.sourcePages, shown.sourceCells, shown.sourceSections))}` : `<button class="text-link source-link" type="button" data-view-sources="${escape(owner?.id || "")}">Source: ${escape(citationText(shown.sourceIds, shown.sourcePages, shown.sourceCells, shown.sourceSections))}</button>`}</small>` : ""}`;
 }
 function rowsTable(vehicles, rows, kind = "equipment", baselineId = null) {
-  return `<div class="table-scroll" tabindex="0" role="region" aria-label="${kind === "baseline" ? "Base Equipment" : kind === "packages" ? "Packages and listed options" : "Equipment comparison"}, scroll horizontally"><table class="equipment-table" data-comparison-table="${kind}"><thead><tr><th scope="col">${kind === "packages" ? "Package / option" : "Equipment"}</th>${vehicles.map(({ vehicle: v, trim: t }) => `<th scope="col"><span>${v.year} ${escape(v.model)}</span>${escape(t.name)}${t.configuration ? `<small>${escape(t.configuration)}</small>` : ""}${`${v.id}:${t.id}` === baselineId ? `<small class="baseline-column-label">Baseline</small>` : ""}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr><th scope="row"><small>${escape(row.group)}</small>${escape(row.label)}</th>${row.cells.map((c) => `<td>${cellHTML(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
-}
-function equipmentTable(vehicles, differenceOnly = true, group = "") {
-  const rows = comparisonRows(catalog, vehicles, { differenceOnly, group });
-  return rows.length
-    ? rowsTable(vehicles, rows)
-    : '<div class="empty-state compact"><h3>No equipment differences in this view</h3><p>Identical rows are hidden. Choose All Equipment for the complete reference.</p></div>';
+  return `<div class="table-scroll" tabindex="0" role="region" aria-label="${kind === "baseline" ? "Base Equipment" : kind === "packages" ? "Packages and listed options" : "Equipment comparison"}, scroll horizontally"><table class="equipment-table" data-comparison-table="${kind}"><thead><tr><th scope="col">${kind === "packages" ? "Package / option" : "Equipment"}</th>${vehicles.map(({ vehicle: v, trim: t }) => `<th scope="col"><span>${v.year} ${escape(v.model)}</span>${escape(t.name)}<button class="text-link source-link" type="button" data-view-sources="${escape(v.id)}" data-source-trim="${escape(t.id)}">View Sources</button>${t.configuration ? `<small>${escape(t.configuration)}</small>` : ""}${`${v.id}:${t.id}` === baselineId ? `<small class="baseline-column-label">Baseline</small>` : ""}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr><th scope="row"><small>${escape(row.group)}</small>${escape(row.label)}</th>${row.cells.map((c, i) => `<td>${cellHTML(c, { vehicle: vehicles[i].vehicle })}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
 function comparisonViewControls(prefix) {
-  return `<fieldset class="comparison-view-switch"><legend class="sr-only">Comparison view</legend><label><input type="radio" name="${prefix}-view" id="${prefix}-view-differences" value="differences" checked> Trim Differences</label><label><input type="radio" name="${prefix}-view" id="${prefix}-view-all" value="all"> All Equipment</label></fieldset>`;
+  return `<fieldset class="comparison-view-switch"><legend class="sr-only">Comparison view</legend><label><input type="radio" name="${prefix}-view" id="${prefix}-view-differences" value="differences" checked> Differences Only</label><label><input type="radio" name="${prefix}-view" id="${prefix}-view-all" value="all"> All Equipment</label></fieldset>`;
 }
-function comparisonView(
-  options,
-  differenceOnly = true,
-  group = "",
-  showBaseEquipment = true,
-) {
+function comparisonView(options, differenceOnly = true, group = "") {
   if (options.length < 2)
-    return '<div class="empty-state compact"><h2>Select at least two configurations</h2><p>Choose two to four trims to compare their equipment.</p></div>';
-  const standardOnly = options.some(
-    (o) => o.vehicle.equipmentScope === "standard-only",
-  );
-  if (standardOnly) showBaseEquipment = false;
-  const { baseline, baseRows, changeRows } = trimComparisonSections(
-    catalog,
-    options,
-    { group },
-  );
-  const packages = packageComparisonRows(options, { differenceOnly });
-  const upgrades = verifiedUpgradePairs(options);
-  const packageExtras = standardOnly
-    ? ""
-    : `<section class="comparison-packages"><h3>Optional packages &amp; listed options</h3><p class="comparison-note">Package contents and conditions remain visible when they differ. No verified listing means Unverified, not Unavailable. Category filters apply to equipment; this section retains package context.</p>${packages.length ? rowsTable(options, packages, "packages") : `<p class="muted">${differenceOnly ? "No package or listed-option differences are recorded. Choose All Equipment to see shared listings." : "No source-verified package or option listings are recorded."}</p>`}</section>`;
-  const extras = `${packageExtras}<section class="comparison-upgrades"><h3>Why Upgrade?</h3>${upgrades.length ? upgrades.map(({ from, to, gains }) => `<article><h4>${escape(from.trim.name)} → ${escape(to.trim.name)}</h4><p class="comparison-note">${from.vehicle.year} ${escape(from.vehicle.model)} · ${escape(from.trim.configuration || "Matched configurations")}</p><p>${escape(gains[0].text)}</p><small>Source: ${escape(citationText(gains[0].sourceIds, gains[0].sourcePages, gains[0].sourceCells))}</small></article>`).join("") : '<p class="muted">No source-authored, configuration-matched adjacent-trim explanation is verified for this selection. Equipment differences alone are not used to invent an upgrade recommendation.</p>'}</section>`;
-  if (!differenceOnly)
-    return `<section class="all-equipment-view"><h3>All Equipment</h3><p class="comparison-note">All recorded equipment is shown, including shared and unknown fields. A known status versus Unverified does not prove equipment is absent.</p>${equipmentTable(options, false, group)}${extras}</section>`;
-  const base = baseline.option;
-  const identity = `${base.vehicle.year} ${brandName(base.vehicle.brand)} ${base.vehicle.model} · ${base.trim.name}${base.trim.configuration ? ` · ${base.trim.configuration}` : ""}`;
-  const basis =
-    baseline.method === "verified-upgrade-order"
-      ? "Lowest selected grade established by this model’s recorded, verified upgrade relationships. Catalog order breaks configuration ties."
-      : baseline.method === "cross-model-reference"
-        ? "Reference baseline follows catalog order. Different models or model years do not have a shared trim ranking."
-        : "Baseline follows this model’s existing catalog order; a price ranking or equipment inheritance is not inferred.";
-  return `${showBaseEquipment ? `<section class="baseline-equipment"><h3>Base Equipment</h3><p class="baseline-identity"><strong>Baseline trim:</strong> ${escape(identity)}</p><p class="comparison-note">${basis} Verified standard equipment that does not change is shown below. Changed core specifications appear once under What Changes, with this baseline’s value marked. No equipment is assumed to carry over.</p>${baseRows.length ? rowsTable([base], baseRows, "baseline") : '<p class="muted">No unchanged, source-verified standard equipment is recorded for this baseline and category. Check What Changes or choose All Equipment.</p>'}</section>` : ""}<section class="what-changes"><h3>What Changes</h3><p class="comparison-note">${standardOnly ? "Standard equipment differences are shown with essential common mechanical specifications for context. Not standard does not mean unavailable." : "Only equipment or availability that differs between the selected configurations is shown. Known versus Unverified indicates a verification difference, not proof of absence."}</p>${changeRows.length ? rowsTable(options, changeRows, "equipment", standardOnly ? null : base.id) : `<div class="empty-state compact"><h4>No equipment changes in this view</h4><p>${showBaseEquipment ? "Identical rows are shown under Base Equipment when standard. " : ""}All Equipment includes every recorded field.</p></div>`}${extras}</section>`;
+    return '<div class="empty-state compact"><h2>Select at least two configurations</h2><p>Choose two to four trims to compare their standard equipment.</p></div>';
+  const projected = salesOptions(options);
+  const rows = comparisonRows(catalog, projected, { differenceOnly, group });
+  const reasons = standardReasons(catalog, projected);
+  const why = `<section class="comparison-upgrades" id="why-upgrade"><h3>Why Upgrade?</h3>${reasons.length ? reasons.map(({ from, to, gains }) => `<article><h4>${escape(from.trim.name)} → ${escape(to.trim.name)}</h4><p class="comparison-note">${from.vehicle.year} ${escape(from.vehicle.model)} · ${escape(from.trim.configuration || "Matched configurations")}</p><ul>${gains.map((g) => `<li><strong>${escape(g.label)}:</strong> ${cellHTML(g.cell, { vehicle: to.vehicle })}${g.before.status === "not-standard" ? `<small>Not standard on ${escape(from.trim.name)}.</small>` : `<small>${escape(from.trim.name)}: ${escape(g.before.value)}</small>`}</li>`).join("")}</ul></article>`).join("") : '<p class="muted">No additional verified standard-equipment gains are established for this selection. Compare different trims with matching drivetrains for upgrade context.</p>'}</section>`;
+  return `<section class="${differenceOnly ? "what-changes" : "all-equipment-view"}"><h3>${differenceOnly ? "What Changes" : "All Equipment"}</h3><p class="comparison-note">Factory-standard equipment only. Essential common mechanical specifications remain visible for context. Not standard does not mean unavailable. N/A means not yet verified or not applicable; View Sources retains the original distinctions.</p>${rows.length ? rowsTable(projected, rows) : '<p class="muted">No verified standard-equipment differences in this category.</p>'}${new Set(options.map((o) => o.vehicle.id)).size === 1 ? why : ""}</section>`;
 }
 function defaultModelSelection(options) {
   if (options.length < 2) return options.map((o) => o.id);
@@ -322,14 +296,6 @@ function citationText(ids = [], pages = {}, cells = {}, sections = {}) {
       return `${source?.shortLabel || id}${pages[id] ? ` pp. ${pages[id]}` : ""}${cells[id]?.length ? ` · ${cells[id].join(", ")}` : ""}${sections[id] ? ` · ${sections[id]}` : ""}`;
     })
     .join(", ");
-}
-function optionalEquipmentHTML(v) {
-  const items = [
-    ...(v.optionalEquipment || []),
-    ...(v.listedOptions || []),
-  ].filter((o) => o.status === "optional");
-  if (!items.length) return "";
-  return `<h3>Verified individual options</h3><p class="muted">These availability statements do not establish a named package’s full contents or installation on a particular vehicle.</p>${items.map((o) => `<details><summary>${escape(o.name)} <span class="equipment-status optional">Optional</span></summary><p>${escape(o.description)}</p><p>Listed grade(s): ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></details>`).join("")}`;
 }
 function trimGroups(options) {
   const groups = new Map();
@@ -381,9 +347,12 @@ function trimCardHTML(vehicle, group, index, selectedId = group[0].id) {
     "instruments",
     "phone",
   ];
-  const peers = eligibleOptions(catalog).filter(
-    (o) => o.vehicle.id === vehicle.id && o.trim.name !== trim.name,
-  );
+  const peers = vehicle.trims
+    .filter(
+      (peer) =>
+        peer.name !== trim.name && evidenceReady(vehicle, peer.sourceIds),
+    )
+    .map((peer) => ({ vehicle, trim: peer }));
   const known = priority.filter(
     (id) => resolveCell(vehicle, trim, id).status === "standard",
   );
@@ -413,16 +382,16 @@ function trimCardHTML(vehicle, group, index, selectedId = group[0].id) {
   ]
     .map(([id, label]) => {
       const cell = resolveCell(vehicle, trim, id);
-      return `<div><dt>${label}</dt><dd>${cell.status === "unverified" ? '<span class="equipment-status unverified">Unverified</span>' : escape(cell.value)}${cell.sourceIds?.length ? `<small>${escape(citationText(cell.sourceIds, cell.sourcePages))}</small>` : ""}</dd></div>`;
+      return `<div><dt>${label}</dt><dd>${cell.status === "unverified" ? '<span class="equipment-status unverified" title="N/A — information not yet verified">N/A</span>' : escape(cell.value)}${cell.sourceIds?.length ? `<small>${escape(citationText(cell.sourceIds, cell.sourcePages))}</small>` : ""}</dd></div>`;
     })
     .join(
       "",
-    )}</dl><h4>Equipment highlights</h4><ul class="trim-highlights">${highlights.length ? highlights.map((id) => `<li>${escape(resolveCell(vehicle, trim, id).value)}</li>`).join("") : "<li>Standard equipment details await verification.</li>"}</ul><div class="trim-card-actions"><button class="button primary" data-trim-action="equipment" data-option="${escape(option.id)}">View Equipment</button><button class="button secondary" data-trim-action="compare" data-option="${escape(option.id)}">Compare Trims</button></div></div></article>`;
+    )}</dl><h4>Equipment highlights</h4><ul class="trim-highlights">${highlights.length ? highlights.map((id) => `<li>${escape(resolveCell(vehicle, trim, id).value)}</li>`).join("") : "<li>Standard equipment details await verification.</li>"}</ul><div class="trim-card-actions"><button class="button primary" data-trim-action="equipment" data-option="${escape(option.id)}">View Equipment</button><button class="button secondary" data-trim-action="compare" data-option="${escape(option.id)}">Find Your Differences</button></div></div></article>`;
 }
 function trimExplorerHTML(vehicle, options) {
   if (!options.length) return "";
   const groups = trimGroups(options);
-  return `<section id="trim-lineup" class="section-block trim-lineup"><div class="section-heading"><div><span class="eyebrow">LEARN THE LINEUP</span><h2>Find your trim. Know the difference.</h2><p class="muted">${groups.length} verified trim${groups.length === 1 ? "" : "s"} · ${options.length} configuration${options.length === 1 ? "" : "s"}. Choose a drivetrain to see its own specifications.</p></div></div><div class="trim-card-grid">${groups.map((group, i) => trimCardHTML(vehicle, group, i)).join("")}</div><p class="comparison-note">Highlights are selected from documented standard equipment; they are not claims that other trims lack those features. Unverified values stay labeled.</p></section><section id="equipment-detail" class="section-block training-equipment"><div class="section-heading"><div><span class="eyebrow">PRODUCT TRAINING · SALES REFERENCE</span><h2 tabindex="-1" id="equipment-detail-title">Equipment, organized.</h2><p class="muted">Start with the category you need. Expand for availability, conditions and sources.</p></div></div><label class="field-label" for="equipment-config">Equipment for</label><select id="equipment-config" class="standalone-input">${options.map((o) => `<option value="${escape(o.id)}">${escape(o.trim.name)} · ${escape(o.trim.configuration || "Verified configuration")}</option>`).join("")}</select><div id="categorized-equipment"></div></section>`;
+  return `<section id="trim-lineup" class="section-block trim-lineup"><div class="section-heading"><div><span class="eyebrow">LEARN THE LINEUP</span><h2>Find your trim. Know the difference.</h2><p class="muted">${groups.length} verified trim${groups.length === 1 ? "" : "s"} · ${options.length} configuration${options.length === 1 ? "" : "s"}. Choose a drivetrain to see its own specifications.</p></div></div><div class="trim-card-grid">${groups.map((group, i) => trimCardHTML(vehicle, group, i)).join("")}</div><p class="comparison-note">Highlights are selected from documented standard equipment; they are not claims that other trims lack those features. N/A values remain distinguished from confirmed absence.</p></section>`;
 }
 function categorizedEquipmentHTML(vehicle, trim) {
   const convenience = new Set(["liftgate", "wirelessCharging", "cargoOutlet"]);
@@ -439,32 +408,23 @@ function categorizedEquipmentHTML(vehicle, trim) {
       const fields = equipmentFields(catalog, [vehicle]).filter(
         (f) =>
           (convenience.has(f.id) ? "Convenience" : f.group) === category &&
-          (vehicle.equipmentScope !== "standard-only" ||
-            resolveCell(vehicle, trim, f.id).status === "standard" ||
-            vehicle.standardOnlyMissingFields?.includes(f.id)),
+          resolveCell(vehicle, trim, f.id).status === "standard",
       );
       if (!fields.length) return "";
-      const cells = fields.map((f) => resolveCell(vehicle, trim, f.id));
-      return `<details class="equipment-category" ${category === "Performance" ? "open" : ""}><summary><span>${category}</span><small>${cells.filter((c) => c.status === "standard").length} standard${vehicle.equipmentScope === "standard-only" ? "" : ` · ${cells.filter((c) => c.status === "optional").length} optional · ${cells.filter((c) => c.status === "unavailable").length} unavailable · ${cells.filter((c) => c.status === "not-applicable").length} not applicable`} · ${cells.filter((c) => c.status === "unverified").length} unverified</small></summary><dl class="categorized-fields">${fields.map((f, i) => `<div><dt>${escape(f.label)}</dt><dd>${cellHTML(cells[i])}</dd></div>`).join("")}</dl></details>`;
+      return `<details class="equipment-category" ${category === "Performance" ? "open" : ""}><summary><span>${category}</span><small>${fields.length} standard</small></summary><dl class="categorized-fields">${fields.map((f) => `<div><dt>${escape(f.label)}</dt><dd>${cellHTML(resolveCell(vehicle, trim, f.id), { vehicle })}</dd></div>`).join("")}</dl></details>`;
     })
     .join("");
-  const packages = vehicle.packages.filter(
-    (p) => p.trimIds.includes(trim.id) && evidenceReady(vehicle, p.sourceIds),
+  return (
+    sections ||
+    "<p>Factory-standard equipment is awaiting manufacturer verification.</p>"
   );
-  const options = [
-    ...(vehicle.optionalEquipment || []),
-    ...(vehicle.listedOptions || []),
-  ].filter(
-    (o) => o.trimIds.includes(trim.id) && evidenceReady(vehicle, o.sourceIds),
-  );
-  if (vehicle.equipmentScope === "standard-only")
-    return `<p class="equipment-context"><strong>${escape(trim.name)}</strong> · ${escape(trim.configuration || "")}</p>${sections}`;
-  return `<p class="equipment-context"><strong>${escape(trim.name)}</strong> · ${escape(trim.configuration || "")} · Actual equipment must be confirmed on the window sticker.</p>${sections}<details class="equipment-category"><summary><span>Packages &amp; listed options</span><small>${packages.length} package listings · ${options.length} individual options</small></summary><div class="categorized-packages">${packages.length ? packages.map((p) => `<article><h3>${escape(p.name)}</h3>${cellHTML({ status: p.status || "optional" })}${p.contentsStatus === "unverified" ? '<p class="editorial-note">Package name verified · Contents Unverified</p>' : ""}<p>${escape(p.description)}</p><p>${escape(p.conditions)}</p><small>Source: ${escape(citationText(p.sourceIds, p.sourcePages))}</small></article>`).join("") : "<p>No source-verified package listing for this configuration. This does not mean packages are unavailable.</p>"}${options.map((o) => `<article><h3>${escape(o.name)}</h3>${cellHTML({ status: o.status || "optional" })}<p>${escape(o.description)}</p><p>${escape(o.conditions)}</p><small>Source: ${escape(citationText(o.sourceIds, o.sourcePages))}</small></article>`).join("")}</div></details>`;
 }
 function modelYearChangesHTML(vehicle) {
   const review = vehicle.modelYearChanges;
   if (review?.basis === "manufacturer-highlights")
-    return `<section id="model-year-changes" class="section-block detail-panel"><h2>What's New for ${vehicle.year}</h2><p>Changes documented by GM in the manufacturer Highlights worksheet.</p><ul>${review.items
+    return `<section id="model-year-changes" class="section-block detail-panel"><h2>What's New for ${vehicle.year}</h2><p>Changes documented by GM in the manufacturer Highlights worksheet.</p><ul>${visibleYearChanges(
+      vehicle,
+    )
       .filter((item) => evidenceReady(vehicle, item.sourceIds))
       .map(
         (item) =>
@@ -475,16 +435,16 @@ function modelYearChangesHTML(vehicle) {
     (v) => v.id === review?.baselineVehicleId,
   );
   if (!baseline) return "";
-  const items = review.items.filter(
+  const items = visibleYearChanges(vehicle).filter(
     (item) =>
       evidenceReady(vehicle, item.sourceIds) &&
       evidenceReady(baseline, item.baselineSourceIds),
   );
-  return `<section id="model-year-changes" class="section-block detail-panel"><h2>What's New for ${vehicle.year}</h2><p>Compared with the reviewed <a class="text-link" href="#/model/${escape(baseline.id)}">${baseline.year} ${escape(baseline.model)} guide</a>. These are documented changes; missing listings alone do not establish removal.</p><ul>${items.map((item) => `<li><p>${escape(item.text)}<br><small>Sources: ${baseline.year} ${escape(citationText(item.baselineSourceIds, item.baselineSourcePages))}; ${vehicle.year} ${escape(citationText(item.sourceIds, item.sourcePages))}</small></p></li>`).join("")}</ul>${review.gaps.length ? `<details><summary>Information still requiring verification</summary><ul>${review.gaps.map((gap) => `<li>${escape(gap)}</li>`).join("")}</ul></details>` : ""}</section>`;
+  return `<section id="model-year-changes" class="section-block detail-panel"><h2>What's New for ${vehicle.year}</h2><p>Compared with the reviewed <a class="text-link" href="#/model/${escape(baseline.id)}">${baseline.year} ${escape(baseline.model)} guide</a>. These are documented changes; missing listings alone do not establish removal.</p><ul>${items.map((item) => `<li><p>${escape(item.text)}<br><small>Sources: ${baseline.year} ${escape(citationText(item.baselineSourceIds, item.baselineSourcePages))}; ${vehicle.year} ${escape(citationText(item.sourceIds, item.sourcePages))}</small></p></li>`).join("")}</ul></section>`;
 }
 function colorsPanelHTML(v) {
   if (!v.colors) return "";
-  return `<section id="color-section" class="detail-panel color-reference"><h2>Exterior &amp; interior colors</h2><p class="muted">Manufacturer color references, not dealership inventory or standard-equipment claims. Color combinations vary by trim and interior.</p><h3>Exterior colors</h3><div class="table-scroll" tabindex="0" role="region" aria-label="Exterior color reference, scroll horizontally"><table class="equipment-table"><thead><tr><th scope="col">Color</th><th scope="col">Trim reference</th></tr></thead><tbody>${v.colors.exteriors.map((c) => `<tr><th scope="row">${escape(c.name)}${c.extraCost ? " (extra-cost paint)" : ""}</th><td>${c.trims.map(escape).join(", ")}<small>${escape(citationText(c.sourceIds, c.sourcePages, c.sourceCells))}</small></td></tr>`).join("")}</tbody></table></div>${v.colors.roofs?.length ? `<h3>Roof color references</h3>${v.colors.roofs.map((c) => `<details><summary>${escape(c.name)} — ${c.trims.map(escape).join(", ")}</summary>${c.combinations.map((combination) => `<p><strong>${escape(combination.trim)}:</strong> ${combination.exteriors.map(escape).join(", ")}</p>`).join("")}<small>${escape(citationText(c.sourceIds, c.sourcePages, c.sourceCells))}</small></details>`).join("")}` : ""}<h3>Interior colors &amp; materials</h3>${[
+  return `<section id="color-section" class="detail-panel color-reference"><h2>Exterior &amp; interior colors</h2><p class="muted">Manufacturer color references, not dealership inventory or standard-equipment claims. Color combinations vary by trim and interior.</p><h3>Exterior colors</h3><div class="table-scroll" tabindex="0" role="region" aria-label="Exterior color reference, scroll horizontally"><table class="equipment-table"><thead><tr><th scope="col">Color</th><th scope="col">Trim reference</th></tr></thead><tbody>${(v.colors?.exteriors || []).map((c) => `<tr><th scope="row">${escape(c.name)}${c.extraCost ? " (extra-cost paint)" : ""}</th><td>${c.trims.map(escape).join(", ")}<small>${escape(citationText(c.sourceIds, c.sourcePages, c.sourceCells))}</small></td></tr>`).join("")}</tbody></table></div>${v.colors.roofs?.length ? `<h3>Roof color references</h3>${v.colors.roofs.map((c) => `<details><summary>${escape(c.name)} — ${c.trims.map(escape).join(", ")}</summary>${c.combinations.map((combination) => `<p><strong>${escape(combination.trim)}:</strong> ${combination.exteriors.map(escape).join(", ")}</p>`).join("")}<small>${escape(citationText(c.sourceIds, c.sourcePages, c.sourceCells))}</small></details>`).join("")}` : ""}<h3>Interior colors &amp; materials</h3>${[
     ...new Set(v.trims.map((t) => t.name)),
   ]
     .map(
@@ -499,135 +459,196 @@ function colorsPanelHTML(v) {
     )
     .join("")}</section>`;
 }
-function factoryPackagesPanelHTML(v) {
-  return `<section id="package-section" class="detail-panel"><span class="panel-icon">${icon("grid")}</span><h2>Factory packages</h2>${
-    v.packages.length
-      ? v.packages
-          .filter((p) => !["unavailable", "not-applicable"].includes(p.status))
-          .map(
-            (p) =>
-              `<details><summary>${escape(p.name)}</summary>${p.contentsStatus === "unverified" ? `<p class="editorial-note">Package name verified · Contents Unverified</p>` : ""}<p>${escape(p.description)}</p><p>${p.eligibilityScope === "grade" ? "Listed grades" : "Eligible configurations"}: ${[...new Set(p.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}</p><p>${escape(p.conditions)}</p><small>Source: ${escape(citationText(p.sourceIds, p.sourcePages))}</small></details>`,
+function applySalesLabels(root = $("#main")) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  while (walker.nextNode())
+    walker.currentNode.textContent = salesText(walker.currentNode.textContent);
+}
+function guideContext(v, trim) {
+  return `${v.year} ${brandName(v.brand)} ${v.model}${trim ? ` · ${trim.name} · ${trim.configuration || ""}` : ""}`;
+}
+function specificationsHTML(v, option) {
+  const fields = equipmentFields(catalog, [v]).filter((f) =>
+    specificationFields.has(f.id),
+  );
+  return `<p class="comparison-note">N/A may mean information has not yet been verified or does not apply. View Sources for the original verification state.</p><dl class="categorized-fields">${fields.map((f) => `<div><dt>${escape(f.label)}</dt><dd>${cellHTML(option ? resolveCell(v, option.trim, f.id) : { status: "unverified" }, { vehicle: v })}</dd></div>`).join("")}</dl>`;
+}
+function showSources(v, trimId, trigger = document.activeElement) {
+  if (!v) return;
+  const options = eligibleOptions(catalog).filter((o) => o.vehicle.id === v.id);
+  const initial = options.find((o) => o.trim.id === trimId) || options[0];
+  openReferenceDialog({
+    title: "Sources & Verification",
+    context: guideContext(v),
+    trigger,
+    content: `<p>Original manufacturer classifications and verification notes are retained here. N/A in the sales view does not establish absence.</p><ul class="source-list">${sourceLinks(v)}</ul>${v.sources.map((source) => `<p class="muted">${escape(source.shortLabel || source.id)}${source.fileName ? `: ${escape(source.fileName)}` : ""}${source.documentDate ? ` · Document date: ${date(source.documentDate)}` : ""}${source.dateBasis ? ` · ${escape(source.dateBasis)}` : ""}</p>`).join("")}<details><summary>Original guide notes</summary><p>${escape(v.summary)}</p>${v.notes.map((note) => `<p>${escape(note)}</p>`).join("")}${(v.sourcePageNotes || []).map((note) => `<p>${escape(citationText([note.sourceId], { [note.sourceId]: String(note.page) }))}: ${escape(note.text)}</p>`).join("")}${(v.modelYearChanges?.items || []).map((item) => `<p>${escape(item.text)}<br><small>${escape(citationText(item.sourceIds, item.sourcePages, item.sourceCells))}</small></p>`).join("")}${(v.modelYearChanges?.gaps || []).map((note) => `<p>${escape(note)}</p>`).join("")}</details>${initial ? `<label class="field-label" for="source-config">Verification for</label><select id="source-config" class="standalone-input">${options.map((o) => `<option value="${escape(o.trim.id)}" ${o.trim.id === initial.trim.id ? "selected" : ""}>${escape(o.trim.name)} · ${escape(o.trim.configuration || "")}</option>`).join("")}</select><div id="verification-audit"></div>` : "<p>No trim equipment has been source-verified.</p>"}`,
+    onReady: (dialog) => {
+      if (!initial) return;
+      const render = () => {
+        const option = options.find(
+          (o) => o.trim.id === dialog.querySelector("#source-config").value,
+        );
+        dialog.querySelector("#verification-audit").innerHTML =
+          `<details><summary>Equipment verification details</summary><dl class="categorized-fields">${equipmentFields(
+            catalog,
+            [v],
           )
-          .join("")
-      : "<p>Package contents, eligible trims, and configuration dependencies are awaiting verification. An empty list does not mean no packages are offered.</p>"
-  }${optionalEquipmentHTML(v)}</section>`;
+            .map(
+              (f) =>
+                `<div><dt>${escape(f.label)}</dt><dd>${cellHTML(option.trim.equipment[f.id] || { status: "unverified", conditions: "No record in the reviewed manufacturer data." }, { audit: true, vehicle: v })}</dd></div>`,
+            )
+            .join("")}</dl></details>`;
+      };
+      dialog.querySelector("#source-config").onchange = render;
+      render();
+    },
+  });
 }
 function modelPage(id) {
   const v = catalog.vehicles.find((v) => v.id === id);
   if (!v) return notFound();
-  nav(`/brand/${v.brand}`);
-  const options = eligibleOptions(catalog).filter((o) => o.vehicle.id === id);
+  nav("/search");
+  const options = eligibleOptions(catalog).filter((o) => o.vehicle.id === id),
+    projected = salesOptions(options);
+  const view = projected[0]?.vehicle || v;
+  let activeId = options[0]?.id;
   let modelSelected = defaultModelSelection(options);
+  const printed = printView(catalog, v, options);
   $("#main").innerHTML =
-    `<div class="content page-content model-page">${breadcrumbs([{ label: brandName(v.brand), href: `#/brand/${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>${escape(v.summary)}</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button>${options.length ? `<a class="button secondary" href="#trim-section" data-scroll="trim-section">${icon("compare")} Compare trims</a>` : ""}</div></div><div class="notice">${v.equipmentScope === "standard-only" ? `<div><strong>STANDARD EQUIPMENT GUIDE</strong><p>${escape(standardEquipmentNotice)}</p></div>` : `${icon("shield")} Verify actual equipment against the vehicle’s window sticker. Availability may depend on drivetrain, packages, production date, and region.`}</div>${v.relatedGuides?.length ? `<p class="related-guide">${v.relatedGuides.map((g) => `<a class="text-link" href="#/model/${escape(g.id)}">${escape(g.label)} ${icon("arrow")}</a>`).join(" ")}</p>` : ""}<nav class="section-nav" aria-label="Model sections">${v.modelYearChanges ? `<a href="#model-year-changes" data-scroll="model-year-changes">What's New for ${v.year}</a>` : ""}${options.length ? '<a href="#trim-lineup" data-scroll="trim-lineup">Trim lineup</a><a href="#equipment-detail" data-scroll="equipment-detail">View Equipment</a>' : ""}<a href="#trim-section" data-scroll="trim-section">Compare Trims</a><a href="#upgrade-section" data-scroll="upgrade-section">Reasons to upgrade</a>${v.equipmentScope === "standard-only" ? '<a href="#color-section" data-scroll="color-section">Colors</a>' : '<a href="#package-section" data-scroll="package-section">Factory packages</a>'}<a href="#source-section" data-scroll="source-section">Sources &amp; verification</a></nav>${modelYearChangesHTML(v)}${trimExplorerHTML(v, options)}<section id="trim-section" class="section-block"><div class="section-heading"><div><span class="eyebrow">THE DETAILS THAT MATTER</span><h2>Trim &amp; equipment reference</h2></div></div><div class="legend">${(v.equipmentScope === "standard-only" ? ["standard", "not-standard", "unverified"] : ["standard", "optional", "unavailable", "not-applicable", "unverified"]).map((s) => `<span class="equipment-status ${s === "not-standard" ? "unavailable" : s}">${{ optional: "Available (Optional)", unavailable: "Not Offered", "not-applicable": "Not Applicable", "not-standard": "Not standard" }[s] || s[0].toUpperCase() + s.slice(1)}</span>`).join("")}</div>${
-      options.length
-        ? `${modelTrimPicker(options, modelSelected)}<div class="table-controls">${comparisonViewControls("model")}<div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((g) => `<option>${g}</option>`).join("")}</select></div></div><div id="model-equipment">${comparisonView(
-            options.filter((o) => modelSelected.includes(o.id)),
-            true,
-            "",
-            false,
-          )}</div>`
-        : `<div class="empty-state"><span class="empty-emblem">${icon("book")}</span><h3>Accuracy comes before a filled-in table.</h3><p>Trim structure and equipment are awaiting official ${v.year} ${escape(v.model)} documentation. No specifications have been carried over from another year.</p><a class="text-link" href="${escape(v.sources[0]?.url || catalog.brands.find((b) => b.id === v.brand).sourceUrl)}" target="_blank" rel="noopener noreferrer">Check the manufacturer’s model page ${icon("external")}</a></div>`
-    }</section><div class="model-detail-grid"><section id="upgrade-section" class="detail-panel"><span class="panel-icon">${icon("arrow")}</span><h2>Reasons to upgrade</h2>${v.upgrades.length ? v.upgrades.map((u) => `<h3>${escape(u.from)} → ${escape(u.to)}</h3><ul>${u.gains.map((g) => `<li>${escape(g.text)} <small>Source: ${escape(citationText(g.sourceIds, g.sourcePages, g.sourceCells))}</small></li>`).join("")}</ul>`).join("") : "<p>Verified trim-to-trim gains will appear here after equipment research. There are no confirmed upgrade recommendations yet.</p>"}</section>${v.equipmentScope === "standard-only" ? colorsPanelHTML(v) : factoryPackagesPanelHTML(v)}</div>${v.equipmentScope === "standard-only" ? "" : `<section class="section-block no-print"><h2>Equipment, explained</h2><p class="muted">General brand terminology. Inclusion here does not establish ${escape(v.model)} availability.</p>${featureCards(features.filter((f) => f.brand === v.brand))}</section>`}<section id="source-section" class="source-panel"><div><span class="eyebrow">THE SOURCE OF TRUTH</span><h2>Sources &amp; verification</h2><p>Model year: <strong>${v.year}</strong> · Market: <strong>United States</strong> · Reviewed: <strong>${date(v.verifiedAt)}</strong></p></div><ul class="source-list">${sourceLinks(v)}</ul>${v.notes.map((n) => `<p class="muted">${escape(n)}</p>`).join("")}${(v.sourcePageNotes || []).map((note) => `<p class="muted">${escape(citationText([note.sourceId], { [note.sourceId]: String(note.page) }))}: ${escape(note.text)}</p>`).join("")}</section><section class="print-reference" aria-label="Printable quick reference">${printSheet(v, options)}</section></div>`;
+    `<div class="content page-content model-page">${breadcrumbs([{ label: "Model Guides", href: `#/search?brand=${v.brand}` }, { label: `${v.year} ${v.model}` }])}<div class="model-heading"><div><span class="eyebrow">${escape(brandName(v.brand))} · ${v.year} MODEL GUIDE</span><h1>${escape(v.model)}</h1><p>Factory-standard equipment, verified specifications and trim differences.</p><div class="model-meta">${statusBadge(v)}<span>Last verification: ${date(v.verifiedAt)}</span></div></div><div class="model-actions"><button class="button primary" id="print-reference">${icon("print")} Print Quick Reference</button><button class="text-link" id="view-sources">View Sources</button></div></div><div class="notice"><div><strong>STANDARD EQUIPMENT GUIDE</strong><p>${escape(standardEquipmentNotice)}</p><p>N/A means not yet verified or not applicable. It does not mean unavailable.</p></div></div><nav class="section-nav" aria-label="Model sections"><a href="#trim-section" data-scroll="trim-section">Find Your Differences</a><button type="button" id="view-equipment">View Equipment</button><a href="#equipment-explained" data-scroll="equipment-explained">Equipment Explained</a><a href="#specifications" data-scroll="specifications">Specifications</a>${v.colors ? '<a href="#color-section" data-scroll="color-section">Colors</a>' : ""}${v.modelYearChanges ? `<a href="#model-year-changes" data-scroll="model-year-changes">What's New for ${v.year}</a>` : ""}</nav>${trimExplorerHTML(view, projected)}<section id="trim-section" class="section-block"><div class="section-heading"><h2>Find Your Differences</h2></div><p class="comparison-note">Compare verified factory-standard equipment. Shared engine and transmission information stays visible.</p>${options.length ? `${modelTrimPicker(options, modelSelected)}<div class="table-controls">${comparisonViewControls("model")}<div class="category-control"><label for="model-group">Category</label><select id="model-group"><option value="">All categories</option>${[...new Set(catalog.fields.map((f) => f.group))].map((group) => `<option>${group}</option>`).join("")}</select></div></div><div id="model-equipment"></div>` : "<p>Trim structure and equipment are awaiting official manufacturer documentation. No specifications are carried over from another year.</p>"}</section><section id="specifications" class="section-block"><h2>Specifications</h2>${options.length ? `<label class="field-label" for="spec-config">Specifications for</label><select id="spec-config" class="standalone-input">${options.map((o) => `<option value="${escape(o.id)}">${escape(o.trim.name)} · ${escape(o.trim.configuration || "")}</option>`).join("")}</select>` : ""}<div id="specification-values"></div></section>${colorsPanelHTML(v)}${modelYearChangesHTML(v)}<section id="equipment-explained" class="section-block no-print"><h2>Equipment Explained</h2><p class="muted">Manufacturer terminology and system explanations. These explanations do not establish standard equipment on a particular trim.</p>${featureCards(features.filter((f) => f.brand === v.brand))}</section><p class="no-print"><button class="text-link" id="view-sources-bottom">View Sources</button></p><section class="print-reference" aria-label="Printable quick reference">${printSheet(printed.vehicle, printed.options)}</section></div>`;
+  const active = () => options.find((o) => o.id === activeId) || options[0];
+  const renderSpecs = () => {
+    $("#specification-values").innerHTML = specificationsHTML(v, active());
+    if ($("#spec-config")) $("#spec-config").value = activeId;
+  };
+  const setActive = (id) => {
+    activeId = id;
+    renderSpecs();
+  };
+  const showEquipment = (trigger) => {
+    const chosen = active();
+    openReferenceDialog({
+      title: "Standard Equipment",
+      context: guideContext(v, chosen?.trim),
+      trigger,
+      content: `${options.length ? `<label class="field-label" for="equipment-config">Equipment for</label><select id="equipment-config" class="standalone-input">${options.map((o) => `<option value="${escape(o.id)}" ${o.id === activeId ? "selected" : ""}>${escape(o.trim.name)} · ${escape(o.trim.configuration || "")}</option>`).join("")}</select>` : ""}<div id="categorized-equipment"></div>`,
+      onReady: (dialog) => {
+        const render = () => {
+          const raw = active(),
+            option = projected.find((o) => o.id === raw?.id);
+          dialog.querySelector("#reference-context").textContent = guideContext(
+            v,
+            raw?.trim,
+          );
+          dialog.querySelector("#categorized-equipment").innerHTML = option
+            ? categorizedEquipmentHTML(option.vehicle, option.trim)
+            : "<p>Factory-standard equipment is awaiting manufacturer verification.</p>";
+        };
+        const select = dialog.querySelector("#equipment-config");
+        if (select)
+          select.onchange = () => {
+            setActive(select.value);
+            render();
+          };
+        render();
+      },
+    });
+  };
+  $("#view-equipment").onclick = (event) => showEquipment(event.currentTarget);
+  for (const selector of ["#view-sources", "#view-sources-bottom"])
+    $(selector).onclick = (event) =>
+      showSources(v, active()?.trim.id, event.currentTarget);
   $("#print-reference").onclick = () => window.print();
+  if ($("#spec-config"))
+    $("#spec-config").onchange = (event) => setActive(event.target.value);
+  renderSpecs();
   document.querySelectorAll("[data-scroll]").forEach(
-    (a) =>
-      (a.onclick = (e) => {
-        e.preventDefault();
-        const target = document.getElementById(a.dataset.scroll);
-        target.scrollIntoView({ behavior: "auto" });
+    (link) =>
+      (link.onclick = (event) => {
+        event.preventDefault();
+        const target = document.getElementById(link.dataset.scroll);
+        target.scrollIntoView({
+          behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "auto"
+            : "smooth",
+        });
         target.tabIndex = -1;
         target.focus({ preventScroll: true });
       }),
   );
-  if (options.length) {
-    const update = () => {
-      $("#model-selected-count").textContent = modelSelected.length;
-      $("#model-equipment").innerHTML = comparisonView(
-        options.filter((o) => modelSelected.includes(o.id)),
-        !$("#model-view-all").checked,
-        $("#model-group").value,
-        false,
-      );
-    };
-    const renderEquipment = () => {
-      const selected = options.find(
-        (o) => o.id === $("#equipment-config").value,
-      );
-      $("#categorized-equipment").innerHTML = categorizedEquipmentHTML(
-        v,
-        selected.trim,
-      );
-    };
-    $("#equipment-config").onchange = renderEquipment;
-    renderEquipment();
-    // Capture errors for both initial cards and configuration replacements.
-    $(".trim-card-grid").addEventListener(
-      "error",
-      (event) => {
-        if (event.target.matches(".trim-card-visual img"))
-          event.target.parentElement.remove();
-      },
-      true,
+  if (!options.length) return;
+  const update = () => {
+    $("#model-selected-count").textContent = modelSelected.length;
+    $("#model-equipment").innerHTML = comparisonView(
+      options.filter((o) => modelSelected.includes(o.id)),
+      !$("#model-view-all").checked,
+      $("#model-group").value,
     );
-    const groups = trimGroups(options);
-    $(".trim-card-grid").onchange = (event) => {
-      if (!event.target.matches(".card-configuration")) return;
-      const index = Number(
-          event.target.closest(".trim-training-card").dataset.gradeIndex,
-        ),
-        id = event.target.value;
-      event.target.closest(".trim-training-card").outerHTML = trimCardHTML(
-        v,
-        groups[index],
-        index,
-        id,
-      );
-      document
-        .querySelector(`[data-grade-index="${index}"] select`)
-        .focus({ preventScroll: true });
-    };
-    $(".trim-card-grid").onclick = (event) => {
-      const button = event.target.closest("[data-trim-action]");
-      if (!button) return;
-      if (button.dataset.trimAction === "equipment") {
-        $("#equipment-config").value = button.dataset.option;
-        renderEquipment();
-        $("#equipment-detail").scrollIntoView();
-        $("#equipment-detail-title").focus({ preventScroll: true });
-      } else {
-        if (!modelSelected.includes(button.dataset.option)) {
-          modelSelected = [...modelSelected.slice(0, 3), button.dataset.option];
-          document
-            .querySelectorAll('input[name="model-trim"]')
-            .forEach(
-              (input) => (input.checked = modelSelected.includes(input.value)),
-            );
-          update();
-        }
-        $("#trim-section").scrollIntoView();
-        $("#trim-section").tabIndex = -1;
-        $("#trim-section").focus({ preventScroll: true });
-      }
-    };
+  };
+  $(".trim-card-grid").addEventListener(
+    "error",
+    (event) => {
+      if (event.target.matches(".trim-card-visual img"))
+        event.target.parentElement.remove();
+    },
+    true,
+  );
+  const groups = trimGroups(projected);
+  $(".trim-card-grid").onchange = (event) => {
+    if (!event.target.matches(".card-configuration")) return;
+    const index = Number(
+      event.target.closest("[data-grade-index]").dataset.gradeIndex,
+    );
+    const id = event.target.value;
+    setActive(id);
+    event.target.closest(".trim-training-card").outerHTML = trimCardHTML(
+      view,
+      groups[index],
+      index,
+      id,
+    );
     document
-      .querySelectorAll('input[name="model-view"]')
-      .forEach((input) => (input.onchange = update));
-    $("#model-group").onchange = update;
-    document.querySelectorAll('input[name="model-trim"]').forEach(
-      (input) =>
-        (input.onchange = () => {
-          if (input.checked && modelSelected.length >= 4) {
-            input.checked = false;
-            return notify("Compare up to four configurations at a time.");
-          }
-          modelSelected = input.checked
-            ? [...modelSelected, input.value]
-            : modelSelected.filter((id) => id !== input.value);
-          update();
-        }),
-    );
-  }
+      .querySelector(`[data-grade-index="${index}"] select`)
+      .focus({ preventScroll: true });
+  };
+  $(".trim-card-grid").onclick = (event) => {
+    const button = event.target.closest("[data-trim-action]");
+    if (!button) return;
+    setActive(button.dataset.option);
+    if (button.dataset.trimAction === "equipment") showEquipment(button);
+    else {
+      if (!modelSelected.includes(button.dataset.option)) {
+        modelSelected = [...modelSelected.slice(0, 3), button.dataset.option];
+        document
+          .querySelectorAll('input[name="model-trim"]')
+          .forEach(
+            (input) => (input.checked = modelSelected.includes(input.value)),
+          );
+        update();
+      }
+      $("#trim-section").scrollIntoView();
+      $("#trim-section").tabIndex = -1;
+      $("#trim-section").focus({ preventScroll: true });
+    }
+  };
+  document
+    .querySelectorAll('input[name="model-view"]')
+    .forEach((input) => (input.onchange = update));
+  $("#model-group").onchange = update;
+  document.querySelectorAll('input[name="model-trim"]').forEach(
+    (input) =>
+      (input.onchange = () => {
+        if (input.checked && modelSelected.length >= 4) {
+          input.checked = false;
+          return notify("Compare up to four configurations at a time.");
+        }
+        modelSelected = input.checked
+          ? [...modelSelected, input.value]
+          : modelSelected.filter((id) => id !== input.value);
+        update();
+      }),
+  );
+  update();
 }
 function standardOnlyPrintHTML(v, options, performance) {
   const specs = (v.quickReference.standardSpecFields || [])
@@ -646,11 +667,10 @@ function standardOnlyPrintHTML(v, options, performance) {
         : "";
     })
     .join("");
-  return `<h2>Powertrain / capability</h2>${performance}<h2>Specifications</h2>${specs}<h2>Color references</h2><p>${v.colors.exteriors.map((c) => `${escape(c.name)} (${c.trims.map(escape).join("/")})`).join("; ")}.</p><h2>What's New for ${v.year}</h2><p>${v.modelYearChanges.items.map((i) => escape(i.text)).join("; ")}.</p>`;
+  return `<h2>Powertrain / capability</h2>${performance}<h2>Specifications</h2>${specs}${v.colors?.exteriors?.length ? `<h2>Color references</h2><p>${v.colors.exteriors.map((c) => `${escape(c.name)} (${c.trims.map(escape).join("/")})`).join("; ")}.</p>` : ""}${v.modelYearChanges?.items?.length ? `<h2>What's New for ${v.year}</h2><p>${v.modelYearChanges.items.map((i) => escape(i.text)).join("; ")}.</p>` : ""}`;
 }
 function compactPrintSheet(v, options) {
   const refs = v.quickReference;
-  const standardOnly = v.equipmentScope === "standard-only";
   const byId = new Map(options.map((o) => [o.trim.id, o]));
   const renderFields = (group) =>
     group.fieldIds
@@ -664,7 +684,7 @@ function compactPrintSheet(v, options) {
             cells.map((c) =>
               c.status === "unverified"
                 ? "Unverified"
-                : `${{ standard: "S", optional: "O", unavailable: "Not Offered", "not-applicable": "N/A" }[c.status]}: ${c.value}`,
+                : `${{ standard: "S", "not-standard": "Not standard", "not-applicable": "N/A" }[c.status]}${c.value ? `: ${c.value}` : ""}`,
             ),
           ),
         ];
@@ -675,10 +695,6 @@ function compactPrintSheet(v, options) {
   const isHEV = refs.scope === "HEV";
   const isGasoline = refs.scope === "gasoline";
   const isElectric = refs.scope === "electric";
-  const printOptions = (v.optionalEquipment || []).filter(
-    (o) =>
-      !refs.optionalEquipmentIds || refs.optionalEquipmentIds.includes(o.id),
-  );
   const performance = refs.powertrainTrimIds
     .map((id) => byId.get(id))
     .filter(Boolean)
@@ -690,15 +706,6 @@ function compactPrintSheet(v, options) {
       return `<p><strong>${escape(o.trim.name)} ${escape(o.trim.configuration)}:</strong> ${escape(hp.value || "Output unverified")}; ${economy.status === "unverified" ? "MPG Unverified" : escape(economy.value)}${["standard", "optional"].includes(range.status) ? `; ${escape(range.value)}` : ""}${["standard", "optional"].includes(charging.status) ? `; ${escape(charging.value)}` : ""}.</p>`;
     })
     .join("");
-  const towing = new Map();
-  for (const o of options) {
-    const cell = resolveCell(v, o.trim, "towing");
-    const key = cell.status === "unverified" ? "Unverified" : cell.value;
-    towing.set(key, [
-      ...(towing.get(key) || []),
-      `${o.trim.name} ${o.trim.configuration}`,
-    ]);
-  }
   const common = refs.commonFieldIds
     .map((id) => {
       const cells = options.map((o) => resolveCell(v, o.trim, id));
@@ -709,23 +716,7 @@ function compactPrintSheet(v, options) {
         : "";
     })
     .filter(Boolean);
-  return `<header><strong>FOX AUTOMOTIVE · QUICK REFERENCE</strong><span>${v.year} ${escape(brandName(v.brand))} ${escape(v.model)}${isHEV ? " Hybrid" : ""}</span></header><p class="print-status">Reviewed ${date(v.verifiedAt)} · ${isHEV ? `HEV only — ${new Set(options.map((o) => o.trim.name)).size} grades / ${options.length} configurations. PHEV has a separate guide.` : isGasoline ? `${new Set(options.map((o) => o.trim.name)).size} gasoline trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : isElectric ? `${new Set(options.map((o) => o.trim.name)).size} battery-electric trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : "PHEV only — release-supported facts; detailed specification review pending."} · ${standardOnly ? "S = Standard; U = Unverified; N/A = Not Applicable." : "S = Standard; O = Optional; U = Unverified; N/A = Not Applicable."}</p><div class="compact-print-grid"><div><h2>Important standard trim differences</h2><table class="print-grade-table"><thead><tr><th>Grade / configuration</th><th>Source-backed equipment</th></tr></thead><tbody>${refs.groups.map((g) => `<tr><th>${escape(g.label)}</th><td>${renderFields(g)}</td></tr>`).join("")}</tbody></table><h2>What customers gain</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}:</strong> ${escape(u.gains[0].text)}</p>`).join("")}<h2>Common equipment</h2><p>${common.map(escape).join("; ")}.</p></div><div>${
-    standardOnly
-      ? standardOnlyPrintHTML(v, options, performance)
-      : `<h2>Powertrain / capability</h2>${performance}<p>${[...towing].map(([value, names]) => `<strong>Towing ${escape(value)}:</strong> ${names.map(escape).join(", ")}.`).join(" ")} Proper equipment and loading required.</p><h2>Named factory packages</h2>${
-          v.packages.length
-            ? v.packages
-                .filter(
-                  (p) => !["unavailable", "not-applicable"].includes(p.status),
-                )
-                .map(
-                  (p) =>
-                    `<p><strong>${escape(p.name.replace(" (HEV only)", ""))}:</strong> ${[...new Set(p.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}. ${p.contentsStatus === "unverified" ? "Contents U." : escape(p.description)}</p>`,
-                )
-                .join("")
-            : "<p>Names, contents and eligibility Unverified.</p>"
-        }<p><strong>Do not infer package contents from names.</strong> Region, drivetrain combinations, pricing and installed equipment require confirmation.</p><h2>Confirmed individual options</h2>${printOptions.map((o) => `<p><strong>O ${escape(o.name)}:</strong> ${[...new Set(o.trimIds.map((id) => v.trims.find((t) => t.id === id)?.name || id))].map(escape).join(", ")}.</p>`).join("") || (isGasoline || isElectric ? "<p>See the online guide for all itemized options and restrictions.</p>" : "<p>Unverified.</p>")}`
-  }<h2>Verification limits</h2>${refs.caveats.map((c) => `<p>${escape(c.text)}</p>`).join("")}</div></div><footer><strong>${standardOnly ? escape(standardEquipmentNotice) : "Confirm the actual window sticker, package contents and owner’s manual. Driver-assistance and subscription limitations apply."}</strong><p>${sources.map((s) => `${escape(s.shortLabel || s.id)}: ${escape(s.title)} — ${escape(s.url)} (reviewed ${date(s.checkedAt)})`).join("<br>")}</p></footer>`;
+  return `<header><strong>FOX AUTOMOTIVE · QUICK REFERENCE</strong><span>${v.year} ${escape(brandName(v.brand))} ${escape(v.model)}${isHEV ? " Hybrid" : ""}</span></header><p class="print-status">Reviewed ${date(v.verifiedAt)} · ${isHEV ? `HEV only — ${new Set(options.map((o) => o.trim.name)).size} grades / ${options.length} configurations. PHEV has a separate guide.` : isGasoline ? `${new Set(options.map((o) => o.trim.name)).size} gasoline trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : isElectric ? `${new Set(options.map((o) => o.trim.name)).size} battery-electric trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : "PHEV only — release-supported facts; detailed specification review pending."} · S = Standard; N/A = not yet verified or not applicable.</p><div class="compact-print-grid"><div><h2>Important standard trim differences</h2><table class="print-grade-table"><thead><tr><th>Grade / configuration</th><th>Source-backed equipment</th></tr></thead><tbody>${refs.groups.map((g) => `<tr><th>${escape(g.label)}</th><td>${renderFields(g)}</td></tr>`).join("")}</tbody></table><h2>What customers gain</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}:</strong> ${escape(u.gains[0].text)}</p>`).join("")}<h2>Common equipment</h2><p>${common.map(escape).join("; ")}.</p></div><div>${standardOnlyPrintHTML(v, options, performance)}<h2>Verification limits</h2>${refs.caveats.map((c) => `<p>${escape(c.text)}</p>`).join("")}</div></div><footer><strong>${escape(standardEquipmentNotice)}</strong><p>${sources.map((s) => `${escape(s.shortLabel || s.id)}: ${escape(s.title)} — ${escape(s.url)} (reviewed ${date(s.checkedAt)})`).join("<br>")}</p></footer>`;
 }
 function printSheet(v, options) {
   if (v.quickReference) return compactPrintSheet(v, options);
@@ -741,7 +732,7 @@ function printSheet(v, options) {
   ];
   return `<header><strong>FOX AUTOMOTIVE · QUICK REFERENCE</strong><span>${v.year} ${escape(brandName(v.brand))} ${escape(v.model)}</span></header><p class="print-status">${v.status === "verified" ? "Verified model guide" : "AWAITING VERIFICATION — NOT A SPECIFICATION SHEET"} · Last reviewed: ${date(v.verifiedAt)}</p>${
     !options.length
-      ? `<h1>${v.year} ${escape(v.model)}</h1><h2>Official equipment research is pending.</h2><p>Trim levels, powertrain and drivetrain options, standard equipment, available packages, and upgrade reasons have not been verified. Do not use this page to make equipment claims.</p>`
+      ? `<h1>${v.year} ${escape(v.model)}</h1><h2>Official equipment research is pending.</h2><p>Trim levels, powertrain and drivetrain options, standard equipment and upgrade reasons have not been verified. Do not use this page to make equipment claims.</p>`
       : `<p><strong>Verified trims/configurations:</strong> ${options.map((o) => `${escape(o.trim.name)}${o.trim.configuration ? ` (${escape(o.trim.configuration)})` : ""}`).join(" · ")}</p><div class="print-columns">${sections
           .map(
             ([group, title]) =>
@@ -757,7 +748,7 @@ function printSheet(v, options) {
           )
           .join(
             "",
-          )}<section><h2>Factory packages</h2>${v.packages.map((p) => `<p><strong>${escape(p.name)}</strong>: ${escape(p.description)} (${escape(p.conditions)})</p>`).join("") || "<p>Awaiting verification.</p>"}</section><section><h2>Reasons to upgrade</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}</strong>: ${u.gains.map((g) => escape(g.text)).join("; ")}</p>`).join("") || "<p>Awaiting verification.</p>"}</section></div>`
+          )}<section><h2>Reasons to upgrade</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}</strong>: ${u.gains.map((g) => escape(g.text)).join("; ")}</p>`).join("") || "<p>Awaiting verification.</p>"}</section></div>`
   }<footer><strong>Verify the actual window sticker. Equipment depends on configuration and packages.</strong><p>${v.sources.map((s) => `${escape(s.title)} — ${escape(s.url)} ${s.checkedAt ? `(reviewed ${date(s.checkedAt)})` : "(not reviewed)"}`).join("<br>")}</p></footer>`;
 }
 function comparePage() {
@@ -765,7 +756,7 @@ function comparePage() {
   const options = eligibleOptions(catalog);
   selected = selected.filter((id) => options.some((o) => o.id === id));
   $("#main").innerHTML =
-    `<div class="content page-content">${breadcrumbs([{ label: "Compare Vehicles" }])}<div class="page-heading"><span class="eyebrow">A CLEARER CONVERSATION</span><h1>Find the meaningful differences.</h1><p>Compare two to four verified vehicle configurations, within a brand or across the showroom.</p></div><div class="notice">${icon("shield")} Only source-verified configurations can be selected. Different availability or verification states stay visible; an Unverified cell does not establish that equipment is unavailable.</div>${options.length ? `<div class="compare-picker"><label for="compare-select">Add a vehicle &amp; trim</label><div><select id="compare-select"><option value="">Choose a verified configuration</option>${options.map((o) => `<option value="${o.id}">${o.vehicle.year} ${escape(brandName(o.vehicle.brand))} ${escape(o.vehicle.model)} · ${escape(o.trim.name)}${o.trim.configuration ? ` · ${escape(o.trim.configuration)}` : ""}</option>`).join("")}</select><button id="add-compare" class="button primary">Add to comparison +</button></div><p class="muted">Up to four configurations. Drivetrain and package conditions remain visible in the table.</p></div><div id="compare-selection"></div><div class="table-controls">${comparisonViewControls("compare")}</div><div id="comparison-results"></div>` : `<div class="empty-state comparison-empty"><span class="empty-emblem">${icon("compare")}</span><h2>The tool is ready. The evidence comes first.</h2><p>Comparisons will become available as model-year equipment and trims are verified. We won’t imply a difference using unconfirmed specifications.</p><div class="comparison-examples"><span>Equinox ↔ RAV4 ↔ Tiguan</span><span>Traverse ↔ Grand Highlander ↔ Atlas</span><span>Trax ↔ Corolla Cross ↔ Taos</span></div><small>Planned research groups · availability and equipment not verified</small><a class="button secondary" href="#/search">Browse model guides ${icon("arrow")}</a></div>`}</div>`;
+    `<div class="content page-content">${breadcrumbs([{ label: "Compare Models" }])}<div class="page-heading"><span class="eyebrow">A CLEARER CONVERSATION</span><h1>Compare Models</h1><p>Compare two to four verified vehicle configurations, within a brand or across the showroom.</p></div><div class="notice">${icon("shield")} Only source-verified configurations can be selected. Different availability or verification states stay visible; an Unverified cell does not establish that equipment is unavailable.</div>${options.length ? `<div class="compare-picker"><label for="compare-select">Add a vehicle &amp; trim</label><div><select id="compare-select"><option value="">Choose a verified configuration</option>${options.map((o) => `<option value="${o.id}">${o.vehicle.year} ${escape(brandName(o.vehicle.brand))} ${escape(o.vehicle.model)} · ${escape(o.trim.name)}${o.trim.configuration ? ` · ${escape(o.trim.configuration)}` : ""}</option>`).join("")}</select><button id="add-compare" class="button primary">Add to comparison +</button></div><p class="muted">Up to four configurations. Model years, trims and drivetrains remain distinct.</p></div><div id="compare-selection"></div><div class="table-controls">${comparisonViewControls("compare")}</div><div id="comparison-results"></div>` : `<div class="empty-state comparison-empty"><span class="empty-emblem">${icon("compare")}</span><h2>The tool is ready. The evidence comes first.</h2><p>Comparisons will become available as model-year equipment and trims are verified. We won’t imply a difference using unconfirmed specifications.</p><div class="comparison-examples"><span>Equinox ↔ RAV4 ↔ Tiguan</span><span>Traverse ↔ Grand Highlander ↔ Atlas</span><span>Trax ↔ Corolla Cross ↔ Taos</span></div><small>Planned research groups · availability and equipment not verified</small><a class="button secondary" href="#/search">Browse model guides ${icon("arrow")}</a></div>`}</div>`;
   if (options.length) {
     $("#add-compare").onclick = () => {
       const id = $("#compare-select").value;
@@ -803,13 +794,6 @@ function renderComparison(options) {
     "",
     false,
   );
-}
-function stageTwoPage(kind) {
-  const isSearch = kind === "equipment-search";
-  const title = isSearch ? "Equipment Search" : "Compare Vehicles";
-  nav(isSearch ? "/equipment-search" : "/compare-vehicles");
-  $("main").innerHTML =
-    `<div class="content page-content">${breadcrumbs([{ label: title }])}<section class="stage-two-panel"><span class="badge pending">STAGE 2 · COMING NEXT</span><span class="tool-icon">${icon(isSearch ? "search" : "compare")}</span><h1>${title}</h1><p>${isSearch ? "A dedicated workspace for finding vehicles by verified equipment and feature combinations." : "A dedicated workspace for researching competing models and their verified specifications."}</p><p class="muted">This workspace is planned for Stage 2. For now, use the model guides, categorized equipment and existing trim comparison tools.</p><div class="stage-two-actions"><a class="button primary" href="#/search">Browse Model Guides ${icon("arrow")}</a><a class="button secondary" href="#/compare">Compare Trims</a><a class="text-link" href="#/features">Equipment glossary ${icon("arrow")}</a></div></section></div>`;
 }
 function offerCard(o) {
   const money = (value) =>
@@ -915,7 +899,7 @@ async function specialsPage() {
 function aboutPage() {
   nav("");
   $("#main").innerHTML =
-    `<div class="content page-content narrow">${breadcrumbs([{ label: "Sources & content standards" }])}<div class="page-heading"><span class="eyebrow">CONFIDENCE STARTS WITH ACCURACY</span><h1>A reference you can check.</h1><p>Our standards for building the Fox Automotive knowledge library.</p></div><section class="prose-panel"><h2>Official sources. Specific model years.</h2><p>Vehicle claims must be supported by U.S. manufacturer specifications, brochures, equipment documents, or official model-year releases. A source link alone is not verification: it must be reviewed and tied to the precise model year and configuration.</p><h2>Equipment states</h2><dl class="status-definitions"><dt>Standard</dt><dd>Included with the specified trim and configuration.</dd><dt>Available (Optional)</dt><dd>Available separately or in a named package, subject to recorded conditions.</dd><dt>Not Offered</dt><dd>Official documentation confirms it is not offered on this configuration.</dd><dt>Not Applicable</dt><dd>The specification does not apply to this powertrain or configuration.</dd><dt>Unverified</dt><dd>No confirmed evidence. This never means “unavailable.”</dd></dl><h2>Current library coverage</h2><p>${escape(catalog.coverageNotes["2026"])}</p><p>${escape(catalog.coverageNotes["2027"])}</p><p>Each claim has its own verification state and source. Reviewed brochure facts are distinguished from unresolved package contents and specifications. The PHEV guide is separate from the HEV brochure tables. Glossary review states are shown per entry and do not independently establish equipment availability.</p><h2>Confirm the actual vehicle</h2><p>Use the vehicle’s window sticker to confirm installed equipment. Packages, drivetrain, production changes, region, and service subscriptions can affect features. Driver-assistance systems do not replace an attentive driver.</p><h2>Maintaining the library</h2><p>Catalog records live in <code>data/catalog.json</code>; equipment explanations live in <code>data/features.json</code>. Maintainer documentation in the repository explains source records, evidence checks, configurations, upgrade guides, and publishing.</p><h2>Internal reference, public website</h2><p>This resource is intended for the Fox Automotive sales team. GitHub Pages is publicly accessible. Do not add customer information, private pricing, employee data, credentials, or confidential documents.</p></section></div>`;
+    `<div class="content page-content narrow">${breadcrumbs([{ label: "Sources & content standards" }])}<div class="page-heading"><span class="eyebrow">CONFIDENCE STARTS WITH ACCURACY</span><h1>A reference you can check.</h1><p>Our standards for building the Fox Automotive knowledge library.</p></div><section class="prose-panel"><h2>Official sources. Specific model years.</h2><p>Vehicle claims must be supported by U.S. manufacturer specifications, brochures, equipment documents, or official model-year releases. A source link alone is not verification: it must be reviewed and tied to the precise model year and configuration.</p><h2>Equipment states</h2><dl class="status-definitions"><dt>Standard</dt><dd>Included with the specified trim and configuration.</dd><dt>Not standard</dt><dd>Not factory-standard on this configuration. This does not mean unavailable.</dd><dt>N/A</dt><dd>Information has not yet been verified or does not apply. View Sources retains the original status, including optional and not-offered classifications.</dd></dl><h2>Current library coverage</h2><p>${escape(catalog.coverageNotes["2026"])}</p><p>${escape(catalog.coverageNotes["2027"])}</p><p>Each claim has its own verification state and source. Sales views show factory-standard equipment; the original manufacturer classifications remain in View Sources. The PHEV guide is separate from the HEV brochure tables. Glossary review states are shown per entry and do not independently establish equipment availability.</p><h2>Confirm the actual vehicle</h2><p>Use the vehicle’s window sticker to confirm installed equipment. Packages, drivetrain, production changes, region, and service subscriptions can affect features. Driver-assistance systems do not replace an attentive driver.</p><h2>Maintaining the library</h2><p>Catalog records live in <code>data/catalog.json</code>; equipment explanations live in <code>data/features.json</code>. Maintainer documentation in the repository explains source records, evidence checks, configurations, upgrade guides, and publishing.</p><h2>Internal reference, public website</h2><p>This resource is intended for the Fox Automotive sales team. GitHub Pages is publicly accessible. Do not add customer information, private pricing, employee data, credentials, or confidential documents.</p></section></div>`;
 }
 function notFound() {
   nav("");
@@ -930,22 +914,38 @@ function notify(text) {
 function route() {
   disposeSpecials();
   clearTimeout(searchTimer);
-  const [path, query = ""] = (location.hash.slice(1) || "/").split("?");
+  closeReferenceDialog({ restoreFocus: false });
+  let [path, query = ""] = (location.hash.slice(1) || "/").split("?");
   const params = new URLSearchParams(query);
+  if (path.startsWith("/brand/")) {
+    params.set("brand", path.split("/")[2]);
+    path = "/search";
+    history.replaceState(null, "", `#${path}?${params}`);
+  }
+  if (path === "/compare-vehicles") {
+    path = "/compare";
+    history.replaceState(null, "", "#/compare");
+  }
+  if (path === "/equipment-search") {
+    path = "/search";
+    history.replaceState(
+      null,
+      "",
+      `#/search${params.size ? `?${params}` : ""}`,
+    );
+  }
   document.title = path.startsWith("/model/")
     ? `${catalog.vehicles.find((v) => v.id === path.split("/")[2])?.model || "Model guide"} · Fox Automotive`
     : "Fox Automotive · Sales Resource Center";
   if (path === "/") home();
   else if (path === "/search") searchPage(params);
-  else if (path.startsWith("/brand/")) brandPage(path.split("/")[2], params);
   else if (path.startsWith("/model/")) modelPage(path.split("/")[2]);
   else if (path === "/compare") comparePage();
-  else if (path === "/compare-vehicles") stageTwoPage("compare-vehicles");
-  else if (path === "/equipment-search") stageTwoPage("equipment-search");
   else if (path === "/features") glossaryPage(params);
   else if (path === "/specials") specialsPage();
   else if (path === "/about") aboutPage();
   else notFound();
+  applySalesLabels();
   window.scrollTo(0, 0);
   if (focusAfterRoute) $("#main").focus({ preventScroll: true });
   focusAfterRoute = true;
@@ -959,6 +959,16 @@ async function init() {
     if (responses.some((r) => !r.ok))
       throw new Error("Library data could not be loaded.");
     [catalog, features] = await Promise.all(responses.map((r) => r.json()));
+    const views = new Map(
+      salesOptions(eligibleOptions(catalog)).map((o) => [
+        o.vehicle.id,
+        o.vehicle,
+      ]),
+    );
+    directoryCatalog = {
+      ...catalog,
+      vehicles: catalog.vehicles.map((v) => views.get(v.id) || v),
+    };
     route();
     window.addEventListener("hashchange", route);
     if (catalog.branding?.logo) {
@@ -994,4 +1004,10 @@ async function init() {
     console.error(error);
   }
 }
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-view-sources]");
+  if (!button) return;
+  const v = catalog?.vehicles.find((v) => v.id === button.dataset.viewSources);
+  showSources(v, button.dataset.sourceTrim, button);
+});
 init();

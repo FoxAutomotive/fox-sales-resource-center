@@ -9,6 +9,8 @@ for (const path of [
   "styles.css",
   "app.js",
   "lib.js",
+  "presentation.js",
+  "dialog.js",
   "specials.js",
   "data",
   "assets",
