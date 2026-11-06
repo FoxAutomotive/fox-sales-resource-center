@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { fixtureVehicle } from "./fixtures.mjs";
+import { equipmentFields, evidenceReady } from "../lib.js";
 const catalog = JSON.parse(
   await readFile(new URL("../data/catalog.json", import.meta.url), "utf8"),
 );
@@ -1028,3 +1029,153 @@ test("production exceptions and genuine not-applicable states retain their origi
   await expect(page.getByRole("dialog")).toContainText("Not Applicable");
   await expect(page.getByRole("dialog")).toContainText("Unverified");
 });
+
+for (const width of [1280, 390]) {
+  test(`Model Guide cleanup preserves every standard trim equipment list at ${width}px`, async ({
+    page,
+  }) => {
+    test.setTimeout(90000);
+    await page.setViewportSize({ width, height: 850 });
+    for (const id of [
+      "2026-toyota-rav4",
+      "2026-volkswagen-tiguan",
+      "2027-chevrolet-equinox",
+    ]) {
+      const vehicle = catalog.vehicles.find((v) => v.id === id);
+      await page.goto(modelPath(vehicle));
+      await expect(page.locator("h1")).toHaveText(vehicle.model);
+      const unchanged = [
+        "#navigation",
+        "#model-equipment",
+        "#equipment-explained",
+        "#color-section",
+        "#model-year-changes",
+        ".print-reference",
+      ];
+      const before = await Promise.all(
+        unchanged.map((selector) =>
+          page
+            .locator(selector)
+            .count()
+            .then((count) =>
+              count ? page.locator(selector).innerHTML() : null,
+            ),
+        ),
+      );
+      for (const trim of vehicle.trims) {
+        const card = page.locator(".trim-training-card").filter({
+          has: page.getByRole("heading", {
+            level: 3,
+            name: trim.name,
+            exact: true,
+          }),
+        });
+        const config = card.locator("select.card-configuration");
+        if (await config.count()) await config.selectOption(`${id}:${trim.id}`);
+        const opener = card.getByRole("button", {
+          name: "View Equipment",
+          exact: true,
+        });
+        await opener.scrollIntoViewIfNeeded();
+        const position = await page.evaluate(() => scrollY);
+        await opener.click();
+        const dialog = page.getByRole("dialog", {
+          name: "Standard Equipment",
+          exact: true,
+        });
+        await expect(dialog).toBeVisible();
+        await expect(dialog.locator("#reference-context")).toContainText(
+          `${vehicle.year} ${catalog.brands.find((brand) => brand.id === vehicle.brand).name} ${vehicle.model}`,
+        );
+        await expect(dialog.locator("#reference-context")).toContainText(
+          trim.name,
+        );
+        await expect(dialog.locator("#equipment-config")).toHaveValue(
+          `${id}:${trim.id}`,
+        );
+        // Compare the complete visible field inventory with source-backed standard
+        // records, so a missing category or omitted standard package feature fails.
+        const expected = equipmentFields(catalog, [vehicle])
+          .filter((field) => {
+            const cell = trim.equipment[field.id];
+            return (
+              cell?.status === "standard" &&
+              evidenceReady(vehicle, cell.sourceIds)
+            );
+          })
+          .map((field) => field.label)
+          .sort();
+        const actual = await dialog
+          .locator(".categorized-fields dt")
+          .allTextContents();
+        expect(actual.sort(), `${id}:${trim.id}`).toEqual(expected);
+        const output = trim.equipment.horsepower;
+        if (
+          output?.status === "standard" &&
+          evidenceReady(vehicle, output.sourceIds)
+        )
+          await expect(dialog).toContainText(output.value);
+        const list = dialog.locator(".reference-body");
+        expect(
+          await list.evaluate((element) => {
+            element.scrollTop = 100;
+            return element.scrollTop;
+          }),
+        ).toBeGreaterThan(0);
+        await expect(
+          dialog.locator(".equipment-status:not(.standard)"),
+        ).toHaveCount(0);
+        await expect(dialog.locator(".equipment-category")).not.toHaveCount(0);
+        for (const category of await dialog
+          .locator(".equipment-category")
+          .all())
+          await expect(
+            category.locator(".categorized-fields dt"),
+          ).not.toHaveCount(0);
+        expect(await page.evaluate(() => scrollY)).toBe(position);
+        const bounds = await dialog.boundingBox();
+        expect(bounds.x).toBeGreaterThanOrEqual(0);
+        expect(bounds.y + bounds.height).toBeLessThanOrEqual(850);
+        // Exercise both supported closing paths on every brand and viewport.
+        if (vehicle.trims.indexOf(trim) % 2)
+          await dialog.getByRole("button", { name: "Close dialog" }).click();
+        else await page.keyboard.press("Escape");
+        await expect(dialog).toHaveCount(0);
+        await expect(opener).toBeFocused();
+        expect(await page.evaluate(() => scrollY)).toBe(position);
+        await expect(
+          page.locator(
+            "#categorized-equipment, .equipment-detail, #equipment-detail",
+          ),
+        ).toHaveCount(0);
+        await expect(
+          page.getByRole("heading", { name: "Compare Trims", exact: true }),
+        ).toHaveCount(0);
+        await expect(page.locator("#specifications")).toBeVisible();
+        await expect(page.locator("#model-equipment")).toHaveCount(1);
+      }
+      const after = await Promise.all(
+        unchanged.map((selector) =>
+          page
+            .locator(selector)
+            .count()
+            .then((count) =>
+              count ? page.locator(selector).innerHTML() : null,
+            ),
+        ),
+      );
+      expect(after, `${id}: protected sections`).toEqual(before);
+      await page.locator("#model-view-all").check();
+      await expect(equipmentTable(page)).toBeVisible();
+      await page.locator("#model-view-differences").check();
+      await expect(equipmentTable(page)).toBeVisible();
+      await page.emulateMedia({ media: "print" });
+      await expect(page.locator(".print-reference")).toBeVisible();
+      const pdf = await page.pdf({ preferCSSPageSize: true });
+      expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length).toBe(
+        1,
+      );
+      await page.emulateMedia({ media: "screen" });
+    }
+  });
+}
