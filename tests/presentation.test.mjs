@@ -9,6 +9,7 @@ import {
   salesText,
   standardText,
   standardReasons,
+  modelUpgradePaths,
   printView,
   visibleYearChanges,
 } from "../presentation.js";
@@ -204,4 +205,93 @@ test("standard views retain operating limits, delayed availability and productio
     for (const cell of Object.values(option.trim.equipment))
       if (cell.status === "standard")
         assert.doesNotMatch(cell.value || "", / - optional in SE/);
+});
+
+test("automatic upgrade paths deduplicate matching drivetrains without inventing unknown or optional gains", () => {
+  const v = fixtureVehicle();
+  const clone = (trim, drive) => ({
+    ...structuredClone(trim),
+    id: `${trim.id}-${drive}`,
+    configuration: drive,
+  });
+  v.trims = v.trims.flatMap((trim) => [clone(trim, "FWD"), clone(trim, "AWD")]);
+  v.additionalFields = [
+    {
+      id: "duplicateHeated",
+      label: "Alternate heated seats",
+      group: "Comfort",
+    },
+  ];
+  for (const trim of v.trims)
+    trim.equipment.duplicateHeated = structuredClone(
+      trim.equipment.heatedSeats,
+    );
+  const c = { ...catalog, vehicles: [v] },
+    before = JSON.stringify(c);
+  const paths = modelUpgradePaths(c, eligibleOptions(c));
+  const forward = paths.find(
+    (p) =>
+      p.from.trim.name === "Fixture Base" && p.to.trim.name === "Fixture Plus",
+  );
+  assert.deepEqual(
+    forward.configurations.map((c) => c.name),
+    ["FWD", "AWD"],
+  );
+  assert.equal(
+    forward.gains.filter((g) => g.cell.value === "Synthetic heated seats")
+      .length,
+    1,
+  );
+  for (const path of paths) {
+    assert.ok(
+      path.gains.every(
+        (g) =>
+          g.cell.status === "standard" &&
+          ["standard", "not-standard"].includes(g.before.status),
+      ),
+    );
+    for (const config of path.configurations)
+      assert.equal(
+        v.trims.find((t) => t.id === config.from).configuration,
+        v.trims.find((t) => t.id === config.to).configuration,
+      );
+  }
+  assert.equal(JSON.stringify(c), before);
+  v.trims.find((t) => t.id === "base-AWD").equipment.heatedSeats = {
+    status: "unverified",
+  };
+  v.trims.find((t) => t.id === "base-AWD").equipment.duplicateHeated = {
+    status: "unverified",
+  };
+  const revised = modelUpgradePaths(c, eligibleOptions(c));
+  assert.ok(
+    revised
+      .filter(
+        (p) =>
+          p.from.trim.name === "Fixture Base" &&
+          p.configurations.some((c) => c.name === "AWD"),
+      )
+      .every((p) =>
+        p.gains.every((g) => g.cell.value !== "Synthetic heated seats"),
+      ),
+  );
+});
+
+test("automatic Equinox paths include sibling destinations and retain verified source evidence", () => {
+  const options = eligibleOptions(catalog).filter(
+    (o) => o.vehicle.id === "2027-chevrolet-equinox",
+  );
+  const paths = modelUpgradePaths(catalog, options);
+  for (const [from, to] of [
+    ["LT", "RS"],
+    ["LT", "ACTIV"],
+    ["RS", "ACTIV"],
+  ]) {
+    const path = paths.find(
+      (p) => p.from.trim.name === from && p.to.trim.name === to,
+    );
+    assert.ok(path, `${from} -> ${to}`);
+    assert.ok(path.gains.every((g) => g.cell.sourceIds.length));
+  }
+  assert.deepEqual(modelUpgradePaths(catalog, []), []);
 });
