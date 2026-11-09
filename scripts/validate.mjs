@@ -200,6 +200,15 @@ export function validate(catalog, features) {
         );
         workbookRefs(c);
       }
+    for (const color of v.colors?.referenceInteriors || [])
+      assert(
+        color.name &&
+          color.material &&
+          color.availability === "unverified" &&
+          evidenceReady(v, color.sourceIds),
+        prefix +
+          "unassigned interior palette requires evidence and explicit unknown trim availability",
+      );
     if (
       v.modelYearChanges &&
       v.modelYearChanges.basis !== "manufacturer-highlights"

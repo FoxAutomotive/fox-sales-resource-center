@@ -329,6 +329,12 @@ export function searchVehicles(
       .trim();
   const normTrim = (name) => normalize(name).replace(/®/g, "").split(/\s+/);
   const normalizedQuery = normalize(query);
+  const namedSystems = features
+    .map((f) => normalize(f.name))
+    .filter(
+      (name) =>
+        name.includes(" ") && ` ${normalizedQuery} `.includes(` ${name} `),
+    );
   const tokens = normalizedQuery.trim().split(/\s+/).filter(Boolean);
   const tokenMatches = (haystack, token) => {
     if (!/^(s|se|sel|le|xle|xse|[0-9.]+)$/.test(token))
@@ -374,6 +380,14 @@ export function searchVehicles(
             ]
           : [];
       });
+      // A named system must occur as a phrase in an evidenced cell. For example,
+      // “super-long-slide” seating plus cruise control does not establish Super Cruise.
+      if (
+        !namedSystems.every((name) =>
+          cells.some((value) => ` ${normalize(value)} `.includes(` ${name} `)),
+        )
+      )
+        return [];
       // Index evidenced package/option names, never their unverified contents.
       const packageNames = (v.packages || [])
         .filter(

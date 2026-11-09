@@ -408,7 +408,7 @@ function categorizedEquipmentHTML(vehicle, trim) {
 function modelYearChangesHTML(vehicle) {
   const review = vehicle.modelYearChanges;
   if (review?.basis === "manufacturer-highlights")
-    return `<section id="model-year-changes" class="section-block detail-panel"><h2>What's New for ${vehicle.year}</h2><p>Changes documented by GM in the manufacturer Highlights worksheet.</p><ul>${visibleYearChanges(
+    return `<section id="model-year-changes" class="section-block detail-panel"><h2>What's New for ${vehicle.year}</h2><p>${escape(review.sourceDescription || "Changes documented by GM in the manufacturer Highlights worksheet.")}</p><ul>${visibleYearChanges(
       vehicle,
     )
       .filter((item) => evidenceReady(vehicle, item.sourceIds))
@@ -430,9 +430,10 @@ function modelYearChangesHTML(vehicle) {
 }
 function colorsPanelHTML(v) {
   if (!v.colors) return "";
-  return `<section id="color-section" class="detail-panel color-reference"><h2>Exterior &amp; interior colors</h2><p class="muted">Manufacturer color references, not dealership inventory or standard-equipment claims. Color combinations vary by trim and interior.</p><h3>Exterior colors</h3><div class="table-scroll" tabindex="0" role="region" aria-label="Exterior color reference, scroll horizontally"><table class="equipment-table"><thead><tr><th scope="col">Color</th><th scope="col">Trim reference</th></tr></thead><tbody>${(v.colors?.exteriors || []).map((c) => `<tr><th scope="row">${escape(c.name)}${c.extraCost ? " (extra-cost paint)" : ""}</th><td>${c.trims.map(escape).join(", ")}<small>${escape(citationText(c.sourceIds, c.sourcePages, c.sourceCells))}</small></td></tr>`).join("")}</tbody></table></div>${v.colors.roofs?.length ? `<h3>Roof color references</h3>${v.colors.roofs.map((c) => `<details><summary>${escape(c.name)} — ${c.trims.map(escape).join(", ")}</summary>${c.combinations.map((combination) => `<p><strong>${escape(combination.trim)}:</strong> ${combination.exteriors.map(escape).join(", ")}</p>`).join("")}<small>${escape(citationText(c.sourceIds, c.sourcePages, c.sourceCells))}</small></details>`).join("")}` : ""}<h3>Interior colors &amp; materials</h3>${[
+  return `<section id="color-section" class="detail-panel color-reference"><h2>Exterior &amp; interior colors</h2><p class="muted">Manufacturer color references, not dealership inventory or standard-equipment claims. Color combinations vary by trim and interior.</p><h3>Exterior colors</h3><div class="table-scroll" tabindex="0" role="region" aria-label="Exterior color reference, scroll horizontally"><table class="equipment-table"><thead><tr><th scope="col">Color</th><th scope="col">Trim reference</th></tr></thead><tbody>${(v.colors?.exteriors || []).map((c) => `<tr><th scope="row">${escape(c.name)}${c.extraCost ? " (extra-cost paint)" : ""}</th><td>${c.trims.length ? c.trims.map(escape).join(", ") : "N/A — trim availability not established by the brochure"}<small>${escape(citationText(c.sourceIds, c.sourcePages, c.sourceCells))}</small></td></tr>`).join("")}</tbody></table></div>${v.colors.roofs?.length ? `<h3>Roof color references</h3>${v.colors.roofs.map((c) => `<details><summary>${escape(c.name)} — ${c.trims.map(escape).join(", ")}</summary>${c.combinations.map((combination) => `<p><strong>${escape(combination.trim)}:</strong> ${combination.exteriors.map(escape).join(", ")}</p>`).join("")}<small>${escape(citationText(c.sourceIds, c.sourcePages, c.sourceCells))}</small></details>`).join("")}` : ""}<h3>Interior colors &amp; materials</h3>${[
     ...new Set(v.trims.map((t) => t.name)),
   ]
+    .filter((name) => v.colors.interiors.some((color) => color.trim === name))
     .map(
       (name) =>
         `<h4>${escape(name)}</h4><ul>${v.colors.interiors
@@ -443,7 +444,9 @@ function colorsPanelHTML(v) {
           )
           .join("")}</ul>`,
     )
-    .join("")}</section>`;
+    .join(
+      "",
+    )}${v.colors.referenceInteriors?.length ? `<p class="muted">Brochure interior palette — trim-specific combinations are N/A until separately verified.</p><ul>${v.colors.referenceInteriors.map((color) => `<li>${escape(color.name)}<br><small>${escape(citationText(color.sourceIds, color.sourcePages))}</small></li>`).join("")}</ul>` : ""}</section>`;
 }
 function applySalesLabels(root = $("#main")) {
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -669,7 +672,14 @@ function standardOnlyPrintHTML(v, options, performance) {
         : "";
     })
     .join("");
-  return `<h2>Powertrain / capability</h2>${performance}<h2>Specifications</h2>${specs}${v.colors?.exteriors?.length ? `<h2>Color references</h2><p>${v.colors.exteriors.map((c) => `${escape(c.name)} (${c.trims.map(escape).join("/")})`).join("; ")}.</p>` : ""}${v.modelYearChanges?.items?.length ? `<h2>What's New for ${v.year}</h2><p>${v.modelYearChanges.items.map((i) => escape(i.text)).join("; ")}.</p>` : ""}`;
+  return `<h2>Powertrain / capability</h2>${performance}<h2>Specifications</h2>${specs}${
+    v.colors?.exteriors?.some((color) => color.trims.length)
+      ? `<h2>Color references</h2><p>${v.colors.exteriors
+          .filter((color) => color.trims.length)
+          .map((c) => `${escape(c.name)} (${c.trims.map(escape).join("/")})`)
+          .join("; ")}.</p>`
+      : ""
+  }${v.modelYearChanges?.items?.length ? `<h2>What's New for ${v.year}</h2><p>${v.modelYearChanges.items.map((i) => escape(i.text)).join("; ")}.</p>` : ""}`;
 }
 function compactPrintSheet(v, options) {
   const refs = v.quickReference;
@@ -697,6 +707,7 @@ function compactPrintSheet(v, options) {
   const isHEV = refs.scope === "HEV";
   const isGasoline = refs.scope === "gasoline";
   const isElectric = refs.scope === "electric";
+  const isGeneral = ["hybrid", "mixed"].includes(refs.scope);
   const performance = refs.powertrainTrimIds
     .map((id) => byId.get(id))
     .filter(Boolean)
@@ -718,7 +729,7 @@ function compactPrintSheet(v, options) {
         : "";
     })
     .filter(Boolean);
-  return `<header><strong>FOX AUTOMOTIVE · QUICK REFERENCE</strong><span>${v.year} ${escape(brandName(v.brand))} ${escape(v.model)}${isHEV ? " Hybrid" : ""}</span></header><p class="print-status">Reviewed ${date(v.verifiedAt)} · ${isHEV ? `HEV only — ${new Set(options.map((o) => o.trim.name)).size} grades / ${options.length} configurations. PHEV has a separate guide.` : isGasoline ? `${new Set(options.map((o) => o.trim.name)).size} gasoline trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : isElectric ? `${new Set(options.map((o) => o.trim.name)).size} battery-electric trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : "PHEV only — release-supported facts; detailed specification review pending."} · S = Standard; N/A = not yet verified or not applicable.</p><div class="compact-print-grid"><div><h2>Important standard trim differences</h2><table class="print-grade-table"><thead><tr><th>Grade / configuration</th><th>Source-backed equipment</th></tr></thead><tbody>${refs.groups.map((g) => `<tr><th>${escape(g.label)}</th><td>${renderFields(g)}</td></tr>`).join("")}</tbody></table><h2>What customers gain</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}:</strong> ${escape(u.gains[0].text)}</p>`).join("")}<h2>Common equipment</h2><p>${common.map(escape).join("; ")}.</p></div><div>${standardOnlyPrintHTML(v, options, performance)}<h2>Verification limits</h2>${refs.caveats.map((c) => `<p>${escape(c.text)}</p>`).join("")}</div></div><footer><strong>${escape(standardEquipmentNotice)}</strong><p>${sources.map((s) => `${escape(s.shortLabel || s.id)}: ${escape(s.title)} — ${escape(s.url)} (reviewed ${date(s.checkedAt)})`).join("<br>")}</p></footer>`;
+  return `<header><strong>FOX AUTOMOTIVE · QUICK REFERENCE</strong><span>${v.year} ${escape(brandName(v.brand))} ${escape(v.model)}${isHEV ? " Hybrid" : ""}</span></header><p class="print-status">Reviewed ${date(v.verifiedAt)} · ${isHEV ? `HEV only — ${new Set(options.map((o) => o.trim.name)).size} grades / ${options.length} configurations. PHEV has a separate guide.` : isGasoline ? `${new Set(options.map((o) => o.trim.name)).size} gasoline trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : isElectric ? `${new Set(options.map((o) => o.trim.name)).size} battery-electric trims / ${options.length} configurations. Full equipment and source pages in the online guide.` : isGeneral ? `${new Set(options.map((o) => o.trim.name)).size} trims / ${options.length} configurations. ${refs.scope === "hybrid" ? "Hybrid model." : "Distinct powertrains and drivetrains."} Full equipment and source pages in the online guide.` : "PHEV only — release-supported facts; detailed specification review pending."} · S = Standard; N/A = not yet verified or not applicable.</p><div class="compact-print-grid"><div><h2>Important standard trim differences</h2><table class="print-grade-table"><thead><tr><th>Grade / configuration</th><th>Source-backed equipment</th></tr></thead><tbody>${refs.groups.map((g) => `<tr><th>${escape(g.label)}</th><td>${renderFields(g)}</td></tr>`).join("")}</tbody></table><h2>What customers gain</h2>${v.upgrades.map((u) => `<p><strong>${escape(u.from)} → ${escape(u.to)}:</strong> ${escape(u.gains[0].text)}</p>`).join("")}<h2>Common equipment</h2><p>${common.map(escape).join("; ")}.</p></div><div>${standardOnlyPrintHTML(v, options, performance)}<h2>Verification limits</h2>${refs.caveats.map((c) => `<p>${escape(c.text)}</p>`).join("")}</div></div><footer><strong>${escape(standardEquipmentNotice)}</strong><p>${sources.map((s) => `${escape(s.shortLabel || s.id)}: ${escape(s.title)} — ${escape(s.url)} (reviewed ${date(s.checkedAt)})`).join("<br>")}</p></footer>`;
 }
 function printSheet(v, options) {
   if (v.quickReference) return compactPrintSheet(v, options);

@@ -1,3 +1,4 @@
+import { assertHistoricalVehicle } from "./historical-preservation.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, mkdtemp, writeFile, rm } from "node:fs/promises";
@@ -35,12 +36,7 @@ test("GM original workbook and all existing Toyota/VW records remain preserved",
     stage.source.sha256,
   );
   assert.equal(report.protectedVehicles.length, 20);
-  for (const p of report.protectedVehicles)
-    assert.equal(
-      digest(catalog.vehicles.find((v) => v.id === p.id)),
-      p.sha256,
-      p.id,
-    );
+  for (const p of report.protectedVehicles) assertHistoricalVehicle(catalog, p);
   assert.deepEqual(
     [...new Set(vehicle.trims.map((t) => t.name))],
     ["LT", "ACTIV", "RS"],
@@ -196,9 +192,16 @@ test("Differences Only keeps common engine context without optional availability
 });
 
 test("GM imports are idempotent and changed sources or bad references require review", () => {
+  // Re-adding an existing guide appends it after subsequently imported models.
+  // Compare all records by identity, with compact hashes to avoid huge failure diffs.
+  const rebuilt = importGmStage(stage, base, features, supplement).catalog;
+  assert.equal(
+    digest({ ...rebuilt, vehicles: [] }),
+    digest({ ...catalog, vehicles: [] }),
+  );
   assert.deepEqual(
-    importGmStage(stage, base, features, supplement).catalog,
-    catalog,
+    rebuilt.vehicles.map((v) => [v.id, digest(v)]).sort(),
+    catalog.vehicles.map((v) => [v.id, digest(v)]).sort(),
   );
   assert.deepEqual(
     importGmStage(stage, catalog, features, supplement).catalog,

@@ -1,3 +1,4 @@
+import { assertHistoricalVehicle } from "./historical-preservation.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, mkdtemp, writeFile, rm } from "node:fs/promises";
@@ -192,10 +193,7 @@ test("TBA prices and missing measurements stay unknown without erasing Tiguan or
     assert.equal(t.equipment.torque.status, "unverified");
   }
   for (const protectedVehicle of report.protectedVehicles)
-    assert.equal(
-      digest(catalog.vehicles.find((v) => v.id === protectedVehicle.id)),
-      protectedVehicle.sha256,
-    );
+    assertHistoricalVehicle(catalog, protectedVehicle);
   for (const p of report.protectedExistingCells) {
     const t = catalog.vehicles
       .find((v) => v.id === p.vehicleId)

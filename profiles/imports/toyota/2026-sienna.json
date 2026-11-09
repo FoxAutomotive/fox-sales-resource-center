@@ -1,0 +1,238 @@
+{
+  "id": "toyota-2026-sienna-brochure",
+  "sha256": "c0f2f2579074bb334829464c9a5871588d99f63b74bba261d2730aee1751ff8e",
+  "pageCount": 25,
+  "year": 2026,
+  "titleToken": "sienna",
+  "model": "Sienna",
+  "vehicleId": "2026-toyota-sienna",
+  "columns": [
+    {
+      "name": "LE",
+      "headerTokens": ["LE"]
+    },
+    {
+      "name": "XLE",
+      "headerTokens": ["XLE"]
+    },
+    {
+      "name": "XSE",
+      "headerTokens": ["XSE"]
+    },
+    {
+      "name": "Limited",
+      "headerTokens": ["Limited"]
+    },
+    {
+      "name": "Woodland Edition",
+      "headerTokens": ["Woodland"]
+    },
+    {
+      "name": "Platinum",
+      "headerTokens": ["Platinum"]
+    }
+  ],
+  "matrixPages": [16, 17, 18, 19, 20],
+  "rowCounts": {
+    "16": 39,
+    "17": 28,
+    "18": 19,
+    "19": 17,
+    "20": 21
+  },
+  "columnCenters": [228, 292.219, 356.438, 420.657, 484.876, 549.095],
+  "bodyTop": 77,
+  "disclosurePages": [21, 22, 23, 24],
+  "colorPage": 15,
+  "configs": [
+    {
+      "id": "le-fwd",
+      "name": "LE",
+      "column": 0,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "le-awd",
+      "name": "LE",
+      "column": 0,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD) system",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "xle-fwd",
+      "name": "XLE",
+      "column": 1,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "xle-awd",
+      "name": "XLE",
+      "column": 1,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD) system",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "xse-fwd",
+      "name": "XSE",
+      "column": 2,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "xse-awd",
+      "name": "XSE",
+      "column": 2,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD) system",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "limited-fwd",
+      "name": "Limited",
+      "column": 3,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "limited-awd",
+      "name": "Limited",
+      "column": 3,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD) system",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "woodland-edition-awd",
+      "name": "Woodland Edition",
+      "column": 4,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD) system",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    },
+    {
+      "id": "platinum-awd",
+      "name": "Platinum",
+      "column": 5,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD) system",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT) with sequential shift mode"
+    }
+  ],
+  "facts": [
+    {
+      "field": "economy",
+      "page": 21,
+      "quote": "36 city/36 hwy/36 combined mpg rating for 2026 Sienna FWD models",
+      "value": "36 city / 36 highway / 36 combined mpg (manufacturer quotes EPA estimates)",
+      "where": {
+        "drive": "FWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 21,
+      "quote": "35 city/36 hwy/35 combined mpg rating for 2026 Sienna AWD models",
+      "value": "35 city / 36 highway / 35 combined mpg (manufacturer quotes EPA estimates)",
+      "where": {
+        "drive": "AWD"
+      }
+    },
+    {
+      "field": "seating",
+      "page": 18,
+      "quote": "7-passenger seating with heated premium",
+      "value": "7 passengers (ottoman applicability separately flagged for review)",
+      "where": {
+        "column": 5
+      }
+    }
+  ],
+  "palette": {
+    "exteriors": {
+      "y": [100, 300],
+      "centers": [63.5, 182.9, 302.3, 421.70000000000005, 541.1],
+      "bands": [
+        [130, 175],
+        [240, 275]
+      ]
+    },
+    "interiors": {
+      "y": [320, 720],
+      "centers": [63.5, 159.15, 254.8, 350.45000000000005, 446.1, 541.75],
+      "bands": [
+        [425, 470],
+        [535, 580]
+      ]
+    }
+  },
+  "reviewedAt": "2026-11-09",
+  "pageCategories": {
+    "16": "Exterior",
+    "17": "Exterior",
+    "18": "Interior",
+    "19": "Interior",
+    "20": "Safety and Convenience"
+  },
+  "lastDisclosure": 86,
+  "notes": [
+    "Woodland Edition and Platinum have no FWD row; no FWD configuration is created for them.",
+    "The brochure quotes a model-level maximum of up to 3,500 lb towing on p. 8, not a configuration-specific rating. Vehicle-specific towing is pending.",
+    "Footnote 68 says spare-tire selection on Limited AWD removes second-row ottomans; equipment claims retain this manufacturer restriction."
+  ],
+  "holdRules": [
+    {
+      "pattern": "18-in. dark wheels|20-in. dark wheels",
+      "columns": [2],
+      "reason": "The XSE column marks both 18-inch and 20-inch wheels Standard without resolving drivetrain applicability."
+    },
+    {
+      "pattern": "7-passenger|8-passenger|Five LATCH|Four LATCH",
+      "columns": [1],
+      "reason": "XLE has both 7- and 8-passenger layouts and both LATCH counts marked Standard; selected seating layout is unresolved."
+    },
+    {
+      "pattern": "sienna_ottoman",
+      "columns": [5],
+      "reason": "Manufacturer PDF contains an unresolved sienna_ottoman footnote placeholder. Ottoman restrictions require review."
+    }
+  ],
+  "expectedContentSha256": "9ff8d344348bb788b2dbd7ce284256abc9e6077642740c009288f6d349035499"
+}

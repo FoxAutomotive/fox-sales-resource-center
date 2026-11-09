@@ -187,7 +187,7 @@ test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
   page,
 }) => {
   await page.goto("./#/search?q=heated%20steering&brand=toyota");
-  await expect(page.locator(".vehicle-card")).toHaveCount(2);
+  await expect(page.locator(".vehicle-card")).toHaveCount(5);
   await page.goto("./#/compare");
   await page
     .locator("#compare-select")
@@ -1052,6 +1052,9 @@ for (const width of [1280, 390]) {
     await page.setViewportSize({ width, height: 850 });
     for (const id of [
       "2026-toyota-rav4",
+      "2026-toyota-tacoma",
+      "2026-toyota-sienna",
+      "2026-toyota-grand-highlander",
       "2026-volkswagen-tiguan",
       "2027-chevrolet-equinox",
     ]) {
@@ -1198,13 +1201,16 @@ for (const width of [1280, 390]) {
 }
 
 for (const width of [1280, 390]) {
-  test(`Specifications modal follows every RAV4, Tiguan and Equinox configuration at ${width}px`, async ({
+  test(`Specifications modal follows every imported Toyota, Tiguan and Equinox configuration at ${width}px`, async ({
     page,
   }) => {
     test.setTimeout(90000);
     await page.setViewportSize({ width, height: 850 });
     for (const id of [
       "2026-toyota-rav4",
+      "2026-toyota-tacoma",
+      "2026-toyota-sienna",
+      "2026-toyota-grand-highlander",
       "2026-volkswagen-tiguan",
       "2027-chevrolet-equinox",
     ]) {
@@ -1557,3 +1563,45 @@ test("all four primary links stay visible without overflow controls at desktop a
     ).toBe(true);
   }
 });
+
+for (const width of [1280, 390]) {
+  test(`Toyota brochure palettes and source review remain scoped at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 850 });
+    for (const model of ["tacoma", "sienna", "grand-highlander", "rav4"]) {
+      const vehicle = catalog.vehicles.find(
+        (v) => v.id === `2026-toyota-${model}`,
+      );
+      await page.goto(modelPath(vehicle));
+      await expect(page.locator(".trim-training-card")).toHaveCount(
+        new Set(vehicle.trims.map((t) => t.name)).size,
+      );
+      const colors = page.locator("#color-section");
+      await expect(colors).toContainText(
+        "trim availability not established by the brochure",
+      );
+      for (const color of vehicle.colors.referenceInteriors)
+        await expect(colors).toContainText(color.name);
+      const specs = page.locator("#view-specifications");
+      await specs.click();
+      await expect(page.getByRole("dialog")).toContainText("N/A");
+      await page.keyboard.press("Escape");
+      await page.locator("#view-sources").click();
+      await page.getByText("Original guide notes", { exact: true }).click();
+      await expect(page.getByRole("dialog")).toContainText(
+        "INFO AND DISCLOSURES",
+      );
+      await page.keyboard.press("Escape");
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+      ).toBe(true);
+      if (model === "rav4")
+        await expect(page.locator("#model-year-changes")).toContainText(
+          "all new",
+        );
+    }
+  });
+}
