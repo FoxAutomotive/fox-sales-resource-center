@@ -1,3 +1,14 @@
+// Optional lease reference details: null means TBD, "N/A" means confirmed inapplicable.
+export const leaseDetailFields = [
+  { id: "lienholder", label: "Lienholder", format: "text" },
+  { id: "residualValue", label: "Residual value", format: "currency" },
+  { id: "residualPercentage", label: "Residual percentage", format: "percent" },
+  { id: "moneyFactor", label: "Money factor", format: "number" },
+  { id: "acquisitionFee", label: "Acquisition fee", format: "currency" },
+  { id: "dispositionFee", label: "Disposition fee", format: "currency" },
+  { id: "securityDeposit", label: "Security deposit", format: "currency" },
+  { id: "creditTier", label: "Credit tier", format: "text" },
+];
 export const manufacturers = {
   toyota: "Toyota",
   volkswagen: "Volkswagen",
@@ -57,8 +68,56 @@ export function validateSpecials(data) {
     if (!Number.isInteger(o.year) || o.year < 1900 || !o.model || !o.trim)
       fail("year, model and trim required");
     if (!validDate(o.expiresOn)) fail("valid expiresOn date required");
-    if (!o.source?.file || !o.source?.sheet || !o.source?.column)
+    if (o.source?.kind === "approved-internal") {
+      if (
+        typeof o.source.title !== "string" ||
+        !o.source.title.trim() ||
+        typeof o.source.section !== "string" ||
+        !o.source.section.trim() ||
+        !validDate(o.source.providedOn)
+      )
+        fail(
+          "approved internal source requires title, section and providedOn date",
+        );
+    } else if (!o.source?.file || !o.source?.sheet || !o.source?.column)
       fail("spreadsheet source required");
+    if (
+      o.paymentPrecision !== undefined &&
+      ![0, 2].includes(o.paymentPrecision)
+    )
+      fail("invalid paymentPrecision");
+    if (
+      o.signingAmountType !== undefined &&
+      o.signingAmountType !== "total-out-of-pocket"
+    )
+      fail("invalid signingAmountType");
+    if (o.leaseDetails !== undefined) {
+      if (
+        o.type !== "lease" ||
+        !o.leaseDetails ||
+        typeof o.leaseDetails !== "object" ||
+        Array.isArray(o.leaseDetails)
+      )
+        fail("invalid leaseDetails");
+      else
+        for (const [key, value] of Object.entries(o.leaseDetails)) {
+          const field = leaseDetailFields.find((f) => f.id === key);
+          if (!field) {
+            fail(`unknown lease detail ${key}`);
+            continue;
+          }
+          if (value === null || value === "N/A") continue;
+          if (
+            field.format === "text"
+              ? typeof value !== "string" || !value.trim()
+              : typeof value !== "number" ||
+                !Number.isFinite(value) ||
+                value < 0 ||
+                (field.format === "percent" && value > 100)
+          )
+            fail(`invalid lease detail ${key}`);
+        }
+    }
     for (const key of [
       "monthlyPayment",
       "dueAtSigning",
@@ -70,6 +129,7 @@ export function validateSpecials(data) {
       "downPayment",
       "apr",
       "purchasePrice",
+      "rebate",
     ]) {
       if (
         o[key] !== undefined &&
@@ -77,7 +137,17 @@ export function validateSpecials(data) {
       )
         fail(`invalid ${key}`);
     }
-    for (const key of ["stockNumber", "vinLast8", "vin", "lender", "notes"]) {
+    for (const key of [
+      "stockNumber",
+      "vinLast8",
+      "vin",
+      "lender",
+      "notes",
+      "qualification",
+      "creditQualification",
+      "vehicleId",
+      "guideModel",
+    ]) {
       if (
         o[key] !== undefined &&
         (typeof o[key] !== "string" || !o[key].trim())
