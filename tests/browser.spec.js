@@ -1494,3 +1494,66 @@ test("lease details keep zero, N/A and TBD distinct without inventing membership
   );
   await expect(card).toContainText("2027 Volkswagen Jetta Sport");
 });
+
+test("all four primary links stay visible without overflow controls at desktop and mobile widths", async ({
+  page,
+}) => {
+  test.setTimeout(60000);
+  const destinations = [
+    ["Home", "#/"],
+    ["Model Guides", "#/search"],
+    ["Compare Models", "#/compare"],
+    ["Current Specials", "#/specials"],
+  ];
+  for (const width of [1440, 1024, 768, 760, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("./#/");
+    const primary = page.locator("#navigation .primary-links");
+    await expect(primary.getByRole("link")).toHaveCount(4);
+    await expect(
+      primary.locator("button, select, input, [role=button]"),
+    ).toHaveCount(0);
+    const sizes = await primary.evaluate((node) => ({
+      width: node.clientWidth,
+      content: node.scrollWidth,
+      overflow: getComputedStyle(node).overflowX,
+    }));
+    expect(sizes.content, String(width)).toBeLessThanOrEqual(sizes.width);
+    expect(["auto", "scroll"]).not.toContain(sizes.overflow);
+    const bounds = [];
+    for (const [label, href] of destinations) {
+      const link = primary.getByRole("link", { name: label, exact: true });
+      await expect(link).toHaveAttribute("href", href);
+      await expect(link).toBeInViewport({ ratio: 1 });
+      const box = await link.boundingBox();
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(width);
+      bounds.push(box);
+      await link.click();
+      await expect(link).toHaveAttribute("aria-current", "page");
+      await expect(primary.locator("[aria-current=page]")).toHaveCount(1);
+      expect(
+        await link.evaluate(
+          (node) => getComputedStyle(node, "::after").content,
+        ),
+      ).not.toBe("none");
+      await expect.poll(() => page.evaluate(() => location.hash)).toBe(href);
+    }
+    for (let i = 0; i < bounds.length; i++)
+      for (let j = i + 1; j < bounds.length; j++) {
+        const a = bounds[i],
+          b = bounds[j];
+        expect(
+          a.x + a.width <= b.x + 1 ||
+            b.x + b.width <= a.x + 1 ||
+            a.y + a.height <= b.y + 1 ||
+            b.y + b.height <= a.y + 1,
+        ).toBe(true);
+      }
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  }
+});
