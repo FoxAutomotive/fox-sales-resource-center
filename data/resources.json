@@ -1,0 +1,1289 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "id": "sales-training",
+      "name": "Sales Training"
+    },
+    {
+      "id": "forms-documents",
+      "name": "Forms & Documents"
+    },
+    {
+      "id": "quick-reference",
+      "name": "Quick Reference"
+    }
+  ],
+  "resources": [
+    {
+      "id": "inbound-sales-calls",
+      "title": "Inbound Sales Calls — Ask. Listen. Adjust. Appoint.",
+      "heading": "Inbound Sales Calls",
+      "subtitle": "Ask. Listen. Adjust. Appoint.",
+      "category": "sales-training",
+      "description": "Learn how to handle incoming sales calls, ask better questions, identify customer opportunities, and set more appointments.",
+      "published": true,
+      "content": [
+        {
+          "type": "section",
+          "title": "Part One: Understanding the Framework",
+          "blocks": [
+            {
+              "type": "section",
+              "title": "ASK. LISTEN. ADJUST. APPOINT.",
+              "blocks": [
+                {
+                  "type": "section",
+                  "title": "The Purpose of the Phone Call",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "When a customer calls the dealership, they're usually asking about a vehicle, price, payment, or availability."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Those questions are important, and we need to answer them."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "But we also need to understand why the customer is shopping."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "What are they driving?"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Why are they considering replacing it?"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Are they coming out of a lease?"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Do they have a trade?"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "When are they looking to make a decision?"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "**The objective is to understand the customer's situation, answer their questions, and create a reason for an appointment.**"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "The Most Important Principle",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "**Questions control the direction of the conversation.**"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "A salesperson who spends the entire call talking learns very little about the customer."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "A salesperson who asks good questions learns what matters."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "The process is simple:"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "**ASK → LISTEN → ADJUST → APPOINT**"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Ask a question."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Listen to the answer."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Adjust the conversation based on what you learned."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Identify an opportunity and ask for the appointment."
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Learn the Framework. Practice the Script.",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "The script is designed to teach the framework."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Salespeople should practice the actual wording until they can deliver it naturally."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "However, the customer's answers determine where the conversation goes."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Don't ignore something important the customer says just because you're trying to reach the next scripted question."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Part Two: The Inbound Phone Script",
+          "blocks": [
+            {
+              "type": "section",
+              "title": "Step 1 — Greeting",
+              "blocks": [
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "Thank you for calling Fox Chevrolet! This is Robert. How can I assist you today?"
+                      ]
+                    },
+                    {
+                      "type": "dialogue",
+                      "speaker": "Customer",
+                      "paragraphs": [
+                        "I'm calling about the Equinox you have advertised for $239 a month. Is that still available?"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "Not a problem at all. Let me pull that information up for you. Your name was?"
+                      ]
+                    },
+                    {
+                      "type": "dialogue",
+                      "speaker": "Customer",
+                      "paragraphs": ["Mike."]
+                    }
+                  ]
+                },
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "Mike, thanks for giving us a call. While I'm pulling that information up, can I ask you a couple of quick questions?"
+                      ]
+                    },
+                    {
+                      "type": "dialogue",
+                      "speaker": "Customer",
+                      "paragraphs": ["Sure."]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Training Point",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "Acknowledge the customer's request and begin helping them."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Asking permission to gather information makes the conversation natural."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Verify the requested vehicle's actual availability and provide the answer. Don't use questions to avoid answering the customer."
+                    }
+                  ],
+                  "note": true
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "title": "Step 2 — Discover Their Situation",
+              "blocks": [
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "Mike, this isn't something you have to do today, is it?"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "text": "This question is designed to establish timing and uncover the customer's motivation."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "The answer determines where the conversation goes next."
+                },
+                {
+                  "type": "section",
+                  "title": "Scenario A — Customer Has Three Months Left On A Lease",
+                  "blocks": [
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": [
+                            "No, I've got about three months left on my lease."
+                          ]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": ["Oh, okay. What are you driving now?"]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["A 2023 Equinox."]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Gotcha. Have you had that professionally appraised yet?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["No, I'm just starting to look."]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "That makes sense. About how many miles do you have on it?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Listen to the answer."
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "The reason I ask is that having three months left doesn't necessarily mean you have to wait three months. Depending on what your vehicle is worth and your lease payoff, there may be some options.",
+                            "What I'd like to do is have our used car manager take a look at it and see where you stand.",
+                            "Would you have some time this afternoon, or would tomorrow work better?"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "What We Learned",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "The customer has three months remaining on their lease."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "They haven't had the vehicle appraised."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "There may be an opportunity to make a change before the lease expires."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "We now have a legitimate reason for an appointment."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "**Do not promise equity or waived payments without reviewing the actual numbers.**"
+                    }
+                  ],
+                  "note": true
+                },
+                {
+                  "type": "section",
+                  "title": "Scenario B — Customer's Vehicle Is Out Of Warranty",
+                  "blocks": [
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": [
+                            "No, I'm just starting to look. My car is out of warranty, and I'm thinking it's time to replace it."
+                          ]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": ["Oh, okay. What are you driving now?"]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["A 2021 Traverse."]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": ["How many miles do you have on it?"]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["About 78,000."]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Are you having any problems with it, or are you just thinking it's time for something newer?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": [
+                            "No problems. I just don't want to start putting money into it."
+                          ]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "I understand. Have you had anybody put a value on it recently?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["No."]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Well, that's where I'd start. Let's find out what your Traverse is worth and what replacing it would look like.",
+                            "We can have our used car manager take a look at it while you drive the Equinox.",
+                            "I have some time today around 4:15. Would that work?"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "What We Learned",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "The customer's concern isn't necessarily the price of the new vehicle."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "They're concerned about potential repairs on their current vehicle."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "The appointment should address that concern."
+                    }
+                  ],
+                  "note": true
+                },
+                {
+                  "type": "section",
+                  "title": "Scenario C — Customer Needs A Vehicle Today",
+                  "blocks": [
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": [
+                            "Actually, yes. I need something today."
+                          ]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Oh, okay. What happened? Did something happen to your current vehicle, or are you just ready to make a change?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Listen."
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Gotcha. Let me make sure we're looking at the right vehicle and confirm availability.",
+                            "Are you looking for anything specific as far as equipment or color?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "After confirming relevant details:"
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Assuming that vehicle checks out, how soon could you get here?"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Training Point",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "The customer has already established urgency."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Don't waste time asking unnecessary questions."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Confirm the information they need and move toward the appointment."
+                    }
+                  ],
+                  "note": true
+                },
+                {
+                  "type": "section",
+                  "title": "Scenario D — Customer Is Just Looking",
+                  "blocks": [
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["No, I'm just looking."]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "That's fine. What got you interested in the Equinox?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Listen."
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Are you driving something similar now, or would this be a different type of vehicle for you?",
+                            "What do you like about what you're driving now?",
+                            "What would you change?"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Training Point",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "**Just looking is not an objection.**"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "It's an opportunity to learn more about the customer."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Don't manufacture urgency."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Find out what started their search."
+                    }
+                  ],
+                  "note": true
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "title": "Step 3 — Qualify The Vehicle",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "Once you understand the customer's situation, make sure you're discussing the right vehicle."
+                },
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "Mike, are you looking for anything specific on the Equinox?"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Relevant questions might include:"
+                },
+                {
+                  "type": "list",
+                  "items": [
+                    "\"Would you prefer front-wheel drive or all-wheel drive?\"",
+                    "\"Do you prefer cloth or leather?\"",
+                    "\"Is there a particular color you're looking for?\"",
+                    "\"Are there any features you absolutely have to have?\"",
+                    "\"Have you had a chance to drive one yet?\""
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Don't ask questions that don't apply to the vehicle."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "The goal isn't to interrogate the customer."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "It's to understand what they're looking for."
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "title": "Step 4 — Identify The Opportunity",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "Every customer has a different situation."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Your questions should help establish whether they're:"
+                },
+                {
+                  "type": "list",
+                  "items": [
+                    "Trading a vehicle",
+                    "Returning a lease",
+                    "Adding another vehicle",
+                    "Replacing an unreliable vehicle",
+                    "Shopping because of payment concerns",
+                    "Looking for different equipment or capabilities"
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Once you understand their situation, connect the appointment to something valuable."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "For example:"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "**Trade:** An actual appraisal."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "**Lease:** Reviewing payoff, vehicle value, and replacement options."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "**New vehicle:** A test drive and opportunity to evaluate equipment."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "**Immediate need:** Confirmed availability and an efficient dealership visit."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "**The appointment needs a purpose.**"
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "title": "Step 5 — Ask For The Appointment",
+              "blocks": [
+                {
+                  "type": "section",
+                  "title": "Customer Has A Trade",
+                  "blocks": [
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Mike, I'd like to have our used car manager put an actual value on your Traverse while we have the Equinox ready for you to look at.",
+                            "Would 4:15 or 5:15 work better?"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Customer Has A Lease",
+                  "blocks": [
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Mike, I'd like to take a look at your current lease and see what options you have. We can also have the new Equinox ready for you.",
+                            "Would this afternoon or tomorrow morning work better?"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Customer Hasn't Driven The Vehicle",
+                  "blocks": [
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Mike, have you had a chance to drive the Equinox yet?"
+                          ]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["No."]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Perfect. Let's have one ready so you can see how you like it.",
+                            "Would 4:15 today or 10:30 tomorrow work better?"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Training Point",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "Don't simply ask whether the customer wants to come in."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Establish why the visit would be beneficial."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Then offer specific available appointment times."
+                    }
+                  ],
+                  "note": true
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "title": "Step 6 — When The Customer Insists On Pricing",
+              "blocks": [
+                {
+                  "type": "section",
+                  "title": "The Conditional Appointment",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "Some customers won't agree to visit until they know the price."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "That's fine."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "We're going to provide the requested information, but we should still attempt to establish an appointment."
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": [
+                            "I'm not coming in until I know what the price is."
+                          ]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "I understand completely. You want to make sure the deal fits what you're looking for.",
+                            "That being said, if we can get the numbers where you want them, when would you be looking to come in and take a look at the vehicle, or possibly pick up your new one?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["Probably Wednesday."]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Perfect. Here's what I'd like to do.",
+                            "I feel confident we'll be able to put something together that makes sense for you.",
+                            "Let me pencil you in for Wednesday while I get the numbers worked out. I'll get all the information over to you beforehand, and if everything looks good, we'll already have a time set aside.",
+                            "Would 4:15 or 5:15 work better?"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exchange",
+                      "turns": [
+                        {
+                          "type": "dialogue",
+                          "speaker": "Customer",
+                          "paragraphs": ["4:15."]
+                        },
+                        {
+                          "type": "dialogue",
+                          "speaker": "Salesperson",
+                          "paragraphs": [
+                            "Perfect. I'll pencil you in for Wednesday at 4:15.",
+                            "Let me get the numbers together and get them over to you. Once you've had a chance to review everything, we'll confirm whether that appointment still works."
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Training Point",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "The customer wanted pricing."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "We agreed to provide it."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "But before ending the conversation, we established when they would be available if the numbers made sense."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "**A conditional appointment is not a confirmed appointment.**"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "The salesperson must deliver the pricing, answer any questions, and confirm whether the appointment stands."
+                    }
+                  ],
+                  "note": true
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "title": "Step 7 — If The Customer Still Refuses An Appointment",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "Not every customer will agree to visit during the first conversation."
+                },
+                {
+                  "type": "paragraph",
+                  "text": "If you can't secure the appointment, establish the next step."
+                },
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "No problem. Let me get the information together for you.",
+                        "What's the best number to reach you at?",
+                        "And when I have the numbers ready, would you prefer a call or a text?"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Confirm the customer's preferred contact method and an appropriate follow-up time."
+                },
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "Okay, I'll get everything together and follow up with you by [specific time]."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Training Point",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "If you can't get the appointment, get a commitment to the next conversation."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Don't promise a callback and then disappear."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Follow through."
+                    }
+                  ],
+                  "note": true
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "title": "Step 8 — Confirm The Appointment",
+              "blocks": [
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "Perfect, Mike. I've got you down for Wednesday at 4:15.",
+                        "Do you know where we're located?"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Confirm directions if needed."
+                },
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "When you get here, just ask for Robert.",
+                        "I'll have the vehicle information ready, and we'll take a look at your trade.",
+                        "If something changes on either end, we'll give each other a call. Fair enough?"
+                      ]
+                    },
+                    {
+                      "type": "dialogue",
+                      "speaker": "Customer",
+                      "paragraphs": ["Sounds good."]
+                    }
+                  ]
+                },
+                {
+                  "type": "exchange",
+                  "turns": [
+                    {
+                      "type": "dialogue",
+                      "speaker": "Salesperson",
+                      "paragraphs": [
+                        "Great. I appreciate the call, Mike. I'll see you Wednesday."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Before Ending the Call",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "Confirm:"
+                    },
+                    {
+                      "type": "list",
+                      "items": [
+                        "Customer's name",
+                        "Correct phone number",
+                        "Vehicle of interest",
+                        "Trade or lease information",
+                        "Appointment date and time",
+                        "Agreed next steps"
+                      ]
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Record the information in the CRM."
+                    }
+                  ],
+                  "note": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Part Three: Manager Coaching",
+          "blocks": [
+            {
+              "type": "section",
+              "title": "The Five Rules Of A Good Phone Call",
+              "blocks": [
+                {
+                  "type": "section",
+                  "title": "1. Questions Control The Conversation",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "The more you talk, the less you learn."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Ask."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Listen."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Ask the next logical question."
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "2. Every Question Should Have A Purpose",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "Don't ask questions simply because they're written in the script."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Understand what you're trying to learn."
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "3. Listen For Opportunity",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "Three months left on a lease."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "An expired warranty."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "High mileage."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "An unreliable vehicle."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "A growing family."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Payment concerns."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "These are reasons customers may be considering a new vehicle."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Recognize them."
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "4. Always Ask For The Appointment",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "Once you've established a reason for the visit, ask."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "If the customer needs pricing first, attempt a conditional appointment."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "If they still won't commit, establish the next contact."
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "5. Practice Until It Sounds Natural",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "The script is a training tool."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Practice it until you understand the purpose of every question."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Experienced salespeople can adapt the wording."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "The objectives remain the same."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "title": "Manager Phone Call Evaluation",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "Managers should review calls using the following criteria:"
+                },
+                {
+                  "type": "table",
+                  "headers": ["Evaluation", "Expected Behavior"],
+                  "rows": [
+                    ["Greeting", "Professional introduction"],
+                    [
+                      "Acknowledgment",
+                      "Customer's original question recognized and addressed"
+                    ],
+                    [
+                      "Discovery",
+                      "Salesperson learned why the customer was shopping"
+                    ],
+                    [
+                      "Timing",
+                      "Salesperson established the customer's timeframe"
+                    ],
+                    [
+                      "Current Vehicle",
+                      "Trade, lease, or additional vehicle identified"
+                    ],
+                    ["Listening", "Questions adjusted to customer responses"],
+                    [
+                      "Vehicle Qualification",
+                      "Relevant equipment and needs identified"
+                    ],
+                    [
+                      "Appointment",
+                      "Salesperson established a reason to visit"
+                    ],
+                    [
+                      "Appointment Request",
+                      "Specific appointment times offered"
+                    ],
+                    [
+                      "Price Objection",
+                      "Conditional appointment attempted when appropriate"
+                    ],
+                    ["Follow-Up", "Clear next step established"],
+                    ["CRM", "Customer information and conversation documented"]
+                  ]
+                },
+                {
+                  "type": "section",
+                  "title": "Manager Training Expectation",
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "text": "Managers should use this resource for role-playing and reviewing recorded calls."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Don't evaluate only whether an appointment was set."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Evaluate the quality of the conversation."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "A salesperson cannot control every customer's decision."
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "They can control whether they ask questions, listen, identify opportunities, request appointments, and follow through."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "title": "Final Reminder",
+          "blocks": [
+            {
+              "type": "section",
+              "title": "ASK. LISTEN. ADJUST. APPOINT.",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "text": "**The customer called with a question.**"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "**Your job is to discover the opportunity behind it.**"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

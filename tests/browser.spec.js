@@ -1501,7 +1501,7 @@ test("lease details keep zero, N/A and TBD distinct without inventing membership
   await expect(card).toContainText("2027 Volkswagen Jetta Sport");
 });
 
-test("all four primary links stay visible without overflow controls at desktop and mobile widths", async ({
+test("all five primary links stay visible without overflow controls at desktop and mobile widths", async ({
   page,
 }) => {
   test.setTimeout(60000);
@@ -1510,12 +1510,13 @@ test("all four primary links stay visible without overflow controls at desktop a
     ["Model Guides", "#/search"],
     ["Compare Models", "#/compare"],
     ["Current Specials", "#/specials"],
+    ["Resources", "#/resources"],
   ];
   for (const width of [1440, 1024, 768, 760, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("./#/");
     const primary = page.locator("#navigation .primary-links");
-    await expect(primary.getByRole("link")).toHaveCount(4);
+    await expect(primary.getByRole("link")).toHaveCount(5);
     await expect(
       primary.locator("button, select, input, [role=button]"),
     ).toHaveCount(0);
@@ -1605,3 +1606,242 @@ for (const width of [1280, 390]) {
     }
   });
 }
+
+for (const width of [1280, 390]) {
+  test(`Resources library and complete phone training read and print at ${width}px`, async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("./#/resources");
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Resources", exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.locator("#navigation .primary-links [aria-current=page]"),
+    ).toHaveText("Resources");
+    await expect(page.getByRole("heading", { level: 2 })).toHaveText([
+      "Sales Training",
+    ]);
+    await page
+      .getByRole("link", {
+        name: "Inbound Sales Calls — Ask. Listen. Adjust. Appoint.",
+        exact: true,
+      })
+      .click();
+    const document = page.locator(".resource-document");
+    await expect(
+      document.getByRole("heading", { level: 1, name: "Inbound Sales Calls" }),
+    ).toBeVisible();
+    await expect(page).toHaveTitle(
+      "Inbound Sales Calls — Ask. Listen. Adjust. Appoint. · Fox Automotive",
+    );
+    await expect(document.locator("h2")).toHaveText([
+      "Part One: Understanding the Framework",
+      "Part Two: The Inbound Phone Script",
+      "Part Three: Manager Coaching",
+      "Final Reminder",
+    ]);
+    await expect(
+      document.locator("h3").filter({ hasText: /^Step \d/ }),
+    ).toHaveCount(8);
+    await expect(
+      document.locator("h4").filter({ hasText: /^Scenario [A-D]/ }),
+    ).toHaveCount(4);
+    await expect(document.locator(".resource-turn.customer")).not.toHaveCount(
+      0,
+    );
+    await expect(
+      document.locator(".resource-turn.salesperson"),
+    ).not.toHaveCount(0);
+    await expect(document.locator(".resource-note")).not.toHaveCount(0);
+    await expect(document.locator(".resource-table tbody tr")).toHaveCount(12);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    const documentBounds = await document.boundingBox();
+    expect(documentBounds.x).toBeGreaterThanOrEqual(18);
+    expect(documentBounds.x + documentBounds.width).toBeLessThanOrEqual(
+      width - 18,
+    );
+    await page.screenshot({
+      path: testInfo.outputPath(`resources-${width}.png`),
+    });
+    const { default: AxeBuilder } = await import("@axe-core/playwright");
+    expect(
+      (
+        await new AxeBuilder({ page })
+          .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+          .analyze()
+      ).violations,
+    ).toEqual([]);
+    await page.evaluate(() => {
+      window.print = () => {
+        window.__resourcePrinted = true;
+      };
+    });
+    await page
+      .getByRole("button", { name: "Print / Save as PDF", exact: true })
+      .click();
+    expect(await page.evaluate(() => window.__resourcePrinted)).toBe(true);
+    const paragraphs = await document
+      .locator("p, li, th, td, h1, h2, h3, h4")
+      .allTextContents();
+    const exchanges = await document
+      .locator(".resource-exchange")
+      .allTextContents();
+    await page.emulateMedia({ media: "print" });
+    await expect(document).toBeVisible();
+    await expect(page.locator(".site-header")).toBeHidden();
+    await expect(page.locator(".site-footer")).toBeHidden();
+    await expect(page.locator(".resource-actions")).toBeHidden();
+    const pdf = await page.pdf({
+      preferCSSPageSize: true,
+      path: testInfo.outputPath(`inbound-sales-${width}.pdf`),
+    });
+    const { execFileSync } = await import("node:child_process");
+    const pages = JSON.parse(
+      execFileSync(
+        "python",
+        [
+          "-c",
+          "import fitz,json,sys; d=fitz.open(stream=sys.stdin.buffer.read(),filetype='pdf'); print(json.dumps([{'text':p.get_text(),'width':p.rect.width,'height':p.rect.height} for p in d]))",
+        ],
+        { input: pdf, encoding: "utf8" },
+      ),
+    );
+    const normalized = (text) =>
+      text.replace(/[“”"]/g, "").replace(/\s/g, "").toLowerCase();
+    const printed = normalized(pages.map((p) => p.text).join(""));
+    for (const p of pages) {
+      expect(p.width).toBe(612);
+      expect(p.height).toBe(792);
+      expect(p.text.trim().length).toBeGreaterThan(100);
+      expect(p.text).not.toMatch(
+        /Back to Resources|Print \/ Save as PDF|BROWSE BY BRAND|Current Specials/,
+      );
+    }
+    for (const text of paragraphs)
+      expect(printed, text).toContain(normalized(text));
+    for (const text of exchanges)
+      expect(
+        pages.some((p) => normalized(p.text).includes(normalized(text))),
+        `Dialogue split across pages: ${text}`,
+      ).toBe(true);
+    expect(pages.length).toBeGreaterThan(1);
+    await page.emulateMedia({ media: "screen" });
+    await page.getByRole("link", { name: "Back to Resources" }).click();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Resources",
+    );
+  });
+}
+
+test("Resources expands from manifest data, hides drafts and supports direct links", async ({
+  page,
+}) => {
+  const data = JSON.parse(
+    await readFile(new URL("../data/resources.json", import.meta.url), "utf8"),
+  );
+  data.resources.push({
+    ...data.resources[0],
+    id: "draft",
+    title: "Unpublished training",
+    published: false,
+  });
+  data.resources.push({
+    id: "check-request",
+    title: "Check request",
+    heading: "Check request",
+    category: "forms-documents",
+    description: "A future form reference.",
+    published: true,
+    revisedOn: "2026-11-09",
+    content: [
+      {
+        type: "paragraph",
+        text: "Form instructions from the resource catalog.",
+      },
+    ],
+  });
+  await page.route("**/data/resources.json", (route) =>
+    route.fulfill({ json: data }),
+  );
+  await page.goto("./#/resources");
+  await expect(page.getByRole("heading", { level: 2 })).toHaveText([
+    "Sales Training",
+    "Forms & Documents",
+  ]);
+  await expect(page.getByText("Unpublished training")).toHaveCount(0);
+  await expect(
+    page.getByRole("heading", { name: "Quick Reference" }),
+  ).toHaveCount(0);
+  await page.getByRole("link", { name: "Check request", exact: true }).click();
+  await expect(page.locator(".resource-document")).toContainText(
+    "Form instructions from the resource catalog.",
+  );
+  await expect(page.locator(".resource-document")).toContainText(
+    "Revised Nov 9, 2026",
+  );
+  for (const id of ["draft", "missing"]) {
+    await page.goto(`./#/resources/${id}`);
+    await expect(
+      page.getByRole("heading", { name: "Resource not available" }),
+    ).toBeVisible();
+    await expect(page.locator(".resource-document")).toHaveCount(0);
+  }
+  await page.goto("./#/resources/inbound-sales-calls");
+  await expect(page.locator(".resource-document h1")).toHaveText(
+    "Inbound Sales Calls",
+  );
+});
+
+test("Resources failures retry locally and stale requests cannot replace another page", async ({
+  page,
+}) => {
+  let fail = true;
+  await page.route("**/data/resources.json", async (route) =>
+    fail
+      ? route.fulfill({ status: 503, body: "Unavailable" })
+      : route.continue(),
+  );
+  await page.goto("./#/resources");
+  await expect(page.getByRole("alert")).toContainText(
+    "Resources couldn’t load",
+  );
+  fail = false;
+  await page.getByRole("button", { name: "Try again" }).click();
+  await expect(
+    page.getByRole("link", { name: /^Inbound Sales Calls —/ }),
+  ).toBeVisible();
+  await page.unroute("**/data/resources.json");
+  let release;
+  const gate = new Promise((resolve) => {
+    release = resolve;
+  });
+  let requested;
+  const request = new Promise((resolve) => {
+    requested = resolve;
+  });
+  await page.route("**/data/resources.json", async (route) => {
+    requested();
+    await gate;
+    await route.continue();
+  });
+  await page.getByRole("link", { name: /^Inbound Sales Calls —/ }).click();
+  await request;
+  await page
+    .locator("#navigation")
+    .getByRole("link", { name: "Home", exact: true })
+    .click();
+  const response = page.waitForResponse("**/data/resources.json");
+  release();
+  await response;
+  await expect(
+    page.getByRole("heading", {
+      name: "Know the vehicle. Build the confidence.",
+    }),
+  ).toBeVisible();
+  await expect(page.locator(".resource-document")).toHaveCount(0);
+});

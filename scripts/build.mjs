@@ -12,6 +12,7 @@ for (const path of [
   "presentation.js",
   "dialog.js",
   "specials.js",
+  "resources.js",
   "data",
   "assets",
 ])

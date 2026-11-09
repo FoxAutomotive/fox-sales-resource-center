@@ -3304,3 +3304,228 @@ button.text-link {
   display: block;
   margin-top: 4px;
 }
+/* Resources share one document for on-screen reading and browser printing. */
+.resource-library .resource-list {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.resource-list article + article {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 24px;
+}
+.resource-list h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.resource-list p {
+  color: var(--muted);
+  margin-bottom: 0;
+  max-width: 70ch;
+}
+.resource-page {
+  max-width: min(900px, var(--max));
+}
+.resource-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.resource-document {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(20px, 5vw, 56px);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.resource-document-header {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 24px;
+  margin-bottom: 36px;
+}
+.resource-document h1 {
+  font-size: clamp(30px, 5vw, 42px);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.resource-subtitle {
+  font-size: 21px;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.resource-document h2 {
+  font-size: 27px;
+  margin: 44px 0 24px;
+}
+.resource-document h3 {
+  font-size: 22px;
+  margin: 32px 0 18px;
+}
+.resource-document h4 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 28px 0 16px;
+}
+.resource-document p {
+  margin-bottom: 12px;
+}
+.resource-exchange {
+  margin: 22px 0;
+  border-left: 3px solid #bdc5cd;
+  padding-left: 18px;
+}
+.resource-turn + .resource-turn {
+  margin-top: 18px;
+}
+.resource-speaker {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.resource-turn.customer {
+  color: #52606d;
+}
+.resource-turn.customer p:not(.resource-speaker) {
+  font-style: italic;
+}
+.resource-note {
+  background: var(--light);
+  border-left: 3px solid var(--ink);
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+.resource-note > :first-child {
+  margin-top: 0;
+}
+.resource-note > :last-child {
+  margin-bottom: 0;
+}
+.resource-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.resource-table th,
+.resource-table td {
+  border: 1px solid var(--line);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.resource-table thead {
+  background: var(--light);
+}
+@page resource-document {
+  size: letter portrait;
+  margin: 0.65in;
+  @bottom-left {
+    content: "FOX AUTOMOTIVE";
+    font:
+      8pt Arial,
+      sans-serif;
+    color: #555;
+  }
+  @bottom-right {
+    content: counter(page);
+    font:
+      9pt Arial,
+      sans-serif;
+    color: #555;
+  }
+}
+@media print {
+  main > .resource-page {
+    display: block !important;
+    page: resource-document;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none;
+  }
+  .resource-page .resource-actions {
+    display: none !important;
+  }
+  .resource-document {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    color: black;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+  .resource-document-header {
+    margin-bottom: 18pt;
+    padding-bottom: 12pt;
+    break-inside: avoid;
+  }
+  .resource-document h1 {
+    font-size: 25pt;
+  }
+  .resource-document h2 {
+    font-size: 18pt;
+    margin: 24pt 0 12pt;
+  }
+  .resource-document h3 {
+    font-size: 14pt;
+    margin: 18pt 0 9pt;
+  }
+  .resource-document h4 {
+    font-size: 12pt;
+    margin: 15pt 0 8pt;
+  }
+  .resource-document h2,
+  .resource-document h3,
+  .resource-document h4 {
+    break-after: avoid;
+  }
+  .resource-document p,
+  .resource-document li {
+    orphans: 3;
+    widows: 3;
+  }
+  .resource-document p {
+    margin-bottom: 5pt;
+  }
+  .resource-subtitle {
+    font-size: 14pt;
+  }
+  .resource-exchange,
+  .resource-note,
+  .resource-table tr {
+    break-inside: avoid;
+  }
+  .resource-exchange {
+    margin: 12pt 0;
+    padding-left: 10pt;
+  }
+  .resource-turn + .resource-turn {
+    margin-top: 9pt;
+  }
+  .resource-turn.customer {
+    color: black;
+  }
+  .resource-speaker {
+    font-size: 9pt;
+  }
+  .resource-note {
+    background: white;
+    margin: 12pt 0;
+    padding: 10pt 12pt;
+  }
+  .resource-table {
+    font-size: 10pt;
+  }
+  .resource-table th,
+  .resource-table td {
+    border-color: #aaa;
+    padding: 6pt;
+  }
+}
