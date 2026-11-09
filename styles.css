@@ -2736,7 +2736,7 @@ input[type="checkbox"] {
   gap: 24px;
 }
 #navigation .primary-links {
-  overflow-x: auto;
+  flex-wrap: wrap;
   border-bottom: 1px solid #eceff1;
   justify-content: space-between;
 }
@@ -3017,6 +3017,16 @@ input[type="checkbox"] {
     padding: 0 18px;
     justify-content: start;
     gap: 23px;
+  }
+  #navigation .primary-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+    gap: 0 18px;
+  }
+  #navigation .primary-links a {
+    justify-content: center;
+    min-width: 0;
   }
   #navigation a {
     flex-shrink: 0;
