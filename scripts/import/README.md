@@ -98,3 +98,7 @@ The source identifies its release as **CW43-2026** and has a **9/28/26 cover-foo
 ## GM Excel exports
 
 Chevrolet factory-standard equipment now has a workbook adapter feeding the same catalog/review/apply workflow. See [GM XLSX import instructions](GM-XLSX.md) for single-file and batch use, source interpretation, original-file preservation and limitations.
+
+## Toyota brochure batches
+
+The [Toyota batch workflow](TOYOTA-BROCHURES.md) accepts multiple S/A eBrochures, preserves existing verified claims and produces a candidate plus claim-level review reports. It reuses the existing local apply guard and website schema; Volkswagen and GM adapters are unchanged.

@@ -1,0 +1,271 @@
+{
+  "id": "toyota-2026-grandhighlander-brochure",
+  "sha256": "60da62e72ba06ed747a6f8e9d67167e9801ae1226d847bd1dcd69adfc1655c19",
+  "pageCount": 31,
+  "year": 2026,
+  "titleToken": "Grand Highlander",
+  "model": "Grand Highlander",
+  "vehicleId": "2026-toyota-grand-highlander",
+  "columns": [
+    {
+      "name": "LE",
+      "headerTokens": ["LE"]
+    },
+    {
+      "name": "XLE",
+      "headerTokens": ["XLE"]
+    },
+    {
+      "name": "Hybrid LE",
+      "headerTokens": ["LE", "Hybrid"]
+    },
+    {
+      "name": "Hybrid XLE",
+      "headerTokens": ["XLE", "Hybrid"]
+    },
+    {
+      "name": "Limited",
+      "headerTokens": ["Limited"]
+    },
+    {
+      "name": "Hybrid Limited",
+      "headerTokens": ["Limited", "Hybrid"]
+    },
+    {
+      "name": "Hybrid Nightshade",
+      "headerTokens": ["Nightshade", "Hybrid"]
+    },
+    {
+      "name": "Platinum",
+      "headerTokens": ["Platinum"]
+    },
+    {
+      "name": "Hybrid MAX Limited",
+      "headerTokens": ["Limited", "MAX", "Hybrid"]
+    },
+    {
+      "name": "Hybrid MAX Platinum",
+      "headerTokens": ["Platinum", "MAX", "Hybrid"]
+    }
+  ],
+  "matrixPages": [22, 23, 24, 25, 26],
+  "rowCounts": {
+    "22": 39,
+    "23": 21,
+    "24": 20,
+    "25": 21,
+    "26": 25
+  },
+  "columnCenters": [
+    215.16, 253.691, 292.222, 330.753, 369.284, 407.815, 446.346, 484.877,
+    523.408, 561.939
+  ],
+  "bodyTop": 77,
+  "disclosurePages": [27, 28, 29, 30],
+  "colorPage": 21,
+  "configs": [
+    {
+      "id": "le-fwd",
+      "name": "LE",
+      "column": 0,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)"
+    },
+    {
+      "id": "le-awd",
+      "name": "LE",
+      "column": 0,
+      "configuration": "Gasoline · AWD",
+      "drive": "AWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Dynamic Torque Control AWD",
+      "transmissionRow": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)"
+    },
+    {
+      "id": "xle-fwd",
+      "name": "XLE",
+      "column": 1,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)"
+    },
+    {
+      "id": "xle-awd",
+      "name": "XLE",
+      "column": 1,
+      "configuration": "Gasoline · AWD",
+      "drive": "AWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Dynamic Torque Control AWD",
+      "transmissionRow": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)"
+    },
+    {
+      "id": "hybrid-le-awd",
+      "name": "Hybrid LE",
+      "column": 2,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand AWD system (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "hybrid-xle-fwd",
+      "name": "Hybrid XLE",
+      "column": 3,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "hybrid-xle-awd",
+      "name": "Hybrid XLE",
+      "column": 3,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand AWD system (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "limited-fwd",
+      "name": "Limited",
+      "column": 4,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)"
+    },
+    {
+      "id": "limited-awd",
+      "name": "Limited",
+      "column": 4,
+      "configuration": "Gasoline · AWD",
+      "drive": "AWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Dynamic Torque Control AWD",
+      "transmissionRow": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)"
+    },
+    {
+      "id": "hybrid-limited-awd",
+      "name": "Hybrid Limited",
+      "column": 5,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand AWD system (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "hybrid-nightshade-awd",
+      "name": "Hybrid Nightshade",
+      "column": 6,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand AWD system (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "platinum-awd",
+      "name": "Platinum",
+      "column": 7,
+      "configuration": "Gasoline · AWD",
+      "drive": "AWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Dynamic Torque Control AWD",
+      "transmissionRow": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)"
+    },
+    {
+      "id": "hybrid-max-limited-awd",
+      "name": "Hybrid MAX Limited",
+      "column": 8,
+      "configuration": "Hybrid MAX · AWD",
+      "drive": "AWD",
+      "transmission": "6AT",
+      "powertrain": "MAX",
+      "driveRow": "Full-Time Electronic All-Wheel Drive (AWD)",
+      "transmissionRow": "Direct Shift-6AT 6-speed Electronically Controlled automatic Transmission (ECT)"
+    },
+    {
+      "id": "hybrid-max-platinum-awd",
+      "name": "Hybrid MAX Platinum",
+      "column": 9,
+      "configuration": "Hybrid MAX · AWD",
+      "drive": "AWD",
+      "transmission": "6AT",
+      "powertrain": "MAX",
+      "driveRow": "Full-Time Electronic All-Wheel Drive (AWD)",
+      "transmissionRow": "Direct Shift-6AT 6-speed Electronically Controlled automatic Transmission (ECT)"
+    }
+  ],
+  "facts": [
+    {
+      "field": "cargo",
+      "page": 3,
+      "quote": "20.6 cu. ft. of space in the rear cargo area",
+      "value": "20.6 cu ft behind third row; up to 97.5 cu ft with rear seats folded (brochure model-level figures)",
+      "where": {}
+    },
+    {
+      "field": "legroom",
+      "page": 3,
+      "quote": "33.5 inches of leg room",
+      "value": "Third-row legroom: 33.5 in (brochure model-level figure; first/second rows not provided)",
+      "where": {}
+    }
+  ],
+  "palette": {
+    "exteriors": {
+      "y": [100, 300],
+      "centers": [63.5, 182.9, 302.3, 421.70000000000005, 541.1],
+      "bands": [
+        [130, 175],
+        [240, 275]
+      ]
+    },
+    "interiors": {
+      "y": [320, 720],
+      "centers": [63.5, 159.15, 254.8, 350.45000000000005, 446.1, 541.75],
+      "bands": [
+        [435, 480],
+        [545, 595]
+      ]
+    }
+  },
+  "reviewedAt": "2026-11-09",
+  "pageCategories": {
+    "22": "Exterior",
+    "23": "Exterior",
+    "24": "Interior",
+    "25": "Interior",
+    "26": "Safety and Convenience"
+  },
+  "lastDisclosure": 88,
+  "notes": [
+    "Gas, Hybrid and Hybrid MAX use separate source columns, engines, transmissions and drivetrains. No specification is carried between powertrains.",
+    "Cargo and third-row legroom on p. 3 are explicitly model-level brochure figures, not individual seat/wheel configuration measurements."
+  ],
+  "holdRules": [],
+  "expectedContentSha256": "dbb4ab76fbe3422cbaf1e53068f0651555535304b71e43aed0e59f27b9d33c81"
+}

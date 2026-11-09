@@ -1,3 +1,4 @@
+import { assertHistoricalVehicle } from "./historical-preservation.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
@@ -31,12 +32,7 @@ test("2027 imports all 41 reviewed pages, eight models and 38 configurations wit
   assert.equal(report.summary.equipmentFieldsPopulated, 6120);
   assert.equal(report.summary.manualVerification, 0);
   assert.equal(report.protectedVehicles.length, 12);
-  for (const p of report.protectedVehicles)
-    assert.equal(
-      digest(catalog.vehicles.find((v) => v.id === p.id)),
-      p.sha256,
-      p.id,
-    );
+  for (const p of report.protectedVehicles) assertHistoricalVehicle(catalog, p);
   for (const m of stage.models) {
     assert.equal(model(m.id).trims.length, m.configurations.length);
     assert.equal(model(m.id).additionalFields.length, m.rows.length);

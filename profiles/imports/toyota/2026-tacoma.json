@@ -1,0 +1,312 @@
+{
+  "id": "toyota-2026-tacoma-brochure",
+  "sha256": "79b50dcd6e32e23f7960ba7946bd1362eb2774f5e7947da7e5b7e4acde75f4e8",
+  "pageCount": 34,
+  "year": 2026,
+  "titleToken": "tacoma",
+  "model": "Tacoma",
+  "vehicleId": "2026-toyota-tacoma",
+  "columns": [
+    {
+      "name": "SR",
+      "headerTokens": ["SR"]
+    },
+    {
+      "name": "SR5",
+      "headerTokens": ["SR5"]
+    },
+    {
+      "name": "TRD PreRunner",
+      "headerTokens": ["TRD", "PreRunner"]
+    },
+    {
+      "name": "TRD Sport",
+      "headerTokens": ["TRD", "Sport"]
+    },
+    {
+      "name": "TRD Off-Road",
+      "headerTokens": ["TRD", "Off-", "Road"]
+    },
+    {
+      "name": "TRD Sport i-FORCE MAX",
+      "headerTokens": ["TRD", "Sport", "MAX"]
+    },
+    {
+      "name": "TRD Off-Road i-FORCE MAX",
+      "headerTokens": ["TRD", "Off-", "Road", "MAX"]
+    },
+    {
+      "name": "Limited",
+      "headerTokens": ["Limited"]
+    },
+    {
+      "name": "Limited i-FORCE MAX",
+      "headerTokens": ["Limited", "MAX"]
+    },
+    {
+      "name": "Trailhunter",
+      "headerTokens": ["Trailhunter"]
+    },
+    {
+      "name": "TRD Pro",
+      "headerTokens": ["TRD", "Pro"]
+    }
+  ],
+  "matrixPages": [23, 24, 25, 26, 27, 28],
+  "rowCounts": {
+    "23": 35,
+    "24": 16,
+    "25": 22,
+    "26": 11,
+    "27": 16,
+    "28": 14
+  },
+  "columnCenters": [
+    197.65, 234.177, 270.704, 307.231, 343.758, 380.285, 416.812, 453.339,
+    489.866, 526.393, 562.92
+  ],
+  "bodyTop": 85,
+  "disclosurePages": [29, 30, 31, 32, 33],
+  "colorPage": 22,
+  "configs": [
+    {
+      "id": "sr-rwd-8at",
+      "name": "SR",
+      "column": 0,
+      "configuration": "i-FORCE · RWD · 8AT",
+      "drive": "RWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "sr-4wd-8at",
+      "name": "SR",
+      "column": 0,
+      "configuration": "i-FORCE · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "sr5-rwd-8at",
+      "name": "SR5",
+      "column": 1,
+      "configuration": "i-FORCE · RWD · 8AT",
+      "drive": "RWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "sr5-4wd-8at",
+      "name": "SR5",
+      "column": 1,
+      "configuration": "i-FORCE · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-prerunner-rwd-8at",
+      "name": "TRD PreRunner",
+      "column": 2,
+      "configuration": "i-FORCE · RWD · 8AT",
+      "drive": "RWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-sport-rwd-8at",
+      "name": "TRD Sport",
+      "column": 3,
+      "configuration": "i-FORCE · RWD · 8AT",
+      "drive": "RWD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-sport-4wd-8at",
+      "name": "TRD Sport",
+      "column": 3,
+      "configuration": "i-FORCE · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-off-road-4wd-6mt",
+      "name": "TRD Off-Road",
+      "column": 4,
+      "configuration": "i-FORCE · 4WD · 6MT",
+      "drive": "4WD",
+      "transmission": "6MT",
+      "powertrain": "gas",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "6-speed intelligent Manual Transmission (iMT2) with automatic rev-matching and anti-stall technology"
+    },
+    {
+      "id": "trd-off-road-4wd-8at",
+      "name": "TRD Off-Road",
+      "column": 4,
+      "configuration": "i-FORCE · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-sport-i-force-max-4wd-8at",
+      "name": "TRD Sport i-FORCE MAX",
+      "column": 5,
+      "configuration": "i-FORCE MAX · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "MAX",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-off-road-i-force-max-4wd-8at",
+      "name": "TRD Off-Road i-FORCE MAX",
+      "column": 6,
+      "configuration": "i-FORCE MAX · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "MAX",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-4wd-8at",
+      "name": "Limited",
+      "column": 7,
+      "configuration": "i-FORCE · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gas",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-i-force-max-4wd-8at",
+      "name": "Limited i-FORCE MAX",
+      "column": 8,
+      "configuration": "i-FORCE MAX · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "MAX",
+      "driveRow": "Full-time 4-Wheel Drive with electronic locking center differential",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trailhunter-4wd-8at",
+      "name": "Trailhunter",
+      "column": 9,
+      "configuration": "i-FORCE MAX · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "MAX",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-pro-4wd-8at",
+      "name": "TRD Pro",
+      "column": 10,
+      "configuration": "i-FORCE MAX · 4WD · 8AT",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "MAX",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    }
+  ],
+  "facts": [
+    {
+      "field": "horsepower",
+      "page": 3,
+      "quote": "326 maximum horsepower",
+      "value": "Up to 326 hp (i-FORCE MAX system output)",
+      "where": {
+        "powertrain": "MAX"
+      }
+    },
+    {
+      "field": "torque",
+      "page": 3,
+      "quote": "465 lb.-ft.",
+      "value": "465 lb.-ft. (i-FORCE MAX; brochure quote)",
+      "where": {
+        "powertrain": "MAX"
+      }
+    }
+  ],
+  "palette": {
+    "exteriors": {
+      "y": [100, 420],
+      "centers": [63.5, 182.9, 302.3, 421.70000000000005, 541.1],
+      "bands": [
+        [130, 175],
+        [240, 275],
+        [345, 375]
+      ]
+    },
+    "interiors": {
+      "y": [425, 720],
+      "centers": [63.5, 159.15, 254.8, 350.45000000000005, 446.1, 541.75],
+      "bands": [
+        [535, 585],
+        [650, 690]
+      ]
+    }
+  },
+  "reviewedAt": "2026-11-09",
+  "pageCategories": {
+    "23": "Exterior",
+    "24": "Exterior",
+    "25": "Interior",
+    "26": "Safety and Convenience",
+    "27": "Safety and Convenience",
+    "28": "Mechanical/Performance"
+  },
+  "lastDisclosure": 104,
+  "notes": [
+    "SR and TRD Sport list an available 6MT, but its drivetrain/cab eligibility is not established. Those manual combinations are pending, not invented.",
+    "SR/SR5 Double Cab and XtraCab, and bed-length combinations require a configuration-specific technical/order document. Grade-level equipment with cab-sensitive wording is held for review.",
+    "The gas engine marketing maximum (up to 278 hp / 317 lb.-ft.) does not establish each trim/transmission output; gas horsepower and torque remain unverified."
+  ],
+  "holdRules": [
+    {
+      "pattern": "fold-flat passenger|fold-flat.*passenger|leaf spring rear|coil spring multi-link rear",
+      "columns": [0, 1],
+      "reason": "SR/SR5 cab-specific seats and rear suspension cannot be assigned without a verified cab configuration."
+    },
+    {
+      "pattern": "6-speed.*Manual|Toyota Safety Sense",
+      "columns": [0, 3],
+      "transmission": "6MT",
+      "reason": "Optional manual transmission is listed without a confirmed drivetrain/cab combination."
+    },
+    {
+      "pattern": "Toyota Safety Sense",
+      "columns": [4],
+      "transmission": "8AT",
+      "reason": "Manual/automatic-specific TSS suite descriptions are not explicitly assigned to the optional automatic configuration."
+    }
+  ],
+  "expectedContentSha256": "5b3e718387cf55ade64ff9003beda34e2c84a653ba11d3e71f0d8c954ff82e5b"
+}

@@ -941,6 +941,9 @@ test("feature alias searches match evidenced categories across brands without ma
         .vehicles.map((v) => v.id)
         .sort(),
       [
+        "2026-toyota-tacoma",
+        "2026-toyota-sienna",
+        "2026-toyota-grand-highlander",
         "2026-toyota-rav4",
         "2026-toyota-rav4-plug-in-hybrid",
         "2026-volkswagen-tiguan",
@@ -995,7 +998,7 @@ test("feature alias searches match evidenced categories across brands without ma
   );
 });
 
-test("current equipment audit covers every RAV4 cell and explains every unknown", async () => {
+test("historical equipment audit stays traceable after reviewed brochure extensions", async () => {
   const audit = JSON.parse(
     await readFile(
       new URL(
@@ -1006,14 +1009,32 @@ test("current equipment audit covers every RAV4 cell and explains every unknown"
     ),
   );
   const v = catalog.vehicles.find((v) => v.id === audit.vehicleId);
-  assert.equal(
-    audit.entries.length,
-    v.trims.reduce((n, t) => n + Object.keys(t.equipment).length, 0),
+  const batch = JSON.parse(
+    await readFile(
+      new URL(
+        "../docs/imports/toyota-2026-brochures-report.json",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
   );
+  const reviewed = batch.models.find((model) => model.id === v.id);
+  assert.equal(audit.entries.length, reviewed.baselineFieldCount);
+
   for (const e of audit.entries) {
     const cell = v.trims.find((t) => t.id === e.trimId).equipment[e.fieldId];
-    assert.equal(e.status, cell.status);
-    if (e.status === "unverified")
+    if (e.status !== cell.status) {
+      assert.equal(e.status, "unverified");
+      assert.ok(
+        reviewed.resolvedFields.some(
+          (record) =>
+            record.configuration === e.trimId &&
+            record.field === e.fieldId &&
+            record.incoming.status === cell.status,
+        ),
+      );
+    }
+    if (cell.status === "unverified")
       assert.ok(cell.conditions && !cell.value && !cell.sourceIds?.length);
   }
   assert.match(audit.originalPdfReinspection, /blocked/);
