@@ -31,7 +31,7 @@ npm run test:browser   # 31 Chromium functional/layout/print/accessibility tests
 npm run build          # Validate and copy only production files into dist/
 ```
 
-Browser tests use `/usr/bin/chromium` locally. Set `CHROMIUM_PATH` to your installed Chromium/Chrome executable if needed. In CI, install the matching browser with `npx playwright install --with-deps chromium`; the configuration uses Playwright’s browser when `CI=true`. Sandbox environments may require permission to open a local port and launch Chromium.
+Browser tests use Playwright’s pinned Chromium locally and in CI. Install it with `npx playwright install --with-deps chromium` before running browser tests. `CHROMIUM_PATH` remains an explicit debugging override; omit it when verifying CI behavior so a different system-browser version does not hide compatibility problems. Sandbox environments may require permission to open a local port and launch Chromium.
 
 Test-only synthetic equipment is isolated in `tests/fixtures.mjs` and intercepted inside browser tests. **It is never included in `dist/` or the production data.** PDF and screenshot outputs are generated under ignored `test-results/`.
 

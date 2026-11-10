@@ -27,10 +27,20 @@ The only shared implementation change allows the requested `assets/training/full
 
 - Source ZIP PDF bytes match all ten installed SHA-256 values. No editable Word files are included.
 - Data regression checks preserve the complete Quick Guide records; unsafe training paths are rejected.
-- Desktop/mobile browser checks cover all ten catalog/detail links, real new tabs, native PDF-viewer Print controls, actual native Download operations, PDF HTTP responses, and exact downloaded bytes.
+- Desktop/mobile browser checks cover all ten catalog/detail links, real new tabs, standard browser downloads, PDF HTTP responses, original hashes, correct module titles/page counts, complete page rendering, and high-quality printing permissions. They do not depend on browser-private PDF toolbar markup.
 - Existing Quick Guide read/print and full-site regression tests are run before delivery.
 - All ten PDFs can be parsed/rendered and have printing permissions; browser-native PDF toolbar behavior may vary by device.
 
-Validation passed: **100 Node tests, 16 Python extractor tests, 54 browser tests**, catalog/resource validation, formatting, diff checks and the production build. Native Chrome PDF tests exercise all ten new tabs and Download controls on desktop/mobile, confirm original hashes after download, and verify enabled Print controls. Existing Quick Guide reading/printing and all other sections pass regression checks.
+Validation passed: **100 Node tests, 16 Python extractor tests, 54 browser tests**, catalog/resource validation, formatting, diff checks and the production build. Portable PDF tests exercise all ten new tabs and browser downloads on desktop/mobile, confirm original hashes after download, and render all 68 pages with printing permissions checked. Native toolbar controls were additionally verified with the local system browser during the original installation. Existing Quick Guide reading/printing and all other sections pass regression checks.
 
 No files failed extraction or verification. Delivery is a review pull request only; no merge or deployment is performed.
+
+## CI compatibility correction — November 10, 2026
+
+Both the [push run](https://github.com/FoxAutomotive/fox-sales-resource-center/actions/runs/42880016300) and [pull-request run](https://github.com/FoxAutomotive/fox-sales-resource-center/actions/runs/42880124069) passed extraction, catalog validation and all 100 Node tests. The browser step passed 52 existing cases, then both new PDF cases timed out at `tests/training-pdfs.spec.js:46`, waiting 15 seconds for a `chrome-extension://` viewer frame.
+
+The original local configuration selected system Chromium 154, while Actions used Playwright's pinned Chromium 141.0.7390.37 (build 1194). Installing that exact browser locally and running with `CI=1` reproduced both failures. The tests had assumed a browser-private PDF viewer frame layout that this version does not expose; neither the training files nor Playbook data caused the failure.
+
+The browser configuration now defaults to Playwright's pinned browser both locally and in CI. `CHROMIUM_PATH` remains an explicit debugging override. The PDF tests retain every module/link/hash check and use standard browser downloads rather than private viewer controls. They additionally inspect the actual downloaded PDFs for correct module titles/page counts, render every page, and verify unrestricted high-quality printing. No tests are skipped, no timeout is inflated to hide the mismatch, and no training PDF or Playbook content changes are needed.
+
+The complete validation sequence was repeated locally with `CI=1`, no `CHROMIUM_PATH` override and the exact Chromium 141 build used by Actions before updating PR #27. All 16 extractor tests, 100 Node tests, 54 browser tests, catalog validation, build, formatting and diff checks passed. All ten PDF assets, `data/resources.json` and the source/hash report remain unchanged by this correction.

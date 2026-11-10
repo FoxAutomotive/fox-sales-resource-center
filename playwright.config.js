@@ -8,9 +8,8 @@ export default defineConfig({
     baseURL: "http://127.0.0.1:4173/fox-sales-resource-center/",
     browserName: "chromium",
     launchOptions: {
-      executablePath:
-        process.env.CHROMIUM_PATH ||
-        (process.env.CI ? undefined : "/usr/bin/chromium"),
+      // Use Playwright's pinned browser locally and in CI; override only explicitly.
+      executablePath: process.env.CHROMIUM_PATH || undefined,
       args: ["--no-sandbox"],
     },
   },
