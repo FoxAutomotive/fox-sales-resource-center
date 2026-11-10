@@ -282,6 +282,202 @@
         "providedOn": "2026-11-06",
         "section": "User-provided offer table and qualifications, sections 1\u20136"
       }
+    },
+    {
+      "id": "chevrolet-silverado-2026-lease-nov-2026",
+      "manufacturer": "chevrolet",
+      "year": 2026,
+      "model": "Silverado",
+      "trim": "Crew Cab 2FL 4x4",
+      "type": "lease",
+      "monthlyPayment": 189,
+      "downPayment": 999,
+      "msrp": 54095,
+      "termMonths": 24,
+      "annualMileage": 10000,
+      "qualification": "GM Employee or Eligible Family Member pricing required.",
+      "creditQualification": "GM Financial A+ credit approval required.",
+      "lender": "GM Financial",
+      "leaseDetails": {
+        "securityDeposit": 0,
+        "creditTier": "A+"
+      },
+      "expiresOn": "2026-11-30",
+      "notes": "Chevrolet Lease Loyalty required. GM Rewards Credit Card signup and a minimum $1,000 charge to the card at delivery required. Tax, title, CVR, and documentation fees are additional. Listed down payment is not total due at signing or total out-of-pocket; those totals have not been provided.",
+      "source": {
+        "kind": "approved-internal",
+        "title": "November 2026 Chevrolet Lease Specials — user-provided offers and qualifications",
+        "providedOn": "2026-11-10",
+        "section": "Silverado offer row; common qualifications and offer-specific qualifications"
+      }
+    },
+    {
+      "id": "chevrolet-equinox-2026-lease-nov-2026",
+      "manufacturer": "chevrolet",
+      "year": 2026,
+      "model": "Equinox",
+      "trim": "LT FWD, Previous CTP",
+      "type": "lease",
+      "monthlyPayment": 239,
+      "downPayment": 999,
+      "msrp": 33170,
+      "termMonths": 36,
+      "annualMileage": 10000,
+      "qualification": "GM Employee or Eligible Family Member pricing required.",
+      "creditQualification": "GM Financial A+ credit approval required.",
+      "lender": "GM Financial",
+      "leaseDetails": {
+        "securityDeposit": 0,
+        "creditTier": "A+"
+      },
+      "expiresOn": "2026-11-30",
+      "notes": "Lease Loyalty or Lease Conquest required. Previous CTP unit. GM Rewards Credit Card signup and a minimum $1,000 charge to the card at delivery required. Tax, title, CVR, and documentation fees are additional. Listed down payment is not total due at signing or total out-of-pocket; those totals have not been provided.",
+      "source": {
+        "kind": "approved-internal",
+        "title": "November 2026 Chevrolet Lease Specials — user-provided offers and qualifications",
+        "providedOn": "2026-11-10",
+        "section": "Equinox offer row; common qualifications and offer-specific qualifications"
+      }
+    },
+    {
+      "id": "chevrolet-trax-2026-lease-nov-2026",
+      "manufacturer": "chevrolet",
+      "year": 2026,
+      "model": "Trax",
+      "trim": "LS",
+      "type": "lease",
+      "monthlyPayment": 239,
+      "downPayment": 1999,
+      "msrp": 25150,
+      "termMonths": 36,
+      "annualMileage": 10000,
+      "qualification": "GM Employee or Eligible Family Member pricing required.",
+      "creditQualification": "MSUFCU Super Tier credit approval required.",
+      "lender": "MSUFCU",
+      "leaseDetails": {
+        "securityDeposit": 0,
+        "creditTier": "Super Tier"
+      },
+      "expiresOn": "2026-11-15",
+      "notes": "Lease Loyalty or Lease Conquest required. GM Rewards Credit Card signup and a minimum $1,000 charge to the card at delivery required. Tax, title, CVR, and documentation fees are additional. Listed down payment is not total due at signing or total out-of-pocket; those totals have not been provided.",
+      "source": {
+        "kind": "approved-internal",
+        "title": "November 2026 Chevrolet Lease Specials — user-provided offers and qualifications",
+        "providedOn": "2026-11-10",
+        "section": "Trax offer row; common qualifications and offer-specific qualifications"
+      }
+    },
+    {
+      "id": "chevrolet-blazer-2026-lease-nov-2026",
+      "manufacturer": "chevrolet",
+      "year": 2026,
+      "model": "Blazer",
+      "trim": "LT FWD",
+      "type": "lease",
+      "monthlyPayment": 249,
+      "downPayment": 1999,
+      "msrp": 38815,
+      "termMonths": 24,
+      "annualMileage": 10000,
+      "qualification": "GM Employee or Eligible Family Member pricing required.",
+      "creditQualification": "GM Financial A+ credit approval required.",
+      "lender": "GM Financial",
+      "leaseDetails": {
+        "securityDeposit": 0,
+        "creditTier": "A+"
+      },
+      "expiresOn": "2026-11-30",
+      "notes": "Lease Loyalty or Lease Conquest required. GM Rewards Credit Card signup and a minimum $1,000 charge to the card at delivery required. Tax, title, CVR, and documentation fees are additional. Listed down payment is not total due at signing or total out-of-pocket; those totals have not been provided.",
+      "source": {
+        "kind": "approved-internal",
+        "title": "November 2026 Chevrolet Lease Specials — user-provided offers and qualifications",
+        "providedOn": "2026-11-10",
+        "section": "Blazer offer row; common qualifications and offer-specific qualifications"
+      }
+    },
+    {
+      "id": "chevrolet-colorado-2026-lease-nov-2026",
+      "manufacturer": "chevrolet",
+      "year": 2026,
+      "model": "Colorado",
+      "trim": "4x4 Work Truck",
+      "type": "lease",
+      "monthlyPayment": 288,
+      "downPayment": 2799,
+      "msrp": 41175,
+      "termMonths": 36,
+      "annualMileage": 10000,
+      "qualification": "GM Employee or Eligible Family Member pricing required.",
+      "creditQualification": "GM Financial A+ credit approval required.",
+      "lender": "GM Financial",
+      "leaseDetails": {
+        "securityDeposit": 0,
+        "creditTier": "A+"
+      },
+      "expiresOn": "2026-11-30",
+      "notes": "Lease Loyalty or Lease Conquest required. GM Rewards Credit Card signup and a minimum $1,000 charge to the card at delivery required. Tax, title, CVR, and documentation fees are additional. Listed down payment is not total due at signing or total out-of-pocket; those totals have not been provided.",
+      "source": {
+        "kind": "approved-internal",
+        "title": "November 2026 Chevrolet Lease Specials — user-provided offers and qualifications",
+        "providedOn": "2026-11-10",
+        "section": "Colorado offer row; common qualifications and offer-specific qualifications"
+      }
+    },
+    {
+      "id": "chevrolet-equinox-ev-2026-lease-nov-2026",
+      "manufacturer": "chevrolet",
+      "year": 2026,
+      "model": "Equinox EV",
+      "trim": "LT2, Previous CTP",
+      "type": "lease",
+      "monthlyPayment": 369,
+      "downPayment": 3899,
+      "msrp": 43690,
+      "termMonths": 24,
+      "annualMileage": 10000,
+      "qualification": "GM Employee or Eligible Family Member pricing required.",
+      "creditQualification": "GM Financial A+ credit approval required.",
+      "lender": "GM Financial",
+      "leaseDetails": {
+        "securityDeposit": 0,
+        "creditTier": "A+"
+      },
+      "expiresOn": "2026-11-30",
+      "notes": "Chevrolet EV Lease Loyalty required. Previous CTP unit. GM Rewards Credit Card signup and a minimum $1,000 charge to the card at delivery required. Tax, title, CVR, and documentation fees are additional. Listed down payment is not total due at signing or total out-of-pocket; those totals have not been provided.",
+      "source": {
+        "kind": "approved-internal",
+        "title": "November 2026 Chevrolet Lease Specials — user-provided offers and qualifications",
+        "providedOn": "2026-11-10",
+        "section": "Equinox EV offer row; common qualifications and offer-specific qualifications"
+      }
+    },
+    {
+      "id": "chevrolet-traverse-2026-lease-nov-2026",
+      "manufacturer": "chevrolet",
+      "year": 2026,
+      "model": "Traverse",
+      "trim": "AWD LT",
+      "type": "lease",
+      "monthlyPayment": 459,
+      "downPayment": 2799,
+      "msrp": 47505,
+      "termMonths": 36,
+      "annualMileage": 10000,
+      "qualification": "GM Employee or Eligible Family Member pricing required.",
+      "creditQualification": "MSUFCU Super Tier credit approval required.",
+      "lender": "MSUFCU",
+      "leaseDetails": {
+        "securityDeposit": 0,
+        "creditTier": "Super Tier"
+      },
+      "expiresOn": "2026-11-15",
+      "notes": "Lease Loyalty or Lease Conquest required. GM Rewards Credit Card signup and a minimum $1,000 charge to the card at delivery required. Tax, title, CVR, and documentation fees are additional. Listed down payment is not total due at signing or total out-of-pocket; those totals have not been provided.",
+      "source": {
+        "kind": "approved-internal",
+        "title": "November 2026 Chevrolet Lease Specials — user-provided offers and qualifications",
+        "providedOn": "2026-11-10",
+        "section": "Traverse offer row; common qualifications and offer-specific qualifications"
+      }
     }
   ]
 }
