@@ -1,4 +1,10 @@
 import {
+  resourceGroups,
+  publishedResources,
+  resourceContentHTML,
+  validateResources,
+} from "./resources.js";
+import {
   salesCell,
   salesOptions,
   salesText,
@@ -70,6 +76,7 @@ let selected = [];
 let searchTimer;
 let disposeSpecials = () => {};
 let focusAfterRoute = false;
+let resourceGeneration = 0;
 const brandName = (id) => catalog.brands.find((b) => b.id === id)?.name || id;
 const mark = (id) => `<span class="brand-mark ${id}">${marks[id] || ""}</span>`;
 const date = (d) =>
@@ -97,6 +104,7 @@ function nav(active) {
     ["/search", "Model Guides"],
     ["/compare", "Compare Models"],
     ["/specials", "Current Specials"],
+    ["/resources", "Resources"],
   ];
   const link = ([path, label]) =>
     `<a href="#${path}" ${active === path ? 'aria-current="page"' : ""}>${escape(label)}</a>`;
@@ -948,6 +956,39 @@ async function specialsPage() {
     };
   }
 }
+async function resourcesPage(id, generation) {
+  nav("/resources");
+  document.title = "Resources · Fox Automotive";
+  const main = $("#main");
+  main.innerHTML = `<div class="content page-content"><p role="status">Loading resources…</p></div>`;
+  try {
+    const response = await fetch(
+      new URL("./data/resources.json", import.meta.url),
+    );
+    if (!response.ok) throw new Error("Resources could not load");
+    const data = await response.json();
+    if (validateResources(data).length)
+      throw new Error("Invalid resource catalog");
+    if (generation !== resourceGeneration) return;
+    if (id) {
+      const resource = publishedResources(data).find((item) => item.id === id);
+      if (!resource) {
+        main.innerHTML = `<div class="content page-content"><h1>Resource not available</h1><p>This resource may be unpublished or the link may have changed.</p><a class="button secondary" href="#/resources">Back to Resources</a></div>`;
+        return;
+      }
+      document.title = `${resource.title} · Fox Automotive`;
+      main.innerHTML = `<div class="content page-content resource-page"><div class="resource-actions"><a class="text-link" href="#/resources">← Back to Resources</a><button class="button secondary" id="print-resource" type="button">Print / Save as PDF</button></div><article class="resource-document"><header class="resource-document-header"><p class="eyebrow">FOX AUTOMOTIVE</p><h1>${escape(resource.heading)}</h1>${resource.subtitle ? `<p class="resource-subtitle">${escape(resource.subtitle)}</p>` : ""}${resource.revisedOn ? `<p class="muted">Revised ${date(resource.revisedOn)}</p>` : ""}</header>${resourceContentHTML(resource.content)}</article></div>`;
+      $("#print-resource").onclick = () => window.print();
+    } else {
+      const groups = resourceGroups(data);
+      main.innerHTML = `<div class="content page-content resource-library">${breadcrumbs([{ label: "Resources" }])}<div class="page-heading"><h1>Resources</h1><p>Training materials, dealership procedures, forms, and reference documents.</p></div>${groups.length ? groups.map((group) => `<section class="section-block"><h2>${escape(group.name)}</h2><div class="resource-list">${group.resources.map((resource) => `<article><h3><a class="text-link" href="#/resources/${escape(resource.id)}">${escape(resource.title)}</a></h3><p>${escape(resource.description)}</p></article>`).join("")}</div></section>`).join("") : `<p>No published resources are available.</p>`}</div>`;
+    }
+  } catch {
+    if (generation !== resourceGeneration) return;
+    main.innerHTML = `<div class="content page-content"><h1>Resources</h1><p role="alert">Resources couldn’t load. Please try again.</p><button class="button secondary" id="retry-resources">Try again</button></div>`;
+    $("#retry-resources").onclick = () => resourcesPage(id, generation);
+  }
+}
 function aboutPage() {
   nav("");
   $("#main").innerHTML =
@@ -964,6 +1005,7 @@ function notify(text) {
   setTimeout(() => $("#toast").classList.remove("visible"), 3000);
 }
 function route() {
+  resourceGeneration++;
   disposeSpecials();
   clearTimeout(searchTimer);
   closeReferenceDialog({ restoreFocus: false });
@@ -995,6 +1037,9 @@ function route() {
   else if (path === "/compare") comparePage();
   else if (path === "/features") glossaryPage(params);
   else if (path === "/specials") specialsPage();
+  else if (path === "/resources") resourcesPage(null, resourceGeneration);
+  else if (/^\/resources\/[^/]+$/.test(path))
+    resourcesPage(path.split("/")[2], resourceGeneration);
   else if (path === "/about") aboutPage();
   else notFound();
   applySalesLabels();

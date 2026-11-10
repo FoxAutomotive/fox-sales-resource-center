@@ -73,6 +73,10 @@ Read [the maintenance guide](docs/MAINTAINING.md) before adding claims. Add a ne
 
 A link is not proof that someone reviewed a source. Source records have separate `research-target` and `verified` states, review dates, and model years. Each verified trim, equipment claim, package, and upgrade gain must cite reviewed source IDs. Unknown information stays unverified. `npm run validate` rejects inconsistent evidence.
 
+## Resources
+
+Resources is a data-driven training/document library at `#/resources`, starting with Inbound Sales Calls — Ask. Listen. Adjust. Appoint. Edit `data/resources.json` to add published materials; the shared reading page and Letter print/PDF layout are automatic. See [resource authoring and validation](docs/resources.md).
+
 ## Publish to GitHub Pages
 
 Publishing is a separate, deliberate action; it has **not** been performed.

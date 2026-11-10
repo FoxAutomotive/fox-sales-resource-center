@@ -1,3 +1,4 @@
+import { validateResources } from "../resources.js";
 import { validateSpecials } from "../specials.js";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
@@ -475,7 +476,11 @@ export async function validateFiles() {
   const specials = JSON.parse(
     await readFile(new URL("../data/specials.json", import.meta.url), "utf8"),
   );
+  const resources = JSON.parse(
+    await readFile(new URL("../data/resources.json", import.meta.url), "utf8"),
+  );
   const errors = [
+    ...validateResources(resources),
     ...validate(catalog, features),
     ...validateSpecials(specials),
   ];
