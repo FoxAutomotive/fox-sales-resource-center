@@ -68,18 +68,16 @@ The `sales-playbook` category contains ten published quick guides, sorted by `mo
 
 Catalog actions open `#/resources/sales-playbook-NN` and `#/resources/sales-playbook-NN?print`. The latter waits for rendering and fonts before opening the browser print dialog. Quick-guide print styles use portrait Letter paper and the existing Fox branding/footer, hide navigation/actions, and keep short sections intact. Actual browser-generated PDFs are checked for complete text, Letter size, no blank pages, and a maximum of three pages on desktop/mobile.
 
-### Original full training is missing
+### Full salesperson training PDFs
 
-The supplied PDF is `Fox_Automotive_Sales_Playbook_10_Quick_Guides.pdf`: **20 pages, two quick-reference pages per module**. It is not the requested `Fox_Automotive_Sales_Academy_All_10_Modules.pdf` (described in the request as 118 pages). Do not relabel these quick guides as full training. No original Academy module has been extracted or published.
+The ten completed salesperson PDFs supplied in `Fox_Automotive_Salesperson_Training_10_Modules.zip` are installed in `assets/training/full/`. Each file is copied byte-for-byte from its ZIP entry, with a descriptive module-number/title filename. The ten editable Word documents are not extracted into the repository or included in the site build. No PDF pages, formatting, examples, scripts, colors or tables are regenerated or edited.
 
-All ten `fullTraining` values remain `null`; the site explains that the original Academy PDF is awaited. When that source arrives:
+All ten `fullTraining` fields point to the corresponding PDF. The existing **View Full Training** action appears beside Read Quick Guide and Print Quick Guide in the catalog and on each Quick Guide page. It opens a new tab (`target="_blank"`, `rel="noopener"`), leaving printing/downloading to the browser's PDF viewer. PDFs are not embedded in Quick Guides.
 
-1. Identify the original module boundaries, including worksheets/coaching/evaluation pages; check any cover or table of contents separately.
-2. Extract original pages without rewriting them, then verify complete content and correct boundaries in all ten outputs.
-3. Place PDFs in `assets/training/` and set each corresponding `fullTraining` to its relative PDF path, for example `assets/training/Fox_Sales_Academy_Module_01_The_Standard.pdf`.
-4. Validation rejects unsafe paths and missing/non-PDF targets. The build copies all assets. The development server serves PDFs as `application/pdf`.
-5. The catalog and document then automatically show **View Full Training** links with `target="_blank"` and `rel="noopener"`. Verify actual PDF viewing, downloading and printing after supplying the source.
+Validation accepts PDF paths directly under `assets/training/` or under `assets/training/full/`, rejects unsafe paths, and checks that referenced files exist and have a PDF header. The build copies the assets unchanged; the development server serves them as `application/pdf`.
+
+See [the installed-file report](full-salesperson-training.md) and [source hashes/page counts](full-salesperson-training-files.json). All 68 supplied pages were checked against the previously supplied combined salesperson edition for identical extracted text and rendered pixels. These are the salesperson editions, not substitute trainer/classroom files. A manifest preservation hash checks that every resource property other than `fullTraining`, including Quick Guide wording, titles, numbering and formatting, remains unchanged.
 
 Module 8 has a source-title discrepancy: the supplied Markdown says “Deal Structure & Objection Control”; the request names it “Deal Structure, Trade Control & Objection Isolation.” The catalog/document header uses the requested title and the source Markdown heading remains unchanged in the body.
 
-No deployment or merge is part of this change. The PR remains draft until the missing original training source can be supplied and verified.
+No deployment or merge is part of this change. The completed training installation is delivered as a review pull request.

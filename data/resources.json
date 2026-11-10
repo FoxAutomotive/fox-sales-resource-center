@@ -1094,7 +1094,7 @@
       "moduleNumber": 1,
       "description": "Professionalism is what the customer experiences, not what we say we expect.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_01_The_Standard.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1110,7 +1110,7 @@
       "moduleNumber": 2,
       "description": "Read the customer. Adjust communication. Keep the process.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_02_Types_of_Guests.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1126,7 +1126,7 @@
       "moduleNumber": 3,
       "description": "The opening creates trust, pace, and direction.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_03_The_First_Five_Minutes.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1142,7 +1142,7 @@
       "moduleNumber": 4,
       "description": "Find out what matters before selecting a vehicle.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_04_Needs_Assessment.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1158,7 +1158,7 @@
       "moduleNumber": 5,
       "description": "A presentation proves the vehicle fits; it does not list every feature.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_05_Vehicle_Presentation.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1174,7 +1174,7 @@
       "moduleNumber": 6,
       "description": "Talk less. Notice more. Let the customer experience the vehicle.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_06_The_Test_Drive.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1190,7 +1190,7 @@
       "moduleNumber": 7,
       "description": "Confirm that they want the vehicle before negotiating the numbers.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_07_The_Commitment_Close.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1206,7 +1206,7 @@
       "moduleNumber": 8,
       "description": "Bring complete facts. Present the deal clearly. Diagnose objections before reacting.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_08_Deal_Structure_Trade_Control_and_Objection_Isolation.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1222,7 +1222,7 @@
       "moduleNumber": 9,
       "description": "The sale is not protected until the customer leaves informed and confident.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_09_Protect_the_Yes.pdf",
       "content": [
         {
           "type": "markdown",
@@ -1238,7 +1238,7 @@
       "moduleNumber": 10,
       "description": "The sale is the outcome. Consistent activity creates the opportunity.",
       "published": true,
-      "fullTraining": null,
+      "fullTraining": "assets/training/full/Fox_Salesperson_Training_Module_10_Professional_Discipline.pdf",
       "content": [
         {
           "type": "markdown",

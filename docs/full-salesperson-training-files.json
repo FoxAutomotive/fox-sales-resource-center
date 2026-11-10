@@ -1,0 +1,99 @@
+{
+  "archive": "Fox_Automotive_Salesperson_Training_10_Modules.zip",
+  "archiveSha256": "03b78e632ef69a75a2541fd18e40d4accde2ad603f080ed0ee9f9fd3c1fdcd38",
+  "providedOn": "2026-11-10",
+  "wordDocumentsPublished": false,
+  "files": [
+    {
+      "moduleNumber": 1,
+      "title": "The Standard",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_01.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_01_The_Standard.pdf",
+      "pages": 7,
+      "bytes": 162970,
+      "sha256": "619b7c35560c28422f34a8b2b8164e133a713a3965ae85bdd1eaf55c653f352f"
+    },
+    {
+      "moduleNumber": 2,
+      "title": "Types of Guests",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_02.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_02_Types_of_Guests.pdf",
+      "pages": 6,
+      "bytes": 118495,
+      "sha256": "82bde6496982bd8ca3429a6c6553516e982faad9f8ed8a138bc9603193a4ec55"
+    },
+    {
+      "moduleNumber": 3,
+      "title": "The First Five Minutes",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_03.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_03_The_First_Five_Minutes.pdf",
+      "pages": 6,
+      "bytes": 149875,
+      "sha256": "550a9056e664ffc50bc1b40861d9d3f5e43a8bbf0e5efb5b9f3770314cb7dcd0"
+    },
+    {
+      "moduleNumber": 4,
+      "title": "Needs Assessment",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_04.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_04_Needs_Assessment.pdf",
+      "pages": 6,
+      "bytes": 129656,
+      "sha256": "b365be161cb5fc15e56bddf11047d95241c7de55dfa212ab42fc2b0edf7829f1"
+    },
+    {
+      "moduleNumber": 5,
+      "title": "Vehicle Presentation",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_05.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_05_Vehicle_Presentation.pdf",
+      "pages": 6,
+      "bytes": 142988,
+      "sha256": "815a6ca176ae5a758cbe96e05c29d108e8707b68ccae181008ec9b6e9bef8531"
+    },
+    {
+      "moduleNumber": 6,
+      "title": "The Test Drive",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_06.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_06_The_Test_Drive.pdf",
+      "pages": 5,
+      "bytes": 104915,
+      "sha256": "4ff4a924c1492af11272c972e21a729af289e9dcdc620c1d805875154551e912"
+    },
+    {
+      "moduleNumber": 7,
+      "title": "The Commitment Close",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_07.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_07_The_Commitment_Close.pdf",
+      "pages": 6,
+      "bytes": 124596,
+      "sha256": "01de26207d6181a131c4dc178027b28c02e02a32336a071496490e4a60c01efb"
+    },
+    {
+      "moduleNumber": 8,
+      "title": "Deal Structure, Trade Control & Objection Isolation",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_08.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_08_Deal_Structure_Trade_Control_and_Objection_Isolation.pdf",
+      "pages": 10,
+      "bytes": 186225,
+      "sha256": "f853acd31492083456f80458bbbf2af6613667a784461386f688d415dc261658"
+    },
+    {
+      "moduleNumber": 9,
+      "title": "Protect the Yes",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_09.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_09_Protect_the_Yes.pdf",
+      "pages": 9,
+      "bytes": 177409,
+      "sha256": "2a023052a81cb0137b4691b5825caf633b2b7a21bf0230b10248bb3fca82f9cf"
+    },
+    {
+      "moduleNumber": 10,
+      "title": "Professional Discipline",
+      "sourceEntry": "PDF/Fox_Salesperson_Training_Module_10.pdf",
+      "path": "assets/training/full/Fox_Salesperson_Training_Module_10_Professional_Discipline.pdf",
+      "pages": 7,
+      "bytes": 149898,
+      "sha256": "80182d3941f37f5bfce333099f60165547d8be718c11fdfa74916e760f048362"
+    }
+  ],
+  "preservedResourceContentSha256": "51c32aeb112d9796894e6f1fa51fc2573cc3419e47ae2a6d32b1a8f70ba80902"
+}

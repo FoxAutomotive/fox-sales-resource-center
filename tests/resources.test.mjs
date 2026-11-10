@@ -172,6 +172,65 @@ test("all approved quick-guide source bytes and ordering are preserved", () => {
     assert.ok(html.includes("<h2>"));
     assert.ok(html.includes("<em>"));
     assert.ok(!html.includes("## "));
-    assert.equal(guide.fullTraining, null); // Original Academy source has not been supplied.
+    assert.match(
+      guide.fullTraining,
+      /^assets\/training\/full\/Fox_Salesperson_Training_Module_\d{2}_[a-zA-Z0-9_]+\.pdf$/,
+    );
+  }
+});
+
+test("Full salesperson PDFs retain supplied ZIP bytes and leave all Quick Guides unchanged", () => {
+  const report = JSON.parse(
+    readFileSync(
+      new URL("../docs/full-salesperson-training-files.json", import.meta.url),
+    ),
+  );
+  assert.equal(report.files.length, 10);
+  assert.equal(
+    report.files.reduce((sum, file) => sum + file.pages, 0),
+    68,
+  );
+  const preserved = {
+    ...data,
+    resources: data.resources.map((r) =>
+      Object.fromEntries(
+        Object.entries(r).filter(([key]) => key !== "fullTraining"),
+      ),
+    ),
+  };
+  assert.equal(
+    createHash("sha256").update(JSON.stringify(preserved)).digest("hex"),
+    report.preservedResourceContentSha256,
+  );
+  for (const file of report.files) {
+    const guide = data.resources.find(
+      (r) => r.moduleNumber === file.moduleNumber,
+    );
+    assert.equal(guide.fullTraining, file.path);
+    const pdf = readFileSync(new URL(`../${file.path}`, import.meta.url));
+    assert.equal(pdf.subarray(0, 5).toString(), "%PDF-");
+    assert.equal(pdf.length, file.bytes);
+    assert.equal(createHash("sha256").update(pdf).digest("hex"), file.sha256);
+  }
+});
+test("Full-training paths accept the nested directory without allowing unsafe links", () => {
+  const next = structuredClone(data),
+    guide = next.resources.find((r) => r.moduleNumber);
+  for (const path of [
+    "assets/training/full/example.pdf",
+    "assets/training/legacy.pdf",
+  ]) {
+    guide.fullTraining = path;
+    assert.deepEqual(validateResources(next), []);
+  }
+  for (const path of [
+    "assets/training/full/../example.pdf",
+    "assets/training/full/deeper/example.pdf",
+    "https://example.com/example.pdf",
+    "assets/training/full/example.docx",
+    "assets/training/full/example.pdf?download=1",
+  ]) {
+    guide.fullTraining = path;
+    assert.ok(validateResources(next).length, path);
   }
 });
