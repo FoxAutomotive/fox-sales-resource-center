@@ -1608,7 +1608,7 @@ for (const width of [1280, 390]) {
 }
 
 for (const width of [1280, 390]) {
-  test(`Resources library and complete phone training read and print at ${width}px`, async ({
+  test(`Resources library and salesperson phone training read and print at ${width}px`, async ({
     page,
   }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
@@ -1620,6 +1620,7 @@ for (const width of [1280, 390]) {
       page.locator("#navigation .primary-links [aria-current=page]"),
     ).toHaveText("Resources");
     await expect(page.getByRole("heading", { level: 2 })).toHaveText([
+      "FOX AUTOMOTIVE SALES PLAYBOOK",
       "Sales Training",
     ]);
     await page
@@ -1638,7 +1639,6 @@ for (const width of [1280, 390]) {
     await expect(document.locator("h2")).toHaveText([
       "Part One: Understanding the Framework",
       "Part Two: The Inbound Phone Script",
-      "Part Three: Manager Coaching",
       "Final Reminder",
     ]);
     await expect(
@@ -1654,7 +1654,9 @@ for (const width of [1280, 390]) {
       document.locator(".resource-turn.salesperson"),
     ).not.toHaveCount(0);
     await expect(document.locator(".resource-note")).not.toHaveCount(0);
-    await expect(document.locator(".resource-table tbody tr")).toHaveCount(12);
+    await expect(
+      document.getByText("Manager Phone Call Evaluation"),
+    ).toHaveCount(0);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
@@ -1770,6 +1772,7 @@ test("Resources expands from manifest data, hides drafts and supports direct lin
   );
   await page.goto("./#/resources");
   await expect(page.getByRole("heading", { level: 2 })).toHaveText([
+    "FOX AUTOMOTIVE SALES PLAYBOOK",
     "Sales Training",
     "Forms & Documents",
   ]);
@@ -1844,4 +1847,136 @@ test("Resources failures retry locally and stale requests cannot replace another
     }),
   ).toBeVisible();
   await expect(page.locator(".resource-document")).toHaveCount(0);
+});
+
+for (const width of [1280, 390]) {
+  test(`All ten playbook guides read and print at ${width}px`, async ({
+    page,
+  }, testInfo) => {
+    const data = JSON.parse(
+      await readFile(
+        new URL("../data/resources.json", import.meta.url),
+        "utf8",
+      ),
+    );
+    const guides = data.resources.filter((r) => r.moduleNumber);
+    await page.setViewportSize({ width, height: 900 });
+    await page.addInitScript(() => {
+      window.print = () => {
+        window.__printCount = (window.__printCount || 0) + 1;
+      };
+    });
+    await page.goto("./#/resources");
+    const section = page
+      .locator(".section-block")
+      .filter({
+        has: page.getByRole("heading", {
+          name: "FOX AUTOMOTIVE SALES PLAYBOOK",
+          exact: true,
+        }),
+      });
+    await expect(section.locator("article h3")).toHaveText(
+      guides.map((r) => r.title),
+    );
+    await expect(
+      section.getByRole("link", { name: "Read Quick Guide", exact: true }),
+    ).toHaveCount(10);
+    for (const guide of guides) {
+      await section
+        .getByRole("link", { name: "Print Quick Guide", exact: true })
+        .nth(guide.moduleNumber - 1)
+        .click();
+      const doc = page.locator(".resource-document");
+      await expect(doc.locator("h1")).toHaveText(guide.heading);
+      await expect
+        .poll(() => page.evaluate(() => window.__printCount))
+        .toBe(guide.moduleNumber * 2 - 1);
+      await expect(
+        page.getByText("Full training awaiting original Academy PDF"),
+      ).toBeVisible();
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+      ).toBe(true);
+      await page
+        .getByRole("button", { name: "Print / Save as PDF", exact: true })
+        .click();
+      expect(await page.evaluate(() => window.__printCount)).toBe(
+        guide.moduleNumber * 2,
+      );
+      const text = await doc.innerText();
+      await page.emulateMedia({ media: "print" });
+      await expect(page.locator(".site-header")).toBeHidden();
+      await expect(page.locator(".resource-actions")).toBeHidden();
+      const pdf = await page.pdf({
+        preferCSSPageSize: true,
+        path: testInfo.outputPath(`guide-${guide.moduleNumber}-${width}.pdf`),
+      });
+      const { execFileSync } = await import("node:child_process");
+      const pages = JSON.parse(
+        execFileSync(
+          "python",
+          [
+            "-c",
+            "import fitz,json,sys;d=fitz.open(stream=sys.stdin.buffer.read(),filetype='pdf');print(json.dumps([{'text':p.get_text(),'width':p.rect.width,'height':p.rect.height} for p in d]))",
+          ],
+          { input: pdf, encoding: "utf8" },
+        ),
+      );
+      expect(pages.length).toBeLessThanOrEqual(3);
+      const normalize = (s) => s.replace(/\s/g, "").toLowerCase();
+      const printed = normalize(pages.map((p) => p.text).join(""));
+      for (const line of text.split("\n").filter(Boolean))
+        expect(printed).toContain(normalize(line));
+      for (const p of pages) {
+        expect(p.width).toBe(612);
+        expect(p.height).toBe(792);
+        expect(p.text.trim().length).toBeGreaterThan(100);
+        expect(p.text).not.toMatch(
+          /Back to Resources|Print \/ Save as PDF|Current Specials|awaiting original/,
+        );
+      }
+      if (guide.moduleNumber === 8) {
+        await page.emulateMedia({ media: "screen" });
+        await page.screenshot({
+          path: testInfo.outputPath(`guide-${width}.png`),
+          fullPage: true,
+        });
+      }
+      await page.emulateMedia({ media: "screen" });
+      await page.getByRole("link", { name: "Back to Resources" }).click();
+      await expect(section).toBeVisible();
+    }
+  });
+}
+
+test("Full training links use the corresponding module PDF in a new tab when supplied", async ({
+  page,
+}) => {
+  const data = JSON.parse(
+    await readFile(new URL("../data/resources.json", import.meta.url), "utf8"),
+  );
+  for (const guide of data.resources.filter((r) => r.moduleNumber))
+    guide.fullTraining = `assets/training/module-${guide.moduleNumber}.pdf`;
+  await page.route("**/data/resources.json", (route) =>
+    route.fulfill({ json: data }),
+  );
+  await page.goto("./#/resources");
+  const links = page.getByRole("link", {
+    name: "View Full Training",
+    exact: true,
+  });
+  await expect(links).toHaveCount(10);
+  for (let i = 0; i < 10; i++) {
+    await expect(links.nth(i)).toHaveAttribute(
+      "href",
+      `assets/training/module-${i + 1}.pdf`,
+    );
+    await expect(links.nth(i)).toHaveAttribute("target", "_blank");
+  }
+  await page.goto("./#/resources/sales-playbook-08");
+  await expect(
+    page.getByRole("link", { name: "View Full Training" }),
+  ).toHaveAttribute("href", "assets/training/module-8.pdf");
 });

@@ -1,5 +1,6 @@
 import {
   resourceGroups,
+  fullTrainingHTML,
   publishedResources,
   resourceContentHTML,
   validateResources,
@@ -977,11 +978,15 @@ async function resourcesPage(id, generation) {
         return;
       }
       document.title = `${resource.title} · Fox Automotive`;
-      main.innerHTML = `<div class="content page-content resource-page"><div class="resource-actions"><a class="text-link" href="#/resources">← Back to Resources</a><button class="button secondary" id="print-resource" type="button">Print / Save as PDF</button></div><article class="resource-document"><header class="resource-document-header"><p class="eyebrow">FOX AUTOMOTIVE</p><h1>${escape(resource.heading)}</h1>${resource.subtitle ? `<p class="resource-subtitle">${escape(resource.subtitle)}</p>` : ""}${resource.revisedOn ? `<p class="muted">Revised ${date(resource.revisedOn)}</p>` : ""}</header>${resourceContentHTML(resource.content)}</article></div>`;
+      main.innerHTML = `<div class="content page-content resource-page${resource.moduleNumber ? " quick-guide-page" : ""}"><div class="resource-actions"><a class="text-link" href="#/resources">← Back to Resources</a><button class="button secondary" id="print-resource" type="button">Print / Save as PDF</button>${fullTrainingHTML(resource)}</div><article class="resource-document"><header class="resource-document-header"><p class="eyebrow">${resource.moduleNumber ? "FOX AUTOMOTIVE SALES PLAYBOOK" : "FOX AUTOMOTIVE"}</p><h1>${escape(resource.heading)}</h1>${resource.subtitle ? `<p class="resource-subtitle">${escape(resource.subtitle)}</p>` : ""}${resource.revisedOn ? `<p class="muted">Revised ${date(resource.revisedOn)}</p>` : ""}</header>${resourceContentHTML(resource.content)}</article></div>`;
       $("#print-resource").onclick = () => window.print();
+      if (new URLSearchParams(location.hash.split("?")[1]).has("print")) {
+        await document.fonts.ready;
+        if (generation === resourceGeneration) window.print();
+      }
     } else {
       const groups = resourceGroups(data);
-      main.innerHTML = `<div class="content page-content resource-library">${breadcrumbs([{ label: "Resources" }])}<div class="page-heading"><h1>Resources</h1><p>Training materials, dealership procedures, forms, and reference documents.</p></div>${groups.length ? groups.map((group) => `<section class="section-block"><h2>${escape(group.name)}</h2><div class="resource-list">${group.resources.map((resource) => `<article><h3><a class="text-link" href="#/resources/${escape(resource.id)}">${escape(resource.title)}</a></h3><p>${escape(resource.description)}</p></article>`).join("")}</div></section>`).join("") : `<p>No published resources are available.</p>`}</div>`;
+      main.innerHTML = `<div class="content page-content resource-library">${breadcrumbs([{ label: "Resources" }])}<div class="page-heading"><h1>Resources</h1><p>Training materials, dealership procedures, forms, and reference documents.</p></div>${groups.length ? groups.map((group) => `<section class="section-block"><h2>${escape(group.name)}</h2>${group.description ? `<p>${escape(group.description)}</p>` : ""}<div class="resource-list">${group.resources.map((resource) => `<article><h3><a class="text-link" href="#/resources/${escape(resource.id)}">${escape(resource.title)}</a></h3><p>${escape(resource.description)}</p>${resource.moduleNumber ? `<div class="resource-catalog-actions"><a class="text-link" href="#/resources/${escape(resource.id)}">Read Quick Guide</a><a class="text-link" href="#/resources/${escape(resource.id)}?print">Print Quick Guide</a>${fullTrainingHTML(resource)}</div>` : ""}</article>`).join("")}</div></section>`).join("") : `<p>No published resources are available.</p>`}</div>`;
     }
   } catch {
     if (generation !== resourceGeneration) return;
@@ -1039,7 +1044,7 @@ function route() {
   else if (path === "/specials") specialsPage();
   else if (path === "/resources") resourcesPage(null, resourceGeneration);
   else if (/^\/resources\/[^/]+$/.test(path))
-    resourcesPage(path.split("/")[2], resourceGeneration);
+    resourcesPage(path.split("/")[2].split("?")[0], resourceGeneration);
   else if (path === "/about") aboutPage();
   else notFound();
   applySalesLabels();

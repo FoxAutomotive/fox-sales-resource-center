@@ -484,6 +484,22 @@ export async function validateFiles() {
     ...validate(catalog, features),
     ...validateSpecials(specials),
   ];
+  for (const resource of resources.resources) {
+    if (
+      !resource.fullTraining ||
+      !/^assets\/training\/[a-zA-Z0-9_-]+\.pdf$/.test(resource.fullTraining)
+    )
+      continue;
+    try {
+      const pdf = await readFile(
+        new URL(`../${resource.fullTraining}`, import.meta.url),
+      );
+      if (pdf.subarray(0, 5).toString() !== "%PDF-")
+        errors.push(`Resources: invalid training PDF for ${resource.id}`);
+    } catch {
+      errors.push(`Resources: missing training PDF for ${resource.id}`);
+    }
+  }
   if (errors.length) throw new Error(errors.join("\n"));
   console.log(
     `Validated ${catalog.vehicles.length} model guides, ${catalog.fields.length} equipment fields, and ${features.length} explanations. ${catalog.vehicles.filter((v) => v.status === "verified").length} guides source-verified.`,

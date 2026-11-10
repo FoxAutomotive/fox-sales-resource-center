@@ -3529,3 +3529,37 @@ button.text-link {
     padding: 6pt;
   }
 }
+
+.resource-catalog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 16px;
+}
+.quick-guide-original-title {
+  font-weight: 700;
+}
+.quick-guide-page .resource-document h2 {
+  font-size: 23px;
+  margin: 28px 0 10px;
+}
+@media print {
+  .quick-guide-page .resource-document {
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+  .quick-guide-page .resource-document-header {
+    margin-bottom: 10pt;
+    padding-bottom: 8pt;
+  }
+  .quick-guide-page .resource-document h1 {
+    font-size: 22pt;
+  }
+  .quick-guide-page .resource-document h2 {
+    font-size: 13pt;
+    margin: 12pt 0 5pt;
+  }
+  .quick-guide-section {
+    break-inside: avoid;
+  }
+}
