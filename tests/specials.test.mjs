@@ -35,13 +35,13 @@ test("expiration is inclusive in dealership time and never deletes records", () 
   assert.equal(dealershipDate(new Date("2026-12-01T04:59:59Z")), "2026-11-30");
   assert.equal(
     activeOffers(data, { now: new Date("2026-12-01T04:59:59Z") }).length,
-    9,
+    14,
   );
   assert.equal(
     activeOffers(data, { now: new Date("2026-12-01T05:00:00Z") }).length,
     0,
   );
-  assert.equal(data.offers.length, 9);
+  assert.equal(data.offers.length, 16);
 });
 test("filters combine and support future brands, types, and multiple offers per vehicle", () => {
   const future = {
@@ -58,7 +58,7 @@ test("filters combine and support future brands, types, and multiple offers per 
   };
   const now = new Date("2026-11-05T12:00:00Z");
   assert.deepEqual(validateSpecials(future), []);
-  assert.equal(activeOffers(future, { now }).length, 11);
+  assert.equal(activeOffers(future, { now }).length, 18);
   assert.equal(
     activeOffers(future, { now, manufacturer: "volkswagen", type: "finance" })
       .length,
@@ -201,4 +201,187 @@ test("lease detail validation distinguishes unknown, zero, confirmed N/A and inv
     assert.ok(
       validateSpecials({ ...data, offers: [{ ...offer, ...changes }] }).length,
     );
+});
+
+test("November Chevrolet offers preserve exact figures, eligibility, down payments and lender tiers", () => {
+  const offers = data.offers.filter((o) => o.manufacturer === "chevrolet");
+  assert.deepEqual(
+    offers.map((o) => [
+      o.year,
+      o.model,
+      o.trim,
+      o.msrp,
+      o.monthlyPayment,
+      o.downPayment,
+      o.termMonths,
+      o.lender,
+      o.leaseDetails.creditTier,
+      o.expiresOn,
+    ]),
+    [
+      [
+        2026,
+        "Silverado",
+        "Crew Cab 2FL 4x4",
+        54095,
+        189,
+        999,
+        24,
+        "GM Financial",
+        "A+",
+        "2026-11-30",
+      ],
+      [
+        2026,
+        "Equinox",
+        "LT FWD, Previous CTP",
+        33170,
+        239,
+        999,
+        36,
+        "GM Financial",
+        "A+",
+        "2026-11-30",
+      ],
+      [
+        2026,
+        "Trax",
+        "LS",
+        25150,
+        239,
+        1999,
+        36,
+        "MSUFCU",
+        "Super Tier",
+        "2026-11-15",
+      ],
+      [
+        2026,
+        "Blazer",
+        "LT FWD",
+        38815,
+        249,
+        1999,
+        24,
+        "GM Financial",
+        "A+",
+        "2026-11-30",
+      ],
+      [
+        2026,
+        "Colorado",
+        "4x4 Work Truck",
+        41175,
+        288,
+        2799,
+        36,
+        "GM Financial",
+        "A+",
+        "2026-11-30",
+      ],
+      [
+        2026,
+        "Equinox EV",
+        "LT2, Previous CTP",
+        43690,
+        369,
+        3899,
+        24,
+        "GM Financial",
+        "A+",
+        "2026-11-30",
+      ],
+      [
+        2026,
+        "Traverse",
+        "AWD LT",
+        47505,
+        459,
+        2799,
+        36,
+        "MSUFCU",
+        "Super Tier",
+        "2026-11-15",
+      ],
+    ],
+  );
+  for (const o of offers) {
+    assert.equal(o.type, "lease");
+    assert.equal(o.annualMileage, 10000);
+    assert.equal(
+      o.qualification,
+      "GM Employee or Eligible Family Member pricing required.",
+    );
+    assert.equal(
+      o.creditQualification,
+      `${o.lender} ${o.leaseDetails.creditTier} credit approval required.`,
+    );
+    assert.equal(o.leaseDetails.securityDeposit, 0);
+    assert.match(
+      o.notes,
+      /GM Rewards Credit Card signup and a minimum \$1,000 charge to the card at delivery required/,
+    );
+    assert.match(
+      o.notes,
+      /Tax, title, CVR, and documentation fees are additional/,
+    );
+    assert.match(
+      o.notes,
+      /down payment is not total due at signing or total out-of-pocket/,
+    );
+    for (const field of [
+      "dueAtSigning",
+      "signingAmountType",
+      "sellingPrice",
+      "rebate",
+      "paymentIncludingTax",
+      "vin",
+      "stockNumber",
+      "vehicleId",
+    ])
+      assert.equal(o[field], undefined, `${o.id} ${field}`);
+    assert.equal(o.source.kind, "approved-internal");
+    if (["Equinox", "Equinox EV"].includes(o.model))
+      assert.match(o.notes, /Previous CTP unit/);
+    if (o.model === "Silverado")
+      assert.match(o.notes, /^Chevrolet Lease Loyalty required/);
+    else if (o.model === "Equinox EV")
+      assert.match(o.notes, /^Chevrolet EV Lease Loyalty required/);
+    else assert.match(o.notes, /^Lease Loyalty or Lease Conquest required/);
+  }
+});
+test("Chevrolet offers expire individually at dealership midnight without extension or deletion", () => {
+  const before = JSON.stringify(data);
+  for (const [time, expected] of [
+    ["2026-11-16T04:59:59Z", 7],
+    ["2026-11-16T05:00:00Z", 5],
+    ["2026-12-01T04:59:59Z", 5],
+    ["2026-12-01T05:00:00Z", 0],
+  ])
+    assert.equal(
+      activeOffers(data, {
+        manufacturer: "chevrolet",
+        type: "lease",
+        now: new Date(time),
+      }).length,
+      expected,
+    );
+  assert.equal(JSON.stringify(data), before);
+  assert.equal(
+    data.offers.filter((o) => o.manufacturer === "chevrolet").length,
+    7,
+  );
+});
+test("Existing Toyota and Volkswagen offer records remain unchanged", async () => {
+  const { createHash } = await import("node:crypto");
+  assert.equal(
+    createHash("sha256")
+      .update(
+        JSON.stringify(
+          data.offers.filter((o) => o.manufacturer !== "chevrolet"),
+        ),
+      )
+      .digest("hex"),
+    "3ccf5a05c1c0a651102301e93a314a6882b1d4e2c20b638c286b09428b109bc1",
+  );
 });

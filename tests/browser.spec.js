@@ -301,9 +301,9 @@ test("current specials filters, spreadsheet details and responsive cards", async
 }) => {
   await page.clock.install({ time: new Date("2026-11-05T12:00:00Z") });
   await page.goto("./#/specials");
-  await expect(page.locator(".special-offer")).toHaveCount(9);
+  await expect(page.locator(".special-offer")).toHaveCount(16);
   await expect(
-    page.getByText("No current offers are available for Chevrolet."),
+    page.getByRole("heading", { name: "Chevrolet", exact: true }),
   ).toBeVisible();
   const corolla = page.locator(".special-offer").first();
   await expect(corolla).toContainText("2027 Toyota Corolla LE");
@@ -351,7 +351,7 @@ test("current specials filters, spreadsheet details and responsive cards", async
     .getByRole("navigation", { name: "Primary navigation" })
     .getByRole("link", { name: "Current Specials", exact: true })
     .click();
-  await expect(cards).toHaveCount(9);
+  await expect(cards).toHaveCount(16);
 });
 
 test("specials expire on an open page at dealership midnight", async ({
@@ -359,7 +359,7 @@ test("specials expire on an open page at dealership midnight", async ({
 }) => {
   await page.clock.install({ time: new Date("2026-12-01T04:59:59Z") });
   await page.goto("./#/specials");
-  await expect(page.locator(".special-offer")).toHaveCount(9);
+  await expect(page.locator(".special-offer")).toHaveCount(14);
   await page.clock.fastForward(2000);
   await expect(page.locator(".special-offer")).toHaveCount(0);
   await expect(
@@ -1867,14 +1867,12 @@ for (const width of [1280, 390]) {
       };
     });
     await page.goto("./#/resources");
-    const section = page
-      .locator(".section-block")
-      .filter({
-        has: page.getByRole("heading", {
-          name: "FOX AUTOMOTIVE SALES PLAYBOOK",
-          exact: true,
-        }),
-      });
+    const section = page.locator(".section-block").filter({
+      has: page.getByRole("heading", {
+        name: "FOX AUTOMOTIVE SALES PLAYBOOK",
+        exact: true,
+      }),
+    });
     await expect(section.locator("article h3")).toHaveText(
       guides.map((r) => r.title),
     );
@@ -1979,4 +1977,206 @@ test("Full training links use the corresponding module PDF in a new tab when sup
   await expect(
     page.getByRole("link", { name: "View Full Training" }),
   ).toHaveAttribute("href", "assets/training/module-8.pdf");
+});
+
+for (const width of [1280, 390]) {
+  test(`November Chevrolet lease offers preserve down-payment labels and qualifications at ${width}px`, async ({
+    page,
+  }) => {
+    await page.clock.install({ time: new Date("2026-11-10T17:00:00Z") });
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("./#/specials");
+    await expect(page.locator(".special-offer")).toHaveCount(16);
+    await expect(page.locator(".special-brand h2")).toHaveText([
+      "Toyota",
+      "Volkswagen",
+      "Chevrolet",
+    ]);
+    await page
+      .getByLabel("Manufacturer", { exact: true })
+      .selectOption("chevrolet");
+    const cards = page.locator(".special-offer");
+    await expect(cards).toHaveCount(7);
+    const rows = [
+      [
+        "Silverado Crew Cab 2FL 4x4",
+        "$189",
+        "$999",
+        "$54,095",
+        24,
+        "GM Financial",
+        "A+",
+        "Nov 30, 2026",
+        "Chevrolet Lease Loyalty required.",
+      ],
+      [
+        "Equinox LT FWD, Previous CTP",
+        "$239",
+        "$999",
+        "$33,170",
+        36,
+        "GM Financial",
+        "A+",
+        "Nov 30, 2026",
+        "Lease Loyalty or Lease Conquest required.",
+      ],
+      [
+        "Trax LS",
+        "$239",
+        "$1,999",
+        "$25,150",
+        36,
+        "MSUFCU",
+        "Super Tier",
+        "Nov 15, 2026",
+        "Lease Loyalty or Lease Conquest required.",
+      ],
+      [
+        "Blazer LT FWD",
+        "$249",
+        "$1,999",
+        "$38,815",
+        24,
+        "GM Financial",
+        "A+",
+        "Nov 30, 2026",
+        "Lease Loyalty or Lease Conquest required.",
+      ],
+      [
+        "Colorado 4x4 Work Truck",
+        "$288",
+        "$2,799",
+        "$41,175",
+        36,
+        "GM Financial",
+        "A+",
+        "Nov 30, 2026",
+        "Lease Loyalty or Lease Conquest required.",
+      ],
+      [
+        "Equinox EV LT2, Previous CTP",
+        "$369",
+        "$3,899",
+        "$43,690",
+        24,
+        "GM Financial",
+        "A+",
+        "Nov 30, 2026",
+        "Chevrolet EV Lease Loyalty required.",
+      ],
+      [
+        "Traverse AWD LT",
+        "$459",
+        "$2,799",
+        "$47,505",
+        36,
+        "MSUFCU",
+        "Super Tier",
+        "Nov 15, 2026",
+        "Lease Loyalty or Lease Conquest required.",
+      ],
+    ];
+    const field = (card, label) =>
+      card
+        .locator(".special-facts > div")
+        .filter({
+          has: page.locator("dt", { hasText: new RegExp(`^${label}$`) }),
+        })
+        .locator("dd");
+    for (const [
+      name,
+      payment,
+      down,
+      msrp,
+      term,
+      lender,
+      tier,
+      expires,
+      loyalty,
+    ] of rows) {
+      const card = cards.filter({
+        has: page.getByRole("heading", {
+          name: `2026 Chevrolet ${name}`,
+          exact: true,
+        }),
+      });
+      await expect(card.locator(".special-payment")).toHaveText(
+        `${payment} / month`,
+      );
+      await expect(card).toContainText(
+        "GM Employee or Eligible Family Member pricing required.",
+      );
+      await expect(card).toContainText(
+        `${lender} ${tier} credit approval required.`,
+      );
+      await expect(card.locator(":scope > .special-facts")).toContainText(
+        `Down payment${down}`,
+      );
+      await expect(
+        card.locator(":scope > .special-facts dt"),
+      ).not.toContainText(["Due at signing"]);
+      await expect(field(card, "Lease term")).toHaveText(`${term} months`);
+      await expect(field(card, "Annual mileage")).toHaveText("10,000 miles");
+      await expect(field(card, "Expiration date")).toHaveText(expires);
+      await card.getByText("Full Offer Details", { exact: true }).click();
+      await expect(field(card, "MSRP")).toHaveText(msrp);
+      await expect(field(card, "Leasing company")).toHaveText(lender);
+      await expect(field(card, "Security deposit")).toHaveText("$0");
+      await expect(field(card, "Credit tier")).toHaveText(tier);
+      await expect(card.locator("details")).toContainText(loyalty);
+      await expect(card.locator("details")).toContainText(
+        "GM Rewards Credit Card signup and a minimum $1,000 charge to the card at delivery required.",
+      );
+      await expect(card.locator("details")).toContainText(
+        "Tax, title, CVR, and documentation fees are additional.",
+      );
+      await expect(card.locator("details")).toContainText(
+        "those totals have not been provided",
+      );
+      await expect(
+        card.getByRole("link", { name: /Product Guide/ }),
+      ).toHaveCount(0);
+      await card.getByText("Full Offer Details", { exact: true }).click();
+    }
+    const a = await cards.nth(0).boundingBox(),
+      b = await cards.nth(1).boundingBox();
+    if (width > 760) expect(a.y).toBe(b.y);
+    else expect(b.y).toBeGreaterThan(a.y + a.height);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page
+      .getByLabel("Offer Type", { exact: true })
+      .selectOption("finance");
+    await expect(cards).toHaveCount(0);
+    await expect(
+      page.getByText("No current finance offers are available for Chevrolet."),
+    ).toBeVisible();
+  });
+}
+
+test("November 15 Chevrolet offers disappear at midnight while later offers remain", async ({
+  page,
+}) => {
+  await page.clock.install({ time: new Date("2026-11-16T04:59:59Z") });
+  await page.goto("./#/specials");
+  await page
+    .getByLabel("Manufacturer", { exact: true })
+    .selectOption("chevrolet");
+  await expect(page.locator(".special-offer")).toHaveCount(7);
+  await page.clock.fastForward(2000);
+  await expect(page.locator(".special-offer")).toHaveCount(5);
+  await expect(
+    page.getByRole("heading", { name: "2026 Chevrolet Trax LS", exact: true }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("heading", {
+      name: "2026 Chevrolet Traverse AWD LT",
+      exact: true,
+    }),
+  ).toHaveCount(0);
+  await page.getByLabel("Manufacturer", { exact: true }).selectOption("");
+  await expect(page.locator(".special-offer")).toHaveCount(14);
 });
