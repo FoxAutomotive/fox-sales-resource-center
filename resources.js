@@ -220,7 +220,7 @@ export function validateResources(data) {
       check(
         resource.fullTraining === null ||
           (typeof resource.fullTraining === "string" &&
-            /^assets\/training\/[a-zA-Z0-9_-]+\.pdf$/.test(
+            /^assets\/training\/(?:full\/)?[a-zA-Z0-9_-]+\.pdf$/.test(
               resource.fullTraining,
             )),
         "Resources: invalid training PDF path",

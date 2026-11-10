@@ -1890,8 +1890,11 @@ for (const width of [1280, 390]) {
         .poll(() => page.evaluate(() => window.__printCount))
         .toBe(guide.moduleNumber * 2 - 1);
       await expect(
+        page.getByRole("link", { name: "View Full Training", exact: true }),
+      ).toHaveAttribute("href", guide.fullTraining);
+      await expect(
         page.getByText("Full training awaiting original Academy PDF"),
-      ).toBeVisible();
+      ).toHaveCount(0);
       expect(
         await page.evaluate(
           () => document.documentElement.scrollWidth <= innerWidth,

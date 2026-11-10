@@ -487,7 +487,9 @@ export async function validateFiles() {
   for (const resource of resources.resources) {
     if (
       !resource.fullTraining ||
-      !/^assets\/training\/[a-zA-Z0-9_-]+\.pdf$/.test(resource.fullTraining)
+      !/^assets\/training\/(?:full\/)?[a-zA-Z0-9_-]+\.pdf$/.test(
+        resource.fullTraining,
+      )
     )
       continue;
     try {
