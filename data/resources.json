@@ -2,6 +2,11 @@
   "schemaVersion": 1,
   "categories": [
     {
+      "id": "sales-playbook",
+      "name": "FOX AUTOMOTIVE SALES PLAYBOOK",
+      "description": "Practical sales training and quick-reference guides covering the Fox Automotive sales process, from the first customer interaction through delivery, follow-up, and long-term success."
+    },
+    {
       "id": "sales-training",
       "name": "Sales Training"
     },
@@ -1061,210 +1066,6 @@
         },
         {
           "type": "section",
-          "title": "Part Three: Manager Coaching",
-          "blocks": [
-            {
-              "type": "section",
-              "title": "The Five Rules Of A Good Phone Call",
-              "blocks": [
-                {
-                  "type": "section",
-                  "title": "1. Questions Control The Conversation",
-                  "blocks": [
-                    {
-                      "type": "paragraph",
-                      "text": "The more you talk, the less you learn."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Ask."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Listen."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Ask the next logical question."
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "title": "2. Every Question Should Have A Purpose",
-                  "blocks": [
-                    {
-                      "type": "paragraph",
-                      "text": "Don't ask questions simply because they're written in the script."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Understand what you're trying to learn."
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "title": "3. Listen For Opportunity",
-                  "blocks": [
-                    {
-                      "type": "paragraph",
-                      "text": "Three months left on a lease."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "An expired warranty."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "High mileage."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "An unreliable vehicle."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "A growing family."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Payment concerns."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "These are reasons customers may be considering a new vehicle."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Recognize them."
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "title": "4. Always Ask For The Appointment",
-                  "blocks": [
-                    {
-                      "type": "paragraph",
-                      "text": "Once you've established a reason for the visit, ask."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "If the customer needs pricing first, attempt a conditional appointment."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "If they still won't commit, establish the next contact."
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "title": "5. Practice Until It Sounds Natural",
-                  "blocks": [
-                    {
-                      "type": "paragraph",
-                      "text": "The script is a training tool."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Practice it until you understand the purpose of every question."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Experienced salespeople can adapt the wording."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "The objectives remain the same."
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "section",
-              "title": "Manager Phone Call Evaluation",
-              "blocks": [
-                {
-                  "type": "paragraph",
-                  "text": "Managers should review calls using the following criteria:"
-                },
-                {
-                  "type": "table",
-                  "headers": ["Evaluation", "Expected Behavior"],
-                  "rows": [
-                    ["Greeting", "Professional introduction"],
-                    [
-                      "Acknowledgment",
-                      "Customer's original question recognized and addressed"
-                    ],
-                    [
-                      "Discovery",
-                      "Salesperson learned why the customer was shopping"
-                    ],
-                    [
-                      "Timing",
-                      "Salesperson established the customer's timeframe"
-                    ],
-                    [
-                      "Current Vehicle",
-                      "Trade, lease, or additional vehicle identified"
-                    ],
-                    ["Listening", "Questions adjusted to customer responses"],
-                    [
-                      "Vehicle Qualification",
-                      "Relevant equipment and needs identified"
-                    ],
-                    [
-                      "Appointment",
-                      "Salesperson established a reason to visit"
-                    ],
-                    [
-                      "Appointment Request",
-                      "Specific appointment times offered"
-                    ],
-                    [
-                      "Price Objection",
-                      "Conditional appointment attempted when appropriate"
-                    ],
-                    ["Follow-Up", "Clear next step established"],
-                    ["CRM", "Customer information and conversation documented"]
-                  ]
-                },
-                {
-                  "type": "section",
-                  "title": "Manager Training Expectation",
-                  "blocks": [
-                    {
-                      "type": "paragraph",
-                      "text": "Managers should use this resource for role-playing and reviewing recorded calls."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Don't evaluate only whether an appointment was set."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "Evaluate the quality of the conversation."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "A salesperson cannot control every customer's decision."
-                    },
-                    {
-                      "type": "paragraph",
-                      "text": "They can control whether they ask questions, listen, identify opportunities, request appointments, and follow through."
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "section",
           "title": "Final Reminder",
           "blocks": [
             {
@@ -1282,6 +1083,166 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-01",
+      "title": "Module 1 — The Standard",
+      "heading": "Module 1 — The Standard",
+      "category": "sales-playbook",
+      "moduleNumber": 1,
+      "description": "Professionalism is what the customer experiences, not what we say we expect.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 1: The Standard\n*Professionalism is what the customer experiences, not what we say we expect.*\n\n## The Principle\nA Fox Professional is prepared, sincere, attentive, and capable of guiding a customer through a major decision. Personality can vary; the standard cannot. Customers judge our readiness and reliability before they know our product knowledge.\n\n## The First Three Seconds\nBecome present immediately. Put away distractions, acknowledge the guest, move with purpose, make natural eye contact, and greet them with a warm, confident tone. Avoid rushing, exaggerated enthusiasm, slouching, or acting as though the customer interrupted you.\n\n## Guidance Is Not Pressure\nYou own the direction of the process; the customer owns the decision. Reduce confusion by explaining the next useful step. Adapt your pace to the customer without abandoning the process. Pressure moves faster than the customer is comfortable; controlled momentum makes progress feel natural.\n\n## What To Say\nCustomer: “We’re just looking, and we have a couple other stores to visit.”\nYou: “Absolutely. Let me at least save you some time while you’re here. What are the two or three things you’re trying to compare?”\n\n## Process Discipline\nDo not skip discovery, value-building, a commitment question, or follow-up because you feel rushed or uncomfortable. A shortcut may feel efficient now and create a harder problem later.\n\n## Own The Next Step\nWhen the showroom is slow, create opportunity: work customers who need follow-up, review CRM commitments, reconnect with owners, or prepare for appointments. Do not wait to be assigned useful work. If you promise a call, answer, or update, close the loop without being chased.\n\n## Handle Pressure Professionally\nCustomer is short on time? Acknowledge it and propose what you can accomplish in the time available. Customer challenges price immediately? Answer or verify the requested information, then guide toward the details needed for an accurate comparison. Customer hesitates? Ask what concerns them; do not escalate pressure.\n\n## Common Mistakes\nChecking your phone while a guest waits. Treating a slow day as permission to drift. Blaming the market or customer before examining execution. Overpromising. Giving up the process to avoid an uncomfortable question. Letting one bad deal affect the next guest.\n\n## Quick Reference\nBefore every customer: Am I prepared and fully present?\nDuring: Am I guiding rather than pressuring? Does each next step have a reason?\nAfter: Have I followed through and taken ownership of anything unresolved?\n\n## The Standard\nThe standard is who the customer experiences every time, not just when someone is watching.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-02",
+      "title": "Module 2 — Types of Guests",
+      "heading": "Module 2 — Types of Guests",
+      "category": "sales-playbook",
+      "moduleNumber": 2,
+      "description": "Read the customer. Adjust communication. Keep the process.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 2: Types of Guests\n*Read the customer. Adjust communication. Keep the process.*\n\n## The Principle\nDifferent customers need different communication. The sales process remains intact, but your pace, tone, questions, and level of detail should change. Do not mistake adapting to a customer for reacting to their pressure.\n\n## Three Questions Every Guest Is Asking\nCan I trust you? Is this the right vehicle? Am I getting a fair deal? The order of importance changes by person. Respond to the concern they are showing rather than delivering the same pitch to everyone.\n\n## Identify → Match → Lead\nIdentify how the customer is behaving from their words, tone, urgency, and questions. Match the communication style that puts them at ease. Lead to the next appropriate step: discovery, selection, demonstration, test drive, or numbers.\n\n## The Researcher\nClues: knows model, trim, stock number, offer; wants speed and accuracy. Keep it direct, verify details, and avoid repeating information they already know.\nSay: “Sounds like you’ve already done your homework. Let me verify the exact vehicle and save you some time.”\n\n## The Emotional Buyer\nClues: responds to how the vehicle looks, feels, and fits a lifestyle. Let them experience the car, ask about ownership, and avoid rushing straight to numbers.\nSay: “When you picture driving this every day, what matters most?”\n\n## The Price-Focused Buyer\nClues: leads with best price, payment, discounts, or competitor comparisons. Acknowledge the request, provide accurate information, and establish the correct vehicle, terms, qualifications, and trade context before negotiating.\nSay: “Price matters. Let’s make sure we’re comparing the same vehicle and terms so I can give you the right answer.”\n\n## The Skeptical Buyer\nClues: guarded, challenges claims, wants proof, references bad past experiences. Do not debate or defend yourself excessively. Explain clearly, verify facts, and keep promises.\nSay: “That’s fair. I’ll keep this clear, and if something doesn’t make sense, stop me and we’ll go through it.”\n\n## Read The Room\nA researcher often needs fewer words. An emotional buyer needs a chance to experience. A price-focused buyer needs transparent, accurate comparisons. A skeptic needs steady consistency. These are patterns to notice, not permanent labels. A customer may shift during the visit.\n\n## Common Mistakes\nGiving the same speech to every guest; overwhelming a well-researched shopper; rushing an uncertain buyer; arguing with a skeptic; treating a pricing question as a personal challenge; skipping discovery or the demonstration because a customer wants speed.\n\n## Quick Reference\nListen first. What question matters most to this guest right now?\nShorten or expand your explanation appropriately.\nOffer one clear next step and explain why it helps.\nAdjust communication, not the professional standard.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-03",
+      "title": "Module 3 — The First Five Minutes",
+      "heading": "Module 3 — The First Five Minutes",
+      "category": "sales-playbook",
+      "moduleNumber": 3,
+      "description": "The opening creates trust, pace, and direction.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 3: The First Five Minutes\n*The opening creates trust, pace, and direction.*\n\n## The Principle\nA professional first impression should leave the customer feeling welcomed, taken care of, and guided, not pressured. The opening is not filler conversation. It establishes who will lead the process and how easy the experience will feel.\n\n## First Ten Seconds\nApproach promptly and purposefully, with open posture and genuine attention. Put away the phone, make natural eye contact, and greet confidently. Do not rush toward a guest or hesitate as if they are an interruption.\n\n## Open With Direction\nGood: “Good morning, welcome to Fox. What brought you in today?”\nGood: “Are you here to look at something specific or compare a few options?”\nAvoid beginning with “Can I help you?” and then disappearing when the customer says no.\n\n## When They Say “Just Looking”\nTreat it as a request for less pressure, not proof they will never buy. Agree, make them comfortable, offer light guidance, then ask a narrowing question.\nSay: “Perfect. That’s how most people start. Are you comparing a few models or getting a feel for what’s here?”\n\n## Ask A Question That Helps\nBetter first questions narrow the choices: “Are you replacing something or adding another vehicle?” “What brought you to this model?” “What are you driving now, and what would you like to improve?”\n\n## Match The Customer’S Pace\nDirect and prepared? Ask tighter questions and move efficiently. Nervous? Lower pressure and give clarity. Skeptical? Verify what you say. Overwhelmed? Offer fewer clear choices. Guide the tempo without running ahead of the customer.\n\n## Transition Into Needs Assessment\nThe first five minutes should lead somewhere.\nSay: “Let me ask a couple quick questions so I show you the right options instead of wasting your time.”\nThen move naturally into current vehicle, usage, motivation, and what matters in the replacement.\n\n## A Short Example\nCustomer: “We’re just looking around.”\nYou: “No problem. I’ll give you room. Are you considering something larger than what you drive now, or just seeing what’s available?”\nCustomer: “Larger. We’ve got two kids now.”\nYou: “Got it. What are you driving today?”\nThe conversation is now moving toward a meaningful needs assessment.\n\n## Common Mistakes\nLate acknowledgment. Robotic greeting. Talking before learning. Vague first questions. Abandoning the customer at “just looking.” Jumping to money. Moving faster emotionally than the guest.\n\n## Quick Reference\nApproach → Welcome → Direction question → Lower resistance → Narrow → Needs assessment.\nThe first five minutes should end with direction, not wandering.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-04",
+      "title": "Module 4 — Needs Assessment",
+      "heading": "Module 4 — Needs Assessment",
+      "category": "sales-playbook",
+      "moduleNumber": 4,
+      "description": "Find out what matters before selecting a vehicle.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 4: Needs Assessment\n*Find out what matters before selecting a vehicle.*\n\n## The Principle\nNeeds assessment is the blueprint for the deal. The answers should affect vehicle selection, presentation, objection handling, and the deal structure. Good questions are not random small talk; they produce information you will actually use.\n\n## Fox Five-Bucket Needs System\n1. Current situation: “What are you driving now?” “Leased, financed, or paid off?” “Replacing or adding?”\n2. Usage: “Who drives it?” “What does a normal week look like?” “Kids, commute, towing, cargo, travel?”\n3. Pain points: “What made you start looking?” “What would you change about your current vehicle?”\n4. Decision structure: “Where are you in your search?” “Have you compared anything else?” “Who else is involved?”\n5. Money structure: “Thinking lease or purchase?” “What matters more: payment, total cost, flexibility, or ownership?”\n\n## Follow The Answer\nCustomer: “Our Highlander is too small.”\nYou: “Is it the seating, or the room behind the seats?”\nCustomer: “Mostly the sports gear.”\nYou: “What does a typical weekend load look like?”\nEach answer tells you what to demonstrate later.\n\n## Needs Vs. Wants\nNeed: cannot give it up without losing vehicle fit (for example, third row, towing requirement, budget boundary). Want: preferred but adjustable (such as a roof or wheels). Desire: would love it if money were no object. Do not treat them as equally important.\n\n## Make A Two-Sided Needs Map\nLEFT — Must-haves: passenger capacity, all-wheel drive, cargo capacity, key safety feature, budget.\nRIGHT — Wants/desires: panoramic roof, premium sound, larger wheels, special color.\nUse the map at vehicle selection, during demonstration, and when working through a price concern. Protect needs; discuss trade-offs on wants.\n\n## Select The Vehicle Using Their Words\nSay: “Based on what you told me, I’m showing you this vehicle because it has the cargo room, seating and all-wheel drive you need. It also has a couple things you wanted, including the heated steering wheel.”\nThe customer should know why this vehicle was selected.\n\n## When The Price Does Not Fit\nReturn to the needs map before searching randomly or stripping out a must-have.\nSay: “Everything you told me you need is still here. If we adjusted one or two of the things you wanted, would you like to look at how that changes the numbers?”\n\n## Common Mistakes\nShowing inventory before understanding the customer; treating every feature as essential; failing to ask follow-ups; losing track of customer language; using the needs map once and never referring to it again.\n\n## Quick Reference\nCurrent situation → Usage → Pain → Decision → Money.\nSeparate must-haves from wants.\nSelect and present using the customer’s own words.\nNever present a car you cannot explain the reason for selecting.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-05",
+      "title": "Module 5 — Vehicle Presentation",
+      "heading": "Module 5 — Vehicle Presentation",
+      "category": "sales-playbook",
+      "moduleNumber": 5,
+      "description": "A presentation proves the vehicle fits; it does not list every feature.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 5: Vehicle Presentation\n*A presentation proves the vehicle fits; it does not list every feature.*\n\n## The Principle\nProduct knowledge is what you know. Presentation is what the customer sees as valuable. Use the needs assessment to choose what to show. Relevant features create value; random feature dumping creates noise.\n\n## The Bridge Formula\n“You mentioned [need]. This vehicle has [feature]. That means [benefit] for you.”\nExample: “You mentioned taking equipment up north. These rear seats fold down, which gives you room for the coolers and gear you bring along.”\nUse the idea naturally, not like a memorized sentence.\n\n## Present Needs First\nDemonstrate the customer’s must-haves before nice-to-haves. Confirm the feature actually exists on this exact vehicle and configuration. The Product Guide can help verify equipment, but the vehicle/window sticker governs its actual build.\n\n## When You Have Three Minutes\nChoose only three or four relevant highlights. Show the feature, connect it to the customer, ask a confirming question, then move toward the driver’s seat.\nAsk: “Does that check the box for what you told me was important?”\n\n## The Butterfly Walkaround\nPrepare the vehicle when practical: open hood, doors, and liftgate. Follow a useful path: front/hood → passenger side → rear seating → cargo area → driver side → interior and technology. Spend more time on the areas tied to the customer’s priorities.\n\n## Create Visual Contrast\nIf practical, position the new vehicle beside the customer’s current vehicle. Give them a moment to observe the difference.\nAsk: “What stands out when you see the two side by side?”\nNever insult the current vehicle. Let the customer identify the upgrade.\n\n## The Upgrade Question\nAsk: “What do you see on this one that your current vehicle doesn’t have?” or “What feels like the biggest upgrade for you?”\nThen follow up: “Why does that matter?” Tie their answer to the original needs assessment.\n\n## Keep Them Involved\nUse short confirmation questions rather than a five-minute lecture. “Would that help with your commute?” “Is that something you’d use every day?” “How does that compare with what you have now?”\n\n## Transition To The Drive\n“Go ahead and get comfortable in the driver’s seat. Let’s take it for a drive so you can feel the difference.” Follow dealership license and safety procedures. Afterward ask whether the vehicle feels like the right fit.\n\n## Common Mistakes\nFeature dumping, rushing past the must-haves, demonstrating equipment the vehicle does not have, ignoring customer reactions, or ending without a test-drive transition.\n\n## Quick Reference\nKnow the need → Show the feature → Connect its benefit → Ask for confirmation → Let the customer experience the vehicle.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-06",
+      "title": "Module 6 — The Test Drive",
+      "heading": "Module 6 — The Test Drive",
+      "category": "sales-playbook",
+      "moduleNumber": 6,
+      "description": "Talk less. Notice more. Let the customer experience the vehicle.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 6: The Test Drive\n*Talk less. Notice more. Let the customer experience the vehicle.*\n\n## The Principle\nThe drive is the proof of what you uncovered in discovery and explained in the walkaround. It should feel natural and useful, not like another product lecture. Your job is to guide the experience without interrupting it.\n\n## Set The Frame\nBefore moving, complete dealership driving requirements and explain the plan.\nSay: “Drive it like you normally would. I’ll point out a couple of things along the way, but mostly I want you to get a feel for it.”\n\n## Use Controlled Silence\nLet the customer notice the seating, visibility, ride, noise, handling, and controls. Speak when there is a relevant moment or question. Silence is intentional observation, not disappearing from the process.\n\n## Reinforce Selectively\nHighway commuter: “You mentioned long trips. Notice how the cabin feels at speed.”\nFamily buyer: “You said visibility was important. How does this feel compared with what you drive now?”\nPerformance buyer: “Is the response what you were hoping for?”\n\n## Answer, Then Stop\nIf asked about a feature, answer directly and accurately. Add a customer-specific benefit when appropriate, then let them continue experiencing the drive. Do not talk through every second.\n\n## Read The Reaction\nAsk the level of question the customer is ready to answer.\nSoft: “How does this compare with what you’re used to?”\nModerate: “Does this feel like it would work for you?”\nStrong: “Can you see yourself driving this every day?”\nAction: “Let’s sit down and look at how this could work for you.”\n\n## If They Hesitate\nDo not force a stronger close. Find out what is unresolved. “What would you want to feel better about?” or “Is the concern the vehicle itself or the numbers?” The answer determines the next step.\n\n## Transition Without Losing Momentum\nIf the customer expresses positive interest and dealership process permits, arrange for the vehicle to be identified as being worked while options are reviewed. Do not suggest a guaranteed hold unless one has actually been authorized.\nSay: “Sounds like this is the one worth working numbers on. Let’s go over your options.”\n\n## Common Mistakes\nTalking nonstop; saying nothing and withdrawing; redoing the entire walkaround; never asking how the vehicle fits; ending with an aimless “What do you think?”; losing momentum after the return.\n\n## Quick Reference\nSet up the drive → Let them feel it → Reinforce one or two relevant points → Read their reaction → Ask the right trial close → Lead the next step.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-07",
+      "title": "Module 7 — The Commitment Close",
+      "heading": "Module 7 — The Commitment Close",
+      "category": "sales-playbook",
+      "moduleNumber": 7,
+      "description": "Confirm that they want the vehicle before negotiating the numbers.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 7: The Commitment Close\n*Confirm that they want the vehicle before negotiating the numbers.*\n\n## The Principle\nA commitment close is not the final price agreement. After discovery, presentation, and the drive, confirm that the customer actually wants this vehicle. If they have not selected the vehicle, the numbers conversation is likely to wander.\n\n## Look For Buying Signals\nThe customer asks about delivery, insurance, accessories, availability, trade value, or payment; imagines where they will park it; compares it favorably to the old car; or speaks in ownership terms. A signal is a reason to ask a good question, not an assumption that the deal is done.\n\n## The Trial Close Spectrum\nSoft: “What stands out to you so far?”\nModerate: “Does this check the boxes you mentioned?”\nOwnership: “Is this a vehicle you’d love to own?”\nAction: “If everything makes sense, let’s look at the options together.”\nChoose the level that fits the customer rather than using the strongest question on everyone.\n\n## Confirm Fit Before The Desk\n“Based on what you told me, this has the safety, room, and comfort you wanted. Is there anything about the vehicle itself that you’re still unsure about?”\nIf the answer is no, a pricing discussion has a clear purpose.\n\n## After A Positive Answer\nStop talking. Then explain the next step clearly. If an actual vehicle hold is available under store policy, arrange it accurately. Never imply that a car is reserved when it is not.\n\n## If They Are Not Ready\nDo not keep asking stronger versions of the same close. Drop back to discovery.\n“I understand. Is it the vehicle, the timing, or the numbers you still want to work through?”\nA real concern is information you can use. Silence or uncertainty is a reason to ask, not push.\n\n## The Desk Transition\nMove toward a decision with a purpose: “Based on how the drive went, let’s sit down and see what ownership options make the most sense for you.” This is not an invitation to negotiate a vehicle they do not want.\n\n## Commitment Flow\n1. Tie back to the original needs.\n2. Ask a trial-close question.\n3. Clarify anything still unresolved.\n4. Confirm they want the vehicle.\n5. Explain the next step toward reviewing numbers.\n\n## Common Mistakes\nStarting with price because the walkaround ended; avoiding a direct question for fear of no; asking only “What do you think?”; talking through a positive signal; pushing harder after hesitation.\n\n## Quick Reference\nBuild value → Confirm fit → Ask for commitment → Listen → Move to realistic options.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-08",
+      "title": "Module 8 — Deal Structure, Trade Control & Objection Isolation",
+      "heading": "Module 8 — Deal Structure, Trade Control & Objection Isolation",
+      "category": "sales-playbook",
+      "moduleNumber": 8,
+      "description": "Bring complete facts. Present the deal clearly. Diagnose objections before reacting.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 8: Deal Structure & Objection Control\n*Bring complete facts. Present the deal clearly. Diagnose objections before reacting.*\n\n## The Principle\nThe desk exposes the quality of your earlier work. A complete, accurate customer picture gives management something real to structure. Loose facts, missing trade details, and no vehicle commitment create avoidable back-and-forth.\n\n## Be Ready For The Desk\nConfirm the exact vehicle, customer motivation, desire to own it, lease/buy direction, trade details, lienholder and payoff status, and applicable program requirements. Use the approved dealership appraisal and credit procedures. Do not guess missing information or substitute assumptions.\n\n## Trade Information Is Part Of The Deal\nComplete required title, mileage, ownership, payoff, keys, equipment, condition, and product-cancellation information. Walk the trade calmly and factually; do not criticize it or make the customer feel embarrassed. Explain differences between trade value and retail listings using condition and reconditioning facts.\n\n## Money Discipline\nGather facts early; structure the deal with accurate information. Avoid anchoring the conversation with loose early questions such as “How much do you want to put down?” Answer verified price questions honestly; do not invent payments before terms and qualifications are known.\n\n## Present Value Before Numbers\nBefore reviewing a worksheet, briefly restate why this specific vehicle fits the customer. Then present the approved, accurate structure clearly.\nSay: “Based on what you told me, this gives you the space and equipment you wanted. Let me show you the options we’ve worked out.”\n\n## When The Payment Is Too High\nDo not panic or immediately promise a discount. Learn which part of the structure matters most: monthly payment, initial cash, term, trade position, or vehicle selection. Explore realistic alternatives with management.\n\n## Conditional Commitment\nIf the customer gives a specific target, ask whether achieving an approved, realistic structure would result in a decision.\n“If we could get to that payment with the terms we’ve discussed, is this the vehicle you’d want to move forward on?”\nVerify commitment before repeatedly returning to the desk.\n\n## Normalize → Isolate → Narrow\nCustomer: “I need to think about it.”\nYou: “Of course. Is it something about the vehicle, the timing, or the numbers that you still need to work through?”\nListen, determine the actual concern, and address that issue rather than arguing with the first statement.\n\n## Real Limits Are Real\nSome objections are hesitation; others involve genuine affordability, negative equity, or lender restrictions. Work the realistic paths, involve a manager, and do not promise impossible terms. After presenting an answer or asking for a decision, allow the customer time to respond.\n\n## Common Mistakes / Quick Reference\nMissing appraisal details; guessing payoff; treating every objection as negotiable; speaking over the answer; returning to the desk without new information.\nKnow the facts → Present value → Show real options → Ask → Listen → Isolate → Restructure when possible.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-09",
+      "title": "Module 9 — Protect the Yes",
+      "heading": "Module 9 — Protect the Yes",
+      "category": "sales-playbook",
+      "moduleNumber": 9,
+      "description": "The sale is not protected until the customer leaves informed and confident.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 9: Protect the Yes\n*The sale is not protected until the customer leaves informed and confident.*\n\n## The Principle\nA verbal yes begins another part of the customer experience. Momentum, paperwork, finance, vehicle preparation, communication, and delivery all matter. A good sale can unravel if the customer feels forgotten or discovers surprises.\n\n## Move Forward Without Reopening The Decision\nCongratulate the customer and outline the next step: “Great choice. Let’s get the paperwork and vehicle preparation moving so this goes smoothly.” If the customer has limited time, agree to a specific plan rather than leaving the next step vague.\n\n## Gather The Right Information\nConfirm the license, insurance, credit application if required, registration/plate arrangements, title and lien documents, payoff, keys, and proof for any incentive qualifications. Document missing items and work with management and finance on the correct path. Never imply delivery can occur before required steps are complete.\n\n## Make A Useful Handoff\nTell the sales manager and business manager what was agreed, what remains missing, customer concerns, trade issues, and delivery timing. Provide useful context about the customer’s ownership plans; do not gossip or attempt to sell finance products.\n\n## Control The Wait\nKeep the customer updated before they have to find you. Explain what is happening and give an honest estimate or next update. Avoid blaming the finance office or detail department. Stay responsible for the experience.\n\n## Check The Vehicle Twice\nBefore and after prep, check for visible damage, cleanliness, fuel/charge, keys, floor mats, promised accessories, plates, and documented we-owes. The customer should not be the first person to discover a problem.\n\n## Deliver To The Person\nSome customers want a brief orientation; others want detailed technology help. Pair the phone when applicable, demonstrate essential controls and safety features, connect available OEM apps, explain fueling/charging, and introduce service. Confirm they know where to go and who to call.\n\n## Keep Every Promise\nDocument owed items with an owner and clear follow-up. Never promise a completion date, availability, or feature you have not verified. If something changes, tell the customer promptly and provide the next step.\n\n## Follow Up After Delivery\nContact the customer the next day, thank them, check that the vehicle and features are working for them, and address concerns early. Explain the survey as an opportunity for honest feedback; never pressure for a particular rating. Ask for referrals naturally when the experience has earned it. Maintain contact through service, ownership milestones, and future replacement timing.\n\n## Quick Reference\nCongratulations → Documents → Accurate handoff → Updates → Inspect → Delivery orientation → Service introduction → Next-day follow-up → Long-term relationship.\nProtect the yes. Own the relationship.\n"
+        }
+      ]
+    },
+    {
+      "id": "sales-playbook-10",
+      "title": "Module 10 — Professional Discipline",
+      "heading": "Module 10 — Professional Discipline",
+      "category": "sales-playbook",
+      "moduleNumber": 10,
+      "description": "The sale is the outcome. Consistent activity creates the opportunity.",
+      "published": true,
+      "fullTraining": null,
+      "content": [
+        {
+          "type": "markdown",
+          "text": "# Module 10: Professional Discipline\n*The sale is the outcome. Consistent activity creates the opportunity.*\n\n## The Principle\nIncome is paid when a vehicle is sold, but the opportunity is created through purposeful calls, texts, appointments, follow-up, service conversations, referrals, and long-term relationships. Do not measure every day only by deliveries.\n\n## The 45-Minute Standard\nAim for 45–50 minutes of intentional, productive work per hour when not serving a customer or meeting other responsibilities. Refuse to let scrolling, gossip, and waiting for traffic define the day.\n\n## Productive Vs. Busy\nBusy: “Just checking in.” Productive: a customer-specific message with a reason and a next step.\nBusy: closing CRM tasks for activity credit. Productive: noting what matters to the customer and scheduling the action that will move them forward.\n\n## Your Daily Workflow\nStart: review email, voicemail, CRM, overnight leads, appointments, and prior-day unsold customers.\nNext: work immediate promised follow-ups.\nThen: contact sold customers, lease maturities, service customers, warranty expirations, and equity opportunities.\nUse open time for referrals, orphan owners, inactive leads, and database work.\nEnd: confirm tomorrow’s appointments and plan your next day.\n\n## The Economics Of Activity\nA phone call is not a commission, but it can produce a conversation. Conversations produce appointments; appointments create the opportunity to sell. Use your own actual conversion rates to estimate the value of consistent activity rather than treating non-sale days as worthless.\n\n## Follow Up With A Reason\nBefore a customer leaves, establish when you will follow up. Replace generic messages with context.\nWeak: “Just checking in.”\nBetter: “You mentioned wanting to compare the payment options on the Equinox. I have the updated information. Would a quick call at 4:00 work?”\nUse the customer’s preferred, permitted communication method and honor opt-outs.\n\n## Set Firm Appointments\nA real appointment has a specific date, time, purpose, and an agreed preparation or vehicle plan. “Stop by sometime” is not an appointment. Confirm the details and be ready before the customer arrives.\n\n## Slow Days Are Opportunity Days\nAsk: Who can I help today? Which existing customer needs a useful update? Whose lease is nearing maturity? What service guest could use a vehicle evaluation? Who have I earned the right to ask for a referral? A day without a sale can still build tomorrow’s business.\n\n## Build The Relationship\nFollow through after delivery, connect during service and ownership milestones, and ask for referrals when trust has been earned. A customer who knows you after the sale is easier to serve when the next buying cycle arrives.\n\n## Quick Reference\nWork with purpose. Every outreach needs a reason and next step. Create firm appointments. Protect the day’s productive time. Measure controllable activity as well as sales.\nDiscipline creates success; success builds motivation.\n"
         }
       ]
     }
