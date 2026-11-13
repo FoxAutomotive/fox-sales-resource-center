@@ -286,3 +286,160 @@ test("Named system searches do not combine Toyota seating language with cruise-c
     }).vehicles.some((v) => v.id === "2026-toyota-sienna"),
   );
 });
+
+const expansion = [
+  "2027-landcruiser",
+  "2027-prius",
+  "2027-priuspluginhybrid",
+  "2026-corolla",
+  "2026-corollacross",
+  "2026-highlander",
+].map((key) => {
+  const profile = read(`../profiles/imports/toyota/${key}.json`);
+  return {
+    profile,
+    stage: read(`../imports/toyota-six-models/${profile.id}.extracted.json`),
+  };
+});
+const expansionReport = read("../docs/imports/toyota-six-models-report.json");
+const expanded = (model) =>
+  catalog.vehicles.find(
+    (v) =>
+      v.model === model && expansion.some((e) => e.profile.vehicleId === v.id),
+  );
+test("six-model Toyota batch pins all 158 pages, 560 rows and 38 configurations without changing any prior vehicle", () => {
+  assert.deepEqual(
+    expansion.map((e) => e.profile.configs.length),
+    [2, 8, 4, 8, 9, 7],
+  );
+  assert.equal(
+    expansion.reduce((n, e) => n + e.stage.pageInventory.length, 0),
+    158,
+  );
+  assert.equal(
+    expansion.reduce((n, e) => n + e.stage.rows.length, 0),
+    560,
+  );
+  assert.equal(expansionReport.preservedVehicles.length, 24);
+  for (const record of expansionReport.preservedVehicles)
+    assert.equal(
+      hash(catalog.vehicles.find((v) => v.id === record.id)),
+      record.sha256,
+    );
+  for (const { profile, stage } of expansion) {
+    assert.equal(toyotaContentDigest(stage), profile.expectedContentSha256);
+    assert.equal(stage.source.year, profile.year);
+    const v = expanded(profile.model);
+    assert.equal(catalog.vehicles.filter((x) => x.id === v.id).length, 1);
+    assert.equal(
+      new Set(v.trims.map((t) => t.name)).size,
+      new Set(profile.configs.map((c) => c.name)).size,
+    );
+    assert.equal(v.sources[0].checkedAt, "2026-11-13");
+    assert.ok(v.sources[0].shortLabel.endsWith(String(v.year).slice(-2)));
+    assert.equal(v.modelYearChanges, undefined);
+    for (const config of profile.configs) {
+      const t = v.trims.find((t) => t.id === config.id);
+      assert.equal(t.equipment.drivetrain.status, "standard");
+      assert.equal(t.equipment.transmission.status, "standard");
+      for (const row of stage.rows) {
+        const id = `toyota-brochure-${hash(row.label).slice(0, 12)}`;
+        const c = t.equipment[id];
+        if (!c || c.status !== "standard") continue;
+        assert.ok(
+          row.symbols[config.column] === "S" ||
+            [config.driveRow, config.transmissionRow].includes(row.label),
+          `${v.id}/${config.id}/${row.label}`,
+        );
+        assert.ok(
+          stage.rows.some(
+            (other) =>
+              other.label === row.label &&
+              c.sourcePages[profile.id]
+                .split(", ")
+                .includes(String(other.page)),
+          ),
+        );
+      }
+    }
+  }
+  assert.deepEqual(
+    importToyotaBatch(expansion, catalog, features).catalog,
+    catalog,
+  );
+});
+test("Prius HEV output and plug-in range/charging never carry over between models", () => {
+  for (const t of expanded("Prius").trims) {
+    assert.match(
+      t.equipment.horsepower.value,
+      t.configuration.includes("AWD") ? /196/ : /194/,
+    );
+    assert.equal(t.equipment.electricRange.status, "not-applicable");
+    assert.equal(t.equipment.charging.status, "not-applicable");
+  }
+  for (const t of expanded("Prius Plug-in Hybrid").trims) {
+    assert.match(t.equipment.horsepower.value, /220/);
+    assert.equal(t.equipment.electricRange.status, "standard");
+    assert.match(
+      t.equipment.electricRange.value,
+      t.name === "SE" ? /44/ : /39/,
+    );
+    assert.match(t.equipment.charging.value, /Level 2/);
+    assert.equal(t.equipment.dcCharging.status, "unverified");
+    if (t.name === "SE") assert.equal(t.equipment.economy.status, "unverified");
+  }
+});
+test("gas/hybrid and AWD applicability, source conflicts and optional equipment remain scoped", () => {
+  for (const model of ["Corolla", "Corolla Cross"])
+    for (const t of expanded(model).trims) {
+      if (t.name.startsWith("Hybrid"))
+        assert.equal(t.equipment.horsepower.status, "unverified");
+      else assert.match(t.equipment.horsepower.value, /169/);
+    }
+  assert.equal(
+    expanded("Corolla").trims.some(
+      (t) => t.name === "Hybrid XLE" && t.configuration.includes("AWD"),
+    ),
+    false,
+  );
+  for (const t of expanded("Highlander").trims) {
+    assert.match(t.configuration, /AWD/);
+    assert.match(t.equipment.seating.value, /7 passengers/);
+    if (!t.name.startsWith("Hybrid"))
+      assert.match(t.equipment.horsepower.value, /265/);
+  }
+  const cruiser = expanded("Land Cruiser");
+  assert.equal(
+    cruiser.trims.find((t) => t.name === "Land Cruiser").equipment.upholstery
+      .status,
+    "unverified",
+  );
+  assert.equal(
+    cruiser.trims.find((t) => t.name === "Land Cruiser").equipment.roof.status,
+    "optional",
+  );
+  for (const t of expanded("Corolla Cross").trims.filter(
+    (t) => !t.name.startsWith("Hybrid") && t.configuration.includes("AWD"),
+  ))
+    assert.doesNotMatch(
+      t.equipment.chassis.value || "",
+      /Torsion beam|Multi-link rear/,
+    );
+});
+test("all six guides reuse source-backed matched-configuration upgrade paths", async () => {
+  const { modelUpgradePaths } = await import("../presentation.js");
+  const { eligibleOptions } = await import("../lib.js");
+  for (const { profile } of expansion) {
+    const options = eligibleOptions(catalog).filter(
+      (o) => o.vehicle.id === profile.vehicleId,
+    );
+    const paths = modelUpgradePaths(catalog, options);
+    assert.ok(paths.length, profile.model);
+    for (const p of paths)
+      for (const gain of p.gains) {
+        assert.equal(gain.cell.status, "standard");
+        assert.ok(gain.cell.sourceIds.includes(profile.id));
+        assert.ok(gain.cell.sourcePages[profile.id]);
+      }
+  }
+});

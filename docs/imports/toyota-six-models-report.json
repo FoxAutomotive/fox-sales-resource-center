@@ -1,0 +1,5143 @@
+{
+  "schemaVersion": 1,
+  "adapter": "toyota-sa-brochure-v1",
+  "baseSha256": "5022dfdabb38e432c9d24cf7d46fa024ed4442af9e9e9a620e7ef45a94c242d3",
+  "models": [
+    {
+      "id": "2027-toyota-land-cruiser",
+      "model": "Land Cruiser",
+      "year": 2027,
+      "columns": 2,
+      "configurations": 2,
+      "matrixRows": 84,
+      "pagesProcessed": 24,
+      "baselineFieldCount": 0,
+      "baselineCells": [],
+      "resolvedFields": [],
+      "standardEquipmentAdded": 172,
+      "specificationsAdded": [
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "engine",
+          "value": "i-FORCE MAX 2.4L turbocharged inline 4- cylinder hybrid powertrain; 326 net combined hp @ 6000 rpm, 465 lb.-ft. @ 1700 rpm",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "19"
+          }
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "horsepower",
+          "value": "326 net combined hp @ 6000 rpm",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "19"
+          }
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "torque",
+          "value": "465 lb.-ft. @ 1700 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "19"
+          }
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "transmission",
+          "value": "8-speed Electronically Controlled Automatic Transmission with intelligence (ECT-i); sequential shift mode and uphill/downhill shift logic",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "drivetrain",
+          "value": "Full-Time 4-Wheel Drive system with Active Traction Control (A-TRAC) and Torsen® limited- slip center differential with locking feature",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "chassis",
+          "value": "Independent double-wishbone front suspension with coil springs and stabilizer bar; 4-link rear suspension with coil springs, stabilizer bar and semi-floating axle",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "brakes",
+          "value": "Power-assisted front and rear ventilated disc brakes with hydraulic brake booster and Star Safety System™",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "steering",
+          "value": "Vehicle speed-sensing, variable gear ratio, power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "engine",
+          "value": "i-FORCE MAX 2.4L turbocharged inline 4- cylinder hybrid powertrain; 326 net combined hp @ 6000 rpm, 465 lb.-ft. @ 1700 rpm",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "19"
+          }
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "horsepower",
+          "value": "326 net combined hp @ 6000 rpm",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "19"
+          }
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "torque",
+          "value": "465 lb.-ft. @ 1700 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "19"
+          }
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "transmission",
+          "value": "8-speed Electronically Controlled Automatic Transmission with intelligence (ECT-i); sequential shift mode and uphill/downhill shift logic",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "drivetrain",
+          "value": "Full-Time 4-Wheel Drive system with Active Traction Control (A-TRAC) and Torsen® limited- slip center differential with locking feature",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "chassis",
+          "value": "Independent double-wishbone front suspension with coil springs and stabilizer bar; 4-link rear suspension with coil springs, stabilizer bar and semi-floating axle; Stabilizer Disconnect Mechanism (SDM)",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "brakes",
+          "value": "Power-assisted front and rear ventilated disc brakes with hydraulic brake booster and Star Safety System™",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "steering",
+          "value": "Vehicle speed-sensing, variable gear ratio, power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-land-cruiser-brochure": "18"
+          }
+        }
+      ],
+      "colors": {
+        "exteriors": {
+          "added": 8,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        },
+        "interiors": {
+          "added": 5,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        }
+      },
+      "missingSpecifications": [
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "economy"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "towing"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "seating"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "land-cruiser-1958-4wd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "economy"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "towing"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "seating"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "land-cruiser-4wd",
+          "field": "msrp"
+        }
+      ],
+      "conflicts": [],
+      "manualVerification": [
+        {
+          "model": "Land Cruiser",
+          "configuration": "land-cruiser-4wd",
+          "page": 17,
+          "label": "Leather-trimmed seats; 8-way power-adjustable front driver's seat with lumbar support; 8-way power-adjustable passenger seat",
+          "symbol": "A",
+          "type": "ambiguous-applicability",
+          "reason": "p. 3 narrative says leather, but p. 14/17 say SofTex standard and leather optional. Upholstery held pending Toyota clarification."
+        },
+        {
+          "model": "Land Cruiser",
+          "configuration": "land-cruiser-4wd",
+          "page": 17,
+          "label": "SofTex®-trimmed seats; 8-way power-adjustable front driver's seat with lumbar support; 6-way manual-adjustable passenger seat",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "p. 3 narrative says leather, but p. 14/17 say SofTex standard and leather optional. Upholstery held pending Toyota clarification."
+        }
+      ]
+    },
+    {
+      "id": "2027-toyota-prius",
+      "model": "Prius",
+      "year": 2027,
+      "columns": 8,
+      "configurations": 8,
+      "matrixRows": 85,
+      "pagesProcessed": 28,
+      "baselineFieldCount": 0,
+      "baselineCells": [],
+      "resolvedFields": [],
+      "standardEquipmentAdded": 680,
+      "specificationsAdded": [
+        {
+          "configuration": "le-fwd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "horsepower",
+          "value": "194 hp",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "tires",
+          "value": "17-in. alloy wheels with wheel covers and 195/60R17 tires",
+          "pages": {
+            "toyota-2027-prius-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 11.1-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "economy",
+          "value": "59 / 50 / 55 mpg city / highway / combined (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2027-prius-brochure": "24"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "horsepower",
+          "value": "196 hp",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "tires",
+          "value": "17-in. alloy wheels with wheel covers and 195/60R17 tires",
+          "pages": {
+            "toyota-2027-prius-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 12-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "economy",
+          "value": "56 / 49 / 53 mpg city / highway / combined (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2027-prius-brochure": "24"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "horsepower",
+          "value": "194 hp",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "tires",
+          "value": "19-in. alloy wheels and 195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 11.1-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "economy",
+          "value": "54 / 46 / 51 mpg city / highway / combined (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2027-prius-brochure": "24"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "horsepower",
+          "value": "194 hp",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "tires",
+          "value": "19-in. alloy wheels with black finish and 195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-brochure": "20"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 11.1-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "economy",
+          "value": "54 / 46 / 51 mpg city / highway / combined (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2027-prius-brochure": "24"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "horsepower",
+          "value": "196 hp",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "tires",
+          "value": "19-in. alloy wheels and 195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 12-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "economy",
+          "value": "51 / 45 / 48 mpg city / highway / combined (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2027-prius-brochure": "24"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "horsepower",
+          "value": "196 hp",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "tires",
+          "value": "19-in. alloy wheels with black finish and 195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-brochure": "20"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 12-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "economy",
+          "value": "51 / 45 / 48 mpg city / highway / combined (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2027-prius-brochure": "24"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "horsepower",
+          "value": "194 hp",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "tires",
+          "value": "19-in. alloy wheels and 195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-brochure": "20"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 11.1-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "economy",
+          "value": "54 / 46 / 51 mpg city / highway / combined (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2027-prius-brochure": "24"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "horsepower",
+          "value": "196 hp",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-brochure": "22"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "tires",
+          "value": "19-in. alloy wheels and 195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-brochure": "20"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 12-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "economy",
+          "value": "51 / 45 / 48 mpg city / highway / combined (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2027-prius-brochure": "24"
+          }
+        }
+      ],
+      "colors": {
+        "exteriors": {
+          "added": 7,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        },
+        "interiors": {
+          "added": 5,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        }
+      },
+      "missingSpecifications": [
+        {
+          "configuration": "le-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "nightshade-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "limited-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "msrp"
+        }
+      ],
+      "conflicts": [],
+      "manualVerification": [
+        {
+          "model": "Prius",
+          "configuration": "xle-fwd",
+          "page": 21,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "A",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        },
+        {
+          "model": "Prius",
+          "configuration": "nightshade-fwd",
+          "page": 21,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "A",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        },
+        {
+          "model": "Prius",
+          "configuration": "xle-awd",
+          "page": 21,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "A",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        },
+        {
+          "model": "Prius",
+          "configuration": "nightshade-awd",
+          "page": 21,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "A",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        },
+        {
+          "model": "Prius",
+          "configuration": "limited-fwd",
+          "page": 21,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "S",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        },
+        {
+          "model": "Prius",
+          "configuration": "limited-awd",
+          "page": 21,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "S",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        }
+      ]
+    },
+    {
+      "id": "2027-toyota-prius-plug-in-hybrid",
+      "model": "Prius Plug-in Hybrid",
+      "year": 2027,
+      "columns": 4,
+      "configurations": 4,
+      "matrixRows": 89,
+      "pagesProcessed": 27,
+      "baselineFieldCount": 0,
+      "baselineCells": [],
+      "resolvedFields": [],
+      "standardEquipmentAdded": 380,
+      "specificationsAdded": [
+        {
+          "configuration": "se-fwd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "horsepower",
+          "value": "220 hp",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21, 22"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "tires",
+          "value": "17-in. alloy wheels with wheel covers and 195/60R17 tires",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "19"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 12-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "horsepower",
+          "value": "220 hp",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21, 22"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "tires",
+          "value": "19-in. alloy wheels P195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "19"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 12-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "economy",
+          "value": "50 city / 47 highway / 48 combined mpg gas-only; 114 combined MPGe electric operation (EPA estimates quoted by Toyota)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "23"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "horsepower",
+          "value": "220 hp",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21, 22"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "tires",
+          "value": "19-in. alloy wheels with black finish and 195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "19"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 12-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "economy",
+          "value": "50 city / 47 highway / 48 combined mpg gas-only; 114 combined MPGe electric operation (EPA estimates quoted by Toyota)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "engine",
+          "value": "2.0-Liter, 4-cylinder DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6000 rpm, 139 lb.-ft. @ 4400-5200 rpm",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "horsepower",
+          "value": "220 hp",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4400-5200 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "21, 22"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "tires",
+          "value": "19-in. alloy wheels P195/50R19 tires",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "19"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bars; multi-link rear suspension with stabilizer bars",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 12-in. front disc brakes; solid 11-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "economy",
+          "value": "50 city / 47 highway / 48 combined mpg gas-only; 114 combined MPGe electric operation (EPA estimates quoted by Toyota)",
+          "pages": {
+            "toyota-2027-prius-plug-in-hybrid-brochure": "23"
+          }
+        }
+      ],
+      "colors": {
+        "exteriors": {
+          "added": 7,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        },
+        "interiors": {
+          "added": 3,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        }
+      },
+      "missingSpecifications": [
+        {
+          "configuration": "se-fwd",
+          "field": "economy"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "nightshade-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xse-premium-fwd",
+          "field": "msrp"
+        }
+      ],
+      "conflicts": [],
+      "manualVerification": [
+        {
+          "model": "Prius Plug-in Hybrid",
+          "configuration": "xse-fwd",
+          "page": 19,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "A",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        },
+        {
+          "model": "Prius Plug-in Hybrid",
+          "configuration": "nightshade-fwd",
+          "page": 19,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "A",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        },
+        {
+          "model": "Prius Plug-in Hybrid",
+          "configuration": "nightshade-fwd",
+          "page": 20,
+          "label": "SofTex®-trimmed front seats with seatback pockets; 8-way power-adjustable driver's seat including power lumbar support; 6-way adjustable front passenger seat",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Nightshade-specific black/gray-stitching seat row is also standard; retain the specific row only."
+        },
+        {
+          "model": "Prius Plug-in Hybrid",
+          "configuration": "xse-premium-fwd",
+          "page": 19,
+          "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+          "symbol": "S",
+          "type": "excluded-paid-activation",
+          "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+        }
+      ]
+    },
+    {
+      "id": "2026-toyota-corolla",
+      "model": "Corolla",
+      "year": 2026,
+      "columns": 6,
+      "configurations": 8,
+      "matrixRows": 89,
+      "pagesProcessed": 24,
+      "baselineFieldCount": 0,
+      "baselineCells": [],
+      "resolvedFields": [],
+      "standardEquipmentAdded": 704,
+      "specificationsAdded": [
+        {
+          "configuration": "le-fwd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i); 169 hp @ 6600 rpm, 151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "transmission",
+          "value": "Dynamic-Shift Continuously Variable Transmission (CVT)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "tires",
+          "value": "16-in. steel wheels with covers and P205/55R16 tires",
+          "pages": {
+            "toyota-2026-corolla-brochure": "17"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar and torsion beam rear suspension",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 10.8-in. front disc brakes; solid 10.2-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "engine",
+          "value": "1.8-liter 4-cylinder aluminum DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i); 96 hp, 105 lb-ft",
+          "pages": {
+            "toyota-2026-corolla-brochure": "19"
+          }
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "tires",
+          "value": "16-in. steel wheels with covers and P205/55R16 tires",
+          "pages": {
+            "toyota-2026-corolla-brochure": "17"
+          }
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar and multi-link rear suspension",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 10.8-in. front disc brakes; solid 10.2-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "engine",
+          "value": "1.8-liter 4-cylinder aluminum DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i); 96 hp, 105 lb-ft",
+          "pages": {
+            "toyota-2026-corolla-brochure": "19"
+          }
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "tires",
+          "value": "16-in. steel wheels with covers and P205/55R16 tires",
+          "pages": {
+            "toyota-2026-corolla-brochure": "17"
+          }
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar and multi-link rear suspension",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 10.8-in. front disc brakes; solid 10.2-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i); 169 hp @ 6600 rpm, 151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "transmission",
+          "value": "Dynamic-Shift Continuously Variable Transmission (CVT)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "tires",
+          "value": "18-in. alloy wheels with graphite-colored finish and P225/40R18 tires",
+          "pages": {
+            "toyota-2026-corolla-brochure": "17"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar and multi-link rear suspension",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 10.8-in. front disc brakes; solid 10.2-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "engine",
+          "value": "1.8-liter 4-cylinder aluminum DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i); 96 hp, 105 lb-ft",
+          "pages": {
+            "toyota-2026-corolla-brochure": "19"
+          }
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "tires",
+          "value": "18-in. alloy wheels with graphite-colored finish and P225/40R18 tires",
+          "pages": {
+            "toyota-2026-corolla-brochure": "17"
+          }
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar and multi-link rear suspension",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 10.8-in. front disc brakes; solid 10.2-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "engine",
+          "value": "1.8-liter 4-cylinder aluminum DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i); 96 hp, 105 lb-ft",
+          "pages": {
+            "toyota-2026-corolla-brochure": "19"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "tires",
+          "value": "18-in. alloy wheels with graphite-colored finish and P225/40R18 tires",
+          "pages": {
+            "toyota-2026-corolla-brochure": "17"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar and multi-link rear suspension",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 10.8-in. front disc brakes; solid 10.2-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i); 169 hp @ 6600 rpm, 151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "transmission",
+          "value": "Dynamic-Shift Continuously Variable Transmission (CVT)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "tires",
+          "value": "18-in. alloy wheels with graphite-colored finish and P225/40R18 tires",
+          "pages": {
+            "toyota-2026-corolla-brochure": "17"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar and multi-link rear suspension",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 10.8-in. front disc brakes; solid 10.2-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "engine",
+          "value": "1.8-liter 4-cylinder aluminum DOHC 16-valve with Variable Valve Timing with intelligence (VVT-i); 96 hp, 105 lb-ft",
+          "pages": {
+            "toyota-2026-corolla-brochure": "19"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "tires",
+          "value": "16-in. alloy wheels and P205/55R16 tires",
+          "pages": {
+            "toyota-2026-corolla-brochure": "17"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar and multi-link rear suspension",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "brakes",
+          "value": "Power-assisted ventilated 10.8-in. front disc brakes; solid 10.2-in. rear disc brakes with Electronically Controlled Braking (ECB) system, and Star Safety System™",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+          "pages": {
+            "toyota-2026-corolla-brochure": "20"
+          }
+        }
+      ],
+      "colors": {
+        "exteriors": {
+          "added": 15,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        },
+        "interiors": {
+          "added": 9,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        }
+      },
+      "missingSpecifications": [
+        {
+          "configuration": "le-fwd",
+          "field": "economy"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "torque"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "economy"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-le-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "torque"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "economy"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-le-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "economy"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "se-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "torque"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "economy"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-se-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "torque"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "economy"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "economy"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xse-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "torque"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "economy"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-xle-fwd",
+          "field": "msrp"
+        }
+      ],
+      "conflicts": [],
+      "manualVerification": []
+    },
+    {
+      "id": "2026-toyota-corolla-cross",
+      "model": "Corolla Cross",
+      "year": 2026,
+      "columns": 6,
+      "configurations": 9,
+      "matrixRows": 94,
+      "pagesProcessed": 27,
+      "baselineFieldCount": 0,
+      "baselineCells": [],
+      "resolvedFields": [],
+      "standardEquipmentAdded": 719,
+      "specificationsAdded": [
+        {
+          "configuration": "l-fwd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 169 hp @ 6600 rpm/151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "transmission",
+          "value": "Continuously Variable Transmission with intelligence and Shift Mode (CVTi-S)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers; Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "economy",
+          "value": "31 city / 33 highway / 32 combined mpg (EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 169 hp @ 6600 rpm/151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "transmission",
+          "value": "Continuously Variable Transmission with intelligence and Shift Mode (CVTi-S)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "drivetrain",
+          "value": "All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "economy",
+          "value": "29 city / 31 highway / 30 combined mpg (projected EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "l-awd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 169 hp @ 6600 rpm/151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "transmission",
+          "value": "Continuously Variable Transmission with intelligence and Shift Mode (CVTi-S)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers; Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "economy",
+          "value": "31 city / 33 highway / 32 combined mpg (EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 169 hp @ 6600 rpm/151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "transmission",
+          "value": "Continuously Variable Transmission with intelligence and Shift Mode (CVTi-S)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "drivetrain",
+          "value": "All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "economy",
+          "value": "29 city / 31 highway / 30 combined mpg (projected EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "le-awd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6,000 rpm/139 lb.-ft. @ 4,400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4,400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "chassis",
+          "value": "Sport-tuned double-wishbone multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers; Sport-tuned independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "economy",
+          "value": "46 city / 39 highway / 42 combined mpg (projected EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 169 hp @ 6600 rpm/151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "transmission",
+          "value": "Continuously Variable Transmission with intelligence and Shift Mode (CVTi-S)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "drivetrain",
+          "value": "Front-Wheel Drive (FWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers; Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "economy",
+          "value": "31 city / 33 highway / 32 combined mpg (EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 169 hp @ 6600 rpm/151 lb.-ft. @ 4400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "torque",
+          "value": "151 lb.-ft. @ 4400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "transmission",
+          "value": "Continuously Variable Transmission with intelligence and Shift Mode (CVTi-S)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "drivetrain",
+          "value": "All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "horsepower",
+          "value": "169 hp @ 6600 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "economy",
+          "value": "29 city / 31 highway / 30 combined mpg (projected EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6,000 rpm/139 lb.-ft. @ 4,400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4,400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "chassis",
+          "value": "Sport-tuned double-wishbone multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers; Sport-tuned independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "economy",
+          "value": "46 city / 39 highway / 42 combined mpg (projected EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "engine",
+          "value": "2.0-liter 4-cylinder DOHC 16-valve with Dual Variable Valve Timing with intelligence (VVT-i), 150 hp @ 6,000 rpm/139 lb.-ft. @ 4,400 rpm",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "torque",
+          "value": "139 lb.-ft. @ 4,400 rpm (brochure torque basis retained; no motor/engine summing)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "21"
+          }
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "chassis",
+          "value": "Sport-tuned double-wishbone multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers; Sport-tuned independent MacPherson strut front suspension with stabilizer bar, coil springs and hydraulic shock absorbers",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "22"
+          }
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "economy",
+          "value": "46 city / 39 highway / 42 combined mpg (projected EPA estimate)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "groundClearance",
+          "value": "8.1 in. (manufacturer model-level statement)",
+          "pages": {
+            "toyota-2026-corolla-cross-brochure": "6"
+          }
+        }
+      ],
+      "colors": {
+        "exteriors": {
+          "added": 11,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        },
+        "interiors": {
+          "added": 8,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        }
+      },
+      "missingSpecifications": [
+        {
+          "configuration": "l-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "l-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "l-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "le-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "le-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-s-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "seating"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xle-fwd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-se-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "seating"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-xse-awd",
+          "field": "msrp"
+        }
+      ],
+      "conflicts": [],
+      "manualVerification": [
+        {
+          "model": "Corolla Cross",
+          "configuration": "l-awd",
+          "page": 22,
+          "label": "Multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers",
+          "symbol": "A",
+          "type": "ambiguous-applicability",
+          "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+        },
+        {
+          "model": "Corolla Cross",
+          "configuration": "l-awd",
+          "page": 22,
+          "label": "Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+        },
+        {
+          "model": "Corolla Cross",
+          "configuration": "le-awd",
+          "page": 22,
+          "label": "Multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers",
+          "symbol": "A",
+          "type": "ambiguous-applicability",
+          "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+        },
+        {
+          "model": "Corolla Cross",
+          "configuration": "le-awd",
+          "page": 22,
+          "label": "Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+        },
+        {
+          "model": "Corolla Cross",
+          "configuration": "xle-awd",
+          "page": 22,
+          "label": "Multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers",
+          "symbol": "A",
+          "type": "ambiguous-applicability",
+          "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+        },
+        {
+          "model": "Corolla Cross",
+          "configuration": "xle-awd",
+          "page": 22,
+          "label": "Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+        }
+      ]
+    },
+    {
+      "id": "2026-toyota-highlander",
+      "model": "Highlander",
+      "year": 2026,
+      "columns": 7,
+      "configurations": 7,
+      "matrixRows": 119,
+      "pagesProcessed": 28,
+      "baselineFieldCount": 0,
+      "baselineCells": [],
+      "resolvedFields": [],
+      "standardEquipmentAdded": 735,
+      "specificationsAdded": [
+        {
+          "configuration": "xle-awd",
+          "field": "engine",
+          "value": "Gasoline engine — 2.4-liter 4-cylinder turbocharged Double Overhead Cam (DOHC) 16-valve D-4S injection Atkinson-cycle-capable engine with Stop and Start Engine System (S)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "transmission",
+          "value": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "drivetrain",
+          "value": "All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "tires",
+          "value": "18-in. machined-finished alloy wheels and P235/65R18 tires",
+          "pages": {
+            "toyota-2026-highlander-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "brakes",
+          "value": "Power-assisted, ventilated 13.3-in. front disc brakes",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "economy",
+          "value": "21 city / 28 highway / 24 combined mpg (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "24"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "horsepower",
+          "value": "265 hp (2.4L turbo gasoline engine)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "3"
+          }
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "torque",
+          "value": "310 lb.-ft. (2.4L turbo gasoline engine)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "3"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "tires",
+          "value": "18-in. machined-finished alloy wheels and P235/65R18 tires",
+          "pages": {
+            "toyota-2026-highlander-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "brakes",
+          "value": "Star Safety System™ — includes Electronically Controlled Braking (ECB), Enhanced Vehicle Stability Control (VSC), Traction Control (TRAC), Anti-lock Brake System (ABS), Electronic Brake-force Distribution (EBD), Brake Assist (BA) and Smart Stop Technology® (SST); Power-assisted, ventilated 13.3-in. front disc brakes",
+          "pages": {
+            "toyota-2026-highlander-brochure": "22, 23"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "economy",
+          "value": "35 city / 35 highway / 35 combined mpg (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "24"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "engine",
+          "value": "Gasoline engine — 2.4-liter 4-cylinder turbocharged Double Overhead Cam (DOHC) 16-valve D-4S injection Atkinson-cycle-capable engine with Stop and Start Engine System (S)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "transmission",
+          "value": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "drivetrain",
+          "value": "Dynamic Torque Vectoring All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "tires",
+          "value": "20-in. black alloy wheels and P235/55R20 tires",
+          "pages": {
+            "toyota-2026-highlander-brochure": "20"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "chassis",
+          "value": "Sport-tuned independent MacPherson strut front suspension with stabilizer bar",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "brakes",
+          "value": "Power-assisted, ventilated 13.3-in. front disc brakes",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "economy",
+          "value": "21 city / 28 highway / 24 combined mpg (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "24"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "horsepower",
+          "value": "265 hp (2.4L turbo gasoline engine)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "3"
+          }
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "torque",
+          "value": "310 lb.-ft. (2.4L turbo gasoline engine)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "3"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "engine",
+          "value": "Gasoline engine — 2.4-liter 4-cylinder turbocharged Double Overhead Cam (DOHC) 16-valve D-4S injection Atkinson-cycle-capable engine with Stop and Start Engine System (S)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "transmission",
+          "value": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "drivetrain",
+          "value": "Dynamic Torque Vectoring All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "tires",
+          "value": "20-in. chrome-finished alloy wheels and P235/55R20 tires",
+          "pages": {
+            "toyota-2026-highlander-brochure": "20"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "brakes",
+          "value": "Power-assisted, ventilated 13.3-in. front disc brakes",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "economy",
+          "value": "21 city / 28 highway / 24 combined mpg (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "24"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "horsepower",
+          "value": "265 hp (2.4L turbo gasoline engine)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "3"
+          }
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "torque",
+          "value": "310 lb.-ft. (2.4L turbo gasoline engine)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "3"
+          }
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "tires",
+          "value": "20-in. chrome-finished alloy wheels and P235/55R20 tires",
+          "pages": {
+            "toyota-2026-highlander-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "brakes",
+          "value": "Star Safety System™ — includes Electronically Controlled Braking (ECB), Enhanced Vehicle Stability Control (VSC), Traction Control (TRAC), Anti-lock Brake System (ABS), Electronic Brake-force Distribution (EBD), Brake Assist (BA) and Smart Stop Technology® (SST); Power-assisted, ventilated 13.3-in. front disc brakes",
+          "pages": {
+            "toyota-2026-highlander-brochure": "22, 23"
+          }
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "economy",
+          "value": "35 city / 34 highway / 35 combined mpg (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "24"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "engine",
+          "value": "Gasoline engine — 2.4-liter 4-cylinder turbocharged Double Overhead Cam (DOHC) 16-valve D-4S injection Atkinson-cycle-capable engine with Stop and Start Engine System (S)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "transmission",
+          "value": "Direct Shift-8AT 8-speed Electronically Controlled automatic Transmission (ECT)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "drivetrain",
+          "value": "Dynamic Torque Vectoring All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "tires",
+          "value": "20-in. alloy wheels and P235/55R20 tires",
+          "pages": {
+            "toyota-2026-highlander-brochure": "20"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "brakes",
+          "value": "Power-assisted, ventilated 13.3-in. front disc brakes",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "economy",
+          "value": "21 city / 28 highway / 24 combined mpg (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "24"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "horsepower",
+          "value": "265 hp (2.4L turbo gasoline engine)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "3"
+          }
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "torque",
+          "value": "310 lb.-ft. (2.4L turbo gasoline engine)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "3"
+          }
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "transmission",
+          "value": "Electronically controlled Continuously Variable Transmission (ECVT)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "drivetrain",
+          "value": "Electronic On-Demand All-Wheel Drive (AWD)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "tires",
+          "value": "20-in. alloy wheels and P235/55R20 tires",
+          "pages": {
+            "toyota-2026-highlander-brochure": "20"
+          }
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "chassis",
+          "value": "Independent MacPherson strut front suspension with stabilizer bar",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "brakes",
+          "value": "Star Safety System™ — includes Electronically Controlled Braking (ECB), Enhanced Vehicle Stability Control (VSC), Traction Control (TRAC), Anti-lock Brake System (ABS), Electronic Brake-force Distribution (EBD), Brake Assist (BA) and Smart Stop Technology® (SST); Power-assisted, ventilated 13.3-in. front disc brakes",
+          "pages": {
+            "toyota-2026-highlander-brochure": "22, 23"
+          }
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "steering",
+          "value": "Electric Power Steering (EPS)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "23"
+          }
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "economy",
+          "value": "35 city / 34 highway / 35 combined mpg (manufacturer-quoted EPA estimate)",
+          "pages": {
+            "toyota-2026-highlander-brochure": "24"
+          }
+        }
+      ],
+      "colors": {
+        "exteriors": {
+          "added": 5,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        },
+        "interiors": {
+          "added": 6,
+          "paletteOnly": true,
+          "trimAvailability": "Unverified — no manufacturer trim/color matrix is provided."
+        }
+      },
+      "missingSpecifications": [
+        {
+          "configuration": "xle-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xle-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "engine"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "torque"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-xle-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "xse-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "limited-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "engine"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "torque"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-limited-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "platinum-awd",
+          "field": "msrp"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "engine"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "horsepower"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "torque"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "towing"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "dimensions"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "wheelbase"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "groundClearance"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "headroom"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "legroom"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "cargo"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "fuel"
+        },
+        {
+          "configuration": "hybrid-platinum-awd",
+          "field": "msrp"
+        }
+      ],
+      "conflicts": [],
+      "manualVerification": [
+        {
+          "model": "Highlander",
+          "configuration": "hybrid-xle-awd",
+          "page": 23,
+          "label": "Hybrid powertrain — 2.5-liter L4HV Double Overhead Cam (DOHC) 16-valve D-4S injection engine with Dual VVT-iE (Variable Valve Timing- intelligent",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+        },
+        {
+          "model": "Highlander",
+          "configuration": "hybrid-xle-awd",
+          "page": 23,
+          "label": "Permanent magnet synchronous motors (two front",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+        },
+        {
+          "model": "Highlander",
+          "configuration": "hybrid-limited-awd",
+          "page": 23,
+          "label": "Hybrid powertrain — 2.5-liter L4HV Double Overhead Cam (DOHC) 16-valve D-4S injection engine with Dual VVT-iE (Variable Valve Timing- intelligent",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+        },
+        {
+          "model": "Highlander",
+          "configuration": "hybrid-limited-awd",
+          "page": 23,
+          "label": "Permanent magnet synchronous motors (two front",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+        },
+        {
+          "model": "Highlander",
+          "configuration": "hybrid-platinum-awd",
+          "page": 23,
+          "label": "Hybrid powertrain — 2.5-liter L4HV Double Overhead Cam (DOHC) 16-valve D-4S injection engine with Dual VVT-iE (Variable Valve Timing- intelligent",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+        },
+        {
+          "model": "Highlander",
+          "configuration": "hybrid-platinum-awd",
+          "page": 23,
+          "label": "Permanent magnet synchronous motors (two front",
+          "symbol": "S",
+          "type": "ambiguous-applicability",
+          "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+        }
+      ]
+    }
+  ],
+  "conflicts": [],
+  "manualVerification": [
+    {
+      "model": "Land Cruiser",
+      "configuration": "land-cruiser-4wd",
+      "page": 17,
+      "label": "Leather-trimmed seats; 8-way power-adjustable front driver's seat with lumbar support; 8-way power-adjustable passenger seat",
+      "symbol": "A",
+      "type": "ambiguous-applicability",
+      "reason": "p. 3 narrative says leather, but p. 14/17 say SofTex standard and leather optional. Upholstery held pending Toyota clarification."
+    },
+    {
+      "model": "Land Cruiser",
+      "configuration": "land-cruiser-4wd",
+      "page": 17,
+      "label": "SofTex®-trimmed seats; 8-way power-adjustable front driver's seat with lumbar support; 6-way manual-adjustable passenger seat",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "p. 3 narrative says leather, but p. 14/17 say SofTex standard and leather optional. Upholstery held pending Toyota clarification."
+    },
+    {
+      "model": "Prius",
+      "configuration": "xle-fwd",
+      "page": 21,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "A",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Prius",
+      "configuration": "nightshade-fwd",
+      "page": 21,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "A",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Prius",
+      "configuration": "xle-awd",
+      "page": 21,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "A",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Prius",
+      "configuration": "nightshade-awd",
+      "page": 21,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "A",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Prius",
+      "configuration": "limited-fwd",
+      "page": 21,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "S",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Prius",
+      "configuration": "limited-awd",
+      "page": 21,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "S",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Prius Plug-in Hybrid",
+      "configuration": "xse-fwd",
+      "page": 19,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "A",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Prius Plug-in Hybrid",
+      "configuration": "nightshade-fwd",
+      "page": 19,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "A",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Prius Plug-in Hybrid",
+      "configuration": "nightshade-fwd",
+      "page": 20,
+      "label": "SofTex®-trimmed front seats with seatback pockets; 8-way power-adjustable driver's seat including power lumbar support; 6-way adjustable front passenger seat",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Nightshade-specific black/gray-stitching seat row is also standard; retain the specific row only."
+    },
+    {
+      "model": "Prius Plug-in Hybrid",
+      "configuration": "xse-premium-fwd",
+      "page": 19,
+      "label": "Digital Key capability — Digital Key enables smartphone to be used instead of a physical key. (Remote Connect subscription required.)",
+      "symbol": "S",
+      "type": "excluded-paid-activation",
+      "reason": "Factory capability is recorded in the stage, but activation depends on Remote Connect. Excluded from standard-only equipment; not reclassified as absent."
+    },
+    {
+      "model": "Corolla Cross",
+      "configuration": "l-awd",
+      "page": 22,
+      "label": "Multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers",
+      "symbol": "A",
+      "type": "ambiguous-applicability",
+      "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+    },
+    {
+      "model": "Corolla Cross",
+      "configuration": "l-awd",
+      "page": 22,
+      "label": "Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+    },
+    {
+      "model": "Corolla Cross",
+      "configuration": "le-awd",
+      "page": 22,
+      "label": "Multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers",
+      "symbol": "A",
+      "type": "ambiguous-applicability",
+      "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+    },
+    {
+      "model": "Corolla Cross",
+      "configuration": "le-awd",
+      "page": 22,
+      "label": "Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+    },
+    {
+      "model": "Corolla Cross",
+      "configuration": "xle-awd",
+      "page": 22,
+      "label": "Multi-link rear suspension with coil springs, trailing arms, stabilizer bar and hydraulic shock absorbers",
+      "symbol": "A",
+      "type": "ambiguous-applicability",
+      "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+    },
+    {
+      "model": "Corolla Cross",
+      "configuration": "xle-awd",
+      "page": 22,
+      "label": "Torsion beam rear suspension with coil springs, trailing arms and hydraulic shock absorbers",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Gas AWD rear suspension not explicitly assigned; S torsion beam / A multi-link table does not resolve selected drive."
+    },
+    {
+      "model": "Highlander",
+      "configuration": "hybrid-xle-awd",
+      "page": 23,
+      "label": "Hybrid powertrain — 2.5-liter L4HV Double Overhead Cam (DOHC) 16-valve D-4S injection engine with Dual VVT-iE (Variable Valve Timing- intelligent",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+    },
+    {
+      "model": "Highlander",
+      "configuration": "hybrid-xle-awd",
+      "page": 23,
+      "label": "Permanent magnet synchronous motors (two front",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+    },
+    {
+      "model": "Highlander",
+      "configuration": "hybrid-limited-awd",
+      "page": 23,
+      "label": "Hybrid powertrain — 2.5-liter L4HV Double Overhead Cam (DOHC) 16-valve D-4S injection engine with Dual VVT-iE (Variable Valve Timing- intelligent",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+    },
+    {
+      "model": "Highlander",
+      "configuration": "hybrid-limited-awd",
+      "page": 23,
+      "label": "Permanent magnet synchronous motors (two front",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+    },
+    {
+      "model": "Highlander",
+      "configuration": "hybrid-platinum-awd",
+      "page": 23,
+      "label": "Hybrid powertrain — 2.5-liter L4HV Double Overhead Cam (DOHC) 16-valve D-4S injection engine with Dual VVT-iE (Variable Valve Timing- intelligent",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+    },
+    {
+      "model": "Highlander",
+      "configuration": "hybrid-platinum-awd",
+      "page": 23,
+      "label": "Permanent magnet synchronous motors (two front",
+      "symbol": "S",
+      "type": "ambiguous-applicability",
+      "reason": "Manufacturer matrix text is visibly truncated: hybrid engine ends intelligent; motor row ends two front. Full technical description requires corrected source."
+    }
+  ],
+  "preservedVehicles": [
+    {
+      "id": "2026-toyota-rav4",
+      "sha256": "0a01c2ebb4e7b8b9ccd7c46b9e75424913a9513145ca024d20d8e35bcfa80e0e"
+    },
+    {
+      "id": "2026-volkswagen-tiguan",
+      "sha256": "5021114693204abb3ecff4f9f555d77a9e491ef871fc0324b15c3ca0d976a8b4"
+    },
+    {
+      "id": "2026-chevrolet-equinox",
+      "sha256": "f8da1feebcdd9b2a3679514fa6259ac8220ed22448ffe7c09fd7b812d17480ba"
+    },
+    {
+      "id": "2026-toyota-rav4-plug-in-hybrid",
+      "sha256": "871390834e29aab04dca5d6bb759fc20abceea2502be58c3f52d5c5c892dce40"
+    },
+    {
+      "id": "2026-volkswagen-atlas",
+      "sha256": "527d40fd79c1d6faa1747fe8a0e547d80afab81e664e5f295aeb36cd727540d4"
+    },
+    {
+      "id": "2026-volkswagen-atlas-cross-sport",
+      "sha256": "52c1d702230d73f0d8753cf34953973aff28a759658ea719c7f1092002bd6bd5"
+    },
+    {
+      "id": "2026-volkswagen-taos",
+      "sha256": "40af8451757ef8e6b65b3494e7b87796643ea9f1fd49082759269f79e7ab7303"
+    },
+    {
+      "id": "2026-volkswagen-id4",
+      "sha256": "156569c3209d833e6c5b5360a0b19f4ffea39c1ed1ec678dbd9ccde4745c2551"
+    },
+    {
+      "id": "2026-volkswagen-golf-gti",
+      "sha256": "a7835e3d1d8ea2896a60378ca972e8c38956958797ce575ba431c8b99aa4f2ab"
+    },
+    {
+      "id": "2026-volkswagen-golf-r",
+      "sha256": "9005adfe99f09e29b14cf36c393f74964057cc3efe89c0f1f3a6f671eba7ef9b"
+    },
+    {
+      "id": "2026-volkswagen-jetta",
+      "sha256": "d0abfb4d8013221697d3c9366466b12efed1fb7a896e004033e4de35841e5085"
+    },
+    {
+      "id": "2026-volkswagen-jetta-gli",
+      "sha256": "242a8ced273050932deec03483c1ce6797ce1c9c7f41bb46ad0e708d4d9bebfa"
+    },
+    {
+      "id": "2027-volkswagen-atlas",
+      "sha256": "b668b91512b5565c6bdd4eadb588292a4b5c67bb20d712744e9b69dca113194e"
+    },
+    {
+      "id": "2027-volkswagen-atlas-cross-sport",
+      "sha256": "8fcfb79e1ef2332e96b8ff38c118111d587a532f450d171a9b7b2198c870457a"
+    },
+    {
+      "id": "2027-volkswagen-tiguan",
+      "sha256": "27267326c033be51df23fe5a225d011ad9dcfa2a54393d8fd72fd498a2fafa91"
+    },
+    {
+      "id": "2027-volkswagen-taos",
+      "sha256": "2ba5e81f1b4b3fed682fb8c8b4f8385a9a4bf1c94b2257d9e1c5ab85b8bee8ac"
+    },
+    {
+      "id": "2027-volkswagen-golf-gti",
+      "sha256": "1ab999a74fea3b2e21706ca5b2d02c6e6db0fe0d715b5aa81e9b2253a6214a41"
+    },
+    {
+      "id": "2027-volkswagen-golf-r",
+      "sha256": "bb4fdac85caabc0a2975c23532ecc64f611de10b2ba791d41da602500f1de38d"
+    },
+    {
+      "id": "2027-volkswagen-jetta",
+      "sha256": "0f7cf840843c99d0b8c701339f7934aad9a675a214fc88ea0be521025ae50a34"
+    },
+    {
+      "id": "2027-volkswagen-jetta-gli",
+      "sha256": "50ff3e0ebbc1344a5e233c432a4e91df7f490d78416d04c0cd47be02580be36d"
+    },
+    {
+      "id": "2027-chevrolet-equinox",
+      "sha256": "68b879c55ad3a5989235dcac6be9b8b37517e14ef51ec2d1634b321311984e4a"
+    },
+    {
+      "id": "2026-toyota-tacoma",
+      "sha256": "650f0d8b13df987250e5822c1fa338184fb75cfb4123a4674667628457daf651"
+    },
+    {
+      "id": "2026-toyota-sienna",
+      "sha256": "727913838f040eb253ceef94a6ed1ef4d554c3db23b7207abbf791f11735b5a4"
+    },
+    {
+      "id": "2026-toyota-grand-highlander",
+      "sha256": "5760cb946cf8793a9077fcec535d87c43252d693ce3004c7b8089b21777ee3f9"
+    }
+  ],
+  "sourceMatches": [
+    {
+      "model": "Land Cruiser",
+      "sourceId": "toyota-2027-land-cruiser-brochure",
+      "reused": false,
+      "sha256": "d16551b9b07b9720805afb228618b4139dba067d6f9d7562b77b37c73170ea0e"
+    },
+    {
+      "model": "Prius",
+      "sourceId": "toyota-2027-prius-brochure",
+      "reused": false,
+      "sha256": "bba8daf16c277acbe32a40c537560c0e7bdcb544b3ee5d6bb6d676664f88f60c"
+    },
+    {
+      "model": "Prius Plug-in Hybrid",
+      "sourceId": "toyota-2027-prius-plug-in-hybrid-brochure",
+      "reused": false,
+      "sha256": "70c255bd7c1bc12bcb3023de7f0c65d9ebe5c419791c1bec2b3b9837a0a6b072"
+    },
+    {
+      "model": "Corolla",
+      "sourceId": "toyota-2026-corolla-brochure",
+      "reused": false,
+      "sha256": "22363c306f049f686aa5dcc37d57505f8af41aa0a62af5ff44965d419b012860"
+    },
+    {
+      "model": "Corolla Cross",
+      "sourceId": "toyota-2026-corolla-cross-brochure",
+      "reused": false,
+      "sha256": "82a27e94c9df046af2f1d4face41bfa9e4ad685e0818b5a7fdad8f7f77f2ab7f"
+    },
+    {
+      "model": "Highlander",
+      "sourceId": "toyota-2026-highlander-brochure",
+      "reused": false,
+      "sha256": "409629b8e0c26ad81edae510c96c1f2a6b1e7374c6a24069cd6f894052a4b0b2"
+    }
+  ],
+  "baseVehicles": [
+    {
+      "id": "2026-toyota-rav4",
+      "sha256": "0a01c2ebb4e7b8b9ccd7c46b9e75424913a9513145ca024d20d8e35bcfa80e0e"
+    },
+    {
+      "id": "2026-volkswagen-tiguan",
+      "sha256": "5021114693204abb3ecff4f9f555d77a9e491ef871fc0324b15c3ca0d976a8b4"
+    },
+    {
+      "id": "2026-chevrolet-equinox",
+      "sha256": "f8da1feebcdd9b2a3679514fa6259ac8220ed22448ffe7c09fd7b812d17480ba"
+    },
+    {
+      "id": "2026-toyota-rav4-plug-in-hybrid",
+      "sha256": "871390834e29aab04dca5d6bb759fc20abceea2502be58c3f52d5c5c892dce40"
+    },
+    {
+      "id": "2026-volkswagen-atlas",
+      "sha256": "527d40fd79c1d6faa1747fe8a0e547d80afab81e664e5f295aeb36cd727540d4"
+    },
+    {
+      "id": "2026-volkswagen-atlas-cross-sport",
+      "sha256": "52c1d702230d73f0d8753cf34953973aff28a759658ea719c7f1092002bd6bd5"
+    },
+    {
+      "id": "2026-volkswagen-taos",
+      "sha256": "40af8451757ef8e6b65b3494e7b87796643ea9f1fd49082759269f79e7ab7303"
+    },
+    {
+      "id": "2026-volkswagen-id4",
+      "sha256": "156569c3209d833e6c5b5360a0b19f4ffea39c1ed1ec678dbd9ccde4745c2551"
+    },
+    {
+      "id": "2026-volkswagen-golf-gti",
+      "sha256": "a7835e3d1d8ea2896a60378ca972e8c38956958797ce575ba431c8b99aa4f2ab"
+    },
+    {
+      "id": "2026-volkswagen-golf-r",
+      "sha256": "9005adfe99f09e29b14cf36c393f74964057cc3efe89c0f1f3a6f671eba7ef9b"
+    },
+    {
+      "id": "2026-volkswagen-jetta",
+      "sha256": "d0abfb4d8013221697d3c9366466b12efed1fb7a896e004033e4de35841e5085"
+    },
+    {
+      "id": "2026-volkswagen-jetta-gli",
+      "sha256": "242a8ced273050932deec03483c1ce6797ce1c9c7f41bb46ad0e708d4d9bebfa"
+    },
+    {
+      "id": "2027-volkswagen-atlas",
+      "sha256": "b668b91512b5565c6bdd4eadb588292a4b5c67bb20d712744e9b69dca113194e"
+    },
+    {
+      "id": "2027-volkswagen-atlas-cross-sport",
+      "sha256": "8fcfb79e1ef2332e96b8ff38c118111d587a532f450d171a9b7b2198c870457a"
+    },
+    {
+      "id": "2027-volkswagen-tiguan",
+      "sha256": "27267326c033be51df23fe5a225d011ad9dcfa2a54393d8fd72fd498a2fafa91"
+    },
+    {
+      "id": "2027-volkswagen-taos",
+      "sha256": "2ba5e81f1b4b3fed682fb8c8b4f8385a9a4bf1c94b2257d9e1c5ab85b8bee8ac"
+    },
+    {
+      "id": "2027-volkswagen-golf-gti",
+      "sha256": "1ab999a74fea3b2e21706ca5b2d02c6e6db0fe0d715b5aa81e9b2253a6214a41"
+    },
+    {
+      "id": "2027-volkswagen-golf-r",
+      "sha256": "bb4fdac85caabc0a2975c23532ecc64f611de10b2ba791d41da602500f1de38d"
+    },
+    {
+      "id": "2027-volkswagen-jetta",
+      "sha256": "0f7cf840843c99d0b8c701339f7934aad9a675a214fc88ea0be521025ae50a34"
+    },
+    {
+      "id": "2027-volkswagen-jetta-gli",
+      "sha256": "50ff3e0ebbc1344a5e233c432a4e91df7f490d78416d04c0cd47be02580be36d"
+    },
+    {
+      "id": "2027-chevrolet-equinox",
+      "sha256": "68b879c55ad3a5989235dcac6be9b8b37517e14ef51ec2d1634b321311984e4a"
+    },
+    {
+      "id": "2026-toyota-tacoma",
+      "sha256": "650f0d8b13df987250e5822c1fa338184fb75cfb4123a4674667628457daf651"
+    },
+    {
+      "id": "2026-toyota-sienna",
+      "sha256": "727913838f040eb253ceef94a6ed1ef4d554c3db23b7207abbf791f11735b5a4"
+    },
+    {
+      "id": "2026-toyota-grand-highlander",
+      "sha256": "5760cb946cf8793a9077fcec535d87c43252d693ce3004c7b8089b21777ee3f9"
+    }
+  ]
+}

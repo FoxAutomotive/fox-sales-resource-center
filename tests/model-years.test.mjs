@@ -62,7 +62,7 @@ test("2027 imports all 41 reviewed pages, eight models and 38 configurations wit
   assert.equal(
     searchVehicles(catalog, features, { year: "2027", brand: "toyota" })
       .vehicles.length,
-    0,
+    3,
   );
   assert.equal(model("id4"), undefined);
 });

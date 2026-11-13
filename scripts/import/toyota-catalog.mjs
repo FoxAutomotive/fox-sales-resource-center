@@ -8,14 +8,15 @@ const digest = (value) =>
     .digest("hex");
 const unknown = (conditions) => ({ status: "unverified", conditions });
 const patterns = {
-  engine: /^(?:i-FORCE|Hybrid(?: MAX)? powertrain|Hybrid—|Gasoline engine)/i,
+  engine:
+    /^(?:i-FORCE|Hybrid(?: MAX)? powertrain|Hybrid—|Gasoline engine|\d\.\d-liter.*4-cylinder)/i,
   horsepower:
-    /\b(?:net combined hp|combined net hp|\d+ hp @|maximum horsepower)\b/i,
+    /\b(?:net combined hp|combined net hp|Hybrid system net power|\d+ hp @|maximum horsepower)\b/i,
   torque: /Max\. Torque:|\d+ lb\.-ft\./i,
   transmission:
-    /Transmission.*(?:ECT|ECVT|intelligence|sequential)|Manual Transmission/i,
+    /Transmission.*(?:ECT|ECVT|CVT|intelligence|sequential)|Manual Transmission/i,
   drivetrain:
-    /^Front-Wheel Drive|^Rear-Wheel Drive|^4WDemand|^Full-time 4-Wheel Drive|^All-Wheel Drive \(AWD\)$|^Electronic On-Demand|^Dynamic Torque Control AWD|^Full-Time Electronic All-Wheel Drive/i,
+    /^Front-Wheel Drive|^Rear-Wheel Drive|^4WDemand|^Full-time 4-Wheel Drive|^All-Wheel Drive \(AWD\)$|^Electronic On-Demand|^Dynamic Torque (?:Control AWD|Vectoring All-Wheel Drive)|^Full-Time Electronic All-Wheel Drive/i,
   wheels: /\d+-in\..*wheels/i,
   appearance: /grille|bumper|emblem|badg|roof rails/i,
   roof: /moonroof|sunroof/i,
@@ -155,6 +156,7 @@ function decode(stage, profile, config, source, row, manual) {
   const hold = profile.holdRules.find(
     (rule) =>
       (!rule.columns || rule.columns.includes(config.column)) &&
+      (!rule.drive || rule.drive === config.drive) &&
       (!rule.transmission || rule.transmission === config.transmission) &&
       new RegExp(rule.pattern, "i").test(row.label),
   );
@@ -375,11 +377,12 @@ export function importToyotaBatch(entries, base, features) {
       model: profile.model,
       year: profile.year,
       category:
-        profile.model === "Tacoma"
+        profile.category ||
+        (profile.model === "Tacoma"
           ? "Pickup"
           : profile.model === "Sienna"
             ? "Minivan"
-            : "SUV",
+            : "SUV"),
       status: "verified",
       verifiedAt: profile.reviewedAt,
       summary: `${profile.year} ${profile.model}: manufacturer brochure equipment by trim and declared mechanical configuration.`,
@@ -393,7 +396,9 @@ export function importToyotaBatch(entries, base, features) {
     const source = same || {
       id: profile.id,
       title: `Toyota ${profile.year} ${profile.model} eBrochure — supplied PDF, ${stage.source.pageCount} pages`,
-      url: `https://www.toyota.com/${profile.model.toLowerCase().replaceAll(" ", "")}/`,
+      url:
+        profile.modelUrl ||
+        `https://www.toyota.com/${profile.model.toLowerCase().replaceAll(" ", "")}/`,
       kind: "verified",
       modelYear: profile.year,
       checkedAt: profile.reviewedAt,
@@ -401,7 +406,7 @@ export function importToyotaBatch(entries, base, features) {
       fileName: stage.source.fileName,
       sha256: stage.source.sha256,
       pageCount: stage.source.pageCount,
-      shortLabel: `TY-${profile.model === "Grand Highlander" ? "GH" : profile.model.toUpperCase()}26`,
+      shortLabel: `TY-${profile.model === "Grand Highlander" ? "GH" : profile.model.toUpperCase()}${String(profile.year).slice(-2)}`,
       scope:
         "Equipment tables use S = Standard and A = Available. Blank cells are not proof of unavailability. The URL opens the manufacturer model reference, not the supplied attachment.",
     };
@@ -576,6 +581,13 @@ export function importToyotaBatch(entries, base, features) {
           .filter(
             ({ row }) =>
               pattern.test(row.label) &&
+              !(
+                field === "horsepower" &&
+                config.powertrain !== "gasoline" &&
+                !/net combined hp|combined net hp|Hybrid system net power/i.test(
+                  row.label,
+                )
+              ) &&
               !(field === "roof" && /roof rails|roof-mounted/.test(row.label)),
           )
           .map(({ cell }) => cell);
@@ -597,7 +609,10 @@ export function importToyotaBatch(entries, base, features) {
             ? /\d+\s+(?:net combined hp|combined net hp|hp @)/i.test(row.label)
             : /\d+ lb\.-ft\./i.test(row.label),
         );
-        if (selected.length) {
+        if (
+          selected.length &&
+          !(field === "horsepower" && config.powertrain !== "gasoline")
+        ) {
           const c = combine(
             selected.map((x) => x.cell),
             "",
@@ -641,7 +656,9 @@ export function importToyotaBatch(entries, base, features) {
             "Not established for this configuration by the supplied brochure.",
           );
       // Plug-in-only references are explicitly inapplicable to these gasoline/HEV configurations.
-      for (const field of ["electricRange", "charging", "dcCharging"])
+      for (const field of config.powertrain === "plug-in-hybrid"
+        ? []
+        : ["electricRange", "charging", "dcCharging"])
         if (trim.equipment[field].status === "unverified")
           merge(
             field,

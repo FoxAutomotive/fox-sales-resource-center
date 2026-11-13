@@ -1,0 +1,174 @@
+{
+  "id": "toyota-2026-corolla-brochure",
+  "sha256": "22363c306f049f686aa5dcc37d57505f8af41aa0a62af5ff44965d419b012860",
+  "pageCount": 24,
+  "year": 2026,
+  "titleToken": "corolla",
+  "model": "Corolla",
+  "vehicleId": "2026-toyota-corolla",
+  "category": "Sedan",
+  "columns": [
+    {
+      "name": "LE",
+      "headerTokens": ["LE"]
+    },
+    {
+      "name": "Hybrid LE",
+      "headerTokens": ["Hybrid", "LE"]
+    },
+    {
+      "name": "SE",
+      "headerTokens": ["SE"]
+    },
+    {
+      "name": "Hybrid SE",
+      "headerTokens": ["Hybrid", "SE"]
+    },
+    {
+      "name": "XSE",
+      "headerTokens": ["XSE"]
+    },
+    {
+      "name": "Hybrid XLE",
+      "headerTokens": ["Hybrid", "XLE"]
+    }
+  ],
+  "matrixPages": [17, 18, 19, 20],
+  "rowCounts": {
+    "17": 31,
+    "18": 25,
+    "19": 20,
+    "20": 13
+  },
+  "columnCenters": [228.0, 292.22, 356.44, 420.67, 484.88, 549.11],
+  "bodyTop": 77,
+  "disclosurePages": [21, 22, 23, 24],
+  "colorPage": 16,
+  "configs": [
+    {
+      "id": "le-fwd",
+      "name": "LE",
+      "column": 0,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "CVT",
+      "powertrain": "gasoline",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Dynamic-Shift Continuously Variable Transmission (CVT)"
+    },
+    {
+      "id": "hybrid-le-fwd",
+      "name": "Hybrid LE",
+      "column": 1,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "hybrid-le-awd",
+      "name": "Hybrid LE",
+      "column": 1,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "se-fwd",
+      "name": "SE",
+      "column": 2,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "CVT",
+      "powertrain": "gasoline",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Dynamic-Shift Continuously Variable Transmission (CVT)"
+    },
+    {
+      "id": "hybrid-se-fwd",
+      "name": "Hybrid SE",
+      "column": 3,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "hybrid-se-awd",
+      "name": "Hybrid SE",
+      "column": 3,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "xse-fwd",
+      "name": "XSE",
+      "column": 4,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "CVT",
+      "powertrain": "gasoline",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Dynamic-Shift Continuously Variable Transmission (CVT)"
+    },
+    {
+      "id": "hybrid-xle-fwd",
+      "name": "Hybrid XLE",
+      "column": 5,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    }
+  ],
+  "facts": [],
+  "palette": {
+    "exteriors": {
+      "y": [100, 420],
+      "centers": [63.5, 182.9, 302.3, 421.7, 541.1],
+      "bands": [
+        [130, 185],
+        [260, 305],
+        [380, 415]
+      ]
+    },
+    "interiors": {
+      "y": [480, 750],
+      "centers": [63, 158.7, 254.4, 350.2, 446, 541.7],
+      "bands": [
+        [580, 615],
+        [690, 735]
+      ]
+    }
+  },
+  "reviewedAt": "2026-11-13",
+  "pageCategories": {
+    "17": "Exterior",
+    "18": "Interior (continued)",
+    "19": "Audio Multimedia",
+    "20": "Mechanical/Performance (continued)"
+  },
+  "lastDisclosure": 65,
+  "notes": [
+    "Hybrid 96 hp/105 lb-ft is the combustion-engine component; combined-system horsepower is absent. No Corolla Hybrid system rating inferred.",
+    "Brochure does not provide configuration-specific fuel economy, dimensions, tank capacity, cargo volume or towing ratings.",
+    "Exterior/interior palettes are model-level only; trim/color combinations unverified.",
+    "No explicit model-year change statement verified; What’s New remains unavailable.",
+    "Measurements and configuration-specific ratings not established by the brochure remain unavailable."
+  ],
+  "holdRules": [],
+  "expectedContentSha256": "51c7c32049faaa798901438e656690b46bd2a6e5eaeb8a26c56eb7d4e5e6d8b5"
+}
