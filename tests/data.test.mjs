@@ -252,7 +252,7 @@ test("package-name searches never infer unverified package contents", () => {
   // establish weather equipment and ventilated seats in the same configuration.
   const ravCatalog = { ...catalog, vehicles: [catalog.vehicles[0]] };
   assert.equal(
-    searchVehicles(catalog, features, {
+    searchVehicles(ravCatalog, features, {
       query: "Weather Package",
       brand: "toyota",
     }).vehicles.length,
@@ -948,6 +948,10 @@ test("feature alias searches match evidenced categories across brands without ma
         "2026-toyota-sienna",
         "2026-toyota-grand-highlander",
         "2026-toyota-highlander",
+        "2026-toyota-camry",
+        "2026-toyota-4runner",
+        "2026-toyota-tundra",
+        "2026-toyota-sequoia",
         "2026-toyota-rav4",
         "2026-toyota-rav4-plug-in-hybrid",
         "2026-volkswagen-tiguan",
@@ -971,7 +975,7 @@ test("feature alias searches match evidenced categories across brands without ma
   );
   assert.equal(
     searchVehicles(catalog2026, features, {
-      query: "LE Hybrid heated front seats",
+      query: "RAV4 LE Hybrid heated front seats",
     }).vehicles.length,
     0,
   );

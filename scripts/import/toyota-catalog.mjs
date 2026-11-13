@@ -14,7 +14,7 @@ const patterns = {
     /\b(?:net combined hp|combined net hp|Hybrid system net power|\d+ hp @|maximum horsepower)\b/i,
   torque: /Max\. Torque:|\d+ lb\.-ft\./i,
   transmission:
-    /Transmission.*(?:ECT|ECVT|CVT|intelligence|sequential)|Manual Transmission/i,
+    /^(?:(?:\d+-speed|Direct Shift-8AT|Dynamic-Shift|Electronically controlled|Continuously Variable).*Transmission|Manual Transmission)/i,
   drivetrain:
     /^Front-Wheel Drive|^Rear-Wheel Drive|^4WDemand|^Full-time 4-Wheel Drive|^All-Wheel Drive \(AWD\)$|^Electronic On-Demand|^Dynamic Torque (?:Control AWD|Vectoring All-Wheel Drive)|^Full-Time Electronic All-Wheel Drive/i,
   wheels: /\d+-in\..*wheels/i,
@@ -202,7 +202,7 @@ function decode(stage, profile, config, source, row, manual) {
       "Not applicable to the selected drivetrain",
       "Different manufacturer-listed drive configuration.",
     );
-  if (/Transmission/i.test(row.label))
+  if (patterns.transmission.test(row.label))
     return cell(
       stage,
       source,
@@ -581,6 +581,10 @@ export function importToyotaBatch(entries, base, features) {
           .filter(
             ({ row }) =>
               pattern.test(row.label) &&
+              !(field === "engine" && /badge|emblem/i.test(row.label)) &&
+              !(
+                field === "torque" && /electric motor torque/i.test(row.label)
+              ) &&
               !(
                 field === "horsepower" &&
                 config.powertrain !== "gasoline" &&

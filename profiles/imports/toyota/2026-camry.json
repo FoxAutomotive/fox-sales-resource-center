@@ -1,0 +1,308 @@
+{
+  "id": "toyota-2026-camry-brochure",
+  "sha256": "93b9b1c7388a1764265efba79032c51d2a8461467eb471c6a4b151b8024741e8",
+  "pageCount": 29,
+  "year": 2026,
+  "titleToken": "camry",
+  "model": "Camry",
+  "vehicleId": "2026-toyota-camry",
+  "category": "Sedan",
+  "columns": [
+    {
+      "name": "LE",
+      "headerTokens": ["LE"]
+    },
+    {
+      "name": "SE",
+      "headerTokens": ["SE"]
+    },
+    {
+      "name": "Nightshade",
+      "headerTokens": ["Nightshade"]
+    },
+    {
+      "name": "XLE",
+      "headerTokens": ["XLE"]
+    },
+    {
+      "name": "XSE",
+      "headerTokens": ["XSE"]
+    }
+  ],
+  "matrixPages": [20, 21, 22, 23, 24],
+  "rowCounts": {
+    "20": 40,
+    "21": 30,
+    "22": 22,
+    "23": 20,
+    "24": 18
+  },
+  "columnCenters": [234.43, 311.49, 388.55, 465.61, 542.69],
+  "bodyTop": 77,
+  "disclosurePages": [25, 26, 27, 28, 29],
+  "colorPage": 19,
+  "configs": [
+    {
+      "id": "le-fwd",
+      "name": "LE",
+      "column": 0,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "le-awd",
+      "name": "LE",
+      "column": 0,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "se-fwd",
+      "name": "SE",
+      "column": 1,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "se-awd",
+      "name": "SE",
+      "column": 1,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "nightshade-fwd",
+      "name": "Nightshade",
+      "column": 2,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "nightshade-awd",
+      "name": "Nightshade",
+      "column": 2,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "xle-fwd",
+      "name": "XLE",
+      "column": 3,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "xle-awd",
+      "name": "XLE",
+      "column": 3,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "xse-fwd",
+      "name": "XSE",
+      "column": 4,
+      "configuration": "Hybrid · FWD",
+      "drive": "FWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    },
+    {
+      "id": "xse-awd",
+      "name": "XSE",
+      "column": 4,
+      "configuration": "Hybrid · AWD",
+      "drive": "AWD",
+      "transmission": "ECVT",
+      "powertrain": "hybrid",
+      "driveRow": "Electronic On-Demand All-Wheel Drive (AWD)",
+      "transmissionRow": "Electronically controlled Continuously Variable Transmission (ECVT)"
+    }
+  ],
+  "facts": [
+    {
+      "field": "horsepower",
+      "page": 4,
+      "quote": "up to 225 net combined horsepower hybrid powertrain",
+      "value": "Up to 225 net combined hp (manufacturer FWD hybrid powertrain statement)",
+      "where": {
+        "drive": "FWD"
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 4,
+      "quote": "All-Wheel Drive (AWD), Camry has 232 net combined horsepower",
+      "value": "232 net combined hp (AWD hybrid powertrain)",
+      "where": {
+        "drive": "AWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 25,
+      "quote": "52 city/49 hwy/51 combined",
+      "value": "52 / 49 / 51 mpg city / highway / combined (EPA estimate quoted by Toyota)",
+      "where": {
+        "column": 0,
+        "drive": "FWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 25,
+      "quote": "50 city/49 hwy/50 combined",
+      "value": "50 / 49 / 50 mpg city / highway / combined (EPA estimate quoted by Toyota)",
+      "where": {
+        "column": 0,
+        "drive": "AWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 25,
+      "quote": "47 city/45 hwy/46 combined",
+      "value": "47 / 45 / 46 mpg city / highway / combined (EPA estimate quoted by Toyota)",
+      "where": {
+        "column": 1,
+        "drive": "FWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 25,
+      "quote": "47 city/45 hwy/46 combined",
+      "value": "47 / 45 / 46 mpg city / highway / combined (EPA estimate quoted by Toyota)",
+      "where": {
+        "column": 3,
+        "drive": "FWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 25,
+      "quote": "47 city/45 hwy/46 combined",
+      "value": "47 / 45 / 46 mpg city / highway / combined (EPA estimate quoted by Toyota)",
+      "where": {
+        "column": 4,
+        "drive": "FWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 25,
+      "quote": "46 city/46 hwy/46 combined",
+      "value": "46 / 46 / 46 mpg city / highway / combined (EPA estimate quoted by Toyota)",
+      "where": {
+        "column": 1,
+        "drive": "AWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 25,
+      "quote": "46 city/46 hwy/46 combined",
+      "value": "46 / 46 / 46 mpg city / highway / combined (EPA estimate quoted by Toyota)",
+      "where": {
+        "column": 3,
+        "drive": "AWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 25,
+      "quote": "43 city/43 hwy/43 combined",
+      "value": "43 / 43 / 43 mpg city / highway / combined (EPA estimate quoted by Toyota)",
+      "where": {
+        "column": 4,
+        "drive": "AWD"
+      }
+    }
+  ],
+  "palette": {
+    "exteriors": {
+      "y": [100, 400],
+      "centers": [63.5, 182.9, 302.3, 421.7, 541.1],
+      "bands": [
+        [130, 175],
+        [248, 275],
+        [345, 380]
+      ]
+    },
+    "interiors": {
+      "y": [500, 750],
+      "centers": [63, 158.7, 254.4, 350.2, 446, 541.7],
+      "bands": [
+        [548, 580],
+        [657, 690]
+      ]
+    }
+  },
+  "reviewedAt": "2026-11-13",
+  "pageCategories": {
+    "20": "Exterior",
+    "21": "Exterior (continued)",
+    "22": "Interior (continued)",
+    "23": "Audio Multimedia (continued)",
+    "24": "Safety and Convenience (continued)"
+  },
+  "lastDisclosure": 78,
+  "notes": [
+    "Camry is hybrid only; 184 hp on p. 24 is the combustion-engine component, not combined-system horsepower. The p. 4 FWD statement is up to 225 net combined hp; AWD is 232 net combined hp.",
+    "p. 25 disclosure 1 omits Nightshade. Nightshade fuel economy remains unavailable; no SE/XSE inheritance.",
+    "Exterior/interior palettes are manufacturer model-level references; trim-specific color/material eligibility remains unverified.",
+    "What’s New retains only the manufacturer-described brochure highlight. No independent prior-year comparison is established. Unsupported technical measurements, MSRP and configuration-specific ratings are not invented."
+  ],
+  "holdRules": [
+    {
+      "pattern": "^Permanent Magnet (?:Rear )?Motor",
+      "reason": "Motor rows do not explicitly resolve FWD/AWD selection; LE front motor is A while other trim front motors are S. No component rating is promoted through drivetrain selection."
+    },
+    {
+      "pattern": "Digital Key",
+      "reason": "Digital Key activation requires an active Remote Connect subscription. Retain source evidence; exclude from factory-standard equipment rather than imply paid activation is included."
+    }
+  ],
+  "highlights": [
+    {
+      "page": 6,
+      "quote": "new alluring Dark Cosmos body color",
+      "text": "Toyota describes the Dark Cosmos body color as new in its 2026 Camry brochure. Trim-specific color eligibility remains unverified."
+    }
+  ],
+  "expectedContentSha256": "d26d31b17013b7b3be951bc161ad71499d0ae5bd7e67ea9f9f639ce15a9fcfc4"
+}

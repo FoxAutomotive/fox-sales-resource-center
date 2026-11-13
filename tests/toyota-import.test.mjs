@@ -443,3 +443,244 @@ test("all six guides reuse source-backed matched-configuration upgrade paths", a
       }
   }
 });
+
+const nextSix = [
+  "camry",
+  "4runner",
+  "tundra",
+  "sequoia",
+  "landcruiser",
+  "corollahatchback",
+].map((key) => {
+  const profile = read(`../profiles/imports/toyota/2026-${key}.json`);
+  return {
+    profile,
+    stage: read(`../imports/toyota-2026-next-six/${profile.id}.extracted.json`),
+  };
+});
+const nextReport = read("../docs/imports/toyota-2026-next-six-report.json");
+const nextVehicle = (model) =>
+  catalog.vehicles.find((v) => v.year === 2026 && v.model === model);
+test("next six Toyota brochures pin 176 pages, 793 rows, 32 trim families and 55 configurations", () => {
+  assert.deepEqual(
+    nextSix.map((e) => e.profile.configs.length),
+    [10, 16, 16, 8, 2, 3],
+  );
+  assert.equal(
+    nextSix.reduce((n, e) => n + e.stage.pageInventory.length, 0),
+    176,
+  );
+  assert.equal(
+    nextSix.reduce((n, e) => n + e.stage.rows.length, 0),
+    793,
+  );
+  assert.equal(
+    nextSix.reduce(
+      (n, e) => n + new Set(e.profile.configs.map((c) => c.name)).size,
+      0,
+    ),
+    32,
+  );
+  for (const { profile, stage } of nextSix) {
+    assert.equal(toyotaContentDigest(stage), profile.expectedContentSha256);
+    assert.equal(stage.source.sha256, profile.sha256);
+    assert.equal(stage.source.year, 2026);
+    assert.equal(Object.keys(stage.disclosures).length, profile.lastDisclosure);
+    const v = nextVehicle(profile.model);
+    assert.equal(catalog.vehicles.filter((x) => x.id === v.id).length, 1);
+    assert.equal(v.trims.length, profile.configs.length);
+    if (["Camry", "4Runner"].includes(profile.model)) {
+      assert.equal(v.modelYearChanges.basis, "manufacturer-highlights");
+      assert.equal(v.modelYearChanges.items.length, 1);
+      assert.ok(v.modelYearChanges.items[0].sourcePages[profile.id]);
+    } else assert.equal(v.modelYearChanges, undefined);
+    for (const config of profile.configs) {
+      const t = v.trims.find((t) => t.id === config.id);
+      assert.equal(t.equipment.transmission.status, "standard");
+      assert.equal(t.equipment.drivetrain.status, "standard");
+      assert.doesNotMatch(
+        t.equipment.transmission.value,
+        /skid plate|protection/i,
+      );
+      assert.doesNotMatch(t.equipment.engine.value, /badge|emblem/i);
+      for (const row of stage.rows) {
+        const c =
+          t.equipment[`toyota-brochure-${hash(row.label).slice(0, 12)}`];
+        if (c?.status !== "standard") continue;
+        assert.ok(
+          row.symbols[config.column] === "S" ||
+            [config.driveRow, config.transmissionRow].includes(row.label),
+          `${v.id}/${t.id}/${row.label}`,
+        );
+        assert.ok(
+          stage.rows.some(
+            (r) =>
+              r.label === row.label &&
+              c.sourcePages[profile.id].split(", ").includes(String(r.page)),
+          ),
+        );
+      }
+    }
+  }
+});
+test("next Toyota batch preserves all 30 prior vehicles, particularly the separate 2027 Land Cruiser", () => {
+  assert.equal(nextReport.preservedVehicles.length, 30);
+  for (const prior of nextReport.preservedVehicles)
+    assert.equal(
+      hash(catalog.vehicles.find((v) => v.id === prior.id)),
+      prior.sha256,
+      prior.id,
+    );
+  const prior = nextReport.preservedVehicles.find(
+    (v) => v.id === "2027-toyota-land-cruiser",
+  );
+  assert.ok(prior);
+  const old = catalog.vehicles.find((v) => v.id === prior.id),
+    added = nextVehicle("Land Cruiser");
+  assert.equal(old.sources[0].modelYear, 2027);
+  assert.equal(added.sources[0].modelYear, 2026);
+  assert.notEqual(old.sources[0].sha256, added.sources[0].sha256);
+  for (const t of added.trims) {
+    assert.match(t.equipment.transmission.value, /8-speed/);
+    assert.deepEqual(t.equipment.transmission.sourceIds, [
+      "toyota-2026-land-cruiser-brochure",
+    ]);
+    const skid = Object.entries(t.equipment).find(
+      ([id, c]) =>
+        id.startsWith("toyota-brochure-") &&
+        /Front skid plate with engine, transmission/.test(c.value || ""),
+    );
+    assert.equal(skid?.[1].status, "standard");
+  }
+  assert.deepEqual(
+    importToyotaBatch(nextSix, catalog, features).catalog,
+    catalog,
+  );
+});
+test("Camry output is scoped to FWD/AWD and omitted Nightshade economy is never inferred", () => {
+  for (const t of nextVehicle("Camry").trims) {
+    assert.match(t.configuration, /Hybrid/);
+    assert.match(
+      t.equipment.horsepower.value,
+      t.configuration.includes("AWD") ? /232/ : /225/,
+    );
+    assert.doesNotMatch(t.equipment.horsepower.value, /184/);
+    assert.equal(
+      t.equipment.economy.status,
+      t.name === "Nightshade" ? "unverified" : "standard",
+    );
+    assert.equal(t.equipment.charging.status, "not-applicable");
+  }
+});
+test("4Runner uses its own Trailhunter power exception and part/full-time drivetrain evidence", () => {
+  const v = nextVehicle("4Runner");
+  for (const t of v.trims) {
+    const hybrid = t.configuration.startsWith("Hybrid");
+    assert.match(
+      t.equipment.horsepower.value,
+      t.name === "Trailhunter" ? /323/ : hybrid ? /326/ : /278/,
+    );
+    assert.match(t.equipment.torque.value, hybrid ? /465/ : /317/);
+    assert.doesNotMatch(t.equipment.torque.value, /184/);
+    if (t.configuration.includes("RWD"))
+      assert.match(t.equipment.drivetrain.value, /Rear-Wheel/);
+    else
+      assert.match(
+        t.equipment.drivetrain.value,
+        ["Limited", "Platinum"].includes(t.name) ? /Full-time/ : /Part-time/,
+      );
+    assert.match(t.equipment.economy.value, /projected EPA/);
+    assert.equal(t.equipment.infotainment.status, "standard");
+  }
+  const stage = nextSix.find((e) => e.profile.model === "4Runner").stage;
+  const third = stage.rows.find((r) =>
+    r.label.startsWith("50/50 split, fold-flat third-row"),
+  );
+  assert.ok(third);
+  const field = `toyota-brochure-${hash(third.label).slice(0, 12)}`;
+  assert.equal(
+    v.trims.find((t) => t.id === "sr5-rwd").equipment[field].status,
+    "optional",
+  );
+  assert.equal(
+    v.trims.some((t) => t.equipment[field].status === "standard"),
+    false,
+  );
+});
+test("Tundra and Sequoia keep powertrain outputs separate from electric-motor ratings and previous-year economy", () => {
+  for (const t of nextVehicle("Tundra").trims) {
+    const hybrid = t.configuration.startsWith("Hybrid");
+    assert.match(
+      t.equipment.horsepower.value,
+      hybrid ? /437/ : t.name === "SR" ? /358/ : /389/,
+    );
+    assert.match(
+      t.equipment.torque.value,
+      hybrid ? /583/ : t.name === "SR" ? /406/ : /479/,
+    );
+    assert.doesNotMatch(t.equipment.engine.value, /tailgate badge/);
+    assert.equal(t.equipment.economy.status, "unverified");
+  }
+  for (const t of nextVehicle("Sequoia").trims) {
+    assert.match(t.equipment.horsepower.value, /437/);
+    assert.match(t.equipment.torque.value, /583/);
+    assert.equal(
+      t.equipment.economy.status,
+      t.configuration.includes("RWD") ? "standard" : "unverified",
+    );
+    if (t.configuration.includes("RWD"))
+      assert.ok(["SR5", "Limited"].includes(t.name));
+  }
+  assert.match(
+    nextSix.find((e) => e.profile.model === "Sequoia").stage.disclosures["2"],
+    /2025 Sequoia/,
+  );
+});
+test("Corolla Hatchback and optional packages remain distinct from sedan, hybrid and standard equipment", () => {
+  const v = nextVehicle("Corolla Hatchback");
+  assert.deepEqual(
+    v.trims.map((t) => t.name),
+    ["SE", "FX", "XSE"],
+  );
+  for (const t of v.trims) {
+    assert.equal(t.configuration, "Gasoline · FWD");
+    assert.match(t.equipment.horsepower.value, /169/);
+    assert.match(t.equipment.transmission.value, /CVT/);
+    assert.equal(t.equipment.economy.status, "unverified");
+    assert.equal(t.equipment.wheels.status, "standard");
+  }
+  const limited = nextVehicle("Land Cruiser").trims.find(
+    (t) => t.name === "Land Cruiser",
+  );
+  assert.equal(limited.equipment.roof.status, "optional");
+  assert.equal(limited.equipment.upholstery.status, "unverified");
+  for (const { profile } of nextSix) {
+    const x = nextVehicle(profile.model);
+    assert.ok(
+      x.colors.exteriors.every(
+        (c) => !c.trims.length && c.availability === "unverified",
+      ),
+    );
+  }
+});
+test("all six new Toyota guides have evidence-backed Why Upgrade paths within matching mechanical configurations", async () => {
+  const { modelUpgradePaths } = await import("../presentation.js");
+  const { eligibleOptions } = await import("../lib.js");
+  for (const { profile } of nextSix) {
+    const paths = modelUpgradePaths(
+      catalog,
+      eligibleOptions(catalog).filter(
+        (o) => o.vehicle.id === profile.vehicleId,
+      ),
+    );
+    assert.ok(paths.length, profile.model);
+    for (const path of paths) {
+      assert.equal(path.from.trim.configuration, path.to.trim.configuration);
+      for (const g of path.gains) {
+        assert.equal(g.cell.status, "standard");
+        assert.ok(g.cell.sourceIds.includes(profile.id));
+        assert.ok(g.cell.sourcePages[profile.id]);
+      }
+    }
+  }
+});

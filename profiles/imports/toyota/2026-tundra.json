@@ -1,0 +1,344 @@
+{
+  "id": "toyota-2026-tundra-brochure",
+  "sha256": "cd925bc64b3c9be5bf0964b14ef84cb70eb670fdfabcb94997d37a914190399b",
+  "pageCount": 36,
+  "year": 2026,
+  "titleToken": "tundra",
+  "model": "Tundra",
+  "vehicleId": "2026-toyota-tundra",
+  "category": "Pickup",
+  "columns": [
+    {
+      "name": "SR",
+      "headerTokens": ["SR"]
+    },
+    {
+      "name": "SR5",
+      "headerTokens": ["SR5"]
+    },
+    {
+      "name": "Limited",
+      "headerTokens": ["Limited"]
+    },
+    {
+      "name": "Limited i-FORCE MAX",
+      "headerTokens": ["Limited", "i-", "FORCE", "MAX"]
+    },
+    {
+      "name": "Platinum",
+      "headerTokens": ["Platinum"]
+    },
+    {
+      "name": "1794 Edition",
+      "headerTokens": ["1794", "Edition"]
+    },
+    {
+      "name": "Platinum i-FORCE MAX",
+      "headerTokens": ["Platinum", "i-", "FORCE", "MAX"]
+    },
+    {
+      "name": "1794 Edition i-FORCE MAX",
+      "headerTokens": ["1794", "Edition", "i-", "FORCE", "MAX"]
+    },
+    {
+      "name": "TRD Pro",
+      "headerTokens": ["TRD", "Pro"]
+    },
+    {
+      "name": "Capstone",
+      "headerTokens": ["Capstone"]
+    }
+  ],
+  "matrixPages": [24, 25, 26, 27, 28, 29, 30, 31],
+  "rowCounts": {
+    "24": 31,
+    "25": 27,
+    "26": 28,
+    "27": 31,
+    "28": 20,
+    "29": 21,
+    "30": 32,
+    "31": 3
+  },
+  "columnCenters": [
+    215.17, 253.69, 292.22, 330.75, 369.29, 407.82, 446.35, 484.88, 523.42,
+    561.96
+  ],
+  "bodyTop": 90,
+  "disclosurePages": [32, 33, 34, 35, 36],
+  "colorPage": 23,
+  "configs": [
+    {
+      "id": "sr-rwd",
+      "name": "SR",
+      "column": 0,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "sr-4wd",
+      "name": "SR",
+      "column": 0,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "sr5-rwd",
+      "name": "SR5",
+      "column": 1,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "sr5-4wd",
+      "name": "SR5",
+      "column": 1,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-rwd",
+      "name": "Limited",
+      "column": 2,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-4wd",
+      "name": "Limited",
+      "column": 2,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-max-rwd",
+      "name": "Limited",
+      "column": 3,
+      "configuration": "Hybrid · RWD",
+      "drive": "RWD",
+      "transmission": "10AT",
+      "powertrain": "hybrid",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-max-4wd",
+      "name": "Limited",
+      "column": 3,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "hybrid",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "platinum-rwd",
+      "name": "Platinum",
+      "column": 4,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "platinum-4wd",
+      "name": "Platinum",
+      "column": 4,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "1794-edition-rwd",
+      "name": "1794 Edition",
+      "column": 5,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "1794-edition-4wd",
+      "name": "1794 Edition",
+      "column": 5,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "gasoline",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "platinum-max-4wd",
+      "name": "Platinum",
+      "column": 6,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "hybrid",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "1794-edition-max-4wd",
+      "name": "1794 Edition",
+      "column": 7,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "hybrid",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-pro-max-4wd",
+      "name": "TRD Pro",
+      "column": 8,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "hybrid",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "capstone-max-4wd",
+      "name": "Capstone",
+      "column": 9,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "10AT",
+      "powertrain": "hybrid",
+      "driveRow": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    }
+  ],
+  "facts": [
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 3
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 6
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 7
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 8
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 9
+      }
+    }
+  ],
+  "palette": {
+    "exteriors": {
+      "y": [100, 280],
+      "centers": [63.5, 182.9, 302.3, 421.7, 541.1],
+      "bands": [
+        [130, 165],
+        [238, 270]
+      ]
+    },
+    "interiors": {
+      "y": [350, 750],
+      "centers": [63, 158.7, 254.4, 350.2, 446, 541.7],
+      "bands": [
+        [438, 475],
+        [548, 595]
+      ]
+    }
+  },
+  "reviewedAt": "2026-11-13",
+  "pageCategories": {
+    "24": "Exterior",
+    "25": "Exterior (continued)",
+    "26": "Exterior (continued)",
+    "27": "Interior (continued)",
+    "28": "Interior (continued)",
+    "29": "Safety and Convenience",
+    "30": "Mechanical/Performance (continued)",
+    "31": "Mechanical/Performance (continued)"
+  },
+  "lastDisclosure": 100,
+  "notes": [
+    "Ten trim/powertrain columns yield 16 drive/powertrain configurations across seven trim families. SR/SR5/gas Limited/gas Platinum/gas 1794 and hybrid Limited offer RWD/4WD; hybrid Platinum/1794, TRD Pro and Capstone are 4WD only in the matrix.",
+    "SR uses 358 hp/406 lb.-ft.; other gas columns use 389 hp/479 lb.-ft.; i-FORCE MAX columns use 437 hp/583 lb.-ft. Separate motor 48-hp/184-lb.-ft. values are not combined arithmetically.",
+    "Cab availability chips and bed options require an explicit eligibility matrix before creating cab/bed permutations. p. 12 ties vertical rear glass to CrewMax; unselected cab/bed-dependent windows, bed lengths, mounts and storage are held.",
+    "p. 4 maximum 12000-lb towing and illustrated towing examples do not establish ratings for every configuration. Fuel economy, dimensions, fuel capacity and cab/bed-specific ratings remain unavailable.",
+    "Exterior/interior palettes are manufacturer model-level references; trim-specific color/material eligibility remains unverified.",
+    "No explicit model-year change statement is verified in the brochure; What’s New remains unavailable. Unsupported technical measurements, MSRP and configuration-specific ratings are not invented."
+  ],
+  "holdRules": [
+    {
+      "pattern": "^5.5-ft.|^6.5-ft.|^8.1-ft.|^Power (?:horizontal|vertical) rear window|^Hydraulic cab mounts|^Rear under-seat storage",
+      "reason": "Cab/bed eligibility is not resolved by this trim/drive record. Cab/bed-dependent rows are held until a cab/bed-specific manufacturer applicability matrix is verified."
+    },
+    {
+      "pattern": "Digital Key",
+      "reason": "Digital Key activation requires an active Remote Connect subscription. Retain source evidence; exclude from factory-standard equipment rather than imply paid activation is included."
+    }
+  ],
+  "expectedContentSha256": "a6bf8d590a787c5c849bb085779bf6b01f35f864eef06f1174242f15fc578e42"
+}

@@ -1,0 +1,5390 @@
+{
+  "schemaVersion": 1,
+  "adapter": "toyota-sa-brochure-v1",
+  "profileId": "toyota-2026-tundra-brochure",
+  "source": {
+    "fileName": "2026_tundra_eBrochure.pdf",
+    "sha256": "cd925bc64b3c9be5bf0964b14ef84cb70eb670fdfabcb94997d37a914190399b",
+    "pageCount": 36,
+    "year": 2026,
+    "model": "Tundra"
+  },
+  "pageInventory": [
+    {
+      "page": 1,
+      "characters": 11,
+      "textSha256": "1af7f62e85c8c0cefc56490ce3639095357b80230beb2d3b562ccf5b319cbdbe"
+    },
+    {
+      "page": 2,
+      "characters": 631,
+      "textSha256": "b1aada5f8a23752e5b31d77702077509e5f5572e695bdad3f9f54afa73d1d5f7"
+    },
+    {
+      "page": 3,
+      "characters": 474,
+      "textSha256": "258588c0900eda997c33e7a01efadb4c66871a4eb37e34c0c67c4310f4434851"
+    },
+    {
+      "page": 4,
+      "characters": 1965,
+      "textSha256": "eb80dd36bedba8ebe5533868db540f518c289471229167939d4ed4fa72f32cab"
+    },
+    {
+      "page": 5,
+      "characters": 1425,
+      "textSha256": "8a1d178ec11b19dcc7ebc70cb49a593cd88d92e90834624c4b2df18133370240"
+    },
+    {
+      "page": 6,
+      "characters": 1095,
+      "textSha256": "b5d5e6d3d47f0e479a104b4e0085c4d302c94015fcb0b4d196b2c6a6e833f47e"
+    },
+    {
+      "page": 7,
+      "characters": 2490,
+      "textSha256": "5892fc9f80be31bc0afc9b4b9728b1fe3ee2dfc5e775429e4442d515caf4b98b"
+    },
+    {
+      "page": 8,
+      "characters": 1100,
+      "textSha256": "3a9bbcc67e50a188beb87f82bad5aad03447cd77ec7196c9cda2049edf522000"
+    },
+    {
+      "page": 9,
+      "characters": 1107,
+      "textSha256": "09558ddab7be92b953809ae0686094611947bbc4edb7d112c52aa493b71ce33e"
+    },
+    {
+      "page": 10,
+      "characters": 1690,
+      "textSha256": "52f0d420734b46b7c6d9dc2e3b759b75c940667f1461b338d93ca0d8dee5a2d9"
+    },
+    {
+      "page": 11,
+      "characters": 1569,
+      "textSha256": "df7a8bff9e990ae55bafbaf04ac1b07ebbaa91f3598d9660d5a7e432b72179bf"
+    },
+    {
+      "page": 12,
+      "characters": 1982,
+      "textSha256": "6dbf35b209f8c2852df957c0583278e648c591eabf9b2f7603034a8b482ad802"
+    },
+    {
+      "page": 13,
+      "characters": 1898,
+      "textSha256": "a17ef3f4479e05b143961e51854bebcdfe74f4976adebaae0f75d299f1220c69"
+    },
+    {
+      "page": 14,
+      "characters": 1831,
+      "textSha256": "76bf221c7b9b26439141a10ea9b0c593dd76267810f8c4aa2c99ea3573e6725f"
+    },
+    {
+      "page": 15,
+      "characters": 2151,
+      "textSha256": "16731740ddd91b5b1123c48e8a9a97d0e035b86c196e54de6d1425c8d2635db3"
+    },
+    {
+      "page": 16,
+      "characters": 1349,
+      "textSha256": "4cfe7ace983846c01e1e2d59425b8f3b0bbd5fddb27beca0611d03e9b661814c"
+    },
+    {
+      "page": 17,
+      "characters": 2352,
+      "textSha256": "25062ea9de3619c4a6ababc677a4fba39db059c7185cee213d0fc2249a232f1d"
+    },
+    {
+      "page": 18,
+      "characters": 1203,
+      "textSha256": "dca9b068cabb5d813690a1e566ac00ac04cafcef361eeb16f69494e2a3d6c869"
+    },
+    {
+      "page": 19,
+      "characters": 7640,
+      "textSha256": "8473fef5cb500af81254a7a5d5776064e9b58c9cb0fcdb3e47734e15c1293a39"
+    },
+    {
+      "page": 20,
+      "characters": 5084,
+      "textSha256": "240f7203befb0397810cbbcf1fa3dd956a14be8e2239dc49889164f88e6ea6b9"
+    },
+    {
+      "page": 21,
+      "characters": 8284,
+      "textSha256": "b3f8ebc9c871011069d3bdcf8af975044716ccb990b0f8445d08de0bb2df50c0"
+    },
+    {
+      "page": 22,
+      "characters": 5198,
+      "textSha256": "9dbf4d3fd24c2b9eacb87e61614b572080df751d2b2253adcf0f3447850a4a6c"
+    },
+    {
+      "page": 23,
+      "characters": 956,
+      "textSha256": "5a88d15abc1591d05f3b76d014fd9ae9106648ffdf10e74ff0eb275db3a44bc4"
+    },
+    {
+      "page": 24,
+      "characters": 5753,
+      "textSha256": "25a70472bda4191aecd8b922697e63651fcdf95e4aa8164f435bc561cc50a418"
+    },
+    {
+      "page": 25,
+      "characters": 5745,
+      "textSha256": "6a23d53ce4e54337c0769cdfca5aafbbf1aff55b829b210607e13f7e40762f1c"
+    },
+    {
+      "page": 26,
+      "characters": 5544,
+      "textSha256": "8264df2d8b87d05ee04d84db0be752431ba11c5cea24703de8eeb6578bce01a2"
+    },
+    {
+      "page": 27,
+      "characters": 5940,
+      "textSha256": "616c51e2733872fe3d1e1ae14330c561c0a709044c19318cabfe8030de3e7ae1"
+    },
+    {
+      "page": 28,
+      "characters": 4578,
+      "textSha256": "133d469ab49513c463e983816c2a7cf14c97001f91e5904e4122fa53f01bafcf"
+    },
+    {
+      "page": 29,
+      "characters": 5550,
+      "textSha256": "a5fddeaaf363209520f6a3c89e8567c029009e305b1801b3b1c2f394c93d646d"
+    },
+    {
+      "page": 30,
+      "characters": 6839,
+      "textSha256": "29a611264a47d25de187c690252a2135d345e4be2476f7f70cec89eadb63f079"
+    },
+    {
+      "page": 31,
+      "characters": 1635,
+      "textSha256": "d725b8907badf1c4def489a315a186293601d8c0a99a6da9026840555d1c2a0b"
+    },
+    {
+      "page": 32,
+      "characters": 9217,
+      "textSha256": "78d2f6f5cb549bfb0398738eebf666bf2f79dc61758f38277e6761f6d4ed457f"
+    },
+    {
+      "page": 33,
+      "characters": 9226,
+      "textSha256": "9224dc51eb00483a690360961e9395310be687f02239c88ead2bef707c809e9d"
+    },
+    {
+      "page": 34,
+      "characters": 9191,
+      "textSha256": "78574c1dc4729d04a5801f9342755c3ab14a86219cb975e5a3657cb3fb2a9fe6"
+    },
+    {
+      "page": 35,
+      "characters": 7054,
+      "textSha256": "e2b0a315db14cf9e99bd330d92de6b742ab45e7e2e451b7188e0fcbf29edcb8a"
+    },
+    {
+      "page": 36,
+      "characters": 2674,
+      "textSha256": "ec3453e666563b54498ce20eeda012b2a50f52d7ca30e41ef385ebbd10e268cf"
+    }
+  ],
+  "rows": [
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        91.123,
+        581.25,
+        100.748
+      ],
+      "label": "18-in. silver-painted alloy wheels",
+      "rawLabel": "18-in. silver-painted alloy wheels",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        103.123,
+        581.25,
+        112.748
+      ],
+      "label": "18-in. styled-steel wheels",
+      "rawLabel": "18-in. styled-steel wheels",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        115.873,
+        581.25,
+        135.248
+      ],
+      "label": "18-in. TRD Off-Road black-painted and machined-finish alloy wheels",
+      "rawLabel": "18-in. TRD Off-Road black-painted and machined-finish alloy wheels",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        138.373,
+        581.25,
+        157.748
+      ],
+      "label": "18-in. TRD Pro matte-black forged-aluminum BBS® wheels with TRD center caps",
+      "rawLabel": "18-in. TRD Pro matte-black forged-aluminum BBS® 16 wheels with TRD center caps",
+      "footnotes": [
+        16
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        160.873,
+        581.25,
+        189.998
+      ],
+      "label": "18-in.TRD Off-Road black-painted and machined-finish alloy wheels with T-O-Y-O-T-A tri-color center caps",
+      "rawLabel": "18-in.TRD Off-Road black-painted and machined-finish alloy wheels with T-O-Y-O-T-A tri-color center caps",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        192.373,
+        581.25,
+        201.998
+      ],
+      "label": "20-in. black alloy wheels",
+      "rawLabel": "20-in. black alloy wheels",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        205.123,
+        581.25,
+        214.748
+      ],
+      "label": "20-in. dark-gray-painted alloy wheels",
+      "rawLabel": "20-in. dark-gray-painted alloy wheels",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        217.873,
+        581.25,
+        237.248
+      ],
+      "label": "20-in. gray-painted and machined-finish alloy wheels",
+      "rawLabel": "20-in. gray-painted and machined-finish alloy wheels",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        240.373,
+        581.25,
+        249.998
+      ],
+      "label": "20-in. machined-finish alloy wheels",
+      "rawLabel": "20-in. machined-finish alloy wheels",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        253.123,
+        581.25,
+        272.498
+      ],
+      "label": "20-in. TRD Off-Road matte-black alloy wheels with TRD center caps",
+      "rawLabel": "20-in. TRD Off-Road matte-black alloy wheels with TRD center caps",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        274.873,
+        581.25,
+        294.248
+      ],
+      "label": "22-in. dark chrome and machined-finish alloy wheels",
+      "rawLabel": "22-in. dark chrome and machined-finish alloy wheels",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        297.373,
+        581.25,
+        316.748
+      ],
+      "label": "TRD aluminum front skid plate with red-painted front coil springs and stabilizer bar",
+      "rawLabel": "TRD aluminum front skid plate with red-painted front coil springs and stabilizer bar",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        319.873,
+        581.25,
+        339.248
+      ],
+      "label": "Front door handles with touch-sensor lock/unlock feature",
+      "rawLabel": "Front door handles with touch-sensor lock/unlock feature",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        342.373,
+        581.25,
+        351.998
+      ],
+      "label": "LED fog lights",
+      "rawLabel": "LED fog lights 81",
+      "footnotes": [
+        81
+      ],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        355.123,
+        581.25,
+        384.248
+      ],
+      "label": "LED headlights with Daytime Running Lights (DRL), auto on/off feature, and manual leveling adjustment",
+      "rawLabel": "LED headlights with Daytime Running Lights (DRL), auto on/off feature, and manual leveling adjustment",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        386.623,
+        581.25,
+        396.248
+      ],
+      "label": "LED taillights",
+      "rawLabel": "LED taillights",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        399.373,
+        581.25,
+        428.498
+      ],
+      "label": "Premium LED headlights with black trim, LED Daytime Running Lights (DRL), sequential turn signals, and automatic leveling adjustment",
+      "rawLabel": "Premium LED headlights with black trim, LED Daytime Running Lights (DRL), sequential turn signals, and automatic leveling adjustment",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        431.623,
+        581.25,
+        470.498
+      ],
+      "label": "Premium LED headlights with chrome trim, LED Daytime Running Lights (DRL), sequential turn signals, auto on/off feature, and automatic leveling adjustment",
+      "rawLabel": "Premium LED headlights with chrome trim, LED Daytime Running Lights (DRL), sequential turn signals, auto on/off feature, and automatic leveling adjustment",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        473.623,
+        581.25,
+        492.998
+      ],
+      "label": "Premium LED taillights with sequential turn signals",
+      "rawLabel": "Premium LED taillights with sequential turn signals",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        496.123,
+        581.25,
+        505.748
+      ],
+      "label": "TRD Pro LED light bar",
+      "rawLabel": "TRD Pro LED light bar",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        508.123,
+        581.25,
+        517.748
+      ],
+      "label": "TRD Pro LED marker lights",
+      "rawLabel": "TRD Pro LED marker lights",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        520.873,
+        581.25,
+        549.998
+      ],
+      "label": "Black \"TOYOTA\" heritage grille with integrated light bar, amber marker lights, and color-keyed surround",
+      "rawLabel": "Black \"TOYOTA\" heritage grille with integrated light bar, amber marker lights, and color-keyed surround",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        553.123,
+        581.25,
+        562.748
+      ],
+      "label": "Black horizontal-bar grille with black surround",
+      "rawLabel": "Black horizontal-bar grille with black surround",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        565.873,
+        581.25,
+        585.248
+      ],
+      "label": "Black horizontal-bar grille with color-keyed surround",
+      "rawLabel": "Black horizontal-bar grille with color-keyed surround",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        588.373,
+        581.25,
+        607.748
+      ],
+      "label": "Black horizontal-bar grille with color-keyed surround and tri-color decal (TRD Rally Package)",
+      "rawLabel": "Black horizontal-bar grille with color-keyed surround and tri-color decal (TRD Rally Package)",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        610.123,
+        581.25,
+        629.498
+      ],
+      "label": "Black TRD honeycomb-style grille with chrome surround (TRD Off-Road Package)",
+      "rawLabel": "Black TRD honeycomb-style grille with chrome surround (TRD Off-Road Package)",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "A",
+        "",
+        "A",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        632.623,
+        581.25,
+        651.998
+      ],
+      "label": "Black TRD honeycomb-style grille with color- keyed surround (TRD Off-Road Package)",
+      "rawLabel": "Black TRD honeycomb-style grille with color- keyed surround (TRD Off-Road Package)",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "A",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        655.123,
+        581.25,
+        674.498
+      ],
+      "label": "Chrome-accented mesh grille with chrome surround",
+      "rawLabel": "Chrome-accented mesh grille with chrome surround",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        677.623,
+        581.25,
+        696.998
+      ],
+      "label": "Dark-chrome-accented mesh grille with color- keyed surround",
+      "rawLabel": "Dark-chrome-accented mesh grille with color- keyed surround",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        700.123,
+        581.25,
+        719.498
+      ],
+      "label": "Dark-chrome-accented mesh grille with dark chrome surround",
+      "rawLabel": "Dark-chrome-accented mesh grille with dark chrome surround",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        34.5,
+        721.873,
+        581.25,
+        741.248
+      ],
+      "label": "Gray-painted horizontal-bar grille with color- keyed grille surround",
+      "rawLabel": "Gray-painted horizontal-bar grille with color- keyed grille surround",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "A",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        91.123,
+        581.25,
+        110.498
+      ],
+      "label": "Gray-painted horizontal-bar grille with satin chrome surround",
+      "rawLabel": "Gray-painted horizontal-bar grille with satin chrome surround",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        112.873,
+        581.25,
+        132.248
+      ],
+      "label": "Gray-painted TRD honeycomb-style grille with chrome surround (TRD Off-Road Package)",
+      "rawLabel": "Gray-painted TRD honeycomb-style grille with chrome surround (TRD Off-Road Package)",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "A",
+        "",
+        "A",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        135.373,
+        581.25,
+        154.748
+      ],
+      "label": "Gray-painted TRD honeycomb-style grille with dark chrome surround (TRD Off-Road Package)",
+      "rawLabel": "Gray-painted TRD honeycomb-style grille with dark chrome surround (TRD Off-Road Package)",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "A",
+        "",
+        "A",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        157.873,
+        581.25,
+        177.248
+      ],
+      "label": "Rain-sensing washer-linked variable intermittent windshield wipers",
+      "rawLabel": "Rain-sensing washer-linked variable intermittent windshield wipers",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        180.373,
+        581.25,
+        199.748
+      ],
+      "label": "Washer-linked variable intermittent windshield wipers",
+      "rawLabel": "Washer-linked variable intermittent windshield wipers",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        202.123,
+        581.25,
+        240.998
+      ],
+      "label": "Black heated power auto anti-glare outside tow mirrors with turn signal and blind spot warning indicators, and power-folding and power- extend features",
+      "rawLabel": "Black heated power auto anti-glare outside tow mirrors with turn signal and blind spot warning indicators, 75 and power-folding and power- extend features",
+      "footnotes": [
+        75
+      ],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        244.123,
+        581.25,
+        253.748
+      ],
+      "label": "Heated power outside mirrors",
+      "rawLabel": "Heated power outside mirrors",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        256.873,
+        581.25,
+        295.748
+      ],
+      "label": "Heated power outside mirrors with turn signal and blind spot warning indicators, and power- folding and reverse tilt-down features; auto anti- glare driver's-side mirror only",
+      "rawLabel": "Heated power outside mirrors with turn signal and blind spot warning indicators, 75 and power- folding and reverse tilt-down features; auto anti- glare driver's-side mirror only",
+      "footnotes": [
+        75
+      ],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        298.873,
+        581.25,
+        308.498
+      ],
+      "label": "5.5-ft. Short Bed",
+      "rawLabel": "5.5-ft. Short Bed",
+      "footnotes": [],
+      "symbols": [
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        311.623,
+        581.25,
+        321.248
+      ],
+      "label": "6.5-ft. Standard Bed",
+      "rawLabel": "6.5-ft. Standard Bed",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        323.623,
+        581.25,
+        333.248
+      ],
+      "label": "8.1-ft. Long Bed",
+      "rawLabel": "8.1-ft. Long Bed",
+      "footnotes": [],
+      "symbols": [
+        "A",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        336.373,
+        581.25,
+        355.748
+      ],
+      "label": "120V/400W bed-mounted AC power outlet and LED bed lights",
+      "rawLabel": "120V/400W 82 bed-mounted AC power outlet and LED bed lights",
+      "footnotes": [
+        82
+      ],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        358.873,
+        581.25,
+        378.248
+      ],
+      "label": "\"1794 Edition\" stamped easy lower and lift tailgate with smart switch release",
+      "rawLabel": "\"1794 Edition\" stamped easy lower and lift tailgate with smart switch release 34",
+      "footnotes": [
+        34
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        381.373,
+        581.25,
+        400.748
+      ],
+      "label": "\"TRD PRO\" stamped easy lower and lift tailgate with smart switch release",
+      "rawLabel": "\"TRD PRO\" stamped easy lower and lift tailgate with smart switch release 34",
+      "footnotes": [
+        34
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        403.873,
+        581.25,
+        413.498
+      ],
+      "label": "\"TUNDRA\" stamped easy lower and lift tailgate",
+      "rawLabel": "\"TUNDRA\" stamped easy lower and lift tailgate 34",
+      "footnotes": [
+        34
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        415.873,
+        581.25,
+        435.248
+      ],
+      "label": "Aluminum-reinforced composite bed construction",
+      "rawLabel": "Aluminum-reinforced composite bed construction",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        438.373,
+        581.25,
+        447.998
+      ],
+      "label": "Deck rail header",
+      "rawLabel": "Deck rail header",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        451.123,
+        581.25,
+        470.498
+      ],
+      "label": "Power tailgate-release switch located in taillight, key fob and dash with knee-lift assit",
+      "rawLabel": "Power tailgate-release switch located in taillight, key fob and dash with knee-lift assit 34",
+      "footnotes": [
+        34
+      ],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        473.623,
+        581.25,
+        492.998
+      ],
+      "label": "Power tailgate-release switch on key fob and dash with knee-lift assit",
+      "rawLabel": "Power tailgate-release switch on key fob and dash with knee-lift assit 34",
+      "footnotes": [
+        34
+      ],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        496.123,
+        581.25,
+        505.748
+      ],
+      "label": "\"TRD OFF-ROAD\" bedside decals",
+      "rawLabel": "\"TRD OFF-ROAD\" bedside decals",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "A",
+        "",
+        "A",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        508.123,
+        581.25,
+        527.498
+      ],
+      "label": "Tri-color decals on front doors and rear tailgate spoiler",
+      "rawLabel": "Tri-color decals on front doors and rear tailgate spoiler",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        530.623,
+        581.25,
+        549.998
+      ],
+      "label": "LED center high-mount stop light (CHMSL) with integrated cargo lights",
+      "rawLabel": "LED center high-mount stop light (CHMSL) with integrated cargo lights",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        553.123,
+        581.25,
+        562.748
+      ],
+      "label": "LED Trailer Reverse Assist (TRA) light",
+      "rawLabel": "LED Trailer Reverse Assist (TRA) light",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        565.873,
+        581.25,
+        604.748
+      ],
+      "label": "\"TRD PRO\" hood badge; black door handles; black window molding and mirror caps; black technical-camo-grained tailgate spoiler and overfenders with marker lights",
+      "rawLabel": "\"TRD PRO\" hood badge; black door handles; black window molding and mirror caps; black technical-camo-grained tailgate spoiler and overfenders with marker lights",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        607.873,
+        581.25,
+        627.248
+      ],
+      "label": "Black door handles, window molding, mirror caps and tailgate spoiler",
+      "rawLabel": "Black door handles, window molding, mirror caps and tailgate spoiler",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        629.623,
+        581.25,
+        668.498
+      ],
+      "label": "Chrome \"1794 EDITION\" door garnish, side molding, door handles, window molding and mirror caps; color-keyed tailgate spoiler; gray- painted overfenders",
+      "rawLabel": "Chrome \"1794 EDITION\" door garnish, side molding, door handles, window molding and mirror caps; color-keyed tailgate spoiler; gray- painted overfenders",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 25,
+      "bbox": [
+        34.5,
+        671.623,
+        581.25,
+        710.498
+      ],
+      "label": "Chrome \"TUNDRA\" and \"LIMITED\" door badges, door handles and window molding; color-keyed mirror caps and tailgate spoiler; gray-painted overfenders",
+      "rawLabel": "Chrome \"TUNDRA\" and \"LIMITED\" door badges, door handles and window molding; color-keyed mirror caps and tailgate spoiler; gray-painted overfenders",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        91.123,
+        581.25,
+        120.248
+      ],
+      "label": "Chrome \"TUNDRA\" and \"SR5\" door badges; black door handles, window molding, mirror caps, tailgate spoiler and overfenders",
+      "rawLabel": "Chrome \"TUNDRA\" and \"SR5\" door badges; black door handles, window molding, mirror caps, tailgate spoiler and overfenders",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        122.623,
+        581.25,
+        141.998
+      ],
+      "label": "Dark-chrome-accented side door moldings with \"PLATINUM\" badge",
+      "rawLabel": "Dark-chrome-accented side door moldings with \"PLATINUM\" badge",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        145.123,
+        581.25,
+        174.248
+      ],
+      "label": "Gloss-black window molding, tailgate spoiler and overfenders; color-keyed door handles and mirror caps",
+      "rawLabel": "Gloss-black window molding, tailgate spoiler and overfenders; color-keyed door handles and mirror caps",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        "",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        177.373,
+        581.25,
+        196.748
+      ],
+      "label": "Gloss-black-painted A-pillar, except on Midnight Black Metallic and Blueprint",
+      "rawLabel": "Gloss-black-painted A-pillar, except on Midnight Black Metallic and Blueprint",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        199.873,
+        581.25,
+        209.498
+      ],
+      "label": "i-FORCE MAX tailgate badge",
+      "rawLabel": "i-FORCE MAX tailgate badge",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        211.873,
+        581.25,
+        221.498
+      ],
+      "label": "\"4x4\" tailgate badge",
+      "rawLabel": "\"4x4\" tailgate badge",
+      "footnotes": [],
+      "symbols": [
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        224.623,
+        581.25,
+        234.248
+      ],
+      "label": "\"i-FORCE MAX\" hood badge",
+      "rawLabel": "\"i-FORCE MAX\" hood badge",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        237.373,
+        581.25,
+        266.498
+      ],
+      "label": "Chrome \"CAPSTONE\" door badge and garnish, door handles, window molding and mirror caps; color-keyed tailgate spoiler and overfenders",
+      "rawLabel": "Chrome \"CAPSTONE\" door badge and garnish, door handles, window molding and mirror caps; color-keyed tailgate spoiler and overfenders",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        269.623,
+        581.25,
+        279.248
+      ],
+      "label": "Chrome single exhaust tip",
+      "rawLabel": "Chrome single exhaust tip",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        282.373,
+        581.25,
+        291.998
+      ],
+      "label": "TRD Pro black dual exhaust tips",
+      "rawLabel": "TRD Pro black dual exhaust tips",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        294.373,
+        581.25,
+        303.998
+      ],
+      "label": "Power running boards and BedStep®",
+      "rawLabel": "Power running boards and BedStep® 78",
+      "footnotes": [
+        78
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "A",
+        "A",
+        "A",
+        "A",
+        "",
+        "S"
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        307.123,
+        581.25,
+        316.748
+      ],
+      "label": "Front and rear mudguards",
+      "rawLabel": "Front and rear mudguards",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "A",
+        "",
+        "A",
+        "S",
+        ""
+      ],
+      "category": "Exterior (continued)"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        360.373,
+        581.25,
+        369.998
+      ],
+      "label": "Day/night rearview mirror",
+      "rawLabel": "Day/night rearview mirror",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        373.123,
+        581.25,
+        402.248
+      ],
+      "label": "Digital display auto-dimming rearview mirror with compass and HomeLink® universal transceiver",
+      "rawLabel": "Digital display auto-dimming rearview mirror with compass and HomeLink® 83 universal transceiver",
+      "footnotes": [
+        83
+      ],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        405.373,
+        581.25,
+        424.748
+      ],
+      "label": "Thin-bezel auto-dimming rearview mirror with HomeLink® universal transceiver",
+      "rawLabel": "Thin-bezel auto-dimming rearview mirror with HomeLink® 83 universal transceiver",
+      "footnotes": [
+        83
+      ],
+      "symbols": [
+        "",
+        "A",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        427.123,
+        581.25,
+        456.248
+      ],
+      "label": "Smart Key System with Push Button Start; remote illuminated entry, remote keyless entry with lock, unlock, panic and tailgate release functions",
+      "rawLabel": "Smart Key System with Push Button Start; remote illuminated entry, remote keyless entry with lock, unlock, panic and tailgate release functions",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        459.373,
+        581.25,
+        488.498
+      ],
+      "label": "Smart Key System with Push Button Start; remote keyless entry with lock, unlock, panic, tailgate release and remote illuminated entry",
+      "rawLabel": "Smart Key System with Push Button Start; remote keyless entry with lock, unlock, panic, tailgate release and remote illuminated entry",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        491.623,
+        581.25,
+        510.998
+      ],
+      "label": "Power tilt/slide panoramic roof with power sunshade",
+      "rawLabel": "Power tilt/slide panoramic roof with power sunshade",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        514.123,
+        581.25,
+        523.748
+      ],
+      "label": "Acoustic laminated windshield",
+      "rawLabel": "Acoustic laminated windshield",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        ""
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        526.873,
+        581.25,
+        536.498
+      ],
+      "label": "Acoustic laminated windshield and side windows",
+      "rawLabel": "Acoustic laminated windshield and side windows",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        538.873,
+        581.25,
+        558.248
+      ],
+      "label": "Power horizontal rear window with defogger and privacy glass",
+      "rawLabel": "Power horizontal rear window with defogger and privacy glass",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        561.373,
+        581.25,
+        580.748
+      ],
+      "label": "Power vertical rear window with defogger and privacy glass",
+      "rawLabel": "Power vertical rear window with defogger and privacy glass",
+      "footnotes": [],
+      "symbols": [
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        583.873,
+        581.25,
+        603.248
+      ],
+      "label": "Power windows with one-touch auto up/down and jam protection",
+      "rawLabel": "Power windows with one-touch auto up/down and jam protection",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        606.373,
+        581.25,
+        615.998
+      ],
+      "label": "Rear-door sunshades",
+      "rawLabel": "Rear-door sunshades",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        619.123,
+        581.25,
+        628.748
+      ],
+      "label": "Front and rear LED maplights",
+      "rawLabel": "Front and rear LED maplights",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        631.123,
+        581.25,
+        650.498
+      ],
+      "label": "Illuminated center console storage bin and glove box",
+      "rawLabel": "Illuminated center console storage bin and glove box",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        653.623,
+        581.25,
+        682.748
+      ],
+      "label": "Instrument panel and door ambient lighting, illuminated driver and passenger footwells, and front- and rear-door LED pocket lights",
+      "rawLabel": "Instrument panel and door ambient lighting, illuminated driver and passenger footwells, and front- and rear-door LED pocket lights",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 26,
+      "bbox": [
+        34.5,
+        685.873,
+        581.25,
+        695.498
+      ],
+      "label": "\"PLATINUM\" instrument panel badge",
+      "rawLabel": "\"PLATINUM\" instrument panel badge",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        91.123,
+        581.25,
+        120.248
+      ],
+      "label": "American walnut wood-grain interior trim with laser-etched \"1794 EDITION\" instrument panel badge",
+      "rawLabel": "American walnut wood-grain interior trim with laser-etched \"1794 EDITION\" instrument panel badge",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        122.623,
+        581.25,
+        151.748
+      ],
+      "label": "Dark-gray American walnut wood-grain interior trim with backlit \"CAPSTONE\" instrument panel badge and metal speaker grilles",
+      "rawLabel": "Dark-gray American walnut wood-grain interior trim with backlit \"CAPSTONE\" instrument panel badge and metal speaker grilles",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        154.873,
+        581.25,
+        164.498
+      ],
+      "label": "Leather-wrapped shift knob",
+      "rawLabel": "Leather-wrapped shift knob",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        167.623,
+        581.25,
+        177.248
+      ],
+      "label": "Red TRD engine start button",
+      "rawLabel": "Red TRD engine start button",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        180.373,
+        581.25,
+        199.748
+      ],
+      "label": "Soft-touch instrument panel, center console and door surfaces",
+      "rawLabel": "Soft-touch instrument panel, center console and door surfaces",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        202.123,
+        581.25,
+        211.748
+      ],
+      "label": "TRD leather-wrapped shift knob",
+      "rawLabel": "TRD leather-wrapped shift knob",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "A",
+        "",
+        "A",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        214.873,
+        581.25,
+        234.248
+      ],
+      "label": "TRD Pro \"TOYOTA\" heritage instrument panel badge",
+      "rawLabel": "TRD Pro \"TOYOTA\" heritage instrument panel badge",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        237.373,
+        581.25,
+        246.998
+      ],
+      "label": "TRD red-striped leather-wrapped shift knob",
+      "rawLabel": "TRD red-striped leather-wrapped shift knob",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        250.123,
+        581.25,
+        259.748
+      ],
+      "label": "Backup camera with projected path",
+      "rawLabel": "Backup camera 73 with projected path",
+      "footnotes": [
+        73
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        262.873,
+        581.25,
+        272.498
+      ],
+      "label": "Drive Mode Select (DMS) switch and dial",
+      "rawLabel": "Drive Mode Select (DMS) switch and dial",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        274.873,
+        581.25,
+        284.498
+      ],
+      "label": "Multi-Terrain Monitor (MTM) with cameras",
+      "rawLabel": "Multi-Terrain Monitor (MTM) with cameras",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        287.623,
+        581.25,
+        297.248
+      ],
+      "label": "Panoramic View Monitor (PVM) with cameras",
+      "rawLabel": "Panoramic View Monitor (PVM) 22 with cameras",
+      "footnotes": [
+        22
+      ],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        300.373,
+        581.25,
+        309.998
+      ],
+      "label": "Qi-compatible wireless smartphone charging",
+      "rawLabel": "Qi-compatible wireless smartphone charging 84",
+      "footnotes": [
+        84
+      ],
+      "symbols": [
+        "",
+        "",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        313.123,
+        581.25,
+        322.748
+      ],
+      "label": "120V/400W rear-seat AC power outlet",
+      "rawLabel": "120V/400W 82 rear-seat AC power outlet",
+      "footnotes": [
+        82
+      ],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        325.873,
+        581.25,
+        335.498
+      ],
+      "label": "Electronic locking fuel door",
+      "rawLabel": "Electronic locking fuel door",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        337.873,
+        581.25,
+        366.998
+      ],
+      "label": "Fixed center console with gated shift lever, driving controls, four cup holders, and center storage bin",
+      "rawLabel": "Fixed center console with gated shift lever, driving controls, four cup holders, and center storage bin",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        370.123,
+        581.25,
+        379.748
+      ],
+      "label": "Front 12V auxiliary power outlet",
+      "rawLabel": "Front 12V 85 auxiliary power outlet",
+      "footnotes": [
+        85
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        382.873,
+        581.25,
+        392.498
+      ],
+      "label": "Front and rear assist grips",
+      "rawLabel": "Front and rear assist grips",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        395.623,
+        581.25,
+        414.998
+      ],
+      "label": "Overhead console with rear window control, sunglasses storage and Safety Connect®",
+      "rawLabel": "Overhead console with rear window control, sunglasses storage and Safety Connect® 63",
+      "footnotes": [
+        63
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        418.123,
+        581.25,
+        427.748
+      ],
+      "label": "Rear-seat air vents",
+      "rawLabel": "Rear-seat air vents",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        430.123,
+        581.25,
+        459.248
+      ],
+      "label": "10-in. color Head-Up Display (HUD) with speedometer, navigation and Hybrid System Indicator",
+      "rawLabel": "10-in. color Head-Up Display (HUD) with speedometer, navigation 86 and Hybrid System Indicator",
+      "footnotes": [
+        86
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "A",
+        "A",
+        "A",
+        "A",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        462.373,
+        581.25,
+        491.498
+      ],
+      "label": "12.3-in. digital meter with selectable gauge display screens and fuel economy, Driver Assist, vehicle/trip information, and warning messages",
+      "rawLabel": "12.3-in. digital meter with selectable gauge display screens and fuel economy, Driver Assist, vehicle/trip information, and warning messages",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        494.623,
+        581.25,
+        533.498
+      ],
+      "label": "Combination meter with analog gauges and 4.2- in. color digital gauge cluster with fuel economy, Driver Assist, vehicle/trip information, and warning messages",
+      "rawLabel": "Combination meter with analog gauges and 4.2- in. color digital gauge cluster with fuel economy, Driver Assist, vehicle/trip information, and warning messages",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        536.623,
+        581.25,
+        546.248
+      ],
+      "label": "60/40 split, folding rear seat",
+      "rawLabel": "60/40 split, folding rear seat",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        549.373,
+        581.25,
+        568.748
+      ],
+      "label": "60/40 split, folding rear seat with center armrest and cup holders",
+      "rawLabel": "60/40 split, folding rear seat with center armrest and cup holders",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        571.123,
+        581.25,
+        580.748
+      ],
+      "label": "Driver's-seat memory function",
+      "rawLabel": "Driver's-seat memory function",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        583.873,
+        581.25,
+        603.248
+      ],
+      "label": "Fabric-trimmed seats; 4-way manual adjustable driver and front passenger seats",
+      "rawLabel": "Fabric-trimmed seats; 4-way manual adjustable driver and front passenger seats",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        606.373,
+        581.25,
+        645.248
+      ],
+      "label": "Fabric-trimmed seats; 8-way power-adjustable driver's seat with power-adjustable lumbar support; 4-way manual adjustable passenger seats",
+      "rawLabel": "Fabric-trimmed seats; 8-way power-adjustable driver's seat with power-adjustable lumbar support; 4-way manual adjustable passenger seats",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        648.373,
+        581.25,
+        657.998
+      ],
+      "label": "Heated and ventilated front and rear seats",
+      "rawLabel": "Heated and ventilated front and rear seats",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        661.123,
+        581.25,
+        670.748
+      ],
+      "label": "Heated and ventilated front seats",
+      "rawLabel": "Heated and ventilated front seats",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 27,
+      "bbox": [
+        34.5,
+        673.123,
+        581.25,
+        682.748
+      ],
+      "label": "Heated front seats",
+      "rawLabel": "Heated front seats",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        91.123,
+        581.25,
+        129.998
+      ],
+      "label": "Leather-trimmed seats with contrast stitching; 8- way power-adjustable driver and front passenger seats with power-adjustable lumbar support",
+      "rawLabel": "Leather-trimmed seats with contrast stitching; 8- way power-adjustable driver and front passenger seats with power-adjustable lumbar support",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        132.373,
+        581.25,
+        171.248
+      ],
+      "label": "Leather-trimmed seats with premium contrast stitching; 10-way power-adjustable driver and front passenger seats with 4-way power- adjustable lumbar support",
+      "rawLabel": "Leather-trimmed seats with premium contrast stitching; 10-way power-adjustable driver and front passenger seats with 4-way power- adjustable lumbar support",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        174.373,
+        581.25,
+        183.998
+      ],
+      "label": "Multi-function massaging front seats",
+      "rawLabel": "Multi-function massaging front seats",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        187.123,
+        581.25,
+        206.498
+      ],
+      "label": "Rear under-seat storage compartment with removable and adjustable partitions",
+      "rawLabel": "Rear under-seat storage compartment with removable and adjustable partitions",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        209.623,
+        581.25,
+        248.498
+      ],
+      "label": "Shale premium textured leather-trimmed seats with contrast stitching; 10-way power-adjustable driver and front passenger seats with 4-way power-adjustable lumbar support",
+      "rawLabel": "Shale premium textured leather-trimmed seats with contrast stitching; 10-way power-adjustable driver and front passenger seats with 4-way power-adjustable lumbar support",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        250.873,
+        581.25,
+        299.498
+      ],
+      "label": "TRD Pro SofTex®-trimmed seats with contrast stitching and technical-camo-pattern inserts; 8- way power-adjustable driver and front passenger seats with power-adjustable lumbar support",
+      "rawLabel": "TRD Pro SofTex®-trimmed seats with contrast stitching and technical-camo-pattern inserts; 8- way power-adjustable driver and front passenger seats with power-adjustable lumbar support",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        302.623,
+        581.25,
+        331.748
+      ],
+      "label": "Dual zone automatic climate control with air filtration and individual temperature settings for driver and front passenger with S-Flow",
+      "rawLabel": "Dual zone automatic climate control with air filtration and individual temperature settings for driver and front passenger with S-Flow",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        334.873,
+        581.25,
+        354.248
+      ],
+      "label": "Single-zone automatic climate control with air filtration with S-Flow",
+      "rawLabel": "Single-zone automatic climate control with air filtration with S-Flow",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        357.373,
+        581.25,
+        366.998
+      ],
+      "label": "1794 Edition all-weather floor mats",
+      "rawLabel": "1794 Edition all-weather floor mats 87",
+      "footnotes": [
+        87
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "S",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        370.123,
+        581.25,
+        379.748
+      ],
+      "label": "Aluminum sport pedals",
+      "rawLabel": "Aluminum sport pedals",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "A",
+        "",
+        "A",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        382.123,
+        581.25,
+        391.748
+      ],
+      "label": "Capstone floor mats",
+      "rawLabel": "Capstone floor mats 87",
+      "footnotes": [
+        87
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        394.873,
+        581.25,
+        404.498
+      ],
+      "label": "TRD Pro all-weather floor mats",
+      "rawLabel": "TRD Pro all-weather floor mats 87",
+      "footnotes": [
+        87
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        407.623,
+        581.25,
+        417.248
+      ],
+      "label": "Heated steering wheel",
+      "rawLabel": "Heated steering wheel",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        420.373,
+        581.25,
+        449.498
+      ],
+      "label": "Leather-wrapped manual tilt/telescopic steering wheel with phone, audio, display/infotainment, and Driver Assist controls",
+      "rawLabel": "Leather-wrapped manual tilt/telescopic steering wheel with phone, audio, display/infotainment, and Driver Assist controls",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        452.623,
+        581.25,
+        481.748
+      ],
+      "label": "Leather-wrapped power tilt/telescopic steering wheel with phone, audio, display/infotainment, and Driver Assist controls",
+      "rawLabel": "Leather-wrapped power tilt/telescopic steering wheel with phone, audio, display/infotainment, and Driver Assist controls",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        484.123,
+        581.25,
+        513.248
+      ],
+      "label": "Polyurethane manual tilt/telescopic steering wheel with phone, audio, display/infotainment, and Driver Assist controls",
+      "rawLabel": "Polyurethane manual tilt/telescopic steering wheel with phone, audio, display/infotainment, and Driver Assist controls",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        516.373,
+        581.25,
+        555.248
+      ],
+      "label": "TRD leather-wrapped manual tilt/telescopic steering wheel with TRD badge, red center stripe, and phone, audio, display/infotainment, and Driver Assist controls",
+      "rawLabel": "TRD leather-wrapped manual tilt/telescopic steering wheel with TRD badge, red center stripe, and phone, audio, display/infotainment, and Driver Assist controls",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Interior (continued)"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        598.873,
+        581.25,
+        608.498
+      ],
+      "label": "6-speaker audio system",
+      "rawLabel": "6-speaker audio system",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Audio Multimedia"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        611.623,
+        581.25,
+        621.248
+      ],
+      "label": "9-speaker audio system",
+      "rawLabel": "9-speaker audio system",
+      "footnotes": [],
+      "symbols": [
+        "A",
+        "A",
+        "A",
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Audio Multimedia"
+    },
+    {
+      "page": 28,
+      "bbox": [
+        34.5,
+        624.373,
+        581.25,
+        643.748
+      ],
+      "label": "12-speaker JBL® Premium Audio including subwoofer and amplifier",
+      "rawLabel": "12-speaker JBL® 38 Premium Audio including subwoofer and amplifier",
+      "footnotes": [
+        38
+      ],
+      "symbols": [
+        "",
+        "",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Audio Multimedia"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        91.123,
+        581.25,
+        159.248
+      ],
+      "label": "Toyota Safety Sense™ 2.5 (TSS 2.5) Pre- Collision System with Pedestrian Detection (PCS w/PD), Full-Speed Range Dynamic Radar Cruise Control (DRCC), Lane Departure Alert with Steering Assist (LDA w/SA), Lane Tracing Assist (LTA), Automatic High Beams (AHB), Road Sign Assist (RSA)",
+      "rawLabel": "Toyota Safety Sense™ 2.5 (TSS 2.5) 48 Pre- Collision System with Pedestrian Detection (PCS w/PD), 49 Full-Speed Range Dynamic Radar Cruise Control (DRCC), 50 Lane Departure Alert with Steering Assist (LDA w/SA), 51 Lane Tracing Assist (LTA), 52 Automatic High Beams (AHB), 55 Road Sign Assist (RSA) 54",
+      "footnotes": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        54,
+        55
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        161.623,
+        581.25,
+        200.498
+      ],
+      "label": "3-point seatbelts for all seating positions; driver- side Emergency Locking Retractor (ELR) and Automatic/Emergency Locking Retractor (ALR/ELR) on all passenger seatbelts",
+      "rawLabel": "3-point seatbelts for all seating positions; driver- side Emergency Locking Retractor (ELR) and Automatic/Emergency Locking Retractor (ALR/ELR) on all passenger seatbelts",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        203.623,
+        581.25,
+        222.998
+      ],
+      "label": "Blind Spot Monitor (BSM) with Rear Cross- Traffic Alert (RCTA) and Trailer Merge Warning",
+      "rawLabel": "Blind Spot Monitor (BSM) 75 with Rear Cross- Traffic Alert (RCTA) 76 and Trailer Merge Warning",
+      "footnotes": [
+        75,
+        76
+      ],
+      "symbols": [
+        "",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        226.123,
+        581.25,
+        245.498
+      ],
+      "label": "Child-protector rear door locks and power window lockout control",
+      "rawLabel": "Child-protector rear door locks and power window lockout control",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        248.623,
+        581.25,
+        258.248
+      ],
+      "label": "Drive-Start Control (DSC)",
+      "rawLabel": "Drive-Start Control (DSC)",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        260.623,
+        581.25,
+        279.998
+      ],
+      "label": "Eight total airbags, including driver and passenger side, knee and curtain airbags",
+      "rawLabel": "Eight total airbags, including driver and passenger side, knee and curtain airbags 74",
+      "footnotes": [
+        74
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        283.123,
+        581.25,
+        302.498
+      ],
+      "label": "Front and Rear Parking Assist with Automatic Braking",
+      "rawLabel": "Front and Rear Parking Assist with Automatic Braking 88",
+      "footnotes": [
+        88
+      ],
+      "symbols": [
+        "",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        305.623,
+        581.25,
+        315.248
+      ],
+      "label": "Hill Start Assist Control (HAC)",
+      "rawLabel": "Hill Start Assist Control (HAC) 89",
+      "footnotes": [
+        89
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        318.373,
+        581.25,
+        347.498
+      ],
+      "label": "LATCH (Lower Anchors and Tethers for CHildren) includes lower anchors on all outboard second- row rear seats",
+      "rawLabel": "LATCH (Lower Anchors and Tethers for CHildren) includes lower anchors on all outboard second- row rear seats",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        350.623,
+        581.25,
+        399.248
+      ],
+      "label": "Star Safety System™ — includes Vehicle Stability Control (VSC), Traction Control (TRAC), Anti- lock Brake System (ABS) with Electronic Brake- force Distribution (EBD), Brake Assist (BA) and Smart Stop Technology® (SST)",
+      "rawLabel": "Star Safety System™ — includes Vehicle Stability Control (VSC), 90 Traction Control (TRAC), Anti- lock Brake System (ABS) with Electronic Brake- force Distribution (EBD), Brake Assist (BA) 91 and Smart Stop Technology® (SST) 92",
+      "footnotes": [
+        90,
+        91,
+        92
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        401.623,
+        581.25,
+        411.248
+      ],
+      "label": "Tire Pressure Monitor System (TPMS)",
+      "rawLabel": "Tire Pressure Monitor System (TPMS) 93",
+      "footnotes": [
+        93
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        414.373,
+        581.25,
+        423.998
+      ],
+      "label": "Driver and front passenger active headrests",
+      "rawLabel": "Driver and front passenger active headrests 94",
+      "footnotes": [
+        94
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Safety and Convenience"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        467.623,
+        581.25,
+        486.998
+      ],
+      "label": "i-FORCE 3.4L Twin-Turbo V6; 358 hp @ 5200 rpm; 406 lb.-ft. @ 2000 rpm",
+      "rawLabel": "i-FORCE 3.4L Twin-Turbo V6; 358 hp @ 5200 rpm; 406 lb.-ft. @ 2000 rpm",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        490.123,
+        581.25,
+        509.498
+      ],
+      "label": "i-FORCE 3.4L Twin-Turbo V6; 389 hp @ 5200 rpm; 479 lb.-ft. @ 2400 rpm",
+      "rawLabel": "i-FORCE 3.4L Twin-Turbo V6; 389 hp @ 5200 rpm; 479 lb.-ft. @ 2400 rpm",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        512.623,
+        581.25,
+        531.998
+      ],
+      "label": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm; 583 lb.-ft. @ 2400 rpm",
+      "rawLabel": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm; 583 lb.-ft. @ 2400 rpm",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        534.373,
+        581.25,
+        563.498
+      ],
+      "label": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic",
+      "rawLabel": "10-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        566.623,
+        581.25,
+        576.248
+      ],
+      "label": "Adaptive Variable Suspension (AVS) system",
+      "rawLabel": "Adaptive Variable Suspension (AVS) system",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "A",
+        "A",
+        "A",
+        "A",
+        "",
+        "A"
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        579.373,
+        581.25,
+        608.498
+      ],
+      "label": "Independent double-wishbone front suspension; coil spring multi-link rear suspension",
+      "rawLabel": "Independent double-wishbone front suspension; coil spring multi-link rear suspension",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        611.623,
+        581.25,
+        630.998
+      ],
+      "label": "Load-leveling Rear Height Control Air Suspension",
+      "rawLabel": "Load-leveling Rear Height Control Air Suspension",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "",
+        "A"
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        634.123,
+        581.25,
+        672.998
+      ],
+      "label": "TRD Pro off-road suspension with 1.1-in. front lift, 2.5-in. FOX® Internal Bypass coil-overs and rear remote-reservoir shocks, and TRD Pro front stabilizer bar",
+      "rawLabel": "TRD Pro off-road suspension with 1.1-in. front lift, 2.5-in. FOX® 15 Internal Bypass coil-overs and rear remote-reservoir shocks, and TRD Pro front stabilizer bar",
+      "footnotes": [
+        15
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 29,
+      "bbox": [
+        34.5,
+        675.373,
+        581.25,
+        694.748
+      ],
+      "label": "TRD sport-tuned and lowered suspension with Bilstein® shocks",
+      "rawLabel": "TRD sport-tuned and lowered suspension with Bilstein® 13 shocks",
+      "footnotes": [
+        13
+      ],
+      "symbols": [
+        "",
+        "A",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Mechanical/Performance"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        91.123,
+        581.25,
+        129.998
+      ],
+      "label": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD)",
+      "rawLabel": "4WDemand part-time 4-Wheel Drive with electronically controlled 2-speed transfer case (high/low ranges) and Automatic Limited-Slip Differential (Auto LSD) 95",
+      "footnotes": [
+        95
+      ],
+      "symbols": [
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        132.373,
+        581.25,
+        141.998
+      ],
+      "label": "Electronically controlled locking rear differential",
+      "rawLabel": "Electronically controlled locking rear differential",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "A",
+        "",
+        "A",
+        "S",
+        ""
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        145.123,
+        581.25,
+        164.498
+      ],
+      "label": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "rawLabel": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD) 95",
+      "footnotes": [
+        95
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        167.623,
+        581.25,
+        177.248
+      ],
+      "label": "Conventional 12V starter",
+      "rawLabel": "Conventional 12V starter 85",
+      "footnotes": [
+        85
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        180.373,
+        581.25,
+        189.998
+      ],
+      "label": "Stop and Start Engine System (S)",
+      "rawLabel": "Stop and Start Engine System (S) 96",
+      "footnotes": [
+        96
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        192.373,
+        581.25,
+        211.748
+      ],
+      "label": "D-4ST direct-injection and port-injection fuel system",
+      "rawLabel": "D-4ST direct-injection and port-injection fuel system",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        214.873,
+        581.25,
+        234.248
+      ],
+      "label": "Twin turbochargers with electric wastegate valve actuators and water-cooled intercooler",
+      "rawLabel": "Twin turbochargers with electric wastegate valve actuators and water-cooled intercooler",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        237.373,
+        581.25,
+        246.998
+      ],
+      "label": "Engine and body undercovers",
+      "rawLabel": "Engine and body undercovers",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        250.123,
+        581.25,
+        269.498
+      ],
+      "label": "Multi-Terrain Monitor (MTM) with selectable front, side and rear views",
+      "rawLabel": "Multi-Terrain Monitor (MTM) with selectable front, side and rear views",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "A",
+        "",
+        "A",
+        "S",
+        ""
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        272.623,
+        581.25,
+        291.998
+      ],
+      "label": "Multi-Terrain Select (MTS), Crawl Control (CRAWL) and Downhill Assist Control (DAC)",
+      "rawLabel": "Multi-Terrain Select (MTS), Crawl Control (CRAWL) 3 and Downhill Assist Control (DAC) 77",
+      "footnotes": [
+        3,
+        77
+      ],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "A",
+        "",
+        "A",
+        "S",
+        ""
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        294.373,
+        581.25,
+        303.998
+      ],
+      "label": "TRD aluminum front skid plate",
+      "rawLabel": "TRD aluminum front skid plate",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "S",
+        ""
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        307.123,
+        581.25,
+        326.498
+      ],
+      "label": "Xply™ Armor high-strength engine, fuel tank and transfer case undercovers",
+      "rawLabel": "Xply™ Armor high-strength engine, fuel tank and transfer case undercovers",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "",
+        "A",
+        "",
+        "A",
+        "S",
+        ""
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        329.623,
+        581.25,
+        368.498
+      ],
+      "label": "24-valve DOHC aluminum cylinder heads with Dual Variable Valve Timing with intelligence (VVT-i); 3445 c.c. aluminum engine block; 85.5 x 100 (mm.) bore x stroke; 10.4:1 compression ratio",
+      "rawLabel": "24-valve DOHC aluminum cylinder heads with Dual Variable Valve Timing with intelligence (VVT-i); 3445 c.c. aluminum engine block; 85.5 x 100 (mm.) bore x stroke; 10.4:1 compression ratio",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        371.623,
+        581.25,
+        381.248
+      ],
+      "label": "Stainless steel exhaust system",
+      "rawLabel": "Stainless steel exhaust system",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        384.373,
+        581.25,
+        403.748
+      ],
+      "label": "Class-IV towing hitch receiver and wiring harness with 7-pin/4-pin connector",
+      "rawLabel": "Class-IV towing hitch receiver and wiring harness with 7-pin/4-pin connector 2",
+      "footnotes": [
+        2
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        406.123,
+        581.25,
+        444.998
+      ],
+      "label": "Integrated Trailer Brake Controller (ITBC) with Multi-Information Display (MID) screen and trailer brake type, gain and manual trailer brake output controls",
+      "rawLabel": "Integrated Trailer Brake Controller (ITBC) 97 with Multi-Information Display (MID) screen and trailer brake type, gain and manual trailer brake output controls 2",
+      "footnotes": [
+        2,
+        97
+      ],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        448.123,
+        581.25,
+        467.498
+      ],
+      "label": "Trailer Backup Guide system with Straight Path Assist (SPA)",
+      "rawLabel": "Trailer Backup Guide system with Straight Path Assist (SPA) 23",
+      "footnotes": [
+        23
+      ],
+      "symbols": [
+        "",
+        "A",
+        "A",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        470.623,
+        581.25,
+        480.248
+      ],
+      "label": "Trailer-Sway Control (TSC)",
+      "rawLabel": "Trailer-Sway Control (TSC) 98",
+      "footnotes": [
+        98
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        483.373,
+        581.25,
+        492.998
+      ],
+      "label": "Electric motor power: 48 hp (36 kW)",
+      "rawLabel": "Electric motor power: 48 hp (36 kW)",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        496.123,
+        581.25,
+        505.748
+      ],
+      "label": "Electric motor torque: 184 lb.-ft. (250 N•m)",
+      "rawLabel": "Electric motor torque: 184 lb.-ft. (250 N•m)",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        508.123,
+        581.25,
+        527.498
+      ],
+      "label": "Parallel hybrid system with permanent magnet synchronous motor/generator",
+      "rawLabel": "Parallel hybrid system with permanent magnet synchronous motor/generator",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        530.623,
+        581.25,
+        549.998
+      ],
+      "label": "288V sealed Nickel-Metal Hydride (Ni-MH) battery with 1.87 kWh capacity",
+      "rawLabel": "288V sealed Nickel-Metal Hydride (Ni-MH) battery 99 with 1.87 kWh capacity",
+      "footnotes": [
+        99
+      ],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        553.123,
+        581.25,
+        572.498
+      ],
+      "label": "Eco, Comfort, Normal, Sport S, Sport S+ and Custom driving modes",
+      "rawLabel": "Eco, Comfort, Normal, Sport S, Sport S+ and Custom driving modes",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "",
+        "A",
+        "A",
+        "A",
+        "A",
+        "",
+        "A"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        575.623,
+        581.25,
+        585.248
+      ],
+      "label": "Eco, Normal and Sport driving modes",
+      "rawLabel": "Eco, Normal and Sport driving modes",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        588.373,
+        581.25,
+        597.998
+      ],
+      "label": "TOW/HAUL driving modes",
+      "rawLabel": "TOW/HAUL driving modes 2",
+      "footnotes": [
+        2
+      ],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        600.373,
+        581.25,
+        609.998
+      ],
+      "label": "Active aero front spoiler",
+      "rawLabel": "Active aero front spoiler",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        613.123,
+        581.25,
+        622.748
+      ],
+      "label": "Active grille shutters",
+      "rawLabel": "Active grille shutters",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        625.873,
+        581.25,
+        635.498
+      ],
+      "label": "Fully boxed high-strength steel ladder frame",
+      "rawLabel": "Fully boxed high-strength steel ladder frame",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        638.623,
+        581.25,
+        648.248
+      ],
+      "label": "Hydraulic cab mounts",
+      "rawLabel": "Hydraulic cab mounts",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "A",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        651.373,
+        581.25,
+        670.748
+      ],
+      "label": "Ultra-high-strength steel cabin construction with aluminum hood and front door panels",
+      "rawLabel": "Ultra-high-strength steel cabin construction with aluminum hood and front door panels",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        673.123,
+        581.25,
+        692.498
+      ],
+      "label": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+      "rawLabel": "Electric Power Steering (EPS); power-assisted rack-and-pinion",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 30,
+      "bbox": [
+        34.5,
+        695.623,
+        581.25,
+        705.248
+      ],
+      "label": "Electric Parking Brake (EPB)",
+      "rawLabel": "Electric Parking Brake (EPB) 100",
+      "footnotes": [
+        100
+      ],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 31,
+      "bbox": [
+        34.5,
+        91.123,
+        581.25,
+        100.748
+      ],
+      "label": "Electronically Controlled Braking (ECB) system",
+      "rawLabel": "Electronically Controlled Braking (ECB) system",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "",
+        "S",
+        "S",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 31,
+      "bbox": [
+        34.5,
+        103.123,
+        581.25,
+        122.498
+      ],
+      "label": "Electronically Controlled Braking (ECB) system with integrated regenerative braking",
+      "rawLabel": "Electronically Controlled Braking (ECB) system with integrated regenerative braking",
+      "footnotes": [],
+      "symbols": [
+        "",
+        "",
+        "",
+        "S",
+        "",
+        "",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    },
+    {
+      "page": 31,
+      "bbox": [
+        34.5,
+        125.623,
+        581.25,
+        164.498
+      ],
+      "label": "Power-assisted, ventilated 13.9-in. front disc brakes with opposed dual-piston brake calipers; ventilated 13.6-in. rear disc brakes with single- piston calipers",
+      "rawLabel": "Power-assisted, ventilated 13.9-in. front disc brakes with opposed dual-piston brake calipers; ventilated 13.6-in. rear disc brakes with single- piston calipers",
+      "footnotes": [],
+      "symbols": [
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "category": "Mechanical/Performance (continued)"
+    }
+  ],
+  "disclosures": {
+    "1": "Efficient 10-speed Automatic Transmission. Shown using visual effects.",
+    "2": "Never tow beyond a vehicle’s published towing capacities.",
+    "3": "Crawl Control is designed for driving on difficult terrain at low speeds and assists the driver by controlling acceleration and braking, allowing the driver to focus on steering. See Owner’s Manual for additional limitations.",
+    "4": "The Toyota Tundra is designed to meet most off-road driving requirements, but off-roading is inherently dangerous. Abusive use may result in bodily harm or vehicle damage. Toyota encourages responsible operation to help protect you, your vehicle and the environment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area. Limited CrewMax shown in Magnetic Gray Metallic, TRD Pro CrewMax shown in Ice Cap, and 1794 Edition CrewMax shown in Midnight Black Metallic. Options shown.",
+    "5": "Available i-FORCE twin-turbo V",
+    "6": "6. Never tow beyond a vehicle’s published towing capacities. Towing capacity shown is 11,350 lbs. Limited CrewMax shown in Magnetic Gray Metallic. Options shown.",
+    "7": "The Toyota Tundra is designed to meet most off-road driving requirements, but off-roading is inherently dangerous. Abusive use may result in bodily harm or vehicle damage. Toyota encourages responsible operation to help protect you, your vehicle and the environment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area. TRD Pro CrewMax shown in Ice Cap.",
+    "8": "TRD Pro CrewMax interior shown in Black with Multi-Terrain Select.",
+    "9": "The Toyota Tundra is designed to meet most off-road driving requirements, but off-roading is inherently dangerous. Abusive use may result in bodily harm or vehicle damage. Toyota encourages responsible operation to help protect you, your vehicle and the environment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area. Payload includes the weight of occupants, cargo and options and is limited by weight distribution. Platinum CrewMax with 6.5-ft. Long Bed shown in Blueprint. Options shown.",
+    "10": "SR5 CrewMax shown in Ice Cap with available TRD Rally Package. 2018 SR5 CrewMax shown in Magnetic Gray Metallic with available TRD Sport Package. The Toyota Genuine Accessory Warranty will only apply when the installation is performed by a trained Toyota-approved installer. Please see dealer for details. Options shown.",
+    "11": "SR5 CrewMax interior shown with available TRD Rally Package. Options shown.",
+    "12": "SR5 CrewMax shown in Ice Cap with available TRD Rally Package. Options shown.",
+    "13": "Bilstein® is a registered trademark of ThyssenKrupp Bilstein GmbH FED REP GERMANY.",
+    "14": "Falken is a registered trademark of Sumitomo Rubber Industries, Ltd.",
+    "15": "FOX is a registered trademark of FOX Factory, Inc.",
+    "16": "BBS® is a registered trademark of BBS of America, Inc.",
+    "17": "1794 Edition CrewMax with TRD Off-Road Package shown in Midnight Black Metallic. TRD Pro CrewMax shown in Ice Cap. Limited CrewMax with TRD Off-Road Package shown in Supersonic Red. Options shown.",
+    "18": "Available TRD Off-Road Bilstein® suspension. Bilstein® is a registered trademark of ThyssenKrupp Bilstein GmbH FED REP GERMANY. Options shown.",
+    "19": "Available TRD Pro suspension.",
+    "20": "TRD Pro standard FOX® shock absorbers. FOX is a registered trademark of FOX Factory, Inc.",
+    "21": "Never tow beyond a vehicle’s published towing capacities. Limited Hybrid CrewMax with TRD Off-Road Package and 5.5-ft. Bed shown in Supersonic Red. Options shown.",
+    "22": "The Panoramic View Monitor does not provide a comprehensive view of the area surrounding your vehicle. Look around to confirm clearance. See Owner’s Manual for limitations.",
+    "23": "The backup camera does not provide a comprehensive view of the rear area of the vehicle/trailer. When using straight path assist, driver should confirm clearance and is still responsible for safe operation. See Owner’s Manual for limitations.",
+    "24": "The Panoramic View Monitor does not provide a comprehensive view of the area surrounding your vehicle. Look around to confirm clearance. See Owner’s Manual for limitations. Platinum CrewMax interior shown in Black with Panoramic View Monitor.",
+    "25": "1794 Edition CrewMax interior shown in Saddle Tan.",
+    "26": "Payload includes the weight of occupants, cargo and options and is limited by weight distribution. The Toyota Genuine Accessory Warranty will only apply when the installation is performed by a trained Toyota-approved installer. Please see dealer for details. SR5 CrewMax shown in Ice Cap with available TRD Rally Package. 2018 SR5 CrewMax shown in Magnetic Gray Metallic with available TRD Sport Package. Options shown.",
+    "27": "Never tow beyond a vehicle’s published towing capacities. TRD Pro CrewMax shown in Ice Cap. SR5 Double Cab shown in Supersonic Red. Options shown. Extra-cost color.",
+    "28": "Limited CrewMax standard power vertical rear window.",
+    "29": "Platinum CrewMax interior shown in Black.",
+    "30": "Platinum CrewMax shown in Blueprint.",
+    "31": "The Toyota Tundra is designed to meet most off-road driving requirements, but off-roading is inherently dangerous. Abusive use may result in bodily harm or vehicle damage. Toyota encourages responsible operation to help protect you, your vehicle and the environment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area. Platinum CrewMax shown in Blueprint. 1794 Edition CrewMax with TRD Off-Road Package shown in Midnight Black Metallic. Options shown.",
+    "32": "Payload includes the weight of occupants, cargo and options and is limited by weight distribution.",
+    "33": "Liftgate requires key fob present.",
+    "34": "Do not exceed the recommended weight limit when placing items on the tailgate. See your Owner’s Manual for details.",
+    "35": "Payload includes the weight of occupants, cargo and options and is limited by weight distribution. TRD Pro CrewMax shown in Ice Cap.",
+    "36": "SR5 Double Cab shown in Ice Cap with available 8.1-ft. Long Bed. Vehicle(s) shown may include accessories not designed, manufactured or evaluated by Toyota nor covered by vehicle warranty.",
+    "37": "Service will automatically stop at the end of your trial subscription period unless you decide to continue service. Trial is non-transferable. If you do not wish to enjoy your trial, you can cancel by calling the number below. All SiriusXM services require a subscription, each sold separately by SiriusXM after the trial period. Service subject to the SiriusXM Customer Agreement and Privacy Policy, visit siriusxm.com for complete terms and how to cancel which includes online methods or calling 1-866-635-2349. Some services and features are subject to device capabilities and location availability. Satellite service not available in AK & HI. Content varies by SiriusXM subscription plan. All fees, content and features are subject to change. SiriusXM and related logos are trademarks of Sirius XM Radio Inc. and its respective subsidiaries.",
+    "38": "JBL® is a registered trademark of Harman International Industries, Inc.",
+    "39": "Apple CarPlay® requires a compatible iPhone® with an active data plan. Check compatibility at https://www.apple.com/ios/carplay/. Operability depends on network availability, a cellular connection and GPS signal. Services vary by vehicle and are subject to change at any time without notice. Data charges may apply. To learn more, go to https://www.toyota.com/audio-multimedia/. To learn more about Toyota Connected Services data collection, use, sharing and retention practices, please visit https://www.toyota.com/support/privacy-notice/. Apple CarPlay® is a registered trademark of Apple Inc.",
+    "40": "iPhone® is a registered trademark of Apple Inc. All rights reserved.",
+    "41": "Google, Android, Android Auto, Google Maps, YouTube Music and other marks are trademarks of Google LLC. Compatible Android phone and compatible active data plan required.",
+    "42": "Wireless use of Android Auto requires a compatible Android 11.0+ phone and compatible active data plan. Check g.co/androidauto/requirements for compatibility. Operability depends on network availability, a cellular connection, and GPS signal. Services vary by vehicle and are subject to change at any time without notice. Data charges may apply. To learn more, go to https://www.toyota.com/audio-multimedia/. To learn more about Toyota's Connected Services data collection, use, sharing, and retention practices, please visit https://www.toyota.com/support/privacy-notice/. Google, Android, Android Auto, Google Maps, YouTube Music and other marks are trademarks of Google LLC. Compatible Android phone and compatible active data plan required.",
+    "43": "Service will automatically stop at the end of your trial subscription period unless you decide to continue service. Trial is non-transferable. If you do not wish to enjoy your trial, you can cancel by calling the number below. All SiriusXM services require a subscription, each sold separately by SiriusXM after the trial period. Service subject to the SiriusXM Customer Agreement and Privacy Policy, visit siriusxm.com for complete terms and how to cancel which includes online methods or calling 1-866-635-2349. Some services and features are subject to device capabilities and location availability. Satellite service not available in AK & HI. Content varies by SiriusXM subscription plan. All fees, content and features are subject to change. SiriusXM and related logos are trademarks of Sirius XM Radio Inc. and its respective subsidiaries. Screen depiction accurate at time of posting. Capstone CrewMax interior shown.",
+    "44": "Available 14-in. Toyota Audio Multimedia system with touchscreen. Screen depiction accurate at time of posting.",
+    "45": "Platinum CrewMax interior shown in Black with JBL® Premium Audio system with 12 speakers. JBL® is a registered trademark of Harman International Industries, Inc.",
+    "46": "Apple CarPlay® requires a compatible iPhone® with an active data plan. Check compatibility at https://www.apple.com/ios/carplay/. Operability depends on network availability, a cellular connection and GPS signal. Services vary by vehicle and are subject to change at any time without notice. Data charges may apply. To learn more, go to https://www.toyota.com/audio-multimedia/. To learn more about Toyota Connected Services data collection, use, sharing and retention practices, please visit https://www.toyota.com/support/privacy-notice/. Apple CarPlay® is a registered trademark of Apple Inc. Screen depiction accurate at time of posting. 1794 Edition CrewMax interior shown in Saddle Tan.",
+    "47": "Wireless use of Android Auto requires a compatible Android 11.0+ phone and compatible active data plan. Check g.co/androidauto/requirements for compatibility. Operability depends on network availability, a cellular connection, and GPS signal. Services vary by vehicle and are subject to change at any time without notice. Data charges may apply. To learn more, go to https://www.toyota.com/audio-multimedia/. To learn more about Toyota's Connected Services data collection, use, sharing, and retention practices, please visit https://www.toyota.com/support/privacy-notice/. Google, Android, Android Auto, Google Maps, YouTube Music and other marks are trademarks of Google LLC. Compatible Android phone and compatible active data plan required. Screen depiction accurate at time of posting. 1794 Edition interior shown in Saddle Tan.",
+    "48": "Toyota Safety Sense™effectiveness is dependent on many factors including road, weather and vehicle conditions. Drivers are responsible for their own safe driving. Always pay attention to your surroundings and drive safely. See Owner’s Manual for limitations.",
+    "49": "The Pre-Collision System (PCS) with Pedestrian Detection (PD) is designed to determine if impact is imminent and help reduce impact speed and damage in certain frontal collisions involving a vehicle, a pedestrian or a bicyclist. PCS w/PD is not a substitute for safe and attentive driving. System effectiveness depends on many factors, such as speed, size and position of pedestrian or bicyclist and weather, light and road conditions. See Owner's Manual for limitations.",
+    "50": "Full-Speed Range Dynamic Radar Cruise Control is not a substitute for safe and attentive driving. See Owner’s Manual for instructions and limitations.",
+    "51": "Lane Departure Alert with Steering Assist is designed to read visible lane markers under certain conditions. It provides a visual/audible alert and slight steering force when lane departure is detected. It is not a collision-avoidance system or a substitute for safe and attentive driving. Effectiveness depends on many factors including road, weather and vehicle conditions. See Owner’s Manual for limitations.",
+    "52": "The Lane Tracing Assist (LTA) lane centering function is designed to read visible lane markers and detect other vehicles under certain conditions. It is only operational when DRCC is engaged. See Owner's Manual for limitations.",
+    "53": "Dynamic Radar Cruise Control is not a substitute for safe and attentive driving. See Owner’s Manual for limitations.",
+    "54": "Road Sign Assist only recognizes certain road signs. See Owner’s Manual for limitations.",
+    "55": "Automatic High Beams operate at speeds above 21 mph. See Owner’s Manual for instructions and limitations.",
+    "56": "Drive Connect services may vary and are subject to change at any time without notice. Availability and accuracy depend on 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then services will not work, and will need to be discontinued. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/. Trial period begins on original purchase or lease date of new vehicle. Services may vary and are subject to change without notice. Requires app download/registration, acceptance of Terms of Use and subscription after trial (if applicable). Data charges may apply.",
+    "57": "Cloud Navigation requires a trial or subscription to Drive Connect. Drive Connect availability and accuracy depend on certain factors outside of Toyota's control in order to operate, including 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Services subject to change at any time without notice. Requires app download/registration and subscription after trial (if applicable). Terms of Use apply. Data charges may apply. See Owner’s Manual and https://www.toyota.com/connected-services/ for limitations. To learn about Toyota's Connected Services data collection, use, sharing and retention practices, visit https://www.toyota.com/support/privacy-notice/.",
+    "58": "Intelligent Assistant requires a trial or subscription to Drive Connect. Drive Connect availability and accuracy depend on certain factors outside of Toyota's control in order to operate, including 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Services subject to change at any time without notice. Requires app download/registration and subscription after trial (if applicable). Terms of Use apply. Data charges may apply. See Owner’s Manual and https://www.toyota.com/connected-services/ for limitations. To learn about Toyota's Connected Services data collection, use, sharing and retention practices, visit https://www.toyota.com/support/privacy-notice/.",
+    "59": "On select models, Destination Assist will require a trial or subscription to Drive Connect. Drive Connect services may vary and are subject to change at any time without notice. Availability and accuracy depend on 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then services will not work, and will need to be discontinued. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/. Trial period begins on original purchase or lease date of new vehicle. Services may vary and are subject to change without notice. Requires app download/registration, acceptance of Terms of Use and subscription after trial (if applicable). Data charges may apply. The Destination Assist trial period begins on original purchase or lease date of new vehicle. Paid subscription required after trial (if applicable). Terms of Use apply.",
+    "60": "Use only if aware of circumstances surrounding vehicle it is legal safe to do so (e.g., do not remotely start a gas engine vehicle in an enclosed space or if vehicle is occupied by a child). Remote Connect services vary by vehicle and are subject to change at any time without notice. Services depend on 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then the services will not work and will need to be discontinued. Digital Key also requires Bluetooth® connectivity. Not available on manual transmissions. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/. Trial period begins on original purchase or lease date of new vehicle. Paid subscription required after trial (if applicable). Terms of Use apply.",
+    "61": "An active Remote Connect trial or subscription is required to use the features mentioned in the Toyota app.",
+    "62": "Service not available everywhere or in every vehicle. Depends on 4G cellular network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Up to 5 devices can be supported using in-vehicle connectivity. Services may vary and are subject to change without notice. Data charges may apply. Requires separate subscriptions to third-party provider services. Valid in the contiguous U.S. and Alaska. Go to https://myvehicle.att.com/#/toyota/learn?language=en=US for terms and conditions. The Wi-Fi Connect trial begins at the time of enrollment and expires the earlier of 3GB data use or the 1-month trial period ends. Trial begins at activation and expires the earlier of 3 GB data use or 1 mo. Valid in contiguous U.S. and Alaska. See https://myvehicle.att.com/#/toyota/learn?language=en=US for terms and conditions.",
+    "63": "Safety Connect® services vary by vehicle and are subject to change at any time without notice. Services depend on 4G network availability, a cellular connection, and GPS signal. Without any one or more of these things, operability may be limited or precluded, including access to response center and emergency support. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then the services will not work and will need to be discontinued. Stolen vehicle police report required to use Stolen Vehicle Locator. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at https://www.toyota.com/content/dam/toyota/privacyvts/pdf/connectedservices-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see https://www.toyota.com/support/privacy-notice/. The Safety Connect® trial is included for a minimum of 5 years. 4G network dependent.",
+    "64": "Enhanced 24/7 Roadside Assistance allows use of in-vehicle SOS button to assist response agent to identify vehicle location. Unlimited mileage coverage effective with an active Safety Connect® trial or subscription that depends on certain factors, including 4G network availability. Services require account registration through the Toyota app and acceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/. Enhanced Roadside Assistance does not include parts and fluids, except limited emergency gas delivery. Towing distance up to 25 miles. Restrictions apply. Service subject to change at any time. Available in the continental U.S. and Canada. See Toyota dealer for details and exclusions.",
+    "65": "Building and/or parking structures may limit system effectiveness. Stolen vehicle police report required to use Stolen Vehicle Locator. For additional assistance contact the Toyota Brand Engagement Center at 1-800-331-4331.",
+    "66": "Service Connect services vary by vehicle and are subject to change at any time without notice. Services depend on 4G network availability, a cellular connection, and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then the services will not work and will need to be discontinued. Information provided is based on the last time data was collected from the vehicle and is not real-time data. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at https://www.toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see https://www.toyota.com/support/privacy-notice/. The Service Connect trial is included for a minimum of 5 years. 4G network dependent.",
+    "67": "Available Destination Assist, part of Drive Connect, shown. 1-year trial included on select grades. On select models, Destination Assist will require a trial or subscription to Drive Connect. Drive Connect services may vary and are subject to change at any time without notice. Availability and accuracy depend on 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then services will not work, and will need to be discontinued. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/. Trial period begins on original purchase or lease date of new vehicle. Services may vary and are subject to change without notice. Requires app download/registration, acceptance of Terms of Use and subscription after trial (if applicable). Data charges may apply. The Destination Assist trial period begins on original purchase or lease date of new vehicle. Paid subscription required after trial (if applicable). Terms of Use apply. Drive Connect services may vary and are subject to change at any time without notice. Availability and accuracy depend on 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then services will not work, and will need to be discontinued. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/. Trial period begins on original purchase or lease date of new vehicle. Services may vary and are subject to change without notice. Requires app download/registration, acceptance of Terms of Use and subscription after trial (if applicable). Data charges may apply. Active Drive Connect trial or subscription required. 4G network dependent.",
+    "68": "Available Remote Connect shown. 1-year trial included. Use only if aware of circumstances surrounding vehicle it is legal safe to do so (e.g., do not remotely start a gas engine vehicle in an enclosed space or if vehicle is occupied by a child). Remote Connect services vary by vehicle and are subject to change at any time without notice. Services depend on 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then the services will not work and will need to be discontinued. Digital Key also requires Bluetooth® connectivity. Not available on manual transmissions. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/. Trial period begins on original purchase or lease date of new vehicle. Paid subscription required after trial (if applicable). Terms of Use apply. 4G network dependent.",
+    "69": "TRD Pro CrewMax interior shown in Cockpit Red.",
+    "70": "Available Service Connect shown. Service Connect services vary by vehicle and are subject to change at any time without notice. Services depend on 4G network availability, a cellular connection, and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then the services will not work and will need to be discontinued. Information provided is based on the last time data was collected from the vehicle and is not real-time data. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at https://www.toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see https://www.toyota.com/support/privacy-notice/. The Service Connect trial is included for a minimum of 5 years. 4G network dependent.",
+    "71": "The Toyota Tundra is designed to meet most off-road driving requirements, but off-roading is inherently dangerous. Abusive use may result in bodily harm or vehicle damage. Toyota encourages responsible operation to help protect you, your vehicle and the environment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area. Platinum CrewMax shown in Celestial Silver Metallic with available TRD Off-Road Package. Options shown.",
+    "72": "Never tow beyond a vehicle’s published towing capacities. 1794 Edition Hybrid CrewMax shown in Midnight Black Metallic. Options shown.",
+    "73": "The backup camera does not provide a comprehensive view. Always look over shoulder and use outside mirrors. See Owner's Manual for limitations.",
+    "74": "Airbag systems supplement the seatbelts and are designed to inflate only under certain conditions and in certain types of severe collisions. Always wear seatbelt, sit upright in middle and as far back in seat as possible to help decrease risk of injury. Do not put objects in front of an airbag. See Owner’s Manual for limitations.",
+    "75": "Do not rely exclusively on Blind Spot Monitor. Look over shoulder and use turn signal. See Owner's Manual for limitations.",
+    "76": "Do not rely exclusively on the Rear Cross-Traffic Alert. Visually confirm clearance during use. See Owner’s Manual for limitations.",
+    "77": "Downhill Assist Control is designed to help driver maintain vehicle control and speed on steep, downhill descents and is not a substitute for safe driving judgment and practices. Factors including speed, grade, surface conditions and driver input can affect the DAC's ability to prevent loss of control. See Owner’s Manual for additional limitations and details.",
+    "78": "BedStep® is a registered trademark of Lund Motion Products, Inc. All rights reserved.",
+    "79": "Extra-cost color.",
+    "80": "SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.",
+    "81": "LED fog lights are removed when 3-in. TRD Suspension Lift Kit (LK) is selected.",
+    "82": "Do not exceed 120V. See Owner’s Manual for additional limitations and details.",
+    "83": "HomeLink® and the HomeLink® house icon are registered trademarks of Gentex Corporation.",
+    "84": "Wireless charging may not be compatible with all mobile phones, smart devices, tablets, e-readers, MP3/WMA players and like products.",
+    "85": "Rated for 12 volts/10 amps. See Owner's Manual for additional limitations and details.",
+    "86": "Be sure to obey traffic regulations and maintain awareness of road and traffic conditions at all times. System functionality and accuracy of information depend on many factors. Use common sense when relying on information provided. Services and programming subject to change. Updates may be at an additional cost. See Owner’s Manual for limitations.",
+    "87": "This floor mat/floor liner was designed specifically for use in your model and model year vehicle and SHOULD NOT be used in any other vehicle. To avoid potential interference with pedal operation, each mat/liner must be secured with its fasteners. Do not install a floor mat/floor liner on top of an existing floor mat/floor liner.",
+    "88": "Front and Rear Parking Assist with Automatic Braking (PA w/AB) may warn drivers of, and potentially brake for front and rear collisions with certain objects when traveling at low speeds. Drivers should visually confirm clearance during use. See Owner’s Manual for instructions and limitations.",
+    "89": "Hill Start Assist Control is designed to minimize backward rolling on steep ascents. Not a substitute for safe driving judgment and practices. Speed, grade, surface conditions, driver input, etc., can all affect HAC function. See Owner's Manual.",
+    "90": "Vehicle Stability Control is not a substitute for safe and attentive driving practices. Factors including speed, road conditions, weather and steering input can affect whether VSC will be effective. See Owner’s Manual for limitations.",
+    "91": "Brake Assist is designed to help the driver take advantage of ABS and is not a substitute for safe driving practices. Braking effectiveness also depends on proper vehicle maintenance, tire and road conditions. See Owner’s Manual for additional limitations and details.",
+    "92": "Smart Stop Technology® will reduce power to help the brakes bring vehicle to a stop during certain contemporaneous brake and accelerator pedal applications. See Owner's Manual for limitations.",
+    "93": "The Tire Pressure Monitor System alerts the driver when tire pressure is critically low. For optimal tire wear and performance, tire pressure should be checked regularly with a gauge; do not rely solely on the monitor system. See Owner's Manual for limitations and details.",
+    "94": "Active front headrests can help reduce the extent of whiplash in certain types of rear-end collisions.",
+    "95": "Auto LSD is an electronic, brake-actuated limited-slip differential that automatically activates when VSC is disengaged at low speeds. See Owner's Manual for limitations.",
+    "96": "Before towing, confirm Stop and Start Engine System is disengaged.",
+    "97": "Integrated Trailer Brake Controller is an electronic system that operates in tandem with a trailer equipped with an electric braking system. It is designed to help the driver maintain trailer control by increasing or reducing trailer braking based on trailer weight. It is not a substitute for safe towing practices. Factors including speed, weather, road conditions and driver input can all affect trailer braking control. See Owner's Manual for additional limitations and details.",
+    "98": "Trailer-Sway Control (TSC) is an electronic system designed to help the driver maintain vehicle control under adverse conditions. It is not a substitute for safe driving practices. Factors including speed, road conditions, weather and driver steering input can all affect whether TSC will be effective in preventing a loss of control. See Owner’s Manual for additional limitations and details.",
+    "99": "Hybrid vehicle battery expected life is 150,000 miles based on laboratory bench testing.",
+    "100": "When the system is on, Electric Parking Brake is designed to engage the Parking Brake under limited conditions. It may not hold the vehicle under all conditions. See Owner’s Manual for additional limitations and details. Toyota strives to build vehicles to match customer interest and thus they typically are built with popular options and option packages. Not all options/packages are available separately and some may not be available in all regions of the country. See toyota.com for information about options/packages commonly available in your area. If you would prefer a vehicle without any or with different options, contact your dealer to check for current availability or the possibility of placing a special order. Color(s) depicted may vary based on multiple factors, including ambient lighting and the format in which it is being viewed (e.g., computer, mobile device or print). Some vehicles are shown with available equipment. Seatbelts should be worn at all times. For details on vehicle specifications, standard features and available equipment in your area, contact your Toyota dealer. A vehicle with particular equipment may not be available at the dealership. Ask your Toyota dealer to help locate a specifically equipped vehicle. All information presented herein is based on data available at the time of posting, is subject to change without notice and pertains specifically to mainland U.S.A. vehicles only. Vehicles shown may be prototypes, shown using visual effects and/or shown with options. Actual models may vary. LEGEND Info Vehicle Information Info Legal Disclosure WARRANTIES Date and mileage limitations refer to whichever occurs first from the date of For Toyota hybrid, plug-in hybrid, fuel cell and battery electric vehicles beginning purchase. Warranty coverage is subject to other terms and conditions. Refer to model year 2020, the hybrid (HV) battery is covered for 10 years from date of first applicable Warranty and Maintenance Guide for full details. use or 150,000 miles, whichever comes first. Coverage is subject to the terms and Date and mileage limitations refer to whichever comes first from the date of first conditions of your New Vehicle Limited Warranty. See the Toyota Owner’s purchase. Warranty coverage is subject to other terms and conditions. Refer to Warranty and Maintenance Guide for details. applicable Warranty and Maintenance Guide for full details and for information The Toyota Genuine Accessory Warranty will only apply when the installation is regarding the Federal and California Emission Control Warranties, and Tire Limited performed by a trained Toyota-approved installer. Please see dealer for details. Warranties. Emission coverages vary under Federal and California regulations."
+  },
+  "disclosurePageText": {
+    "32": "INFO AND DISCLOSURES\n\n\n1. Efficient 10-speed Automatic Transmission. Shown using visual effects. 2. Never tow beyond a vehicle’s published towing capacities. 3. Crawl Control is\ndesigned for driving on difficult terrain at low speeds and assists the driver by controlling acceleration and braking, allowing the driver to focus on\nsteering. See Owner’s Manual for additional limitations. 4. The Toyota Tundra is designed to meet most off-road driving requirements, but off-roading is\ninherently dangerous. Abusive use may result in bodily harm or vehicle damage. Toyota encourages responsible operation to help protect you, your\nvehicle and the environment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area. Limited CrewMax shown in Magnetic\nGray Metallic, TRD Pro CrewMax shown in Ice Cap, and 1794 Edition CrewMax shown in Midnight Black Metallic. Options shown. 5. Available i-FORCE\ntwin-turbo V6. 6. Never tow beyond a vehicle’s published towing capacities. Towing capacity shown is 11,350 lbs. Limited CrewMax shown in Magnetic\nGray Metallic. Options shown. 7. The Toyota Tundra is designed to meet most off-road driving requirements, but off-roading is inherently dangerous.\nAbusive use may result in bodily harm or vehicle damage. Toyota encourages responsible operation to help protect you, your vehicle and the\nenvironment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area. TRD Pro CrewMax shown in Ice Cap. 8. TRD Pro\nCrewMax interior shown in Black with Multi-Terrain Select. 9. The Toyota Tundra is designed to meet most off-road driving requirements, but off-roading\nis inherently dangerous. Abusive use may result in bodily harm or vehicle damage. Toyota encourages responsible operation to help protect you, your\nvehicle and the environment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area. Payload includes the weight of\noccupants, cargo and options and is limited by weight distribution. Platinum CrewMax with 6.5-ft. Long Bed shown in Blueprint. Options shown. 10. SR5\nCrewMax shown in Ice Cap with available TRD Rally Package. 2018 SR5 CrewMax shown in Magnetic Gray Metallic with available TRD Sport Package. The\nToyota Genuine Accessory Warranty will only apply when the installation is performed by a trained Toyota-approved installer. Please see dealer for\ndetails. Options shown. 11. SR5 CrewMax interior shown with available TRD Rally Package. Options shown. 12. SR5 CrewMax shown in Ice Cap with\navailable TRD Rally Package. Options shown. 13. Bilstein® is a registered trademark of ThyssenKrupp Bilstein GmbH FED REP GERMANY. 14. Falken is a\nregistered trademark of Sumitomo Rubber Industries, Ltd. 15. FOX is a registered trademark of FOX Factory, Inc. 16. BBS® is a registered trademark of BBS\nof America, Inc. 17. 1794 Edition CrewMax with TRD Off-Road Package shown in Midnight Black Metallic. TRD Pro CrewMax shown in Ice Cap. Limited\nCrewMax with TRD Off-Road Package shown in Supersonic Red. Options shown. 18. Available TRD Off-Road Bilstein® suspension. Bilstein® is a registered\ntrademark of ThyssenKrupp Bilstein GmbH FED REP GERMANY. Options shown. 19. Available TRD Pro suspension. 20. TRD Pro standard FOX® shock\nabsorbers. FOX is a registered trademark of FOX Factory, Inc. 21. Never tow beyond a vehicle’s published towing capacities. Limited Hybrid CrewMax with\nTRD Off-Road Package and 5.5-ft. Bed shown in Supersonic Red. Options shown. 22. The Panoramic View Monitor does not provide a comprehensive\nview of the area surrounding your vehicle. Look around to confirm clearance. See Owner’s Manual for limitations. 23. The backup camera does not\nprovide a comprehensive view of the rear area of the vehicle/trailer. When using straight path assist, driver should confirm clearance and is still\nresponsible for safe operation. See Owner’s Manual for limitations. 24. The Panoramic View Monitor does not provide a comprehensive view of the area\nsurrounding your vehicle. Look around to confirm clearance. See Owner’s Manual for limitations. Platinum CrewMax interior shown in Black with\nPanoramic View Monitor. 25. 1794 Edition CrewMax interior shown in Saddle Tan. 26. Payload includes the weight of occupants, cargo and options and is\nlimited by weight distribution. The Toyota Genuine Accessory Warranty will only apply when the installation is performed by a trained Toyota-approved\ninstaller. Please see dealer for details. SR5 CrewMax shown in Ice Cap with available TRD Rally Package. 2018 SR5 CrewMax shown in Magnetic Gray\nMetallic with available TRD Sport Package. Options shown. 27. Never tow beyond a vehicle’s published towing capacities. TRD Pro CrewMax shown in Ice\nCap. SR5 Double Cab shown in Supersonic Red. Options shown. Extra-cost color. 28. Limited CrewMax standard power vertical rear window. 29.\nPlatinum CrewMax interior shown in Black. 30. Platinum CrewMax shown in Blueprint. 31. The Toyota Tundra is designed to meet most off-road driving\nrequirements, but off-roading is inherently dangerous. Abusive use may result in bodily harm or vehicle damage. Toyota encourages responsible\noperation to help protect you, your vehicle and the environment. Seatbelts should be worn at all times. Do not allow passengers to ride in cargo area.\nPlatinum CrewMax shown in Blueprint. 1794 Edition CrewMax with TRD Off-Road Package shown in Midnight Black Metallic. Options shown. 32. Payload\nincludes the weight of occupants, cargo and options and is limited by weight distribution. 33. Liftgate requires key fob present. 34. Do not exceed the\nrecommended weight limit when placing items on the tailgate. See your Owner’s Manual for details. 35. Payload includes the weight of occupants, cargo\nand options and is limited by weight distribution. TRD Pro CrewMax shown in Ice Cap. 36. SR5 Double Cab shown in Ice Cap with available 8.1-ft. Long\nBed. Vehicle(s) shown may include accessories not designed, manufactured or evaluated by Toyota nor covered by vehicle warranty. 37. Service will\nautomatically stop at the end of your trial subscription period unless you decide to continue service. Trial is non-transferable. If you do not wish to enjoy\nyour trial, you can cancel by calling the number below. All SiriusXM services require a subscription, each sold separately by SiriusXM after the trial\nperiod. Service subject to the SiriusXM Customer Agreement and Privacy Policy, visit siriusxm.com for complete terms and how to cancel which includes\nonline methods or calling 1-866-635-2349. Some services and features are subject to device capabilities and location availability. Satellite service not\navailable in AK & HI. Content varies by SiriusXM subscription plan. All fees, content and features are subject to change. SiriusXM and related logos are\ntrademarks of Sirius XM Radio Inc. and its respective subsidiaries. 38. JBL® is a registered trademark of Harman International Industries, Inc. 39. Apple\nCarPlay® requires a compatible iPhone® with an active data plan. Check compatibility at https://www.apple.com/ios/carplay/. Operability depends on\nnetwork availability, a cellular connection and GPS signal. Services vary by vehicle and are subject to change at any time without notice. Data charges\nmay apply. To learn more, go to https://www.toyota.com/audio-multimedia/. To learn more about Toyota Connected Services data collection, use,\nsharing and retention practices, please visit https://www.toyota.com/support/privacy-notice/. Apple CarPlay® is a registered trademark of Apple Inc. 40.\niPhone® is a registered trademark of Apple Inc. All rights reserved. 41. Google, Android, Android Auto, Google Maps, YouTube Music and other marks are\ntrademarks of Google LLC. Compatible Android phone and compatible active data plan required. 42. Wireless use of Android Auto requires a compatible\nAndroid 11.0+ phone and compatible active data plan. Check g.co/androidauto/requirements for compatibility. Operability depends on network\navailability, a cellular connection, and GPS signal. Services vary by vehicle and are subject to change at any time without notice. Data charges may apply.\nTo learn more, go to https://www.toyota.com/audio-multimedia/. To learn more about Toyota's Connected Services data collection, use, sharing, and\nretention practices, please visit https://www.toyota.com/support/privacy-notice/. Google, Android, Android Auto, Google Maps, YouTube Music and\nother marks are trademarks of Google LLC. Compatible Android phone and compatible active data plan required. 43. Service will automatically stop at\nthe end of your trial subscription period unless you decide to continue service. Trial is non-transferable. If you do not wish to enjoy your trial, you can\ncancel by calling the number below. All SiriusXM services require a subscription, each sold separately by SiriusXM after the trial period. Service subject to\nthe SiriusXM Customer Agreement and Privacy Policy, visit siriusxm.com for complete terms and how to cancel which includes online methods or calling\n1-866-635-2349. Some services and features are subject to device capabilities and location availability. Satellite service not available in AK & HI. Content",
+    "33": "INFO AND DISCLOSURES\n\n\nvaries by SiriusXM subscription plan. All fees, content and features are subject to change. SiriusXM and related logos are trademarks of Sirius XM Radio\nInc. and its respective subsidiaries. Screen depiction accurate at time of posting. Capstone CrewMax interior shown. 44. Available 14-in. Toyota Audio\nMultimedia system with touchscreen. Screen depiction accurate at time of posting. 45. Platinum CrewMax interior shown in Black with JBL® Premium\nAudio system with 12 speakers. JBL® is a registered trademark of Harman International Industries, Inc. 46. Apple CarPlay® requires a compatible iPhone®\nwith an active data plan. Check compatibility at https://www.apple.com/ios/carplay/. Operability depends on network availability, a cellular connection\nand GPS signal. Services vary by vehicle and are subject to change at any time without notice. Data charges may apply. To learn more, go to\nhttps://www.toyota.com/audio-multimedia/. To learn more about Toyota Connected Services data collection, use, sharing and retention practices,\nplease visit https://www.toyota.com/support/privacy-notice/. Apple CarPlay® is a registered trademark of Apple Inc. Screen depiction accurate at time\nof posting. 1794 Edition CrewMax interior shown in Saddle Tan. 47. Wireless use of Android Auto requires a compatible Android 11.0+ phone and\ncompatible active data plan. Check g.co/androidauto/requirements for compatibility. Operability depends on network availability, a cellular connection,\nand GPS signal. Services vary by vehicle and are subject to change at any time without notice. Data charges may apply. To learn more, go to\nhttps://www.toyota.com/audio-multimedia/. To learn more about Toyota's Connected Services data collection, use, sharing, and retention practices,\nplease  visit https://www.toyota.com/support/privacy-notice/. Google, Android, Android Auto, Google Maps, YouTube Music and other marks are\ntrademarks of Google LLC. Compatible Android phone and compatible active data plan required. Screen depiction accurate at time of posting. 1794\nEdition interior shown in Saddle Tan. 48. Toyota Safety Sense™effectiveness is dependent on many factors including road, weather and vehicle\nconditions. Drivers are responsible for their own safe driving. Always pay attention to your surroundings and drive safely. See Owner’s Manual for\nlimitations. 49. The Pre-Collision System (PCS) with Pedestrian Detection (PD) is designed to determine if impact is imminent and help reduce impact\nspeed and damage in certain frontal collisions involving a vehicle, a pedestrian or a bicyclist. PCS w/PD is not a substitute for safe and attentive driving.\nSystem effectiveness depends on many factors, such as speed, size and position of pedestrian or bicyclist and weather, light and road conditions. See\nOwner's Manual for limitations. 50. Full-Speed Range Dynamic Radar Cruise Control is not a substitute for safe and attentive driving. See Owner’s\nManual for instructions and limitations. 51. Lane Departure Alert with Steering Assist is designed to read visible lane markers under certain conditions. It\nprovides a visual/audible alert and slight steering force when lane departure is detected. It is not a collision-avoidance system or a substitute for safe\nand attentive driving. Effectiveness depends on many factors including road, weather and vehicle conditions. See Owner’s Manual for limitations. 52.\nThe Lane Tracing Assist (LTA) lane centering function is designed to read visible lane markers and detect other vehicles under certain conditions. It is only\noperational when DRCC is engaged. See Owner's Manual for limitations. 53. Dynamic Radar Cruise Control is not a substitute for safe and attentive\ndriving. See Owner’s Manual for limitations. 54. Road Sign Assist only recognizes certain road signs. See Owner’s Manual for limitations. 55. Automatic\nHigh Beams operate at speeds above 21 mph. See Owner’s Manual for instructions and limitations. 56. Drive Connect services may vary and are subject\nto change at any time without notice. Availability and accuracy depend on 4G network availability, a cellular connection and GPS signal. Without any\none or more of these things, operability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying\ntechnology required to support service becomes obsolete, then services will not work, and will need to be discontinued. Services require account\nregistration     through      Toyota     app     and     acceptance      of     Connected      Services     Terms      of     Use      at\ntoyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s\nConnected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/.\nTrial period begins on original purchase or lease date of new vehicle. Services may vary and are subject to change without notice. Requires app\ndownload/registration, acceptance of Terms of Use and subscription after trial (if applicable). Data charges may apply. 57. Cloud Navigation requires a\ntrial or subscription to Drive Connect. Drive Connect availability and accuracy depend on certain factors outside of Toyota's control in order to operate,\nincluding 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or\nprecluded. Services subject to change at any time without notice. Requires app download/registration and subscription after trial (if applicable). Terms\nof Use apply. Data charges may apply. See Owner’s Manual and https://www.toyota.com/connected-services/ for limitations. To learn about Toyota's\nConnected Services data collection, use, sharing and retention practices, visit https://www.toyota.com/support/privacy-notice/. 58. Intelligent Assistant\nrequires a trial or subscription to Drive Connect. Drive Connect availability and accuracy depend on certain factors outside of Toyota's control in order to\noperate, including 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or\nprecluded. Services subject to change at any time without notice. Requires app download/registration and subscription after trial (if applicable). Terms\nof Use apply. Data charges may apply. See Owner’s Manual and https://www.toyota.com/connected-services/ for limitations. To learn about Toyota's\nConnected Services data collection, use, sharing and retention practices, visit https://www.toyota.com/support/privacy-notice/. 59. On select models,\nDestination Assist will require a trial or subscription to Drive Connect. Drive Connect services may vary and are subject to change at any time without\nnotice. Availability and accuracy depend on 4G network availability, a cellular connection and GPS signal. Without any one or more of these things,\noperability may be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support\nservice becomes obsolete, then services will not work, and will need to be discontinued. Services require account registration through Toyota app and\nacceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data\nConsent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention practices and\nagreements, see toyota.com/support/privacy-notice/. Trial period begins on original purchase or lease date of new vehicle. Services may vary and are\nsubject to change without notice. Requires app download/registration, acceptance of Terms of Use and subscription after trial (if applicable). Data\ncharges may apply. The Destination Assist trial period begins on original purchase or lease date of new vehicle. Paid subscription required after trial (if\napplicable). Terms of Use apply. 60. Use only if aware of circumstances surrounding vehicle it is legal safe to do so (e.g., do not remotely start a gas\nengine vehicle in an enclosed space or if vehicle is occupied by a child). Remote Connect services vary by vehicle and are subject to change at any time\nwithout notice. Services depend on 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability\nmay be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service\nbecomes obsolete, then the services will not work and will need to be discontinued. Digital Key also requires Bluetooth® connectivity. Not available on\nmanual  transmissions.  Services  require account  registration through  Toyota app and acceptance  of Connected  Services Terms  of Use  at\ntoyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s\nConnected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/.",
+    "34": "INFO AND DISCLOSURES\n\n\nTrial period begins on original purchase or lease date of new vehicle. Paid subscription required after trial (if applicable). Terms of Use apply. 61. An\nactive Remote Connect trial or subscription is required to use the features mentioned in the Toyota app. 62. Service not available everywhere or in every\nvehicle. Depends on 4G cellular network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be\nlimited or precluded. Up to 5 devices can be supported using in-vehicle connectivity. Services may vary and are subject to change without notice. Data\ncharges may  apply.  Requires  separate  subscriptions  to  third-party  provider  services.  Valid  in  the  contiguous  U.S. and  Alaska. Go  to\nhttps://myvehicle.att.com/#/toyota/learn?language=en=US for terms and conditions. The Wi-Fi Connect trial begins at the time of enrollment and\nexpires the earlier of 3GB data use or the 1-month trial period ends. Trial begins at activation and expires the earlier of 3 GB data use or 1 mo. Valid in\ncontiguous U.S. and Alaska. See https://myvehicle.att.com/#/toyota/learn?language=en=US for terms and conditions. 63. Safety Connect® services vary\nby vehicle and are subject to change at any time without notice. Services depend on 4G network availability, a cellular connection, and GPS signal.\nWithout any one or more of these things, operability may be limited or precluded, including access to response center and emergency support. Further,\nif and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then the services will\nnot work and will need to be discontinued. Stolen vehicle police report required to use Stolen Vehicle Locator. Services require account registration\nthrough       Toyota      app      and       acceptance        of      Connected        Services       Terms        of      Use        at\nhttps://www.toyota.com/content/dam/toyota/privacyvts/pdf/connectedservices-terms-use.pdf and Master Data Consent. Data charges may apply. For\nToyota’s  Connected   Services’   vehicle-generated   data   collection,   use,   sharing,  and   retention   practices  and   agreements,   see\nhttps://www.toyota.com/support/privacy-notice/. The Safety Connect® trial is included for a minimum of 5 years. 4G network dependent. 64. Enhanced\n24/7 Roadside Assistance allows use of in-vehicle SOS button to assist response agent to identify vehicle location. Unlimited mileage coverage effective\nwith an active Safety Connect®  trial or subscription that depends on certain factors, including 4G network availability. Services require account\nregistration     through     the     Toyota    app    and     acceptance     of    Connected     Services     Terms     of    Use     at\ntoyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s\nConnected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/.\nEnhanced Roadside Assistance does not include parts and fluids, except limited emergency gas delivery. Towing distance up to 25 miles. Restrictions\napply. Service subject to change at any time. Available in the continental U.S. and Canada. See Toyota dealer for details and exclusions. 65. Building\nand/or parking structures may limit system effectiveness. Stolen vehicle police report required to use Stolen Vehicle Locator. For additional assistance\ncontact the Toyota Brand Engagement Center at 1-800-331-4331. 66. Service Connect services vary by vehicle and are subject to change at any time\nwithout notice. Services depend on 4G network availability, a cellular connection, and GPS signal. Without any one or more of these things, operability\nmay be limited or precluded. Further, if and when 4G network changes or is discontinued, or the underlying technology required to support service\nbecomes obsolete, then the services will not work and will need to be discontinued. Information provided is based on the last time data was collected\nfrom the vehicle and is not real-time data. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use\nat https://www.toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply.\nFor   Toyota’s  Connected   Services’  vehicle-generated  data   collection,   use,   sharing,  and   retention   practices  and  agreements,  see\nhttps://www.toyota.com/support/privacy-notice/. The Service Connect trial is included for a minimum of 5 years. 4G network dependent. 67. Available\nDestination Assist, part of Drive Connect, shown. 1-year trial included on select grades. On select models, Destination Assist will require a trial or\nsubscription to Drive Connect. Drive Connect services may vary and are subject to change at any time without notice. Availability and accuracy depend\non 4G network availability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded.\nFurther, if and when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then services\nwill not work, and will need to be discontinued. Services require account registration through Toyota app and acceptance of Connected Services Terms\nof Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For\nToyota’s  Connected   Services’   vehicle-generated   data   collection,   use,   sharing,  and   retention   practices  and   agreements,   see\ntoyota.com/support/privacy-notice/. Trial period begins on original purchase or lease date of new vehicle. Services may vary and are subject to change\nwithout notice. Requires app download/registration, acceptance of Terms of Use and subscription after trial (if applicable). Data charges may apply. The\nDestination Assist trial period begins on original purchase or lease date of new vehicle. Paid subscription required after trial (if applicable). Terms of Use\napply. Drive Connect services may vary and are subject to change at any time without notice. Availability and accuracy depend on 4G network\navailability, a cellular connection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when\n4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then services will not work, and will\nneed to be discontinued. Services require account registration through Toyota app and acceptance of Connected Services Terms of Use at\ntoyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For Toyota’s\nConnected Services’ vehicle-generated data collection, use, sharing, and retention practices and agreements, see toyota.com/support/privacy-notice/.\nTrial period begins on original purchase or lease date of new vehicle. Services may vary and are subject to change without notice. Requires app\ndownload/registration, acceptance of Terms of Use and subscription after trial (if applicable). Data charges may apply. Active Drive Connect trial or\nsubscription required. 4G network dependent. 68. Available Remote Connect shown. 1-year  trial included. Use only  if aware of circumstances\nsurrounding vehicle it is legal safe to do so (e.g., do not remotely start a gas engine vehicle in an enclosed space or if vehicle is occupied by a child).\nRemote Connect services vary by vehicle and are subject to change at any time without notice. Services depend on 4G network availability, a cellular\nconnection and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if and when 4G network changes\nor is discontinued, or the underlying technology required to support service becomes obsolete, then the services will not work and will need to be\ndiscontinued. Digital Key also requires Bluetooth® connectivity. Not available on manual transmissions. Services require account registration through\nToyota app and acceptance of Connected Services Terms of Use at toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf\nand Master Data Consent. Data charges may apply. For Toyota’s Connected Services’ vehicle-generated data collection, use, sharing, and retention\npractices and agreements, see toyota.com/support/privacy-notice/.  Trial period begins on original purchase or lease date of new vehicle. Paid\nsubscription required after trial (if applicable). Terms of Use apply. 4G network dependent. 69. TRD Pro CrewMax interior shown in Cockpit Red. 70.\nAvailable Service Connect shown. Service Connect services vary by vehicle and are subject to change at any time without notice. Services depend on 4G\nnetwork availability, a cellular connection, and GPS signal. Without any one or more of these things, operability may be limited or precluded. Further, if",
+    "35": "INFO AND DISCLOSURES\n\n\nand when 4G network changes or is discontinued, or the underlying technology required to support service becomes obsolete, then the services will not\nwork and will need to be discontinued. Information provided is based on the last time data was collected from the vehicle and is not real-time data.\nServices   require   account    registration   through   Toyota   app   and   acceptance   of   Connected   Services   Terms   of   Use   at\nhttps://www.toyota.com/content/dam/toyota/privacyvts/pdf/connected-services-terms-use.pdf and Master Data Consent. Data charges may apply. For\nToyota’s  Connected   Services’   vehicle-generated   data   collection,   use,   sharing,  and   retention   practices  and   agreements,   see\nhttps://www.toyota.com/support/privacy-notice/. The Service Connect trial is included for a minimum of 5 years. 4G network dependent. 71. The Toyota\nTundra is designed to meet most off-road driving requirements, but off-roading is inherently dangerous. Abusive use may result in bodily harm or vehicle\ndamage. Toyota encourages responsible operation to help protect you, your vehicle and the environment. Seatbelts should be worn at all times. Do not\nallow passengers to ride in cargo area. Platinum CrewMax shown in Celestial Silver Metallic with available TRD Off-Road Package. Options shown. 72.\nNever tow beyond a vehicle’s published towing capacities. 1794 Edition Hybrid CrewMax shown in Midnight Black Metallic. Options shown. 73. The\nbackup camera does not provide a comprehensive view. Always look over shoulder and use outside mirrors. See Owner's Manual for limitations. 74.\nAirbag systems supplement the seatbelts and are designed to inflate only under certain conditions and in certain types of severe collisions. Always wear\nseatbelt, sit upright in middle and as far back in seat as possible to help decrease risk of injury. Do not put objects in front of an airbag. See Owner’s\nManual for limitations. 75. Do not rely exclusively on Blind Spot Monitor. Look over shoulder and use turn signal. See Owner's Manual for limitations. 76.\nDo not rely exclusively on the Rear Cross-Traffic Alert. Visually confirm clearance during use. See Owner’s Manual for limitations. 77. Downhill Assist\nControl is designed to help driver maintain vehicle control and speed on steep, downhill descents and is not a substitute for safe driving judgment and\npractices. Factors including speed, grade, surface conditions and driver input can affect the DAC's ability to prevent loss of control. See Owner’s Manual\nfor additional limitations and details. 78. BedStep® is a registered trademark of Lund Motion Products, Inc. All rights reserved. 79. Extra-cost color. 80.\nSofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc. 81. LED fog lights are removed when 3-in. TRD Suspension Lift Kit (LK) is selected. 82.\nDo not exceed 120V. See Owner’s Manual for additional limitations and details. 83. HomeLink® and the HomeLink® house icon are registered trademarks\nof Gentex Corporation. 84. Wireless charging may not be compatible with all mobile phones, smart devices, tablets, e-readers, MP3/WMA players and\nlike products. 85. Rated for 12 volts/10 amps. See Owner's Manual for additional limitations and details. 86. Be sure to obey traffic regulations and\nmaintain awareness of road and traffic conditions at all times. System functionality and accuracy of information depend on many factors. Use common\nsense when relying on information provided. Services and programming subject to change. Updates may be at an additional cost. See Owner’s Manual\nfor limitations. 87. This floor mat/floor liner was designed specifically for use in your model and model year vehicle and SHOULD NOT be used in any\nother vehicle. To avoid potential interference with pedal operation, each mat/liner must be secured with its fasteners. Do not install a floor mat/floor\nliner on top of an existing floor mat/floor liner. 88. Front and Rear Parking Assist with Automatic Braking (PA w/AB) may warn drivers of, and potentially\nbrake for front and rear collisions with certain objects when traveling at low speeds. Drivers should visually confirm clearance during use. See Owner’s\nManual for instructions and limitations. 89. Hill Start Assist Control is designed to minimize backward rolling on steep ascents. Not a substitute for safe\ndriving judgment and practices. Speed, grade, surface conditions, driver input, etc., can all affect HAC function. See Owner's Manual. 90. Vehicle\nStability Control is not a substitute for safe and attentive driving practices. Factors including speed, road conditions, weather and steering input can\naffect whether VSC will be effective. See Owner’s Manual for limitations. 91. Brake Assist is designed to help the driver take advantage of ABS and is not a\nsubstitute for safe driving practices. Braking effectiveness also depends on proper vehicle maintenance, tire and road conditions. See Owner’s Manual\nfor additional limitations and details. 92. Smart Stop Technology® will reduce power to help the brakes bring vehicle to a stop during certain\ncontemporaneous brake and accelerator pedal applications. See Owner's Manual for limitations. 93. The Tire Pressure Monitor System alerts the driver\nwhen tire pressure is critically low. For optimal tire wear and performance, tire pressure should be checked regularly with a gauge; do not rely solely on\nthe monitor system. See Owner's Manual for limitations and details. 94. Active front headrests can help reduce the extent of whiplash in certain types of\nrear-end collisions. 95. Auto LSD is an electronic, brake-actuated limited-slip differential that automatically activates when VSC is disengaged at low\nspeeds. See Owner's Manual for limitations. 96. Before towing, confirm Stop and Start Engine System is disengaged. 97. Integrated Trailer Brake\nController is an electronic system that operates in tandem with a trailer equipped with an electric braking system. It is designed to help the driver\nmaintain trailer control by increasing or reducing trailer braking based on trailer weight. It is not a substitute for safe towing practices. Factors including\nspeed, weather, road conditions and driver input can all affect trailer braking control. See Owner's Manual for additional limitations and details. 98.\nTrailer-Sway Control (TSC) is an electronic system designed to help the driver maintain vehicle control under adverse conditions. It is not a substitute for\nsafe driving practices. Factors including speed, road conditions, weather and driver steering input can all affect whether TSC will be effective in\npreventing a loss of control. See Owner’s Manual for additional limitations and details. 99. Hybrid vehicle battery expected life is 150,000 miles based on\nlaboratory bench testing. 100. When the system is on, Electric Parking Brake is designed to engage the Parking Brake under limited conditions. It may not\nhold the vehicle under all conditions. See Owner’s Manual for additional limitations and details.",
+    "36": "INFO AND DISCLOSURES\n\n\nToyota strives to build vehicles to match customer interest and thus they typically are built with popular options and option packages. Not all\noptions/packages are available separately and some may not be available in all regions of the country. See toyota.com for information about\noptions/packages commonly available in your area. If you would prefer a vehicle without any or with different options, contact your dealer to check for\ncurrent availability or the possibility of placing a special order.\nColor(s) depicted may vary based on multiple factors, including ambient lighting and the format in which it is being viewed (e.g., computer, mobile device\nor print).\nSome vehicles are shown with available equipment. Seatbelts should be worn at all times. For details on vehicle specifications, standard features and\navailable equipment in your area, contact your Toyota dealer. A vehicle with particular equipment may not be available at the dealership. Ask your Toyota\ndealer to help locate a specifically equipped vehicle.\nAll information presented herein is based on data available at the time of posting, is subject to change without notice and pertains specifically to mainland\nU.S.A. vehicles only. Vehicles shown may be prototypes, shown using visual effects and/or shown with options. Actual models may vary.\n\n\nLEGEND\n\n\n          Info     Vehicle Information                    Info   Legal Disclosure\n\n\n\n\nWARRANTIES\n\nDate and mileage limitations refer to whichever occurs first from the date of              For Toyota hybrid, plug-in hybrid, fuel cell and battery electric vehicles beginning\npurchase. Warranty coverage is subject to other terms and conditions. Refer to         model year 2020, the hybrid (HV) battery is covered for 10 years from date of first\napplicable Warranty and Maintenance Guide for full details.                          use or 150,000 miles, whichever comes first. Coverage is subject to the terms and\nDate and mileage limitations refer to whichever comes first from the date of first         conditions of your New Vehicle Limited Warranty. See the Toyota Owner’s\npurchase. Warranty coverage is subject to other terms and conditions. Refer to          Warranty and Maintenance Guide for details.\napplicable Warranty and Maintenance Guide for full details and for information         The Toyota Genuine Accessory Warranty will only apply when the installation is\nregarding the Federal and California Emission Control Warranties, and Tire Limited      performed by a trained Toyota-approved installer. Please see dealer for details.\nWarranties. Emission coverages vary under Federal and California regulations."
+  },
+  "disclosurePages": [
+    32,
+    33,
+    34,
+    35,
+    36
+  ],
+  "facts": [
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 3
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 6
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 7
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 8
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 29,
+      "quote": "i-FORCE MAX 3.4L Twin-Turbo V6 Hybrid; 437 hp @ 5200 rpm",
+      "value": "437 hp @ 5200 rpm (i-FORCE MAX hybrid powertrain)",
+      "where": {
+        "column": 9
+      }
+    }
+  ],
+  "colors": {
+    "exteriors": [
+      {
+        "name": "Midnight Black Metallic",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Blueprint",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Magnetic Gray Metallic",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Mudbath",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Supersonic Red",
+        "footnotes": [
+          79
+        ],
+        "page": 23
+      },
+      {
+        "name": "Celestial Silver Metallic",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Lunar Rock",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Wind Chill Pearl",
+        "footnotes": [
+          79
+        ],
+        "page": 23
+      },
+      {
+        "name": "Ice Cap",
+        "footnotes": [],
+        "page": 23
+      }
+    ],
+    "interiors": [
+      {
+        "name": "Black Fabric",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Black SofTex®- trimmed",
+        "footnotes": [
+          80
+        ],
+        "page": 23
+      },
+      {
+        "name": "Cockpit Red SofTex®-trimmed",
+        "footnotes": [
+          80
+        ],
+        "page": 23
+      },
+      {
+        "name": "Heritage Black SofTex®-trimmed",
+        "footnotes": [
+          80
+        ],
+        "page": 23
+      },
+      {
+        "name": "Black Leather- trimmed",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Boulder Leather- trimmed",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Saddle Tan Leather-trimmed",
+        "footnotes": [],
+        "page": 23
+      },
+      {
+        "name": "Shale Premium Textured Leather- trimmed",
+        "footnotes": [],
+        "page": 23
+      }
+    ]
+  },
+  "highlights": [],
+  "contentSha256": "a6bf8d590a787c5c849bb085779bf6b01f35f864eef06f1174242f15fc578e42"
+}
