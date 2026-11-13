@@ -187,7 +187,7 @@ test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
   page,
 }) => {
   await page.goto("./#/search?q=heated%20steering&brand=toyota");
-  await expect(page.locator(".vehicle-card")).toHaveCount(5);
+  await expect(page.locator(".vehicle-card")).toHaveCount(11);
   await page.goto("./#/compare");
   await page
     .locator("#compare-select")
@@ -358,6 +358,7 @@ test("specials expire on an open page at dealership midnight", async ({
   page,
 }) => {
   await page.clock.install({ time: new Date("2026-12-01T04:59:59Z") });
+  await page.clock.pauseAt(new Date("2026-12-01T04:59:59Z"));
   await page.goto("./#/specials");
   await expect(page.locator(".special-offer")).toHaveCount(14);
   await page.clock.fastForward(2000);
@@ -1048,13 +1049,19 @@ for (const width of [1280, 390]) {
   test(`Model Guide cleanup preserves every standard trim equipment list at ${width}px`, async ({
     page,
   }) => {
-    test.setTimeout(90000);
+    test.setTimeout(180000);
     await page.setViewportSize({ width, height: 850 });
     for (const id of [
       "2026-toyota-rav4",
       "2026-toyota-tacoma",
       "2026-toyota-sienna",
       "2026-toyota-grand-highlander",
+      "2027-toyota-land-cruiser",
+      "2027-toyota-prius",
+      "2027-toyota-prius-plug-in-hybrid",
+      "2026-toyota-corolla",
+      "2026-toyota-corolla-cross",
+      "2026-toyota-highlander",
       "2026-volkswagen-tiguan",
       "2027-chevrolet-equinox",
     ]) {
@@ -1204,13 +1211,19 @@ for (const width of [1280, 390]) {
   test(`Specifications modal follows every imported Toyota, Tiguan and Equinox configuration at ${width}px`, async ({
     page,
   }) => {
-    test.setTimeout(90000);
+    test.setTimeout(180000);
     await page.setViewportSize({ width, height: 850 });
     for (const id of [
       "2026-toyota-rav4",
       "2026-toyota-tacoma",
       "2026-toyota-sienna",
       "2026-toyota-grand-highlander",
+      "2027-toyota-land-cruiser",
+      "2027-toyota-prius",
+      "2027-toyota-prius-plug-in-hybrid",
+      "2026-toyota-corolla",
+      "2026-toyota-corolla-cross",
+      "2026-toyota-highlander",
       "2026-volkswagen-tiguan",
       "2027-chevrolet-equinox",
     ]) {
@@ -1570,10 +1583,20 @@ for (const width of [1280, 390]) {
     page,
   }) => {
     await page.setViewportSize({ width, height: 850 });
-    for (const model of ["tacoma", "sienna", "grand-highlander", "rav4"]) {
-      const vehicle = catalog.vehicles.find(
-        (v) => v.id === `2026-toyota-${model}`,
-      );
+    test.setTimeout(90000);
+    for (const model of [
+      "2026-toyota-tacoma",
+      "2026-toyota-sienna",
+      "2026-toyota-grand-highlander",
+      "2026-toyota-rav4",
+      "2027-toyota-land-cruiser",
+      "2027-toyota-prius",
+      "2027-toyota-prius-plug-in-hybrid",
+      "2026-toyota-corolla",
+      "2026-toyota-corolla-cross",
+      "2026-toyota-highlander",
+    ]) {
+      const vehicle = catalog.vehicles.find((v) => v.id === model);
       await page.goto(modelPath(vehicle));
       await expect(page.locator(".trim-training-card")).toHaveCount(
         new Set(vehicle.trims.map((t) => t.name)).size,
@@ -1599,7 +1622,7 @@ for (const width of [1280, 390]) {
           () => document.documentElement.scrollWidth <= innerWidth,
         ),
       ).toBe(true);
-      if (model === "rav4")
+      if (model === "2026-toyota-rav4")
         await expect(page.locator("#model-year-changes")).toContainText(
           "all new",
         );
@@ -2164,6 +2187,7 @@ test("November 15 Chevrolet offers disappear at midnight while later offers rema
   page,
 }) => {
   await page.clock.install({ time: new Date("2026-11-16T04:59:59Z") });
+  await page.clock.pauseAt(new Date("2026-11-16T04:59:59Z"));
   await page.goto("./#/specials");
   await page
     .getByLabel("Manufacturer", { exact: true })
@@ -2183,3 +2207,33 @@ test("November 15 Chevrolet offers disappear at midnight while later offers rema
   await page.getByLabel("Manufacturer", { exact: true }).selectOption("");
   await expect(page.locator(".special-offer")).toHaveCount(14);
 });
+
+for (const width of [1280, 390]) {
+  test(`Six-model Toyota expansion compares HEV, PHEV and gasoline without mixed ratings at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto("./#/compare");
+    await addComparisons(page, [
+      "2027-toyota-prius:le-fwd",
+      "2027-toyota-prius-plug-in-hybrid:se-fwd",
+      "2026-toyota-corolla:le-fwd",
+      "2026-toyota-corolla-cross:l-awd",
+    ]);
+    await page.locator("#compare-view-all").check();
+    const table = equipmentTable(page, "#comparison-results");
+    await expect(table.locator("thead th")).toHaveCount(5);
+    await expect(table).toContainText("194 hp");
+    await expect(table).toContainText("220 hp");
+    await expect(table).toContainText("169 hp");
+    await expect(table).toContainText("44 miles");
+    await expect(table).not.toContainText(/Available \(Optional\)|Unverified/);
+    await page.locator("#compare-view-differences").check();
+    await expect(table).toContainText("220 hp");
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  });
+}

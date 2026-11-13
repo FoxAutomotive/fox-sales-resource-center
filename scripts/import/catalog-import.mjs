@@ -935,7 +935,12 @@ export function importCatalog(stage, base, features) {
     }
     report.models.push(stats);
   }
-  if (stage.source.coverageNote)
+  if (
+    stage.source.coverageNote &&
+    !catalog.coverageNotes[String(stage.source.year)]?.includes(
+      stage.source.coverageNote,
+    )
+  )
     catalog.coverageNotes[String(stage.source.year)] =
       stage.source.coverageNote;
   const errors = validate(catalog, features);

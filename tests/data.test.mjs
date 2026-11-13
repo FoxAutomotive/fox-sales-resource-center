@@ -248,6 +248,9 @@ test("brochure provenance and print references remain valid", () => {
 });
 
 test("package-name searches never infer unverified package contents", () => {
+  // This regression checks RAV4 package names; other models can independently
+  // establish weather equipment and ventilated seats in the same configuration.
+  const ravCatalog = { ...catalog, vehicles: [catalog.vehicles[0]] };
   assert.equal(
     searchVehicles(catalog, features, {
       query: "Weather Package",
@@ -256,14 +259,14 @@ test("package-name searches never infer unverified package contents", () => {
     1,
   );
   assert.equal(
-    searchVehicles(catalog, features, {
+    searchVehicles(ravCatalog, features, {
       query: "Weather ventilated",
       brand: "toyota",
     }).vehicles.length,
     0,
   );
   assert.equal(
-    searchVehicles(catalog, features, { query: "XSE 9-speaker" }).vehicles
+    searchVehicles(ravCatalog, features, { query: "XSE 9-speaker" }).vehicles
       .length,
     0,
   );
@@ -944,6 +947,7 @@ test("feature alias searches match evidenced categories across brands without ma
         "2026-toyota-tacoma",
         "2026-toyota-sienna",
         "2026-toyota-grand-highlander",
+        "2026-toyota-highlander",
         "2026-toyota-rav4",
         "2026-toyota-rav4-plug-in-hybrid",
         "2026-volkswagen-tiguan",
