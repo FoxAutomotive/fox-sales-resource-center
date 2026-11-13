@@ -1,0 +1,132 @@
+{
+  "id": "toyota-2026-corolla-hatchback-brochure",
+  "sha256": "55a67059f468bb7eea907c6ef18bc72adc51092bec8ef1705fa7d2676922bf62",
+  "pageCount": 25,
+  "year": 2026,
+  "titleToken": "corolla hatchback",
+  "model": "Corolla Hatchback",
+  "vehicleId": "2026-toyota-corolla-hatchback",
+  "category": "Hatchback",
+  "columns": [
+    {
+      "name": "SE",
+      "headerTokens": ["SE"]
+    },
+    {
+      "name": "FX",
+      "headerTokens": ["FX"]
+    },
+    {
+      "name": "XSE",
+      "headerTokens": ["XSE"]
+    }
+  ],
+  "matrixPages": [18, 19, 20],
+  "rowCounts": {
+    "18": 38,
+    "19": 23,
+    "20": 21
+  },
+  "columnCenters": [260.11, 388.56, 517.01],
+  "bodyTop": 77,
+  "disclosurePages": [21, 22, 23, 24, 25],
+  "colorPage": 17,
+  "configs": [
+    {
+      "id": "se-fwd",
+      "name": "SE",
+      "column": 0,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "CVT",
+      "powertrain": "gasoline",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Dynamic-Shift Continuously Variable Transmission (CVT)"
+    },
+    {
+      "id": "fx-fwd",
+      "name": "FX",
+      "column": 1,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "CVT",
+      "powertrain": "gasoline",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Dynamic-Shift Continuously Variable Transmission (CVT)"
+    },
+    {
+      "id": "xse-fwd",
+      "name": "XSE",
+      "column": 2,
+      "configuration": "Gasoline · FWD",
+      "drive": "FWD",
+      "transmission": "CVT",
+      "powertrain": "gasoline",
+      "driveRow": "Front-Wheel Drive (FWD)",
+      "transmissionRow": "Dynamic-Shift Continuously Variable Transmission (CVT)"
+    }
+  ],
+  "facts": [
+    {
+      "field": "engine",
+      "page": 20,
+      "quote": "Dynamic Force Engine: 2.0-liter inline-4-cylinder 16-valve DOHC chain drive with Dual VVT-i, 169 hp at 6600 rpm and 151 lb.-ft. of torque at 4800 rpm",
+      "value": "Dynamic Force Engine: 2.0-liter inline-4-cylinder 16-valve DOHC chain drive with Dual VVT-i, 169 hp at 6600 rpm and 151 lb.-ft. of torque at 4800 rpm",
+      "where": {}
+    },
+    {
+      "field": "horsepower",
+      "page": 20,
+      "quote": "169 hp at 6600 rpm",
+      "value": "169 hp at 6600 rpm (2.0L gasoline engine)",
+      "where": {}
+    },
+    {
+      "field": "wheels",
+      "page": 18,
+      "quote": "18-in gloss-white-finished alloy wheels with P225/40R18 tires",
+      "value": "18-in gloss-white-finished alloy wheels with P225/40R18 tires",
+      "where": {
+        "column": 1
+      }
+    }
+  ],
+  "palette": {
+    "exteriors": {
+      "y": [100, 420],
+      "centers": [63.5, 182.9, 302.3, 421.7, 541.1],
+      "bands": [
+        [130, 185],
+        [260, 295],
+        [369, 400]
+      ]
+    },
+    "interiors": {
+      "y": [520, 750],
+      "centers": [63, 158.7, 254.4, 350.2, 446, 541.7],
+      "bands": [[570, 605]]
+    }
+  },
+  "reviewedAt": "2026-11-13",
+  "pageCategories": {
+    "18": "Exterior",
+    "19": "Interior (continued)",
+    "20": "Safety and Convenience (continued)"
+  },
+  "lastDisclosure": 75,
+  "notes": [
+    "SE, FX and XSE are gasoline/FWD/Dynamic-Shift CVT only in the brochure. No Corolla sedan, hybrid, AWD or manual configuration is inferred.",
+    "FX Sport Touring heated seats and orange stitching are read from the FX column, not inherited from SE or XSE.",
+    "Fuel economy, dimensions, seating count, cargo capacity and tank capacity are not established by the supplied brochure.",
+    "Exterior/interior palettes are manufacturer model-level references; trim-specific color/material eligibility remains unverified.",
+    "No explicit model-year change statement is verified in the brochure; What’s New remains unavailable. Unsupported technical measurements, MSRP and configuration-specific ratings are not invented."
+  ],
+  "holdRules": [
+    {
+      "pattern": "Digital Key",
+      "reason": "Digital Key activation requires an active Remote Connect subscription. Retain source evidence; exclude from factory-standard equipment rather than imply paid activation is included."
+    }
+  ],
+  "modelUrl": "https://www.toyota.com/corollahatchback/",
+  "expectedContentSha256": "79733a3760467f5f2c6d88d6af07b0a0223f8c9cf5b6ed9def1f763517c67cbf"
+}

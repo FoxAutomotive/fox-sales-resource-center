@@ -1,0 +1,833 @@
+{
+  "id": "toyota-2026-4runner-brochure",
+  "sha256": "6568bf04ba5c7b54cdd77a6ecf21b0c012adb8b16d237ce84a15056c7e5248ea",
+  "pageCount": 35,
+  "year": 2026,
+  "titleToken": "4runner",
+  "model": "4Runner",
+  "vehicleId": "2026-toyota-4runner",
+  "category": "SUV",
+  "columns": [
+    {
+      "name": "SR5",
+      "headerTokens": ["SR5"]
+    },
+    {
+      "name": "TRD Sport",
+      "headerTokens": ["TRD", "Sport"]
+    },
+    {
+      "name": "TRD Off-Road",
+      "headerTokens": ["TRD", "Off-", "Road"]
+    },
+    {
+      "name": "TRD Off-Road i-FORCE MAX",
+      "headerTokens": ["TRD", "Off-", "Road", "i-", "FORCE", "MAX"]
+    },
+    {
+      "name": "TRD Sport Premium",
+      "headerTokens": ["TRD", "Sport", "Premium"]
+    },
+    {
+      "name": "TRD Off-Road Premium",
+      "headerTokens": ["TRD", "Off-", "Road", "Premium"]
+    },
+    {
+      "name": "Limited",
+      "headerTokens": ["Limited"]
+    },
+    {
+      "name": "TRD Off-Road Premium i-FORCE MAX",
+      "headerTokens": ["TRD", "Off-", "Road", "Premium", "i-", "FORCE", "MAX"]
+    },
+    {
+      "name": "Limited i-FORCE MAX",
+      "headerTokens": ["Limited", "i-", "FORCE", "MAX"]
+    },
+    {
+      "name": "Platinum",
+      "headerTokens": ["Platinum"]
+    },
+    {
+      "name": "Trailhunter",
+      "headerTokens": ["Trailhunt"]
+    },
+    {
+      "name": "TRD Pro",
+      "headerTokens": ["TRD", "Pro"]
+    }
+  ],
+  "matrixPages": [23, 24, 25, 26, 27, 28, 29],
+  "rowCounts": {
+    "23": 25,
+    "24": 26,
+    "25": 18,
+    "26": 23,
+    "27": 15,
+    "28": 22,
+    "29": 12
+  },
+  "columnCenters": [
+    196.13, 229.61, 263.09, 296.58, 330.06, 363.54, 397.02, 430.5, 463.98,
+    497.46, 530.94, 564.47
+  ],
+  "bodyTop": 100,
+  "disclosurePages": [30, 31, 32, 33, 34, 35],
+  "colorPage": 22,
+  "configs": [
+    {
+      "id": "sr5-rwd",
+      "name": "SR5",
+      "column": 0,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "sr5-4wd",
+      "name": "SR5",
+      "column": 0,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-sport-rwd",
+      "name": "TRD Sport",
+      "column": 1,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-sport-4wd",
+      "name": "TRD Sport",
+      "column": 1,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-off-road-4wd",
+      "name": "TRD Off-Road",
+      "column": 2,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-off-road-max-4wd",
+      "name": "TRD Off-Road",
+      "column": 3,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "hybrid",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-sport-premium-rwd",
+      "name": "TRD Sport Premium",
+      "column": 4,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-sport-premium-4wd",
+      "name": "TRD Sport Premium",
+      "column": 4,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-off-road-premium-4wd",
+      "name": "TRD Off-Road Premium",
+      "column": 5,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-rwd",
+      "name": "Limited",
+      "column": 6,
+      "configuration": "Gasoline · RWD",
+      "drive": "RWD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Rear-Wheel Drive (RWD) with Automatic Limited-Slip Differential (Auto LSD)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-4wd",
+      "name": "Limited",
+      "column": 6,
+      "configuration": "Gasoline · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "gasoline",
+      "driveRow": "Full-time 4-Wheel Drive (4WD) with Torsen® 87 limited-slip center differential with locking feature",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-off-road-premium-max-4wd",
+      "name": "TRD Off-Road Premium",
+      "column": 7,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "hybrid",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "limited-max-4wd",
+      "name": "Limited",
+      "column": 8,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "hybrid",
+      "driveRow": "Full-time 4-Wheel Drive (4WD) with Torsen® 87 limited-slip center differential with locking feature",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "platinum-max-4wd",
+      "name": "Platinum",
+      "column": 9,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "hybrid",
+      "driveRow": "Full-time 4-Wheel Drive (4WD) with Torsen® 87 limited-slip center differential with locking feature",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trailhunter-max-4wd",
+      "name": "Trailhunter",
+      "column": 10,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "hybrid",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    },
+    {
+      "id": "trd-pro-max-4wd",
+      "name": "TRD Pro",
+      "column": 11,
+      "configuration": "Hybrid · 4WD",
+      "drive": "4WD",
+      "transmission": "8AT",
+      "powertrain": "hybrid",
+      "driveRow": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "transmissionRow": "8-speed Electronically Controlled automatic Transmission with intelligence (ECT-i), sequential shift mode, and uphill/downhill shift logic"
+    }
+  ],
+  "facts": [
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 0,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 1,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 2,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 3,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 4,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 5,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 7,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 10,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "drivetrain",
+      "page": 28,
+      "quote": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "value": "Part-time 4-Wheel Drive (4WD) with electronically controlled 2-speed transfer case (high/low range) and Active Traction Control (A-TRAC)",
+      "where": {
+        "column": 11,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "engine",
+      "page": 28,
+      "quote": "i-FORCE MAX 2.4L turbocharged inline 4- cylinder hybrid powertrain",
+      "value": "i-FORCE MAX 2.4L turbocharged inline 4-cylinder hybrid powertrain",
+      "where": {
+        "column": 3
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 28,
+      "quote": "326 hp @ 6000 rpm",
+      "value": "326 hp @ 6000 rpm (i-FORCE MAX hybrid powertrain; excludes Trailhunter)",
+      "where": {
+        "column": 3
+      }
+    },
+    {
+      "field": "torque",
+      "page": 28,
+      "quote": "465 lb.-ft. @ 1700 rpm",
+      "value": "465 lb.-ft. @ 1700 rpm (hybrid powertrain rating; not the separate electric-motor rating)",
+      "where": {
+        "column": 3
+      }
+    },
+    {
+      "field": "engine",
+      "page": 28,
+      "quote": "i-FORCE MAX 2.4L turbocharged inline 4- cylinder hybrid powertrain",
+      "value": "i-FORCE MAX 2.4L turbocharged inline 4-cylinder hybrid powertrain",
+      "where": {
+        "column": 7
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 28,
+      "quote": "326 hp @ 6000 rpm",
+      "value": "326 hp @ 6000 rpm (i-FORCE MAX hybrid powertrain; excludes Trailhunter)",
+      "where": {
+        "column": 7
+      }
+    },
+    {
+      "field": "torque",
+      "page": 28,
+      "quote": "465 lb.-ft. @ 1700 rpm",
+      "value": "465 lb.-ft. @ 1700 rpm (hybrid powertrain rating; not the separate electric-motor rating)",
+      "where": {
+        "column": 7
+      }
+    },
+    {
+      "field": "engine",
+      "page": 28,
+      "quote": "i-FORCE MAX 2.4L turbocharged inline 4- cylinder hybrid powertrain",
+      "value": "i-FORCE MAX 2.4L turbocharged inline 4-cylinder hybrid powertrain",
+      "where": {
+        "column": 8
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 28,
+      "quote": "326 hp @ 6000 rpm",
+      "value": "326 hp @ 6000 rpm (i-FORCE MAX hybrid powertrain; excludes Trailhunter)",
+      "where": {
+        "column": 8
+      }
+    },
+    {
+      "field": "torque",
+      "page": 28,
+      "quote": "465 lb.-ft. @ 1700 rpm",
+      "value": "465 lb.-ft. @ 1700 rpm (hybrid powertrain rating; not the separate electric-motor rating)",
+      "where": {
+        "column": 8
+      }
+    },
+    {
+      "field": "engine",
+      "page": 28,
+      "quote": "i-FORCE MAX 2.4L turbocharged inline 4- cylinder hybrid powertrain",
+      "value": "i-FORCE MAX 2.4L turbocharged inline 4-cylinder hybrid powertrain",
+      "where": {
+        "column": 9
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 28,
+      "quote": "326 hp @ 6000 rpm",
+      "value": "326 hp @ 6000 rpm (i-FORCE MAX hybrid powertrain; excludes Trailhunter)",
+      "where": {
+        "column": 9
+      }
+    },
+    {
+      "field": "torque",
+      "page": 28,
+      "quote": "465 lb.-ft. @ 1700 rpm",
+      "value": "465 lb.-ft. @ 1700 rpm (hybrid powertrain rating; not the separate electric-motor rating)",
+      "where": {
+        "column": 9
+      }
+    },
+    {
+      "field": "engine",
+      "page": 28,
+      "quote": "i-FORCE MAX 2.4L turbocharged inline 4- cylinder hybrid powertrain",
+      "value": "i-FORCE MAX 2.4L turbocharged inline 4-cylinder hybrid powertrain",
+      "where": {
+        "column": 10
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 28,
+      "quote": "Trailhunter: 323 hp @ 6000 rpm",
+      "value": "323 hp @ 6000 rpm (Trailhunter hybrid powertrain)",
+      "where": {
+        "column": 10
+      }
+    },
+    {
+      "field": "torque",
+      "page": 28,
+      "quote": "465 lb.-ft. @ 1700 rpm",
+      "value": "465 lb.-ft. @ 1700 rpm (hybrid powertrain rating; not the separate electric-motor rating)",
+      "where": {
+        "column": 10
+      }
+    },
+    {
+      "field": "engine",
+      "page": 28,
+      "quote": "i-FORCE MAX 2.4L turbocharged inline 4- cylinder hybrid powertrain",
+      "value": "i-FORCE MAX 2.4L turbocharged inline 4-cylinder hybrid powertrain",
+      "where": {
+        "column": 11
+      }
+    },
+    {
+      "field": "horsepower",
+      "page": 28,
+      "quote": "326 hp @ 6000 rpm",
+      "value": "326 hp @ 6000 rpm (i-FORCE MAX hybrid powertrain; excludes Trailhunter)",
+      "where": {
+        "column": 11
+      }
+    },
+    {
+      "field": "torque",
+      "page": 28,
+      "quote": "465 lb.-ft. @ 1700 rpm",
+      "value": "465 lb.-ft. @ 1700 rpm (hybrid powertrain rating; not the separate electric-motor rating)",
+      "where": {
+        "column": 11
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "8-in. Audio Multimedia Display",
+      "value": "8-in. Audio Multimedia Display with 8- speaker audio system + roof Exciter, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/audio-multimedia for details",
+      "where": {
+        "column": 0
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "8-in. Audio Multimedia Display",
+      "value": "8-in. Audio Multimedia Display with 8- speaker audio system + roof Exciter, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/audio-multimedia for details",
+      "where": {
+        "column": 1
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "8-in. Audio Multimedia Display",
+      "value": "8-in. Audio Multimedia Display with 8- speaker audio system + roof Exciter, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/audio-multimedia for details",
+      "where": {
+        "column": 2
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "8-in. Audio Multimedia Display",
+      "value": "8-in. Audio Multimedia Display with 8- speaker audio system + roof Exciter, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/audio-multimedia for details",
+      "where": {
+        "column": 3
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "14-in. Audio Multimedia Display",
+      "value": "14-in. Audio Multimedia Display with 14- speaker JBL® Premium Audio system including JBL® FLEX portable Bluetooth ® 40 speaker, subwoofer and amplifier, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/connected-services for details",
+      "where": {
+        "column": 4
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "14-in. Audio Multimedia Display",
+      "value": "14-in. Audio Multimedia Display with 14- speaker JBL® Premium Audio system including JBL® FLEX portable Bluetooth ® 40 speaker, subwoofer and amplifier, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/connected-services for details",
+      "where": {
+        "column": 5
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "14-in. Audio Multimedia Display",
+      "value": "14-in. Audio Multimedia Display with 14- speaker JBL® Premium Audio system including JBL® FLEX portable Bluetooth ® 40 speaker, subwoofer and amplifier, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/connected-services for details",
+      "where": {
+        "column": 6
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "14-in. Audio Multimedia Display",
+      "value": "14-in. Audio Multimedia Display with 14- speaker JBL® Premium Audio system including JBL® FLEX portable Bluetooth ® 40 speaker, subwoofer and amplifier, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/connected-services for details",
+      "where": {
+        "column": 7
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "14-in. Audio Multimedia Display",
+      "value": "14-in. Audio Multimedia Display with 14- speaker JBL® Premium Audio system including JBL® FLEX portable Bluetooth ® 40 speaker, subwoofer and amplifier, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/connected-services for details",
+      "where": {
+        "column": 8
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "14-in. Audio Multimedia Display",
+      "value": "14-in. Audio Multimedia Display with 14- speaker JBL® Premium Audio system including JBL® FLEX portable Bluetooth ® 40 speaker, subwoofer and amplifier, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/connected-services for details",
+      "where": {
+        "column": 9
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "14-in. Audio Multimedia Display",
+      "value": "14-in. Audio Multimedia Display with 14- speaker JBL® Premium Audio system including JBL® FLEX portable Bluetooth ® 40 speaker, subwoofer and amplifier, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/connected-services for details",
+      "where": {
+        "column": 10
+      }
+    },
+    {
+      "field": "infotainment",
+      "page": 26,
+      "quote": "14-in. Audio Multimedia Display",
+      "value": "14-in. Audio Multimedia Display with 14- speaker JBL® Premium Audio system including JBL® FLEX portable Bluetooth ® 40 speaker, subwoofer and amplifier, wireless Apple CarPlay® & Android Auto™ 44 compatibility, SiriusXM® 37 3-month trial. See toyota.com/connected-services for details",
+      "where": {
+        "column": 11
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "20 city/26 hwy/22 combined",
+      "value": "20 city/26 highway/22 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 0,
+        "drive": "RWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "19 city/25 hwy/21 combined",
+      "value": "19 city/25 highway/21 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 0,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "20 city/26 hwy/22 combined",
+      "value": "20 city/26 highway/22 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 1,
+        "drive": "RWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "19 city/25 hwy/21 combined",
+      "value": "19 city/25 highway/21 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 1,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "19 city/25 hwy/21 combined",
+      "value": "19 city/25 highway/21 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 2,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "23 city/24 hwy/23 combined",
+      "value": "23 city/24 highway/23 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 3,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "20 city/26 hwy/22 combined",
+      "value": "20 city/26 highway/22 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 4,
+        "drive": "RWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "19 city/25 hwy/21 combined",
+      "value": "19 city/25 highway/21 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 4,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "19 city/25 hwy/21 combined",
+      "value": "19 city/25 highway/21 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 5,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "20 city/24 hwy/22 combined",
+      "value": "20 city/24 highway/22 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 6,
+        "drive": "RWD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "20 city/24 hwy/21 combined",
+      "value": "20 city/24 highway/21 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 6,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "23 city/24 hwy/23 combined",
+      "value": "23 city/24 highway/23 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 7,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "23 city/24 hwy/23 combined",
+      "value": "23 city/24 highway/23 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 8,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "23 city/24 hwy/23 combined",
+      "value": "23 city/24 highway/23 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 9,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "23 city/24 hwy/23 combined",
+      "value": "23 city/24 highway/23 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 10,
+        "drive": "4WD"
+      }
+    },
+    {
+      "field": "economy",
+      "page": 30,
+      "quote": "23 city/24 hwy/23 combined",
+      "value": "23 city/24 highway/23 combined mpg (projected EPA estimate, manufacturer determination)",
+      "where": {
+        "column": 11,
+        "drive": "4WD"
+      }
+    }
+  ],
+  "palette": {
+    "exteriors": {
+      "y": [100, 280],
+      "centers": [63.5, 182.9, 302.3, 421.7, 541.1],
+      "bands": [
+        [130, 155],
+        [228, 250]
+      ]
+    },
+    "interiors": {
+      "y": [350, 750],
+      "centers": [63, 158.7, 254.4, 350.2, 446, 541.7],
+      "bands": [
+        [417, 462],
+        [537, 573]
+      ]
+    }
+  },
+  "reviewedAt": "2026-11-13",
+  "pageCategories": {
+    "23": "Exterior",
+    "24": "Exterior (continued)",
+    "25": "Interior (continued)",
+    "26": "Interior (continued)",
+    "27": "Safety and Convenience",
+    "28": "Mechanical/Performance",
+    "29": "Mechanical/Performance"
+  },
+  "lastDisclosure": 98,
+  "notes": [
+    "Matrix has 12 powertrain/trim columns and 16 drive/powertrain configurations across nine trim families. Gas Limited offers RWD or full-time 4WD; Limited hybrid and Platinum use full-time 4WD; other 4WD configurations use part-time 4WD.",
+    "p. 28 explicitly gives Trailhunter 323 hp; other hybrid columns use 326 hp. Do not copy the advertised up-to-326 maximum onto Trailhunter.",
+    "p. 7 advertises up to 90.2 cu. ft. cargo with all seats folded; p. 4 advertises up to 6000-lb towing. These maxima do not establish each selected configuration rating.",
+    "Third-row seat is A on SR5 and gasoline Limited only. No standard third row or total seating capacity is inferred.",
+    "Trailhunter header token is clipped to Trailhunte by its narrow table cell; header check uses Trailhunt within that column, with the full trim title independently reviewed on p. 21.",
+    "Exterior/interior palettes are manufacturer model-level references; trim-specific color/material eligibility remains unverified.",
+    "What’s New retains only the manufacturer-described brochure highlight. No independent prior-year comparison is established. Unsupported technical measurements, MSRP and configuration-specific ratings are not invented."
+  ],
+  "holdRules": [
+    {
+      "pattern": "^i-FORCE MAX 2.4L",
+      "reason": "Shared hybrid row includes a distinct Trailhunter 323-hp exception. Full shared row held; reviewed engine/system horsepower/torque facts are scoped to each hybrid column."
+    },
+    {
+      "pattern": "Digital Key",
+      "reason": "Digital Key activation requires an active Remote Connect subscription. Retain source evidence; exclude from factory-standard equipment rather than imply paid activation is included."
+    }
+  ],
+  "highlights": [
+    {
+      "page": 4,
+      "quote": "Standard on TRD Pro and Trailhunter models, the new Stabilizer Disconnect Mechanism (SDM)",
+      "text": "Toyota describes the Stabilizer Disconnect Mechanism as new in its 2026 4Runner brochure and lists it as standard on TRD Pro and Trailhunter."
+    }
+  ],
+  "expectedContentSha256": "091baa0c3223f34b9ecc66811d46c854d8f34265b93b84d7ff38324a0c7ee8ec"
+}

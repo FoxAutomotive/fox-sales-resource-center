@@ -187,7 +187,7 @@ test("real RAV4 HEV/PHEV configurations are searchable and comparable", async ({
   page,
 }) => {
   await page.goto("./#/search?q=heated%20steering&brand=toyota");
-  await expect(page.locator(".vehicle-card")).toHaveCount(11);
+  await expect(page.locator(".vehicle-card")).toHaveCount(17);
   await page.goto("./#/compare");
   await page
     .locator("#compare-select")
@@ -1062,6 +1062,12 @@ for (const width of [1280, 390]) {
       "2026-toyota-corolla",
       "2026-toyota-corolla-cross",
       "2026-toyota-highlander",
+      "2026-toyota-camry",
+      "2026-toyota-4runner",
+      "2026-toyota-tundra",
+      "2026-toyota-sequoia",
+      "2026-toyota-land-cruiser",
+      "2026-toyota-corolla-hatchback",
       "2026-volkswagen-tiguan",
       "2027-chevrolet-equinox",
     ]) {
@@ -1224,6 +1230,12 @@ for (const width of [1280, 390]) {
       "2026-toyota-corolla",
       "2026-toyota-corolla-cross",
       "2026-toyota-highlander",
+      "2026-toyota-camry",
+      "2026-toyota-4runner",
+      "2026-toyota-tundra",
+      "2026-toyota-sequoia",
+      "2026-toyota-land-cruiser",
+      "2026-toyota-corolla-hatchback",
       "2026-volkswagen-tiguan",
       "2027-chevrolet-equinox",
     ]) {
@@ -1595,6 +1607,12 @@ for (const width of [1280, 390]) {
       "2026-toyota-corolla",
       "2026-toyota-corolla-cross",
       "2026-toyota-highlander",
+      "2026-toyota-camry",
+      "2026-toyota-4runner",
+      "2026-toyota-tundra",
+      "2026-toyota-sequoia",
+      "2026-toyota-land-cruiser",
+      "2026-toyota-corolla-hatchback",
     ]) {
       const vehicle = catalog.vehicles.find((v) => v.id === model);
       await page.goto(modelPath(vehicle));
@@ -2230,6 +2248,65 @@ for (const width of [1280, 390]) {
     await expect(table).not.toContainText(/Available \(Optional\)|Unverified/);
     await page.locator("#compare-view-differences").check();
     await expect(table).toContainText("220 hp");
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  });
+}
+
+for (const width of [1280, 390]) {
+  test(`2026 Toyota next batch compares truck ratings and separate Land Cruiser years at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto("./#/compare");
+    await addComparisons(page, [
+      "2026-toyota-land-cruiser:land-cruiser-1958-4wd",
+      "2027-toyota-land-cruiser:land-cruiser-1958-4wd",
+      "2026-toyota-4runner:trailhunter-max-4wd",
+      "2026-toyota-tundra:sr-rwd",
+    ]);
+    await page.locator("#compare-view-all").check();
+    const table = equipmentTable(page, "#comparison-results");
+    await expect(table.locator("thead th")).toHaveCount(5);
+    await expect(table).toContainText("323 hp");
+    await expect(table).toContainText("358 hp");
+    await expect(table).toContainText("326 net combined hp");
+    await expect(table.locator("thead")).toContainText("2026");
+    await expect(table.locator("thead")).toContainText("2027");
+    await page.locator("#compare-view-differences").check();
+    await expect(table).toContainText("323 hp");
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  });
+  test(`2026 Camry, Sequoia and Corolla Hatchback compare only documented powertrains at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto("./#/compare");
+    await addComparisons(page, [
+      "2026-toyota-camry:le-fwd",
+      "2026-toyota-camry:le-awd",
+      "2026-toyota-sequoia:sr5-4wd",
+      "2026-toyota-corolla-hatchback:fx-fwd",
+    ]);
+    await page.locator("#compare-view-all").check();
+    const table = equipmentTable(page, "#comparison-results");
+    await expect(table.locator("thead th")).toHaveCount(5);
+    for (const text of [
+      "225 net combined hp",
+      "232 net combined hp",
+      "437 hp",
+      "169 hp",
+    ])
+      await expect(table).toContainText(text);
+    await expect(table).not.toContainText("2025 Sequoia");
+    await expect(table).not.toContainText("19 city/22 highway/20");
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
