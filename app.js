@@ -688,7 +688,7 @@ function standardOnlyPrintHTML(v, options, performance) {
           .map((c) => `${escape(c.name)} (${c.trims.map(escape).join("/")})`)
           .join("; ")}.</p>`
       : ""
-  }${v.modelYearChanges?.items?.length ? `<h2>What's New for ${v.year}</h2><p>${v.modelYearChanges.items.map((i) => escape(i.text)).join("; ")}.</p>` : ""}`;
+  }${v.modelYearChanges?.items?.length ? `<h2>What's New for ${v.year}</h2><p>${(v.quickReference.modelYearChangeItems || v.modelYearChanges.items).map((i) => escape(i.text)).join("; ")}.${v.quickReference.modelYearChangeItems ? " Full change list in the online guide." : ""}</p>` : ""}`;
 }
 function compactPrintSheet(v, options) {
   const refs = v.quickReference;

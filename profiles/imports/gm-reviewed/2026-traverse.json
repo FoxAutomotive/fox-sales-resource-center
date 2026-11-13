@@ -1,0 +1,113 @@
+{
+  "id": "gm-2026-traverse-nov13",
+  "year": 2026,
+  "model": "Traverse",
+  "sha256": "c14a4cf7a458175d6eddb35ad3bed98e11b0ce4f0932cc9660c033ac347aedcb",
+  "reviewedAt": "2026-11-13",
+  "headers": [
+    "LT\n1LB56\nFWD\n1LT",
+    "LT\n1LB56\nAWD\n2LT",
+    "Z71\n1LC56\nAWD\n2Z7",
+    "High Country\n1LD56\nFWD\n1LZ",
+    "High Country\n1LD56\nAWD\n2LZ",
+    "RS\n1LD56\nFWD\n1RS",
+    "RS\n1LD56\nAWD\n2RS"
+  ],
+  "sheets": {
+    "Highlights": [12, 1],
+    "Standard Equipment": [149, 10],
+    "Equipment Groups": [62, 10],
+    "Interior": [110, 10],
+    "Exterior": [66, 10],
+    "Mechanical": [34, 10],
+    "Color and Trim": [20, 10],
+    "SEO Ship Thru": [4, 10],
+    "OnStar SiriusXM Fleet Options": [39, 10],
+    "Dimensions": [39, 5],
+    "Specs": [12, 5],
+    "Wheels": [11, 11],
+    "Trailering Specs": [10, 3],
+    "All": [238, 2]
+  },
+  "configurations": [
+    {
+      "id": "lt-fwd",
+      "trim": "LT",
+      "drive": "FWD",
+      "column": 4,
+      "header": "LT\n1LB56\nFWD\n1LT",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "LT",
+      "configuration": "FWD"
+    },
+    {
+      "id": "lt-awd",
+      "trim": "LT",
+      "drive": "AWD",
+      "column": 5,
+      "header": "LT\n1LB56\nAWD\n2LT",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "LT",
+      "configuration": "AWD"
+    },
+    {
+      "id": "z71-awd",
+      "trim": "Z71",
+      "drive": "AWD",
+      "column": 6,
+      "header": "Z71\n1LC56\nAWD\n2Z7",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "Z71",
+      "configuration": "AWD"
+    },
+    {
+      "id": "high-country-fwd",
+      "trim": "High Country",
+      "drive": "FWD",
+      "column": 7,
+      "header": "High Country\n1LD56\nFWD\n1LZ",
+      "specColumn": 3,
+      "dimensionColumn": 3,
+      "colorDecor": "High Country",
+      "configuration": "FWD"
+    },
+    {
+      "id": "high-country-awd",
+      "trim": "High Country",
+      "drive": "AWD",
+      "column": 8,
+      "header": "High Country\n1LD56\nAWD\n2LZ",
+      "specColumn": 3,
+      "dimensionColumn": 3,
+      "colorDecor": "High Country",
+      "configuration": "AWD"
+    },
+    {
+      "id": "rs-fwd",
+      "trim": "RS",
+      "drive": "FWD",
+      "column": 9,
+      "header": "RS\n1LD56\nFWD\n1RS",
+      "specColumn": 4,
+      "dimensionColumn": 4,
+      "colorDecor": "RS",
+      "configuration": "FWD"
+    },
+    {
+      "id": "rs-awd",
+      "trim": "RS",
+      "drive": "AWD",
+      "column": 10,
+      "header": "RS\n1LD56\nAWD\n2RS",
+      "specColumn": 4,
+      "dimensionColumn": 4,
+      "colorDecor": "RS",
+      "configuration": "AWD"
+    }
+  ],
+  "notes": [],
+  "expectedContentSha256": "624685dba1d26cfdff365ea859baacd61acd20ee76d5fb159af8fd58a913f4f6"
+}

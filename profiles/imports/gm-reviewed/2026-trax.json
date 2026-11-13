@@ -1,0 +1,88 @@
+{
+  "id": "gm-2026-trax-nov13",
+  "year": 2026,
+  "model": "Trax",
+  "sha256": "4d9b64a1399d2d09da0cd15501d8a59ce38cea663ff39d4dfa4013ad58f4c4be",
+  "reviewedAt": "2026-11-13",
+  "headers": [
+    "LS\n1TR58\n1LS",
+    "1RS\n1TR58\n1RS",
+    "LT\n1TU58\n1LT",
+    "2RS\n1TU58\n2RS",
+    "ACTIV\n1TU58\n1SA"
+  ],
+  "sheets": {
+    "Highlights": [10, 1],
+    "Standard Equipment": [144, 8],
+    "Equipment Groups": [39, 8],
+    "Interior": [99, 8],
+    "Exterior": [63, 8],
+    "Mechanical": [31, 8],
+    "Color and Trim": [20, 10],
+    "SEO Ship Thru": [5, 8],
+    "OnStar SiriusXM Fleet Options": [39, 8],
+    "Dimensions": [20, 3],
+    "Specs": [13, 3],
+    "Wheels": [9, 9],
+    "All": [224, 2]
+  },
+  "configurations": [
+    {
+      "id": "ls-fwd",
+      "trim": "LS",
+      "drive": "FWD",
+      "column": 4,
+      "header": "LS\n1TR58\n1LS",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "LS",
+      "configuration": "FWD"
+    },
+    {
+      "id": "1rs-fwd",
+      "trim": "1RS",
+      "drive": "FWD",
+      "column": 5,
+      "header": "1RS\n1TR58\n1RS",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "1RS",
+      "configuration": "FWD"
+    },
+    {
+      "id": "lt-fwd",
+      "trim": "LT",
+      "drive": "FWD",
+      "column": 6,
+      "header": "LT\n1TU58\n1LT",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "LT",
+      "configuration": "FWD"
+    },
+    {
+      "id": "2rs-fwd",
+      "trim": "2RS",
+      "drive": "FWD",
+      "column": 7,
+      "header": "2RS\n1TU58\n2RS",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "2RS",
+      "configuration": "FWD"
+    },
+    {
+      "id": "activ-fwd",
+      "trim": "ACTIV",
+      "drive": "FWD",
+      "column": 8,
+      "header": "ACTIV\n1TU58\n1SA",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "ACTIV",
+      "configuration": "FWD"
+    }
+  ],
+  "notes": [],
+  "expectedContentSha256": "a113331bc256438f2da024b6d7e471a1ffa88fad471dafa2de1d2789ee1df2be"
+}

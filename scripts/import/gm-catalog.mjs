@@ -1,3 +1,8 @@
+import {
+  prepareReviewedGm,
+  reviewedColors,
+  reviewedTechnical,
+} from "./gm-reviewed.mjs";
 import { createHash } from "node:crypto";
 import { validate } from "../validate.mjs";
 export const digest = (value) =>
@@ -105,9 +110,16 @@ const excluded = (text) =>
     text,
   ) || /Fleet orders only|fleet-only/i.test(text);
 function records(stage, report) {
+  const label = (text) =>
+    stage.adapter === "gm-fleet-reviewed-v2"
+      ? text
+          .split(/\n\s*\d+[.:]/)[0]
+          .replace(/\s+/g, " ")
+          .trim()
+      : main(text);
   const byCode = new Map();
   for (const row of stage.equipment) {
-    const description = main(row.description);
+    const description = label(row.description);
     if (
       !description ||
       /^(?:Standard Equipment|Chevy Safety Assist, includes|Infotainment, High)/.test(
@@ -122,7 +134,7 @@ function records(stage, report) {
     byCode.get(key).push(row);
   }
   return [...byCode.values()].map((rows) => ({
-    description: main(rows[0].description)
+    description: label(rows[0].description)
       .replace(/\(OnStar Fleet Basics for Fleet\)/g, "")
       .replace(/^OnStar Basics .*$/, () => {
         const years = rows[0].description.match(
@@ -135,7 +147,7 @@ function records(stage, report) {
       const states = new Set(rows.map((r) => r.cells[index].status));
       if (states.size > 1 || states.has("unverified")) {
         report.ambiguous.push({
-          feature: main(rows[0].description),
+          feature: label(rows[0].description),
           configuration: config.header,
           refs: rows.map((r) => r.cells[index].ref),
           reason: "Conflicting or unrecognized GM equipment indicators",
@@ -150,8 +162,38 @@ function records(stage, report) {
   }));
 }
 export function importGmStage(stage, base, features, supplement = null) {
+  const reviewed = stage.adapter === "gm-fleet-reviewed-v2";
+  if (reviewed) stage = prepareReviewedGm(stage);
+  const map = reviewed
+    ? {
+        ...mappings,
+        drivetrain: /^(?:Drivetrain, front|Front|All)-wheel drive/,
+        heatedWheel: /^Steering wheel, heated/,
+        panoramicRoof: /^Sunroof,.*panoramic/i,
+        wirelessCharging: /^Wireless (?:Phone Charging|Charging)/,
+        remoteStart: /^Remote (?:Start|vehicle starter)/,
+        infotainment: /^(?:11\.3.*display|Audio system,)/,
+        phone: /Apple CarPlay|Android Auto/i,
+        keyless: /^Keyless (?:Open|Start)/,
+        rearHeatedSeats: /^Seats, heated.*rear/i,
+        rearCamera: /^(?:HD )?Rear Vision Camera/,
+        powerOutlets: /^Power outlet,/,
+        wipers: /^(?:Wipers|Windshield wipers),.*(?:rain|Rainsense)/i,
+        voiceControl: /Natural Voice Recognition|advanced voice recognition/i,
+        assistance:
+          /^(?:Automatic Emergency Braking|Enhanced Automatic Emergency Braking|Lane Keep Assist|Forward Collision Alert|Front Pedestrian|Following Distance|Blind Zone)/,
+        advancedAssistance:
+          /^(?:Rear Cross Traffic|Reverse Automatic|Side Bicyclist|Intersection)/,
+        parkingSensors: /^(?:Rear Park Assist|Front and Rear Park Assist)/,
+        superCruise: /^Super Cruise,/,
+        liftgate:
+          /^(?:Liftgate,.*(?:power|AutoSense)|AutoSense Power Liftgate)/,
+        manualLiftgate: /^Liftgate, (?:rear )?manual/,
+        steeringWheelType: /^Steering wheel, (?!heated)/,
+      }
+    : mappings;
   if (
-    stage.adapter !== "gm-fleet-xlsx-v1" ||
+    (!reviewed && stage.adapter !== "gm-fleet-xlsx-v1") ||
     stage.schemaVersion !== 1 ||
     !stage.configurations.length
   )
@@ -170,6 +212,12 @@ export function importGmStage(stage, base, features, supplement = null) {
     excluded: [],
     standardCounts: {},
     duplicate: false,
+    ...(reviewed
+      ? {
+          selectionChecks: stage.selectionChecks,
+          reviewNotes: stage.reviewNotes,
+        }
+      : {}),
   };
   if (
     supplement &&
@@ -180,7 +228,18 @@ export function importGmStage(stage, base, features, supplement = null) {
   const supplementalDigest = digest(supplement);
   const baseErrors = validate(base, features);
   if (baseErrors.length) throw new Error(baseErrors.join("\n"));
-  if (existing) {
+  if (
+    existing &&
+    existing.status === "awaiting-verification" &&
+    !existing.trims.length &&
+    reviewed
+  ) {
+    report.replacedPlaceholder = existing.id;
+    base = {
+      ...base,
+      vehicles: base.vehicles.filter((v) => v.id !== existing.id),
+    };
+  } else if (existing) {
     if (
       existing.importProvenance?.sha256 !== stage.source.sha256 ||
       existing.importProvenance?.supplementalDigest !== supplementalDigest
@@ -240,7 +299,7 @@ export function importGmStage(stage, base, features, supplement = null) {
     brand: "chevrolet",
     year: stage.source.year,
     model: stage.source.model,
-    category: supplement?.category || "Vehicle",
+    category: supplement?.category || (reviewed ? "SUV" : "Vehicle"),
     status: "verified",
     verifiedAt: stage.reviewedAt,
     summary: `${stage.source.year} ${stage.source.model} — factory-standard equipment and source-verified specifications. Choose a drivetrain within each trim.`,
@@ -329,11 +388,31 @@ export function importGmStage(stage, base, features, supplement = null) {
     const standard = entries.filter(
       (r) => r.cells[index].status === "standard",
     );
-    if (standard.length)
-      return evidence(
+    if (standard.length) {
+      const result = evidence(
         [...new Set(standard.map((r) => r.description))].join("; "),
         standard.flatMap((r) => r.cells[index].refs),
       );
+      if (reviewed) {
+        const conditions = [
+          ...new Set(
+            standard.flatMap((r) =>
+              r.rows.map((row) => row.conditions?.[index]).filter(Boolean),
+            ),
+          ),
+        ];
+        if (conditions.length) result.conditions = conditions.join(" ");
+        result.sourceCells[sid] = [
+          ...new Set([
+            ...result.sourceCells[sid],
+            ...standard.flatMap((r) =>
+              r.rows.map((row) => row.descriptionCell),
+            ),
+          ]),
+        ];
+      }
+      return result;
+    }
     if (
       !entries.length ||
       entries.some((r) => r.cells[index].status === "unverified")
@@ -361,8 +440,17 @@ export function importGmStage(stage, base, features, supplement = null) {
   };
   for (const [key, [label, category]] of Object.entries(technical))
     addField(key, label, category === "Convenience" ? "Comfort" : category);
+  if (reviewed) {
+    if (stage.equipment.some((r) => /^Super Cruise,/.test(r.description)))
+      addField(
+        "superCruise",
+        "Super Cruise hands-free driver assistance",
+        "Safety",
+      );
+    else delete map.superCruise;
+  }
   const mapped = new Set();
-  for (const [key, pattern] of Object.entries(mappings))
+  for (const [key, pattern] of Object.entries(map))
     for (const r of known) if (pattern.test(r.description)) mapped.add(r);
   // Canonical summaries replace corresponding source rows; only unmapped standard facts add detailed rows.
   const detailed = new Map();
@@ -396,13 +484,33 @@ export function importGmStage(stage, base, features, supplement = null) {
     return col;
   };
   const findSpec = (table, pattern, trim, drive, sheet) => {
-    const col = tableColumn(table, trim);
+    const config = reviewed ? trim : null;
+    const col = reviewed
+      ? sheet === "Specs"
+        ? config.specColumn
+        : config.dimensionColumn
+      : tableColumn(table, trim);
     const rows = table
       .map((r, i) => ({ r, i }))
       .filter(
         ({ r }) =>
           pattern.test(String(r[0] || "")) &&
-          !/optional sunroof/i.test(String(r[0])) &&
+          !(
+            reviewed
+              ? /(?:optional|with|w\/)\s*(?:a |the )?sunroof|available.*seating|seating.*available/i
+              : /optional sunroof/i
+          ).test(String(r[0])) &&
+          (!reviewed ||
+            !/^Curb weight/i.test(String(r[0])) ||
+            !/\b(?:LS|1RS|LT|2RS|ACTIV|RS)\b/.test(String(r[0])) ||
+            new RegExp(`\\b${config.trim}\\b`).test(String(r[0]))) &&
+          (!reviewed ||
+            !config.engineCode ||
+            !/Curb weight/i.test(String(r[0])) ||
+            !/2\.0L|3\.6L/.test(String(r[0])) ||
+            String(r[0]).includes(
+              config.engineCode === "LGX" ? "3.6L" : "2.0L",
+            )) &&
           (!/\bFWD\b/.test(String(r[0])) || drive === "FWD") &&
           (!/\bAWD\b/.test(String(r[0])) || drive === "AWD"),
       );
@@ -422,128 +530,134 @@ export function importGmStage(stage, base, features, supplement = null) {
         ),
       )
       .join(" / ");
-  const colors = tables["Color and Trim"];
-  const interiorHeader = colors.findIndex((r) => r[0] === "Decor Level");
-  const colorHeader = colors.findIndex((r) => r[0] === "Exterior Solid Paint");
-  const names = colors[interiorHeader].slice(4).map(String);
-  v.colors = { interiors: [], exteriors: [] };
-  for (let i = interiorHeader + 1; i < colorHeader; i++) {
-    const r = colors[i];
-    if (!r[0] || !r[3]) continue;
-    const trim = stage.configurations
-      .map((c) => c.trim)
-      .find((t) => new RegExp(`^${t}(?:$| with )`).test(r[0]));
-    if (!trim) continue;
-    for (let c = 4; c < r.length; c++)
-      if (r[c] && r[c] !== "--")
-        v.colors.interiors.push({
-          trim,
-          name: names[c - 4],
-          material: r[3],
-          standard: r[0] === trim,
-          sourceIds: [sid],
-          sourceCells: {
-            [sid]: [
-              `Color and Trim!D${i + 1}`,
-              `Color and Trim!${String.fromCharCode(65 + c)}${i + 1}`,
-            ],
-          },
-          colorColumn: c,
-        });
-  }
-  for (let i = colorHeader + 1; i < colors.length; i++) {
-    const r = colors[i];
-    if (!r[2] || !r[0]) continue;
-    const interiors = v.colors.interiors.filter((c) =>
-      String(r[c.colorColumn]).startsWith("A"),
+  if (reviewed) v.colors = reviewedColors(stage, sid);
+  else {
+    const colors = tables["Color and Trim"];
+    const interiorHeader = colors.findIndex((r) => r[0] === "Decor Level");
+    const colorHeader = colors.findIndex(
+      (r) => r[0] === "Exterior Solid Paint",
     );
-    v.colors.exteriors.push({
-      name: String(r[0])
-        .replace(/^NEW!\s*/, "")
-        .replace(/\d+$/, "")
-        .trim(),
-      trims: [...new Set(interiors.map((c) => c.trim))],
-      interiorNames: [...new Set(interiors.map((c) => c.name))],
-      extraCost: /\d$/.test(r[0]),
-      sourceIds: [sid],
-      sourceCells: {
-        [sid]: [
-          `Color and Trim!A${i + 1}`,
-          `Color and Trim!E${i + 1}:H${i + 1}`,
-        ],
-      },
-    });
-  }
-  const exteriorByCode = new Map();
-  for (let i = colorHeader + 1; i < colors.length; i++)
-    if (colors[i][2])
-      exteriorByCode.set(
-        colors[i][2],
-        v.colors.exteriors.find(
-          (c) =>
-            c.name ===
-            String(colors[i][0])
-              .replace(/^NEW!\s*/, "")
-              .replace(/\d+$/, "")
-              .trim(),
-        ),
+    const names = colors[interiorHeader].slice(4).map(String);
+    v.colors = { interiors: [], exteriors: [] };
+    for (let i = interiorHeader + 1; i < colorHeader; i++) {
+      const r = colors[i];
+      if (!r[0] || !r[3]) continue;
+      const trim = stage.configurations
+        .map((c) => c.trim)
+        .find((t) => new RegExp(`^${t}(?:$| with )`).test(r[0]));
+      if (!trim) continue;
+      for (let c = 4; c < r.length; c++)
+        if (r[c] && r[c] !== "--")
+          v.colors.interiors.push({
+            trim,
+            name: names[c - 4],
+            material: r[3],
+            standard: r[0] === trim,
+            sourceIds: [sid],
+            sourceCells: {
+              [sid]: [
+                `Color and Trim!D${i + 1}`,
+                `Color and Trim!${String.fromCharCode(65 + c)}${i + 1}`,
+              ],
+            },
+            colorColumn: c,
+          });
+    }
+    for (let i = colorHeader + 1; i < colors.length; i++) {
+      const r = colors[i];
+      if (!r[2] || !r[0]) continue;
+      const interiors = v.colors.interiors.filter((c) =>
+        String(r[c.colorColumn]).startsWith("A"),
       );
-  v.colors.roofs = [];
-  for (let i = 0; i < colors.length; i++) {
-    const text = String(colors[i][0] || "");
-    if (!text.startsWith("•")) continue;
-    for (const bullet of text.split("•").filter(Boolean)) {
-      const title = /\([A-Z0-9]{3}\)\s*(.+?Roof)\s+available/i.exec(
-        bullet,
-      )?.[1];
-      if (!title) continue;
-      const positive = bullet.replace(/Not available on[^.]+/gi, "");
-      const trims = [
-        ...new Set(
-          [...positive.matchAll(/available on\s+([^.]+)/gi)].flatMap((m) =>
-            stage.configurations
-              .map((c) => c.trim)
-              .filter((name) => new RegExp(`\\b${name}\\b`).test(m[1])),
-          ),
-        ),
-      ];
-      const excludedColors = [...bullet.matchAll(/\(([A-Z0-9]{3})\)/g)]
-        .map((m) => exteriorByCode.get(m[1])?.name)
-        .filter(Boolean);
-      v.colors.roofs.push({
-        name: title,
-        trims,
-        combinations: trims.map((trim) => ({
-          trim,
-          exteriors: v.colors.exteriors
-            .filter(
-              (c) => c.trims.includes(trim) && !excludedColors.includes(c.name),
-            )
-            .map((c) => c.name),
-        })),
+      v.colors.exteriors.push({
+        name: String(r[0])
+          .replace(/^NEW!\s*/, "")
+          .replace(/\d+$/, "")
+          .trim(),
+        trims: [...new Set(interiors.map((c) => c.trim))],
+        interiorNames: [...new Set(interiors.map((c) => c.name))],
+        extraCost: /\d$/.test(r[0]),
         sourceIds: [sid],
-        sourceCells: { [sid]: [`Color and Trim!A${i + 1}`] },
+        sourceCells: {
+          [sid]: [
+            `Color and Trim!A${i + 1}`,
+            `Color and Trim!E${i + 1}:H${i + 1}`,
+          ],
+        },
       });
+    }
+    const exteriorByCode = new Map();
+    for (let i = colorHeader + 1; i < colors.length; i++)
+      if (colors[i][2])
+        exteriorByCode.set(
+          colors[i][2],
+          v.colors.exteriors.find(
+            (c) =>
+              c.name ===
+              String(colors[i][0])
+                .replace(/^NEW!\s*/, "")
+                .replace(/\d+$/, "")
+                .trim(),
+          ),
+        );
+    v.colors.roofs = [];
+    for (let i = 0; i < colors.length; i++) {
+      const text = String(colors[i][0] || "");
+      if (!text.startsWith("•")) continue;
+      for (const bullet of text.split("•").filter(Boolean)) {
+        const title = /\([A-Z0-9]{3}\)\s*(.+?Roof)\s+available/i.exec(
+          bullet,
+        )?.[1];
+        if (!title) continue;
+        const positive = bullet.replace(/Not available on[^.]+/gi, "");
+        const trims = [
+          ...new Set(
+            [...positive.matchAll(/available on\s+([^.]+)/gi)].flatMap((m) =>
+              stage.configurations
+                .map((c) => c.trim)
+                .filter((name) => new RegExp(`\\b${name}\\b`).test(m[1])),
+            ),
+          ),
+        ];
+        const excludedColors = [...bullet.matchAll(/\(([A-Z0-9]{3})\)/g)]
+          .map((m) => exteriorByCode.get(m[1])?.name)
+          .filter(Boolean);
+        v.colors.roofs.push({
+          name: title,
+          trims,
+          combinations: trims.map((trim) => ({
+            trim,
+            exteriors: v.colors.exteriors
+              .filter(
+                (c) =>
+                  c.trims.includes(trim) && !excludedColors.includes(c.name),
+              )
+              .map((c) => c.name),
+          })),
+          sourceIds: [sid],
+          sourceCells: { [sid]: [`Color and Trim!A${i + 1}`] },
+        });
+      }
     }
   }
   for (const [index, c] of stage.configurations.entries()) {
     const t = {
-      id: slug(`${c.trim}-${c.drive}`),
+      id: reviewed ? c.id : slug(`${c.trim}-${c.drive}`),
       name: c.trim,
-      configuration: c.drive,
+      configuration: c.configuration || c.drive,
       sourceIds: [sid],
       equipment: {},
     };
     for (const f of catalog.fields)
-      t.equipment[f.id] = mappings[f.id]
+      t.equipment[f.id] = map[f.id]
         ? combine(
-            known.filter((r) => mappings[f.id].test(r.description)),
+            known.filter((r) => map[f.id].test(r.description)),
             index,
           )
         : unknown(
             "Not established by the reviewed workbook; additional model-year-specific manufacturer documentation is required.",
           );
-    for (const [key, pattern] of Object.entries(mappings))
+    for (const [key, pattern] of Object.entries(map))
       if (!catalog.fields.some((f) => f.id === key))
         t.equipment[key] = combine(
           known.filter((r) => pattern.test(r.description)),
@@ -570,7 +684,9 @@ export function importGmStage(stage, base, features, supplement = null) {
       wheelbase: [dimensions, /^Wheelbase$/, "in|mm", "Dimensions"],
       dimensions: [
         dimensions,
-        /^(?:Overall length|Body width|Overall height)$/,
+        reviewed
+          ? /^(?:Overall length|Body width|Overall width(?:, without mirrors)?|Overall height)$/
+          : /^(?:Overall length|Body width|Overall height)$/,
         "in|mm",
         "Dimensions",
       ],
@@ -587,17 +703,25 @@ export function importGmStage(stage, base, features, supplement = null) {
     for (const [field, [table, pattern, unit, sheet]] of Object.entries(
       assignments,
     )) {
-      const entries = findSpec(table, pattern, c.trim, c.drive, sheet).filter(
-        (e) => e.value,
+      const entries = findSpec(
+        table,
+        reviewed ? new RegExp(pattern.source, "i") : pattern,
+        reviewed ? c : c.trim,
+        c.drive,
+        sheet,
+      ).filter(
+        (e) => e.value && (!reviewed || !/^(?:--|TBD|N\/A)$/i.test(e.value)),
       );
       if (!entries.length) {
         t.equipment[field] = unknown("Not provided in the reviewed workbook.");
         continue;
       }
       let text = value(entries, unit);
-      if (field === "seating" && /^\d+\/\d+$/.test(entries[0].value)) {
-        const [front, rear] = entries[0].value.split("/").map(Number);
-        text = `${front + rear} passengers (${front} front / ${rear} rear)`;
+      if (field === "seating" && /^\d+(?:\/\d+)+$/.test(entries[0].value)) {
+        const seats = entries[0].value.split("/").map(Number);
+        text = `${seats.reduce((a, b) => a + b, 0)} passengers (${seats.join(" / ")} by row)`;
+        if (!reviewed)
+          text = `${seats[0] + seats[1]} passengers (${seats[0]} front / ${seats[1]} rear)`;
       } else if (entries.length > 1)
         text = entries
           .map((e) => `${e.label.replace(/,.*$/, "")}: ${value([e], unit)}`)
@@ -627,10 +751,11 @@ export function importGmStage(stage, base, features, supplement = null) {
       t.equipment[field] = evidence(
         "Not applicable — documented gasoline powertrain",
         known
-          .filter((r) => mappings.engine.test(r.description))
+          .filter((r) => map.engine.test(r.description))
           .flatMap((r) => r.cells[index].refs),
         "not-applicable",
       );
+    if (reviewed) reviewedTechnical(stage, c, t.equipment, sid);
     for (const [field, fact] of Object.entries(supplement?.facts || {}))
       t.equipment[field] = {
         status: "standard",
@@ -640,12 +765,10 @@ export function importGmStage(stage, base, features, supplement = null) {
       };
     for (const f of v.additionalFields)
       t.equipment[f.id] ||= unknown("Not established by the workbook.");
-    report.standardCounts[`${c.trim} ${c.drive}`] = known.filter(
-      (r) => r.cells[index].status === "standard",
-    ).length;
-    report.publishedStandardCounts[`${c.trim} ${c.drive}`] = Object.values(
-      t.equipment,
-    ).filter((c) => c.status === "standard").length;
+    report.standardCounts[reviewed ? c.id : `${c.trim} ${c.drive}`] =
+      known.filter((r) => r.cells[index].status === "standard").length;
+    report.publishedStandardCounts[reviewed ? c.id : `${c.trim} ${c.drive}`] =
+      Object.values(t.equipment).filter((c) => c.status === "standard").length;
     v.trims.push(t);
   }
   report.unverifiedFields = [
@@ -796,6 +919,64 @@ export function importGmStage(stage, base, features, supplement = null) {
     "Factory-standard retail equipment is shown. Color references describe manufacturer combinations and do not represent dealership inventory.",
   );
   v.notes.push(...(supplement?.researchNotes || []));
+  if (reviewed) {
+    v.notes.push(...stage.reviewNotes);
+    v.notes.push(
+      ...new Map(
+        stage.equipment
+          .filter((r) => r.description.includes("\n"))
+          .map((r) => [
+            r.description,
+            `Manufacturer workbook notes (${r.descriptionCell}): ${r.description}`,
+          ]),
+      ).values(),
+    );
+    v.notes.push(
+      ...stage.tables["Color and Trim"].flatMap((row, i) =>
+        row[0] && /(?:^|\n)(?:•|\d+[.:])/.test(String(row[0]))
+          ? [
+              `Manufacturer color restrictions (Color and Trim!A${i + 1}): ${row[0]}`,
+            ]
+          : [],
+      ),
+    );
+    v.quickReference.caveats[0].text =
+      "Factory-standard equipment for the selected configuration only. N/A marks unresolved or inapplicable figures. Production and towing restrictions remain in the online guide. Paint eligibility is not inventory.";
+    // The printed reference is a summary; full measurements and changes stay online.
+    v.quickReference.standardSpecFields = [
+      "transmission",
+      "torque",
+      "fuel",
+      "dimensions",
+      "wheelbase",
+      "cargo",
+      "seating",
+      "towing",
+    ];
+    const importantChanges = changes.filter((item) =>
+      /engine|models\b|Adaptive Cruise|infotainment|Information Center|Braking|Super Cruise|camera/i.test(
+        item.text,
+      ),
+    );
+    v.quickReference.modelYearChangeItems = (
+      importantChanges.length ? importantChanges : changes
+    ).slice(0, 5);
+    v.quickReference.powertrainTrimIds = [
+      ...new Map(v.trims.map((t) => [t.configuration, t.id])).values(),
+    ];
+    v.quickReference.commonFieldIds = v.quickReference.commonFieldIds.filter(
+      (key) =>
+        v.trims.every(
+          (t) =>
+            t.equipment[key]?.status === "standard" &&
+            t.equipment[key].value === v.trims[0].equipment[key].value,
+        ),
+    );
+    v.standardOnlyMissingFields = v.standardOnlyMissingFields.filter((key) =>
+      v.trims.some((t) => t.equipment[key]?.status === "unverified"),
+    );
+    report.missing = v.standardOnlyMissingFields;
+  }
   v.importProvenance = {
     adapter: stage.adapter,
     sha256: stage.source.sha256,

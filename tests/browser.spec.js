@@ -41,7 +41,7 @@ test("global search, filters, empty states, and clear filters", async ({
     catalog.vehicles.length,
   );
   await page.getByRole("searchbox").fill("Super Cruise");
-  await expect(page.locator(".vehicle-card")).toHaveCount(0);
+  await expect(page.locator(".vehicle-card")).toHaveCount(2);
   await expect(page.locator(".feature-card")).toHaveCount(1);
   await page.getByRole("searchbox").fill("<img src=x onerror=alert(1)>");
   await expect(page.locator(".vehicle-card")).toHaveCount(0);
@@ -533,7 +533,7 @@ test("legacy links resolve to working destinations with no duplicate comparison 
   await expect(page.locator("#compare-select option")).toHaveCount(
     1 + verified.reduce((n, v) => n + v.trims.length, 0),
   );
-  await expect(page.locator("#compare-select")).not.toContainText(
+  await expect(page.locator("#compare-select")).toContainText(
     "2026 Chevrolet Equinox",
   );
 });

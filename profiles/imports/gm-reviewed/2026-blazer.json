@@ -1,0 +1,128 @@
+{
+  "id": "gm-2026-blazer-nov13",
+  "year": 2026,
+  "model": "Blazer",
+  "sha256": "d90730806a8e4bd0d69820e3176176ec78ca349cb288ccd4cc535a2bd241f660",
+  "reviewedAt": "2026-11-13",
+  "headers": ["LT\n2LT1", "LT\n3LT1", "RS\n1RS2"],
+  "sheets": {
+    "Highlights": [17, 1],
+    "Standard Equipment": [126, 6],
+    "Equipment Groups": [52, 6],
+    "Interior": [111, 6],
+    "Exterior": [66, 6],
+    "Mechanical": [32, 6],
+    "Engine Axles": [5, 7],
+    "Color and Trim": [16, 8],
+    "SEO Ship Thru": [4, 6],
+    "OnStar SiriusXM Fleet Options": [40, 6],
+    "Dimensions": [25, 5],
+    "Specs": [11, 5],
+    "Wheels": [9, 7],
+    "Trailering Specs": [12, 5],
+    "All": [201, 2]
+  },
+  "configurations": [
+    {
+      "id": "2lt-fwd",
+      "trim": "2LT",
+      "drive": "FWD",
+      "column": 4,
+      "header": "LT\n2LT1",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "LT (2LT)",
+      "configuration": "FWD",
+      "engineCode": "LSY"
+    },
+    {
+      "id": "2lt-awd",
+      "trim": "2LT",
+      "drive": "AWD",
+      "column": 4,
+      "header": "LT\n2LT1",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "LT (2LT)",
+      "configuration": "AWD",
+      "engineCode": "LSY"
+    },
+    {
+      "id": "3lt-fwd",
+      "trim": "3LT",
+      "drive": "FWD",
+      "column": 5,
+      "header": "LT\n3LT1",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "LT (3LT)",
+      "configuration": "FWD",
+      "engineCode": "LSY"
+    },
+    {
+      "id": "3lt-awd",
+      "trim": "3LT",
+      "drive": "AWD",
+      "column": 5,
+      "header": "LT\n3LT1",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "LT (3LT)",
+      "configuration": "AWD",
+      "engineCode": "LSY"
+    },
+    {
+      "id": "rs-fwd-lsy",
+      "trim": "RS",
+      "drive": "FWD",
+      "column": 6,
+      "header": "RS\n1RS2",
+      "specColumn": 3,
+      "dimensionColumn": 3,
+      "colorDecor": "RS (1RS)",
+      "configuration": "FWD",
+      "engineCode": "LSY"
+    },
+    {
+      "id": "rs-fwd-lgx",
+      "trim": "RS",
+      "drive": "FWD",
+      "column": 6,
+      "header": "RS\n1RS2",
+      "specColumn": 3,
+      "dimensionColumn": 3,
+      "colorDecor": "RS (1RS)",
+      "configuration": "FWD · 3.6L V6",
+      "engineCode": "LGX"
+    },
+    {
+      "id": "rs-awd-lsy",
+      "trim": "RS",
+      "drive": "AWD",
+      "column": 6,
+      "header": "RS\n1RS2",
+      "specColumn": 4,
+      "dimensionColumn": 4,
+      "colorDecor": "RS (1RS)",
+      "configuration": "AWD",
+      "engineCode": "LSY"
+    },
+    {
+      "id": "rs-awd-lgx",
+      "trim": "RS",
+      "drive": "AWD",
+      "column": 6,
+      "header": "RS\n1RS2",
+      "specColumn": 4,
+      "dimensionColumn": 4,
+      "colorDecor": "RS (1RS)",
+      "configuration": "AWD · 3.6L V6",
+      "engineCode": "LGX"
+    }
+  ],
+  "notes": [
+    "RS 2.0L Turbo is listed standard but unavailable at start of production; no availability date is inferred.",
+    "RS 3.6L V6 is an explicit selected factory powertrain option; FWD V6 requires V92 trailering equipment. AWD and engine-specific equipment are resolved only from explicit footnotes."
+  ],
+  "expectedContentSha256": "2baeb3f6ef9f89ba1492ae222a2ce594de97474b7174f7581bb53c8204695996"
+}
