@@ -52,3 +52,54 @@ Local apply uses the existing digest/base checks and revalidates the candidate. 
 ## Scope of reuse
 
 Batch processing is ready for exports in this reviewed GM sheet/header family. The mapping is based on GM descriptions, not Equinox-specific application code or hardcoded trim arrays. Different GM layouts, transmission matrices, manufacturer symbols or filename conventions need a reviewed adapter extension; unsupported layouts fail independently in a batch. There is no administration UI or incentive integration.
+
+## Reviewed multi-model workbooks (v2)
+
+The seven 2026–2027 Chevrolet source profiles are in `profiles/imports/gm-reviewed/`.
+The same `npm run import:gm` command selects `extract_gm_reviewed.py` when the
+workbook SHA-256 matches a reviewed profile. Older Equinox exports continue to use
+the original adapter. Presentation components are shared.
+
+A profile records the exact source hash, worksheet dimensions, equipment column
+headers, model/year, and configuration-to-equipment/specification/color columns.
+This supports shared equipment columns (Blazer FWD/AWD and selected RS engines),
+missing Engine Axles worksheets, download suffixes, and the source's `NEW` tag.
+Model years are reviewed independently. Neither filename body codes nor another
+year's specifications establish a fact.
+
+For a new export:
+
+1. Archive the original workbook; inspect its symbols, header alignment, mechanical
+   choices, specification columns, standard-package contents and restrictions.
+2. Add a reviewed profile modeled on the closest supplied layout. Pin its source
+   SHA-256. Run the extractor without `expectedContentSha256` only in scratch work;
+   inspect every neutral table/configuration and then pin its `contentSha256` in
+   the profile before using the normal import command.
+3. Run the normal batch command against the current catalog. Review `report.json`
+   and `REPORT.md`, including selection checks, standard-package checks, source
+   conflicts, excluded nonstandard entries and genuinely missing measurements.
+4. Apply using the existing candidate/base digest guard, then archive the neutral
+   stages and reports and run validation, extractor/data/browser tests and build.
+   An identical accepted import is a no-op. A changed verified source needs an
+   explicit comparison; it cannot silently replace a verified record.
+
+The v2 extractor rejects source-hash changes, formulas, changed sheet/header
+alignment, unknown equipment symbols and an unreviewed content fingerprint.
+Each claim retains worksheet/cell addresses; XLSX sources have cells rather than
+PDF page numbers. Blank cells remain unresolved. Standard-package child promotion
+requires an explicit named RPO and a standard parent; conflicting `--` is held for
+review. Optional packages never become factory-standard equipment. Selected
+Blazer powertrain/drivetrain variants include only their documented required
+mechanical equipment, with original indicators retained in the stage and report.
+
+For the new 2027 Equinox workbook, `reverifyAgainst` explicitly compares all shared
+equipment descriptions/indicators and primary technical/color/highlight tables
+against the archived accepted export. The two moved rows are recorded; the existing
+verified record, independent same-year supplement and source references remain
+unchanged. Any different claim fails that reverification path.
+
+Quick references use the existing compact format. New reviewed records select a
+short specification list and up to five cited, significant manufacturer changes
+in `quickReference.modelYearChangeItems`; complete measurements and all change
+notes remain in the online guide. Existing records without this field retain
+their original print behavior.

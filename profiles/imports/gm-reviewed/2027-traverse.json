@@ -1,0 +1,145 @@
+{
+  "id": "gm-2027-traverse-nov13",
+  "year": 2027,
+  "model": "Traverse",
+  "sha256": "13eee8f3a750aee8acc60e9bc0e5d4b97680275d2ca50f0b0ca2000d29f9f6f9",
+  "reviewedAt": "2026-11-13",
+  "headers": [
+    "LT\n1LB56\nFWD\n1SL",
+    "LT\n1LB56\nAWD\n2SL",
+    "LT\n1LB56\nFWD\n1LT",
+    "LT\n1LB56\nAWD\n2LT",
+    "Z71\n1LC56\nAWD\n2Z7",
+    "High Country\n1LD56\nFWD\n1LZ",
+    "High Country\n1LD56\nAWD\n2LZ",
+    "RS\n1LD56\nFWD\n1RS",
+    "RS\n1LD56\nAWD\n2RS"
+  ],
+  "sheets": {
+    "Highlights": [18, 1],
+    "Standard Equipment": [148, 12],
+    "Equipment Groups": [59, 12],
+    "Interior": [109, 12],
+    "Exterior": [63, 12],
+    "Mechanical": [34, 12],
+    "Color and Trim": [21, 10],
+    "SEO Ship Thru": [4, 12],
+    "OnStar SiriusXM Fleet Options": [40, 12],
+    "Dimensions": [39, 6],
+    "Specs": [12, 6],
+    "Wheels": [11, 13],
+    "Trailering Specs": [11, 3],
+    "All": [235, 2]
+  },
+  "configurations": [
+    {
+      "id": "sl-fwd",
+      "trim": "SL",
+      "drive": "FWD",
+      "column": 4,
+      "header": "LT\n1LB56\nFWD\n1SL",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "SL",
+      "configuration": "FWD",
+      "reviewNote": "Equipment column header says LT (1SL/2SL); Specs and Color and Trim call this group SL. Manufacturer naming confirmation required."
+    },
+    {
+      "id": "sl-awd",
+      "trim": "SL",
+      "drive": "AWD",
+      "column": 5,
+      "header": "LT\n1LB56\nAWD\n2SL",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "SL",
+      "configuration": "AWD",
+      "reviewNote": "Equipment column header says LT (1SL/2SL); Specs and Color and Trim call this group SL. Manufacturer naming confirmation required."
+    },
+    {
+      "id": "lt-fwd",
+      "trim": "LT",
+      "drive": "FWD",
+      "column": 6,
+      "header": "LT\n1LB56\nFWD\n1LT",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "LT",
+      "configuration": "FWD"
+    },
+    {
+      "id": "lt-awd",
+      "trim": "LT",
+      "drive": "AWD",
+      "column": 7,
+      "header": "LT\n1LB56\nAWD\n2LT",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "LT",
+      "configuration": "AWD"
+    },
+    {
+      "id": "z71-awd",
+      "trim": "Z71",
+      "drive": "AWD",
+      "column": 8,
+      "header": "Z71\n1LC56\nAWD\n2Z7",
+      "specColumn": 3,
+      "dimensionColumn": 3,
+      "colorDecor": "Z71",
+      "configuration": "AWD"
+    },
+    {
+      "id": "high-country-fwd",
+      "trim": "High Country",
+      "drive": "FWD",
+      "column": 9,
+      "header": "High Country\n1LD56\nFWD\n1LZ",
+      "specColumn": 4,
+      "dimensionColumn": 4,
+      "colorDecor": "High Country",
+      "configuration": "FWD",
+      "reviewNote": "Manufacturer Color and Trim!A21 lists High Country FWD/AWD as late availability; no release date is supplied."
+    },
+    {
+      "id": "high-country-awd",
+      "trim": "High Country",
+      "drive": "AWD",
+      "column": 10,
+      "header": "High Country\n1LD56\nAWD\n2LZ",
+      "specColumn": 4,
+      "dimensionColumn": 4,
+      "colorDecor": "High Country",
+      "configuration": "AWD",
+      "reviewNote": "Manufacturer Color and Trim!A21 lists High Country FWD/AWD as late availability; no release date is supplied."
+    },
+    {
+      "id": "rs-fwd",
+      "trim": "RS",
+      "drive": "FWD",
+      "column": 11,
+      "header": "RS\n1LD56\nFWD\n1RS",
+      "specColumn": 5,
+      "dimensionColumn": 5,
+      "colorDecor": "RS",
+      "configuration": "FWD"
+    },
+    {
+      "id": "rs-awd",
+      "trim": "RS",
+      "drive": "AWD",
+      "column": 12,
+      "header": "RS\n1LD56\nAWD\n2RS",
+      "specColumn": 5,
+      "dimensionColumn": 5,
+      "colorDecor": "RS",
+      "configuration": "AWD"
+    }
+  ],
+  "notes": [
+    "Equipment headers label 1SL/2SL as LT, while Specs and Color and Trim label these groups SL. SL is kept separate using the explicit group codes; manufacturer naming confirmation is required.",
+    "The trailering table has an unscoped Late Availability footnote; verify orderability before quoting a delivery date.",
+    "Color and Trim!A21 explicitly lists High Country FWD/AWD as late availability; no release date is supplied."
+  ],
+  "expectedContentSha256": "19e6c42833aaf0dd63e72ed566011164f9b1e9de41c0c6149552421b4cce91c7"
+}

@@ -1,0 +1,62 @@
+{
+  "id": "gm-2027-trax-nov13",
+  "year": 2027,
+  "model": "Trax",
+  "sha256": "32d20206945622b3e107953edfb139104fabc2f931aadde4b4db84cc044ad37f",
+  "reviewedAt": "2026-11-13",
+  "headers": ["LT\n1TU58\n1LT", "RS\n1TT58\n2RS", "ACTIV\n1TU58\n1SA"],
+  "sheets": {
+    "Highlights": [38, 1],
+    "Standard Equipment": [143, 6],
+    "Equipment Groups": [33, 6],
+    "Interior": [91, 6],
+    "Exterior": [54, 6],
+    "Mechanical": [35, 6],
+    "Color and Trim": [18, 7],
+    "SEO Ship Thru": [5, 6],
+    "OnStar SiriusXM Fleet Options": [40, 6],
+    "Dimensions": [20, 3],
+    "Specs": [11, 3],
+    "Wheels": [5, 7],
+    "All": [210, 2]
+  },
+  "configurations": [
+    {
+      "id": "lt-fwd",
+      "trim": "LT",
+      "drive": "FWD",
+      "column": 4,
+      "header": "LT\n1TU58\n1LT",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "LT",
+      "configuration": "FWD"
+    },
+    {
+      "id": "rs-fwd",
+      "trim": "RS",
+      "drive": "FWD",
+      "column": 5,
+      "header": "RS\n1TT58\n2RS",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "RS",
+      "configuration": "FWD"
+    },
+    {
+      "id": "activ-fwd",
+      "trim": "ACTIV",
+      "drive": "FWD",
+      "column": 6,
+      "header": "ACTIV\n1TU58\n1SA",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "ACTIV",
+      "configuration": "FWD"
+    }
+  ],
+  "notes": [
+    "NEW is a filename label, not part of the model name. This workbook lists LT, RS and ACTIV only; 2026 LS, 1RS and 2RS are not imported into 2027."
+  ],
+  "expectedContentSha256": "b5a4b492ee0d711dc4f21a097adf27605ac3a42b5973f6f590b4984f7df3b454"
+}

@@ -95,7 +95,7 @@ test("standard packages keep their verified children without promoting optional 
     searchVehicles(catalog, features, {
       brand: "chevrolet",
       year: "2027",
-      query: "ventilated seats",
+      query: "Equinox ventilated seats",
     }).vehicles.length,
     0,
   );

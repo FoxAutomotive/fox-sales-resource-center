@@ -1,5 +1,13 @@
+import { createHash } from "node:crypto";
+import { gmReviewedDigest, reverifyGmStage } from "./gm-reviewed.mjs";
 // Existing review/apply contract, with independent GM workbook jobs and no publication.
-import { readFile, writeFile, mkdir, copyFile } from "node:fs/promises";
+import {
+  readFile,
+  writeFile,
+  mkdir,
+  copyFile,
+  readdir,
+} from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { resolve, basename } from "node:path";
 import { importGmStage, digest } from "./gm-catalog.mjs";
@@ -33,21 +41,43 @@ const report = {
     sha256: digest(v),
   })),
 };
+const profileFolder = resolve("profiles/imports/gm-reviewed");
+const profiles = await Promise.all(
+  (await readdir(profileFolder))
+    .filter((f) => f.endsWith(".json"))
+    .map(async (file) => ({
+      file: resolve(profileFolder, file),
+      data: JSON.parse(await readFile(resolve(profileFolder, file), "utf8")),
+    })),
+);
 const seen = new Map();
 for (const [index, path] of paths.entries()) {
   try {
     const folder = resolve(out, `job-${index + 1}`);
     await mkdir(folder, { recursive: true });
     const extracted = resolve(folder, "extracted.json");
+    const sha = createHash("sha256")
+      .update(await readFile(path))
+      .digest("hex");
+    const matched = profiles.find((p) => p.data.sha256 === sha);
     execFileSync(
       get("--python", "python"),
-      ["scripts/import/extract_gm_xlsx.py", "--xlsx", path, "--out", extracted],
+      [
+        matched
+          ? "scripts/import/extract_gm_reviewed.py"
+          : "scripts/import/extract_gm_xlsx.py",
+        "--xlsx",
+        path,
+        "--out",
+        extracted,
+        ...(matched ? ["--profile", matched.file] : []),
+      ],
       { stdio: "pipe" },
     );
     const stage = JSON.parse(await readFile(extracted, "utf8"));
     stage.reviewedAt = get(
       "--reviewed-at",
-      new Date().toISOString().slice(0, 10),
+      stage.reviewedAt || new Date().toISOString().slice(0, 10),
     );
     const key = `${stage.source.year}-${stage.source.model.toLowerCase()}`;
     if (seen.has(key)) {
@@ -71,6 +101,30 @@ for (const [index, path] of paths.entries()) {
     } catch (e) {
       if (e.code !== "ENOENT") throw e;
     }
+    if (
+      matched &&
+      (stage.contentSha256 !== matched.data.expectedContentSha256 ||
+        gmReviewedDigest(stage) !== matched.data.expectedContentSha256)
+    )
+      throw new Error("Reviewed GM stage fingerprint mismatch");
+    const existing = catalog.vehicles.find(
+      (v) =>
+        v.id ===
+        `${stage.source.year}-chevrolet-${stage.source.model.toLowerCase().replaceAll(" ", "-")}`,
+    );
+    if (matched?.data.reverifyAgainst && existing) {
+      const archived = JSON.parse(
+        await readFile(matched.data.reverifyAgainst, "utf8"),
+      );
+      report.jobs.push({
+        file: basename(path),
+        ...reverifyGmStage(stage, archived, existing),
+      });
+      seen.set(key, stage.source.sha256);
+      await writeFile(extracted, JSON.stringify(stage, null, 2) + "\n");
+      await copyFile(path, resolve(folder, basename(path)));
+      continue;
+    }
     const result = importGmStage(stage, catalog, features, supplement);
     catalog = result.catalog;
     seen.set(key, stage.source.sha256);
@@ -92,6 +146,24 @@ for (const [index, path] of paths.entries()) {
 report.protectedVehicles = report.protectedVehicles.filter(
   (p) => !report.jobs.some((j) => j.status === "imported" && j.id === p.id),
 );
+report.placeholderReplacements = base.vehicles
+  .filter(
+    (v) =>
+      v.status === "awaiting-verification" &&
+      !v.trims.length &&
+      report.jobs.some((j) => j.id === v.id && j.status === "imported"),
+  )
+  .map((before) => ({
+    id: before.id,
+    before,
+    afterSha256: digest(catalog.vehicles.find((v) => v.id === before.id)),
+  }));
+report.resultVehicles = report.jobs
+  .filter((j) => j.id)
+  .map((j) => ({
+    id: j.id,
+    sha256: digest(catalog.vehicles.find((v) => v.id === j.id)),
+  }));
 await writeFile(
   resolve(out, "catalog.candidate.json"),
   JSON.stringify(catalog, null, 2) + "\n",

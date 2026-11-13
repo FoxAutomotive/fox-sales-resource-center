@@ -1,3 +1,4 @@
+import { assertHistoricalVehicle } from "./historical-preservation.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -69,10 +70,7 @@ test("Toyota import is idempotent and preserves unrelated vehicles and historica
   assert.equal(JSON.stringify(catalog), before);
   assert.ok(result.report.models.every((m) => m.standardEquipmentAdded === 0));
   for (const record of report.preservedVehicles)
-    assert.equal(
-      hash(catalog.vehicles.find((v) => v.id === record.id)),
-      record.sha256,
-    );
+    assertHistoricalVehicle(catalog, record);
   const rav = vehicle("rav4"),
     reviewed = report.models.find((m) => m.id === rav.id);
   for (const prior of reviewed.baselineCells) {
@@ -276,8 +274,10 @@ test("Changed Toyota stage content fails closed and a failed batch leaves no sta
 });
 test("Named system searches do not combine Toyota seating language with cruise-control claims", () => {
   assert.equal(
-    searchVehicles(catalog, features, { query: "Super Cruise" }).vehicles
-      .length,
+    searchVehicles(catalog, features, {
+      query: "Super Cruise",
+      brand: "toyota",
+    }).vehicles.length,
     0,
   );
   assert.ok(
@@ -322,10 +322,7 @@ test("six-model Toyota batch pins all 158 pages, 560 rows and 38 configurations 
   );
   assert.equal(expansionReport.preservedVehicles.length, 24);
   for (const record of expansionReport.preservedVehicles)
-    assert.equal(
-      hash(catalog.vehicles.find((v) => v.id === record.id)),
-      record.sha256,
-    );
+    assertHistoricalVehicle(catalog, record);
   for (const { profile, stage } of expansion) {
     assert.equal(toyotaContentDigest(stage), profile.expectedContentSha256);
     assert.equal(stage.source.year, profile.year);
@@ -526,11 +523,7 @@ test("next six Toyota brochures pin 176 pages, 793 rows, 32 trim families and 55
 test("next Toyota batch preserves all 30 prior vehicles, particularly the separate 2027 Land Cruiser", () => {
   assert.equal(nextReport.preservedVehicles.length, 30);
   for (const prior of nextReport.preservedVehicles)
-    assert.equal(
-      hash(catalog.vehicles.find((v) => v.id === prior.id)),
-      prior.sha256,
-      prior.id,
-    );
+    assertHistoricalVehicle(catalog, prior);
   const prior = nextReport.preservedVehicles.find(
     (v) => v.id === "2027-toyota-land-cruiser",
   );

@@ -61,10 +61,11 @@ test("feature searches do not infer pending equipment or use generic glossary as
     ).vehicles.length,
     0,
   );
-  assert.equal(
-    searchVehicles(catalog, features, { query: "Super Cruise" }).vehicles
-      .length,
-    0,
+  assert.deepEqual(
+    searchVehicles(catalog, features, { query: "Super Cruise" })
+      .vehicles.map((v) => v.id)
+      .sort(),
+    ["2026-chevrolet-traverse", "2027-chevrolet-traverse"],
   );
   assert.equal(
     searchVehicles(catalog, features, { query: "Super Cruise" }).glossary
@@ -944,6 +945,7 @@ test("feature alias searches match evidenced categories across brands without ma
         .vehicles.map((v) => v.id)
         .sort(),
       [
+        "2026-chevrolet-traverse",
         "2026-toyota-tacoma",
         "2026-toyota-sienna",
         "2026-toyota-grand-highlander",

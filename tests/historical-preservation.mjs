@@ -12,9 +12,37 @@ const review = JSON.parse(
     ),
   ),
 );
+const gmReview = JSON.parse(
+  readFileSync(
+    new URL("../docs/imports/gm-seven-2026-2027-report.json", import.meta.url),
+  ),
+);
 export function assertHistoricalVehicle(catalog, prior) {
   const current = catalog.vehicles.find((v) => v.id === prior.id);
   assert.ok(current, prior.id);
+  if (digest(current) === prior.sha256) return;
+  const replaced = gmReview.placeholderReplacements.find(
+    (r) => r.id === prior.id,
+  );
+  if (replaced) {
+    assert.equal(replaced.before.status, "awaiting-verification");
+    assert.equal(
+      replaced.before.trims.length,
+      0,
+      "Only an empty placeholder may use this replacement ledger",
+    );
+    assert.equal(
+      digest(replaced.before),
+      prior.sha256,
+      "Historical baseline must match the archived empty placeholder",
+    );
+    assert.equal(
+      digest(current),
+      replaced.afterSha256,
+      "Imported Chevrolet claims must match their reviewed candidate",
+    );
+    return;
+  }
   const extension = review.models.find(
     (m) => m.id === prior.id && m.baselineFieldCount > 0,
   );

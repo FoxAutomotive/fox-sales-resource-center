@@ -1,0 +1,102 @@
+{
+  "id": "gm-2027-equinox-nov13",
+  "year": 2027,
+  "model": "Equinox",
+  "sha256": "e1ff689bd09b9e89c219fb8fffde42e09c948ce26dff0e79d60648c67c56081e",
+  "reviewedAt": "2026-11-13",
+  "headers": [
+    "LT\n1LT1",
+    "LT\n2LT1",
+    "ACTIV\nXDB2",
+    "ACTIV\nKDZ2",
+    "RS\n1RS3",
+    "RS\n2RS3"
+  ],
+  "sheets": {
+    "Highlights": [8, 1],
+    "Standard Equipment": [118, 9],
+    "Equipment Groups": [44, 9],
+    "Interior": [104, 9],
+    "Exterior": [46, 9],
+    "Mechanical": [31, 9],
+    "Engine Axles": [5, 5],
+    "Color and Trim": [19, 8],
+    "SEO Ship Thru": [10, 9],
+    "OnStar SiriusXM Fleet Options": [41, 9],
+    "Dimensions": [19, 4],
+    "Specs": [12, 4],
+    "Wheels": [9, 10],
+    "All": [207, 2]
+  },
+  "configurations": [
+    {
+      "id": "lt-fwd",
+      "trim": "LT",
+      "drive": "FWD",
+      "column": 4,
+      "header": "LT\n1LT1",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "LT",
+      "configuration": "FWD"
+    },
+    {
+      "id": "lt-awd",
+      "trim": "LT",
+      "drive": "AWD",
+      "column": 5,
+      "header": "LT\n2LT1",
+      "specColumn": 1,
+      "dimensionColumn": 1,
+      "colorDecor": "LT",
+      "configuration": "AWD"
+    },
+    {
+      "id": "activ-fwd",
+      "trim": "ACTIV",
+      "drive": "FWD",
+      "column": 6,
+      "header": "ACTIV\nXDB2",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "ACTIV",
+      "configuration": "FWD"
+    },
+    {
+      "id": "activ-awd",
+      "trim": "ACTIV",
+      "drive": "AWD",
+      "column": 7,
+      "header": "ACTIV\nKDZ2",
+      "specColumn": 2,
+      "dimensionColumn": 2,
+      "colorDecor": "ACTIV",
+      "configuration": "AWD"
+    },
+    {
+      "id": "rs-fwd",
+      "trim": "RS",
+      "drive": "FWD",
+      "column": 8,
+      "header": "RS\n1RS3",
+      "specColumn": 3,
+      "dimensionColumn": 3,
+      "colorDecor": "RS",
+      "configuration": "FWD"
+    },
+    {
+      "id": "rs-awd",
+      "trim": "RS",
+      "drive": "AWD",
+      "column": 9,
+      "header": "RS\n2RS3",
+      "specColumn": 3,
+      "dimensionColumn": 3,
+      "colorDecor": "RS",
+      "configuration": "AWD"
+    }
+  ],
+  "notes": [],
+  "expectedContentSha256": "a3624f93470425754d8c71a5309411d80af3b550d422c9c32fee83f09e2e6095",
+  "reverifyAgainst": "imports/gm-2027-equinox/extracted.json"
+}
