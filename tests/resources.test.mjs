@@ -7,6 +7,8 @@ import {
   publishedResources,
   resourceContentHTML,
   validateResources,
+  isTrainingDocumentPath,
+  trainingDocumentHTML,
 } from "../resources.js";
 const data = JSON.parse(
   readFileSync(new URL("../data/resources.json", import.meta.url)),
@@ -77,6 +79,7 @@ test("Only published resources form category listings; future categories require
     [
       ["FOX AUTOMOTIVE SALES PLAYBOOK", 10],
       ["Sales Training", 1],
+      ["FOX TEAM AI TRAINING", 1],
     ],
   );
   next.resources.push({
@@ -91,6 +94,7 @@ test("Only published resources form category listings; future categories require
     [
       ["FOX AUTOMOTIVE SALES PLAYBOOK", 10],
       ["Sales Training", 1],
+      ["FOX TEAM AI TRAINING", 1],
       ["Forms & Documents", 1],
     ],
   );
@@ -192,11 +196,14 @@ test("Full salesperson PDFs retain supplied ZIP bytes and leave all Quick Guides
   );
   const preserved = {
     ...data,
-    resources: data.resources.map((r) =>
-      Object.fromEntries(
-        Object.entries(r).filter(([key]) => key !== "fullTraining"),
+    categories: data.categories.filter((c) => c.id !== "fox-team-ai-training"),
+    resources: data.resources
+      .filter((r) => r.category !== "fox-team-ai-training")
+      .map((r) =>
+        Object.fromEntries(
+          Object.entries(r).filter(([key]) => key !== "fullTraining"),
+        ),
       ),
-    ),
   };
   assert.equal(
     createHash("sha256").update(JSON.stringify(preserved)).digest("hex"),
@@ -233,4 +240,51 @@ test("Full-training paths accept the nested directory without allowing unsafe li
     guide.fullTraining = path;
     assert.ok(validateResources(next).length, path);
   }
+});
+
+test("AI training originals use safe local PDF/PNG links; missing originals stay unpublished", () => {
+  const group = resourceGroups(data).find(
+    (g) => g.id === "fox-team-ai-training",
+  );
+  assert.ok(
+    resourceGroups(data).findIndex((g) => g.id === group.id) >
+      resourceGroups(data).findIndex((g) => g.id === "sales-training"),
+  );
+  const training = data.resources.find(
+    (r) => r.id === "fox-team-ai-training-02",
+  );
+  assert.equal(group.resources[0], training);
+  const html = trainingDocumentHTML(training);
+  assert.match(html, /View Training/);
+  assert.match(html, /target="_blank" rel="noopener"/);
+  const pdf = readFileSync(
+    new URL(`../${training.trainingDocument}`, import.meta.url),
+  );
+  assert.equal(
+    createHash("sha256").update(pdf).digest("hex"),
+    "e74aa789c7ee2ac617afa924f33d14d8a268ced8af1b048d035ba28dd48e924f",
+  );
+  for (const path of [
+    "assets/training/ai/Fox_Training_03.png",
+    "assets/training/ai/Fox_Training_03.pdf",
+  ])
+    assert.ok(isTrainingDocumentPath(path));
+  for (const path of [
+    "javascript:alert(1)",
+    "https://example.com/test.pdf",
+    "assets/training/ai/../escape.pdf",
+    "assets/training/ai/test.svg",
+    'assets/training/ai/test.pdf" onclick="x',
+  ]) {
+    assert.equal(isTrainingDocumentPath(path), false);
+    const next = structuredClone(data);
+    next.resources.find((r) => r.id === training.id).trainingDocument = path;
+    assert.ok(validateResources(next).length > 0);
+  }
+  const draft = data.resources.find((r) => r.id === "fox-team-ai-training-01");
+  assert.equal(draft.published, false);
+  assert.equal(draft.trainingDocument, null);
+  const next = structuredClone(data);
+  next.resources.find((r) => r.id === draft.id).published = true;
+  assert.ok(validateResources(next).length > 0);
 });

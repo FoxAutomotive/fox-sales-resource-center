@@ -1,4 +1,4 @@
-import { validateResources } from "../resources.js";
+import { validateResources, isTrainingDocumentPath } from "../resources.js";
 import { validateSpecials } from "../specials.js";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
@@ -500,6 +500,23 @@ export async function validateFiles() {
         errors.push(`Resources: invalid training PDF for ${resource.id}`);
     } catch {
       errors.push(`Resources: missing training PDF for ${resource.id}`);
+    }
+  }
+  for (const resource of resources.resources) {
+    if (!isTrainingDocumentPath(resource.trainingDocument)) continue;
+    try {
+      const file = await readFile(
+        new URL(`../${resource.trainingDocument}`, import.meta.url),
+      );
+      const valid = resource.trainingDocument.endsWith(".pdf")
+        ? file.subarray(0, 5).toString() === "%PDF-"
+        : file
+            .subarray(0, 8)
+            .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+      if (!valid)
+        errors.push(`Resources: invalid training document for ${resource.id}`);
+    } catch {
+      errors.push(`Resources: missing training document for ${resource.id}`);
     }
   }
   if (errors.length) throw new Error(errors.join("\n"));

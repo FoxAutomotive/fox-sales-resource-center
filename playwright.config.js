@@ -4,6 +4,7 @@ export default defineConfig({
   testMatch: [
     "browser.spec.js",
     "training-pdfs.spec.js",
+    "ai-training.spec.js",
     "chevrolet-guides.spec.js",
   ],
   fullyParallel: true,

@@ -11,6 +11,11 @@
       "name": "Sales Training"
     },
     {
+      "id": "fox-team-ai-training",
+      "name": "FOX TEAM AI TRAINING",
+      "description": "Practical AI training for dealership leaders and teams. Open each original training document to view, print, or save it."
+    },
+    {
       "id": "forms-documents",
       "name": "Forms & Documents"
     },
@@ -1245,6 +1250,24 @@
           "text": "# Module 10: Professional Discipline\n*The sale is the outcome. Consistent activity creates the opportunity.*\n\n## The Principle\nIncome is paid when a vehicle is sold, but the opportunity is created through purposeful calls, texts, appointments, follow-up, service conversations, referrals, and long-term relationships. Do not measure every day only by deliveries.\n\n## The 45-Minute Standard\nAim for 45–50 minutes of intentional, productive work per hour when not serving a customer or meeting other responsibilities. Refuse to let scrolling, gossip, and waiting for traffic define the day.\n\n## Productive Vs. Busy\nBusy: “Just checking in.” Productive: a customer-specific message with a reason and a next step.\nBusy: closing CRM tasks for activity credit. Productive: noting what matters to the customer and scheduling the action that will move them forward.\n\n## Your Daily Workflow\nStart: review email, voicemail, CRM, overnight leads, appointments, and prior-day unsold customers.\nNext: work immediate promised follow-ups.\nThen: contact sold customers, lease maturities, service customers, warranty expirations, and equity opportunities.\nUse open time for referrals, orphan owners, inactive leads, and database work.\nEnd: confirm tomorrow’s appointments and plan your next day.\n\n## The Economics Of Activity\nA phone call is not a commission, but it can produce a conversation. Conversations produce appointments; appointments create the opportunity to sell. Use your own actual conversion rates to estimate the value of consistent activity rather than treating non-sale days as worthless.\n\n## Follow Up With A Reason\nBefore a customer leaves, establish when you will follow up. Replace generic messages with context.\nWeak: “Just checking in.”\nBetter: “You mentioned wanting to compare the payment options on the Equinox. I have the updated information. Would a quick call at 4:00 work?”\nUse the customer’s preferred, permitted communication method and honor opt-outs.\n\n## Set Firm Appointments\nA real appointment has a specific date, time, purpose, and an agreed preparation or vehicle plan. “Stop by sometime” is not an appointment. Confirm the details and be ready before the customer arrives.\n\n## Slow Days Are Opportunity Days\nAsk: Who can I help today? Which existing customer needs a useful update? Whose lease is nearing maturity? What service guest could use a vehicle evaluation? Who have I earned the right to ask for a referral? A day without a sale can still build tomorrow’s business.\n\n## Build The Relationship\nFollow through after delivery, connect during service and ownership milestones, and ask for referrals when trust has been earned. A customer who knows you after the sale is easier to serve when the next buying cycle arrives.\n\n## Quick Reference\nWork with purpose. Every outreach needs a reason and next step. Create firm appointments. Protect the day’s productive time. Measure controllable activity as well as sales.\nDiscipline creates success; success builds motivation.\n"
         }
       ]
+    },
+    {
+      "id": "fox-team-ai-training-01",
+      "title": "Training 01 — Your AI Management Assistant",
+      "heading": "Training 01 — Your AI Management Assistant",
+      "category": "fox-team-ai-training",
+      "description": "Learn how to get better results from AI by providing context, assigning roles, asking better questions, and applying AI to real dealership management challenges.",
+      "published": false,
+      "trainingDocument": null
+    },
+    {
+      "id": "fox-team-ai-training-02",
+      "title": "Training 02 — Stop Typing. Start Talking.",
+      "heading": "Training 02 — Stop Typing. Start Talking.",
+      "category": "fox-team-ai-training",
+      "description": "Learn how to use voice conversations with AI, assign it a role, let it ask questions, challenge assumptions, and get practical recommendations without getting stuck in endless questions.",
+      "published": true,
+      "trainingDocument": "assets/training/ai/FOX_AI_Training_02_Stop_Typing_Start_Talking.pdf"
     }
   ]
 }

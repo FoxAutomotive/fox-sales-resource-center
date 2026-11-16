@@ -1663,6 +1663,7 @@ for (const width of [1280, 390]) {
     await expect(page.getByRole("heading", { level: 2 })).toHaveText([
       "FOX AUTOMOTIVE SALES PLAYBOOK",
       "Sales Training",
+      "FOX TEAM AI TRAINING",
     ]);
     await page
       .getByRole("link", {
@@ -1815,6 +1816,7 @@ test("Resources expands from manifest data, hides drafts and supports direct lin
   await expect(page.getByRole("heading", { level: 2 })).toHaveText([
     "FOX AUTOMOTIVE SALES PLAYBOOK",
     "Sales Training",
+    "FOX TEAM AI TRAINING",
     "Forms & Documents",
   ]);
   await expect(page.getByText("Unpublished training")).toHaveCount(0);
