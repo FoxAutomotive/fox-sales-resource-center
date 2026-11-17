@@ -102,7 +102,7 @@ Add future modules by copying the approved original into that folder and adding
 another manifest record. Keep records in training-number order. Existing Sales
 Playbook records, Markdown and full-training PDF links remain unchanged.
 
-### Current installation / pending source
+### Installed training documents
 
 - **Training 02 — Stop Typing. Start Talking.** uses the supplied two-page
   `FOX_AI_Training_2.pdf`, copied byte-for-byte as
@@ -111,13 +111,13 @@ Playbook records, Markdown and full-training PDF links remain unchanged.
   `e74aa789c7ee2ac617afa924f33d14d8a268ced8af1b048d035ba28dd48e924f`.
   Both pages render and printing is permitted. The source includes its second-page
   facilitator guide; both supplied pages are retained without edits.
-- **Training 01 — Your AI Management Assistant** has its requested metadata saved
-  with `published: false` and `trainingDocument: null`. The cheat sheet is visible
-  inline in the request, but no downloadable PNG attachment was available. Do not
-  substitute a generated image or reconstructed content. Upload the original PNG
-  to `assets/training/ai/`, set its path, and publish this record after checking the
-  file. Validation rejects publishing a null document, so employees never get a
-  broken link. The PR stays draft pending that original file.
+- **Training 01 — Your AI Management Assistant** uses the subsequently supplied
+  one-page `Fox_Team_AI_Management_Cheat_Sheet.pdf`, copied byte-for-byte as
+  `assets/training/ai/FOX_AI_Training_01_Your_AI_Management_Assistant.pdf`.
+  Original: 345,258 bytes; SHA-256
+  `b9d2eeb9c0a052c5e84a17dd3e043997387594c794172579c8038602a2cec196`.
+  The PDF renders the original management cheat sheet and permits printing.
+  Its existing resource record is now published; no content is reconstructed.
 
 Checks cover safe PDF/PNG paths, unchanged Playbook content, category ordering,
 new-tab viewing and byte-identical PDF downloads on desktop/mobile, plus future
