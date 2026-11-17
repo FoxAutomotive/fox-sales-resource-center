@@ -81,3 +81,45 @@ See [the installed-file report](full-salesperson-training.md) and [source hashes
 Module 8 has a source-title discrepancy: the supplied Markdown says “Deal Structure & Objection Control”; the request names it “Deal Structure, Trade Control & Objection Isolation.” The catalog/document header uses the requested title and the source Markdown heading remains unchanged in the body.
 
 No deployment or merge is part of this change. The completed training installation is delivered as a review pull request.
+
+## Fox Team AI Training
+
+The `fox-team-ai-training` category appears after the Sales Playbook and Sales
+Training. It uses the existing category headings, white resource cards and button
+styles. No navigation or other Hub sections change.
+
+Original training documents are file-based resource records. Set
+`trainingDocument` to a PDF or PNG directly under `assets/training/ai/`, omit
+`content` and `moduleNumber`, and provide the usual title, heading, description,
+category and publication flag. The title and **View Training** button open the
+original file in a new tab with `rel="noopener"`; native browser viewing supports
+printing and saving. The existing resource detail URL also provides the document
+link, without embedding or rewriting the material. Published paths must be safe,
+local and backed by files with the expected PDF/PNG signature. The build copies
+the original assets unchanged.
+
+Add future modules by copying the approved original into that folder and adding
+another manifest record. Keep records in training-number order. Existing Sales
+Playbook records, Markdown and full-training PDF links remain unchanged.
+
+### Current installation / pending source
+
+- **Training 02 — Stop Typing. Start Talking.** uses the supplied two-page
+  `FOX_AI_Training_2.pdf`, copied byte-for-byte as
+  `assets/training/ai/FOX_AI_Training_02_Stop_Typing_Start_Talking.pdf`.
+  Original: 773,663 bytes; SHA-256
+  `e74aa789c7ee2ac617afa924f33d14d8a268ced8af1b048d035ba28dd48e924f`.
+  Both pages render and printing is permitted. The source includes its second-page
+  facilitator guide; both supplied pages are retained without edits.
+- **Training 01 — Your AI Management Assistant** has its requested metadata saved
+  with `published: false` and `trainingDocument: null`. The cheat sheet is visible
+  inline in the request, but no downloadable PNG attachment was available. Do not
+  substitute a generated image or reconstructed content. Upload the original PNG
+  to `assets/training/ai/`, set its path, and publish this record after checking the
+  file. Validation rejects publishing a null document, so employees never get a
+  broken link. The PR stays draft pending that original file.
+
+Checks cover safe PDF/PNG paths, unchanged Playbook content, category ordering,
+new-tab viewing and byte-identical PDF downloads on desktop/mobile, plus future
+image documents through a synthetic test-only fixture. The PNG fixture is not a
+substitute for Training 01 and is not included in the site build.

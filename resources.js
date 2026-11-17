@@ -42,6 +42,15 @@ export function fullTrainingHTML(resource) {
     ? `<a class="text-link" href="${escape(resource.fullTraining)}" target="_blank" rel="noopener">View Full Training</a>`
     : `<span class="muted">Full training awaiting original Academy PDF</span>`;
 }
+// Original training files use native browser viewing, printing and saving.
+export const isTrainingDocumentPath = (path) =>
+  typeof path === "string" &&
+  /^assets\/training\/ai\/[a-zA-Z0-9_-]+\.(pdf|png)$/.test(path);
+export function trainingDocumentHTML(resource) {
+  return isTrainingDocumentPath(resource.trainingDocument)
+    ? `<a class="button secondary" href="${escape(resource.trainingDocument)}" target="_blank" rel="noopener">View Training</a>`
+    : "";
+}
 export function publishedResources(data) {
   return data.resources.filter((resource) => resource.published === true);
 }
@@ -226,7 +235,21 @@ export function validateResources(data) {
         "Resources: invalid training PDF path",
       );
     }
-    blocks(resource.content);
+    if (resource.trainingDocument !== undefined) {
+      check(
+        isTrainingDocumentPath(resource.trainingDocument) ||
+          (!resource.published && resource.trainingDocument === null),
+        "Resources: invalid training document path",
+      );
+      check(
+        resource.moduleNumber === undefined,
+        "Resources: document training cannot replace a Playbook module",
+      );
+      check(
+        resource.content === undefined,
+        "Resources: document training must use the original file, not rewritten content",
+      );
+    } else blocks(resource.content);
   }
   return errors;
 }
