@@ -79,7 +79,7 @@ test("Only published resources form category listings; future categories require
     [
       ["FOX AUTOMOTIVE SALES PLAYBOOK", 10],
       ["Sales Training", 1],
-      ["FOX TEAM AI TRAINING", 1],
+      ["FOX TEAM AI TRAINING", 2],
     ],
   );
   next.resources.push({
@@ -94,7 +94,7 @@ test("Only published resources form category listings; future categories require
     [
       ["FOX AUTOMOTIVE SALES PLAYBOOK", 10],
       ["Sales Training", 1],
-      ["FOX TEAM AI TRAINING", 1],
+      ["FOX TEAM AI TRAINING", 2],
       ["Forms & Documents", 1],
     ],
   );
@@ -253,7 +253,10 @@ test("AI training originals use safe local PDF/PNG links; missing originals stay
   const training = data.resources.find(
     (r) => r.id === "fox-team-ai-training-02",
   );
-  assert.equal(group.resources[0], training);
+  assert.deepEqual(
+    group.resources.map((r) => r.id),
+    ["fox-team-ai-training-01", "fox-team-ai-training-02"],
+  );
   const html = trainingDocumentHTML(training);
   assert.match(html, /View Training/);
   assert.match(html, /target="_blank" rel="noopener"/);
@@ -281,10 +284,20 @@ test("AI training originals use safe local PDF/PNG links; missing originals stay
     next.resources.find((r) => r.id === training.id).trainingDocument = path;
     assert.ok(validateResources(next).length > 0);
   }
-  const draft = data.resources.find((r) => r.id === "fox-team-ai-training-01");
-  assert.equal(draft.published, false);
-  assert.equal(draft.trainingDocument, null);
+  const first = data.resources.find((r) => r.id === "fox-team-ai-training-01");
+  assert.equal(first.published, true);
+  const original = readFileSync(
+    new URL(`../${first.trainingDocument}`, import.meta.url),
+  );
+  assert.equal(
+    createHash("sha256").update(original).digest("hex"),
+    "b9d2eeb9c0a052c5e84a17dd3e043997387594c794172579c8038602a2cec196",
+  );
   const next = structuredClone(data);
-  next.resources.find((r) => r.id === draft.id).published = true;
+  const missing = next.resources.find((r) => r.id === first.id);
+  missing.published = false;
+  missing.trainingDocument = null;
+  assert.deepEqual(validateResources(next), []);
+  missing.published = true;
   assert.ok(validateResources(next).length > 0);
 });

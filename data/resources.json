@@ -1257,8 +1257,8 @@
       "heading": "Training 01 — Your AI Management Assistant",
       "category": "fox-team-ai-training",
       "description": "Learn how to get better results from AI by providing context, assigning roles, asking better questions, and applying AI to real dealership management challenges.",
-      "published": false,
-      "trainingDocument": null
+      "published": true,
+      "trainingDocument": "assets/training/ai/FOX_AI_Training_01_Your_AI_Management_Assistant.pdf"
     },
     {
       "id": "fox-team-ai-training-02",
